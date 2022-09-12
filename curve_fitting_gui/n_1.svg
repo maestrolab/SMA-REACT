@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="123.56836mm"
+   height="74.914726mm"
+   viewBox="0 0 123.56836 74.914726"
+   version="1.1"
+   id="svg3136"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="n_1.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview3138"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.4912879"
+     inkscape:cx="325.89281"
+     inkscape:cy="176.35763"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs3133">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath7003">
+      <rect
+         style="opacity:0.226937;fill:#aa8800;fill-rule:evenodd;stroke:#aa8800;stroke-width:1.065;stroke-linecap:round;stroke-linejoin:round"
+         id="rect7005"
+         width="52.452816"
+         height="35.799545"
+         x="530.01276"
+         y="369.76245" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath7011">
+      <rect
+         style="opacity:0.226937;fill:#aa8800;fill-rule:evenodd;stroke:#aa8800;stroke-width:1.065;stroke-linecap:round;stroke-linejoin:round"
+         id="rect7013"
+         width="52.452816"
+         height="35.799545"
+         x="530.01276"
+         y="369.76245" />
+    </clipPath>
+    <rect
+       x="2208.6057"
+       y="1462.3533"
+       width="199.00066"
+       height="110.80718"
+       id="rect4024" />
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker17037"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleInM"
+       inkscape:collect="always">
+      <path
+         transform="scale(-0.4)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path17035"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <rect
+       x="2208.6057"
+       y="1462.3533"
+       width="199.00066"
+       height="110.80718"
+       id="rect4022" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-13.869279,-107.31464)">
+    <path
+       style="fill:none;fill-opacity:1;stroke:#0000ff;stroke-width:1.01127;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 533.01201,377.21768 32.21502,-0.0371 13.10689,27.02609"
+       id="path4006"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\magvstemp3.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       clip-path="none"
+       transform="matrix(-2.6992072,0,0,-2.6992072,1576.1407,1198.9521)" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-566.84281,-222.25215)"
+       id="text4014"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;line-height:64.6875px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect4022);display:inline"><tspan
+         x="2208.6055"
+         y="1505.273"
+         id="tspan16293">n<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan16289">1</tspan><tspan
+   style="font-style:normal;-inkscape-font-specification:'Palatino Linotype'"
+   id="tspan16291">=1</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-521.9145,-244.52486)"
+       id="text4020"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;line-height:64.6875px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect4024);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1"><tspan
+         x="2208.6055"
+         y="1505.273"
+         id="tspan16299">n<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan16295">1</tspan><tspan
+   style="font-style:normal;-inkscape-font-specification:'Palatino Linotype'"
+   id="tspan16297">&lt;1</tspan></tspan></text>
+    <path
+       style="fill:none;fill-opacity:1;stroke:#0000ff;stroke-width:1.01127;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;opacity:0.75"
+       d="m 533.01201,377.21768 c 32.18885,-0.16024 32.19213,-0.12151 45.32191,26.98899"
+       id="path3335"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\magvstemp3.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       clip-path="none"
+       transform="matrix(-2.6992072,0,0,-2.6992072,1576.1407,1198.9521)" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#0000ff;stroke-width:1.01127;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;opacity:0.5"
+       d="m 533.01201,377.21768 c 25.02426,-0.0945 39.35672,14.79924 45.32191,26.98899"
+       id="path3337"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\magvstemp3.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       clip-path="none"
+       transform="matrix(-2.6992072,0,0,-2.6992072,1576.1407,1198.9521)" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4004"
+       d="M 59.475687,166.90576 52.14019,177.88265"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:1.93752;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker17037)"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png" />
+  </g>
+</svg>

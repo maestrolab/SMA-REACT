@@ -1,0 +1,42 @@
+SMA-REACT/EAT Curve Fitting GUI
+
+To-do list
+
+Last updated: 8/9/2022 
+By: Patrick
+
+Big picture items
+X Link the bounds determination to an optimization process
+	-PW 8/9/22
+X Allow specified values to eliminate certain design variables
+	-PW 8/9/22
+X Include certain flags to further constrain the optimization
+	X Modulus Flag (E_A = E_M)
+	X Smooth hardening flag (n_1 = n_2 = n_3 = n_4)
+	X Stress-influence coefficient flag (C_A = C_M)
+	- PW 8/11/22
+		-NEED: Integrate self.flags with the optimization function call.
+__ Add options to change optimization parameters
+	__ Number of generations
+	__ Population size
+	__ Number of gradient-based iterations
+__ Add a restart option in case the gradient-based iteration fails
+	(i.e., if the score is above a certain amount, restart
+	the genetic algorithm or similar). 
+__ Add a status box in the preliminary phase to describe what is changing 
+	(i.e., pull print statements out of the console)
+__ Insert figures to describe optimization progress
+	__ Current solution (experiment vs. model)
+	__ Optimization score as a function of generation
+	__ Bar plot of all normalized DVs to see where the optimization is going
+	__ Phase diagram of current solution
+
+__ Reformat GUI
+	__ Fix bounds formatting (only show 2 sig figs or similar)
+	__ Group like material properties together (transformation temperatures, 
+		moduli, smooth hardening params, etc.)
+	__ Add a helper figure to describe all of the material properties
+		__ Add help buttons to highlight changes in material properties
+	__ Group optimization specifics together
+
+
