@@ -1,0 +1,22 @@
+Work Modes: 
+•	Single Data Input
+•	External Temperature Input
+•	DSC only
+•	Full Course Meal
+
+Simple Data Input – Temperature data combined with stress/strain data on the same time series
+	Requires data column selection
+	Requires data spike remover
+	Requires cross-sectional information
+	Requires strain input
+External Temperature Input – Temperature data is on a separate time series from other data
+	Requires temperature selection column
+	Requires selection of data set to determine a shape memory cycle
+	May require time sync function
+DSC only
+	Requires DSC only
+Full Course
+	Requires everything
+
+
+
