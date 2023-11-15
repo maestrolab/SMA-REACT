@@ -1330,74 +1330,52 @@ class MyTableWidget(QtWidgets.QWidget):
                                 0.01,1E-8,0.01,0.01,0.01,0.01,0.0,0.0]
         upper_bound_defaults = [110E9,110E9,273.0,50.0,323.0,50.0,15E6,15E6,0.03,
                                 0.05,1E-6,1.0,1.0,1.0,1.0,60E6,1E-6]
-
-        #E_M
-        self.E_M.minimum_bound.setText("{:.2e}".format(lower_bound_defaults[0]))
-        self.E_M.maximum_bound.setText("{:.2e}".format(upper_bound_defaults[0]))
-
-        #E_A
-        self.E_A.minimum_bound.setText("{:.2e}".format(lower_bound_defaults[1]))
-        self.E_A.maximum_bound.setText("{:.2e}".format(upper_bound_defaults[1]))
-
-        #M_s
-        self.M_s.minimum_bound.setText("{:.0f}".format(lower_bound_defaults[2]))
-        self.M_s.maximum_bound.setText("{:.0f}".format(upper_bound_defaults[2]))
-
-        #M_s-M_f
-        self.M_s_M_f.minimum_bound.setText("{:.0f}".format(lower_bound_defaults[3]))
-        self.M_s_M_f.maximum_bound.setText("{:.0f}".format(upper_bound_defaults[3]))
-
-        #A_s
-        self.A_s.minimum_bound.setText("{:.0f}".format(lower_bound_defaults[4]))
-        self.A_s.maximum_bound.setText("{:.0f}".format(upper_bound_defaults[4]))
-
-        #A_f - A_s
-        self.A_f_A_s.minimum_bound.setText("{:.0f}".format(lower_bound_defaults[5]))
-        self.A_f_A_s.maximum_bound.setText("{:.0f}".format(upper_bound_defaults[5]))
-
-        #C_M
-        self.C_M.minimum_bound.setText("{:.2e}".format(lower_bound_defaults[6]))
-        self.C_M.maximum_bound.setText("{:.2e}".format(upper_bound_defaults[6]))
-
-        #C_A
-        self.C_A.minimum_bound.setText("{:.2e}".format(lower_bound_defaults[7]))
-        self.C_A.maximum_bound.setText("{:.2e}".format(upper_bound_defaults[7]))
-
-        #H_min
-        self.H_min.minimum_bound.setText("{:.2f}".format(lower_bound_defaults[8]))
-        self.H_min.maximum_bound.setText("{:.2f}".format(upper_bound_defaults[8]))
-
-        #H_max - H_min
-        self.H_max_H_min.minimum_bound.setText("{:.2f}".format(lower_bound_defaults[9]))
-        self.H_max_H_min.maximum_bound.setText("{:.2f}".format(upper_bound_defaults[9]))
-
-        #k
-        self.k.minimum_bound.setText("{:.2e}".format(lower_bound_defaults[10]))
-        self.k.maximum_bound.setText("{:.2e}".format(upper_bound_defaults[10]))
-
-        #n_1
-        self.n_1.minimum_bound.setText("{:.2f}".format(lower_bound_defaults[11]))
-        self.n_1.maximum_bound.setText("{:.2f}".format(upper_bound_defaults[11]))
-
-        #n_2
-        self.n_2.minimum_bound.setText("{:.2f}".format(lower_bound_defaults[12]))
-        self.n_2.maximum_bound.setText("{:.2f}".format(upper_bound_defaults[12]))
-
-        #n_3
-        self.n_3.minimum_bound.setText("{:.2f}".format(lower_bound_defaults[13]))
-        self.n_3.maximum_bound.setText("{:.2f}".format(upper_bound_defaults[13]))
-
-        #n_4
-        self.n_4.minimum_bound.setText("{:.2f}".format(lower_bound_defaults[14]))
-        self.n_4.maximum_bound.setText("{:.2f}".format(upper_bound_defaults[14]))
-
-        #sigma_crit
-        self.sigma_0.minimum_bound.setText("{:.2e}".format(lower_bound_defaults[15]))
-        self.sigma_0.maximum_bound.setText("{:.2e}".format(upper_bound_defaults[15]))
-
-        #alpha
-        self.alpha.minimum_bound.setText("{:.2e}".format(lower_bound_defaults[16]))
-        self.alpha.maximum_bound.setText("{:.2e}".format(upper_bound_defaults[16]))
+        
+        objects = [
+            self.E_M,
+            self.E_A,
+            self.M_s,
+            self.M_s_M_f,
+            self.A_s,
+            self.A_f_A_s,
+            self.C_M,
+            self.C_A,
+            self.H_min,
+            self.H_max_H_min,
+            self.k,
+            self.n_1,
+            self.n_2,
+            self.n_3,
+            self.n_4,
+            self.sigma_0,
+            self.alpha,
+            ]
+        
+        variable_formats = [
+            "{:.2e}",
+            "{:.2e}",
+            "{:.0f}",
+            "{:.0f}",
+            "{:.0f}",
+            "{:.0f}",
+            "{:.2e}",
+            "{:.2e}",
+            "{:.2f}",
+            "{:.2f}",
+            "{:.2e}",
+            "{:.2f}",
+            "{:.2f}",
+            "{:.2f}",
+            "{:.2f}",
+            "{:.2e}",
+            "{:.2e}"
+            ]
+        
+        for property_object,lower_bound,upper_bound,variable_format in \
+            zip(objects,lower_bound_defaults,upper_bound_defaults,variable_formats):
+            
+            property_object.minimum_bound.setText(variable_format.format(lower_bound))
+            property_object.maximum_bound.setText(variable_format.format(upper_bound))
 
         #delta
         self.delta.lineEdit.setText('1e-6')
