@@ -985,8 +985,8 @@ class MyTableWidget(QtWidgets.QWidget):
 
             if self.E_A.sender() == self.E_A.checkBox:
                 print('The E_A checkbox is checked')
-                if self.flags['modulus_flag'] == True:
-                    self.E_A.specified_value.setEnabled(False)
+                # if self.flags['modulus_flag'] == True:
+                #     self.E_A.specified_value.setEnabled(False)
 
                 self.DV_flags[1] = False
 
@@ -1065,6 +1065,7 @@ class MyTableWidget(QtWidgets.QWidget):
                 self.E_A.minimum_bound.setEnabled(False)
                 self.E_A.maximum_bound.setEnabled(False)
                 self.E_A.specified_value.setEnabled(False)
+                self.E_A.specified_value.setText('')
 
             if self.slope_flag.sender() == self.slope_flag.checkbox:
                 # The slope flag does the following:
@@ -1081,6 +1082,7 @@ class MyTableWidget(QtWidgets.QWidget):
                 self.C_A.minimum_bound.setEnabled(False)
                 self.C_A.maximum_bound.setEnabled(False)
                 self.C_A.specified_value.setEnabled(False)
+                self.C_A.specified_value.setText('')
 
             if self.smooth_hardening_flag.sender() == self.smooth_hardening_flag.checkbox:
                 # The smooth hardening flag does the following:
@@ -1103,18 +1105,21 @@ class MyTableWidget(QtWidgets.QWidget):
                 self.n_2.minimum_bound.setEnabled(False)
                 self.n_2.maximum_bound.setEnabled(False)
                 self.n_2.specified_value.setEnabled(False)
+                self.n_2.specified_value.setText('')
 
                 #n_3
                 self.n_3.checkBox.setEnabled(False)
                 self.n_3.minimum_bound.setEnabled(False)
                 self.n_3.maximum_bound.setEnabled(False)
                 self.n_3.specified_value.setEnabled(False)
+                self.n_3.specified_value.setText('')
 
                 #n_4
                 self.n_4.checkBox.setEnabled(False)
                 self.n_4.minimum_bound.setEnabled(False)
                 self.n_4.maximum_bound.setEnabled(False)
                 self.n_4.specified_value.setEnabled(False)
+                self.n_4.specified_value.setText('')
 
         elif state == QtCore.Qt.Unchecked:
             if self.E_M.sender() == self.E_M.checkBox:
@@ -1201,6 +1206,7 @@ class MyTableWidget(QtWidgets.QWidget):
                 self.E_A.minimum_bound.setEnabled(True)
                 self.E_A.maximum_bound.setEnabled(True)
                 self.E_A.specified_value.setEnabled(False)
+                self.E_A.specified_value.setText('')
 
             if self.slope_flag.sender() == self.slope_flag.checkbox:
                 # The slope flag does the following:
@@ -1218,6 +1224,7 @@ class MyTableWidget(QtWidgets.QWidget):
                 self.C_A.minimum_bound.setEnabled(True)
                 self.C_A.maximum_bound.setEnabled(True)
                 self.C_A.specified_value.setEnabled(False)
+                self.C_A.specified_value.setText('')
 
             if self.smooth_hardening_flag.sender() == self.smooth_hardening_flag.checkbox:
                 # The smooth hardening flag does the following:
@@ -1241,6 +1248,7 @@ class MyTableWidget(QtWidgets.QWidget):
                 self.n_2.minimum_bound.setEnabled(True)
                 self.n_2.maximum_bound.setEnabled(True)
                 self.n_2.specified_value.setEnabled(False)
+                self.n_2.specified_value.setText('')
 
                 #n_3
                 self.n_3.checkBox.setEnabled(True)
@@ -1248,6 +1256,7 @@ class MyTableWidget(QtWidgets.QWidget):
                 self.n_3.minimum_bound.setEnabled(True)
                 self.n_3.maximum_bound.setEnabled(True)
                 self.n_3.specified_value.setEnabled(False)
+                self.n_3.specified_value.setText('')
 
                 #n_4
                 self.n_4.checkBox.setEnabled(True)
@@ -1255,6 +1264,7 @@ class MyTableWidget(QtWidgets.QWidget):
                 self.n_4.minimum_bound.setEnabled(True)
                 self.n_4.maximum_bound.setEnabled(True)
                 self.n_4.specified_value.setEnabled(False)
+                self.n_4.specified_value.setText('')
 
         print(self.DV_flags)
 
