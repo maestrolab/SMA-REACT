@@ -10,14 +10,13 @@ import pandas as pd
 import numpy as np
 
 
-from PyQt5 import QtCore, QtGui, QtWidgets,QtSvg
+from PyQt5 import QtCore, QtGui, QtWidgets
 from utility.latex_translation import textToLatex
-from PyQt5.QtWidgets import QFileDialog, QMessageBox, QCheckBox, QTabWidget, \
-    QWidget, QGridLayout, QLabel, QPushButton, QApplication, QSpinBox, QComboBox, QTableWidget, \
+from PyQt5.QtWidgets import QFileDialog, QMessageBox, QTabWidget,\
+    QGridLayout, QLabel, QPushButton, QApplication, QSpinBox, QComboBox, QTableWidget, \
     QHBoxLayout, QAbstractItemView, QFrame, QTableWidgetItem
 from PyQt5.QtGui import QFont, QColor
 
-from PyQt5.QtCore import pyqtSlot
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
@@ -25,7 +24,6 @@ from model_funcs.phase_diagram import plot_phase_diagram
 from model_funcs.test_optimizer_v2 import main
 from utility.export import exportData
 from utility.import_vals import importData
-from functools import partial
 from matplotlib import rcParams as rc
 from model_funcs import test_optimizer_v2
 import cgitb
@@ -283,7 +281,7 @@ class MyTableWidget(QtWidgets.QWidget):
         self.sigma_0 = QtWidgets.QHBoxLayout()
         self.create_material_property(
             self.sigma_0,
-            "\sigma_0",
+            r"\sigma_0",
             "Pa",
             parameter_label_width,
             parameter_label_height,
@@ -367,7 +365,7 @@ class MyTableWidget(QtWidgets.QWidget):
         self.alpha = QtWidgets.QHBoxLayout()
         self.create_material_property(
             self.alpha,
-            "alpha",
+            r"\alpha",
             "1/m",
             parameter_label_width,
             parameter_label_height,
@@ -528,7 +526,7 @@ class MyTableWidget(QtWidgets.QWidget):
 
         font_size = 14
         font_weight = 75
-        
+
         font = self.create_font(
             font_size,
             font_weight,
@@ -560,7 +558,7 @@ class MyTableWidget(QtWidgets.QWidget):
         # Header
         self.prop_constraints_header = QtWidgets.QLabel(self.centralwidget)
         self.prop_constraints_header.setText('Material property constraints')
-        
+
         header_font = self.create_font(
             header_font_size,
             header_weight,
@@ -735,13 +733,13 @@ class MyTableWidget(QtWidgets.QWidget):
 
         #self.gen_label.setMinimumSize(QtCore.QSize(90, 0))
         #self.gen_label.setMaximumSize(QtCore.QSize(90, 16777215))
-        
+
         normal_font = self.create_font(
             normal_font_size,
             normal_weight,
             bold_flag = False
             )
-        
+
         self.gen_label.setFont(normal_font)
         self.gen_label.setAlignment(
             QtCore.Qt.AlignLeft|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter
@@ -1446,7 +1444,7 @@ class MyTableWidget(QtWidgets.QWidget):
                 if i == 9 and j == 1:
                     break
                 val = self.gridLayout.itemAtPosition(i, j).itemAt(6).widget().text()
-                if (not val == ""):
+                if not val == "":
                     upper_bound = float(self.gridLayout.itemAtPosition(i, j).itemAt(4).widget().text())
                     lower_bound = float(self.gridLayout.itemAtPosition(i, j).itemAt(2).widget().text())
                     if float(val) < lower_bound:
@@ -1626,13 +1624,13 @@ class MyTableWidget(QtWidgets.QWidget):
 
         label_object.setWordWrap(True)
         label_object.setText(label_text)
-        
+
         font = self.create_font(
             font_size,
             font_weight,
             bold_flag = True
             )
-        
+
         label_object.setFont(font)
         label_object.setAlignment(QtCore.Qt.AlignCenter)
         label_object.setObjectName(label_text)
@@ -1654,7 +1652,7 @@ class MyTableWidget(QtWidgets.QWidget):
         property_object.setObjectName(str(name))
 
         property_object.label = textToLatex(
-            "$"+name+"$ [$\mathrm{"+str(units)+"}$]:",
+            r"$"+name+"$ [$\mathrm{"+str(units)+"}$]:",
             parameter_label_width,
             parameter_label_height,
             self.centralwidget
@@ -1829,7 +1827,7 @@ class MyTableWidget(QtWidgets.QWidget):
                 16777215
                 )
             )
-        
+
         font = self.create_font(
             text_size,
             text_weight,
@@ -1880,7 +1878,7 @@ class MyTableWidget(QtWidgets.QWidget):
             lineEdit.sizePolicy().hasHeightForWidth()
             )
         return sizePolicy
-    
+
     def create_font(
             self,
             font_size,
@@ -1891,9 +1889,9 @@ class MyTableWidget(QtWidgets.QWidget):
         font.setPointSize(font_size)
         font.setBold(bold_flag)
         font.setWeight(font_weight)
-        
-        return font 
-        
+
+        return font
+
 
     # # Questionable if I need this.
     # @pyqtSlot()
