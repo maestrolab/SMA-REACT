@@ -94,9 +94,9 @@ class MyTableWidget(QtWidgets.QWidget):
     def __init__(self, parent):
         super(QtWidgets.QWidget,self).__init__(parent)
 
-        header_font = 10
+        header_font_size = 10
         header_weight = 75
-        normal_font = 10
+        normal_font_size = 10
         normal_weight = 50
 
         lineEdit_height = 30
@@ -386,7 +386,7 @@ class MyTableWidget(QtWidgets.QWidget):
         self.create_label(
                 self.parameter_label,
                 "Parameter",
-                header_font,
+                header_font_size,
                 header_weight,
                 parameter_label_width,
                 parameter_label_height,
@@ -399,7 +399,7 @@ class MyTableWidget(QtWidgets.QWidget):
         self.create_label(
                 self.lower_bound_label,
                 "Lower Bound",
-                header_font,
+                header_font_size,
                 header_weight,
                 lineEdit_width,
                 parameter_label_height,
@@ -414,7 +414,7 @@ class MyTableWidget(QtWidgets.QWidget):
         self.create_label(
                 self.upper_bound_label,
                 "Upper Bound",
-                header_font,
+                header_font_size,
                 header_weight,
                 lineEdit_width,
                 parameter_label_height,
@@ -429,7 +429,7 @@ class MyTableWidget(QtWidgets.QWidget):
         self.create_label(
                 self.specify_label,
                 "Specify?",
-                header_font,
+                header_font_size,
                 header_weight,
                 parameter_label_width,
                 parameter_label_height,
@@ -442,7 +442,7 @@ class MyTableWidget(QtWidgets.QWidget):
         self.create_label(
                 self.value_label,
                 "Value",
-                header_font,
+                header_font_size,
                 header_weight,
                 parameter_label_width,
                 parameter_label_height,
@@ -464,7 +464,7 @@ class MyTableWidget(QtWidgets.QWidget):
         self.create_label(
                 self.parameter_label_right,
                 "Parameter",
-                header_font,
+                header_font_size,
                 header_weight,
                 parameter_label_width,
                 parameter_label_height,
@@ -476,7 +476,7 @@ class MyTableWidget(QtWidgets.QWidget):
         self.create_label(
                 self.lower_bound_label_right,
                 "Lower Bound",
-                header_font,
+                header_font_size,
                 header_weight,
                 lineEdit_width,
                 parameter_label_height,
@@ -488,7 +488,7 @@ class MyTableWidget(QtWidgets.QWidget):
         self.create_label(
                 self.upper_bound_label_right,
                 "Upper Bound",
-                header_font,
+                header_font_size,
                 header_weight,
                 lineEdit_width,
                 parameter_label_height,
@@ -500,7 +500,7 @@ class MyTableWidget(QtWidgets.QWidget):
         self.create_label(
                 self.specify_label_right,
                 "Specify?",
-                header_font,
+                header_font_size,
                 header_weight,
                 parameter_label_width,
                 parameter_label_height,
@@ -513,7 +513,7 @@ class MyTableWidget(QtWidgets.QWidget):
         self.create_label(
                 self.value_label_right,
                 "Value",
-                header_font,
+                header_font_size,
                 header_weight,
                 parameter_label_width,
                 parameter_label_height,
@@ -528,10 +528,12 @@ class MyTableWidget(QtWidgets.QWidget):
 
         font_size = 14
         font_weight = 75
-        font = QtGui.QFont()
-        font.setPointSize(font_size)
-        font.setBold(False)
-        font.setWeight(font_weight)
+        
+        font = self.create_font(
+            font_size,
+            font_weight,
+            bold_flag = False
+            )
 
         # self.buttons.addWidget(self.pushButton_2)
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
@@ -558,12 +560,14 @@ class MyTableWidget(QtWidgets.QWidget):
         # Header
         self.prop_constraints_header = QtWidgets.QLabel(self.centralwidget)
         self.prop_constraints_header.setText('Material property constraints')
+        
+        header_font = self.create_font(
+            header_font_size,
+            header_weight,
+            bold_flag = True
+            )
 
-        font = QtGui.QFont()
-        font.setPointSize(header_font)
-        font.setBold(True)
-        font.setWeight(header_weight)
-        self.prop_constraints_header.setFont(font)
+        self.prop_constraints_header.setFont(header_font)
         self.prop_constraints_header.setAlignment(
             QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter
             )
@@ -628,11 +632,8 @@ class MyTableWidget(QtWidgets.QWidget):
 
         # self.opt_param_header.setMinimumSize(QtCore.QSize(90, 0))
         # self.opt_param_header.setMaximumSize(QtCore.QSize(90, 16777215))
-        font = QtGui.QFont()
-        font.setPointSize(header_font)
-        font.setBold(True)
-        font.setWeight(header_weight)
-        self.alg_param_header.setFont(font)
+
+        self.alg_param_header.setFont(header_font)
         self.alg_param_header.setAlignment(
             QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter
             )
@@ -706,11 +707,8 @@ class MyTableWidget(QtWidgets.QWidget):
         self.opt_param_header.setText('Optimization Parameters')
         # self.opt_param_header.setMinimumSize(QtCore.QSize(90, 0))
         # self.opt_param_header.setMaximumSize(QtCore.QSize(90, 16777215))
-        font = QtGui.QFont()
-        font.setPointSize(header_font)
-        font.setBold(True)
-        font.setWeight(header_weight)
-        self.opt_param_header.setFont(font)
+
+        self.opt_param_header.setFont(header_font)
         self.opt_param_header.setAlignment(
             QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter
             )
@@ -737,11 +735,14 @@ class MyTableWidget(QtWidgets.QWidget):
 
         #self.gen_label.setMinimumSize(QtCore.QSize(90, 0))
         #self.gen_label.setMaximumSize(QtCore.QSize(90, 16777215))
-        font = QtGui.QFont()
-        font.setPointSize(normal_font)
-        font.setBold(False)
-        font.setWeight(normal_weight)
-        self.gen_label.setFont(font)
+        
+        normal_font = self.create_font(
+            normal_font_size,
+            normal_weight,
+            bold_flag = False
+            )
+        
+        self.gen_label.setFont(normal_font)
         self.gen_label.setAlignment(
             QtCore.Qt.AlignLeft|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter
             )
@@ -778,14 +779,10 @@ class MyTableWidget(QtWidgets.QWidget):
             size_policy
             )
 
-
         #self.pop_label.setMinimumSize(QtCore.QSize(90, 0))
         #self.pop_label.setMaximumSize(QtCore.QSize(90, 16777215))
-        font = QtGui.QFont()
-        font.setPointSize(normal_font)
-        font.setBold(False)
-        font.setWeight(normal_weight)
-        self.pop_label.setFont(font)
+
+        self.pop_label.setFont(normal_font)
         self.pop_label.setAlignment(
             QtCore.Qt.AlignLeft|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter
             )
@@ -826,11 +823,8 @@ class MyTableWidget(QtWidgets.QWidget):
 
         #self.iter_label.setMinimumSize(QtCore.QSize(90, 0))
         #self.iter_label.setMaximumSize(QtCore.QSize(90, 16777215))
-        font = QtGui.QFont()
-        font.setPointSize(normal_font)
-        font.setBold(False)
-        font.setWeight(normal_weight)
-        self.iter_label.setFont(font)
+
+        self.iter_label.setFont(normal_font)
         self.iter_label.setAlignment(
             QtCore.Qt.AlignLeft|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter
             )
@@ -1632,11 +1626,13 @@ class MyTableWidget(QtWidgets.QWidget):
 
         label_object.setWordWrap(True)
         label_object.setText(label_text)
-
-        font = QtGui.QFont()
-        font.setPointSize(font_size)
-        font.setBold(True)
-        font.setWeight(font_weight)
+        
+        font = self.create_font(
+            font_size,
+            font_weight,
+            bold_flag = True
+            )
+        
         label_object.setFont(font)
         label_object.setAlignment(QtCore.Qt.AlignCenter)
         label_object.setObjectName(label_text)
@@ -1764,10 +1760,11 @@ class MyTableWidget(QtWidgets.QWidget):
                 self.centralwidget
                 )
 
-        font = QtGui.QFont()
-        font.setPointSize(font_weight)
-        font.setBold(True)
-        font.setWeight(font_size)
+        font = self.create_font(
+            font_size,
+            font_weight,
+            bold_flag = True,
+            )
 
         constraint_object.label.setFont(font)
         constraint_object.label.setAlignment(
@@ -1832,10 +1829,12 @@ class MyTableWidget(QtWidgets.QWidget):
                 16777215
                 )
             )
-        font = QtGui.QFont()
-        font.setPointSize(text_size)
-        font.setBold(True)
-        font.setWeight(text_weight)
+        
+        font = self.create_font(
+            text_size,
+            text_weight,
+            bold_flag = True
+            )
 
         parameter_object.label.setFont(font)
 
@@ -1881,6 +1880,20 @@ class MyTableWidget(QtWidgets.QWidget):
             lineEdit.sizePolicy().hasHeightForWidth()
             )
         return sizePolicy
+    
+    def create_font(
+            self,
+            font_size,
+            font_weight,
+            bold_flag = False,
+            ):
+        font = QtGui.QFont()
+        font.setPointSize(font_size)
+        font.setBold(bold_flag)
+        font.setWeight(font_weight)
+        
+        return font 
+        
 
     # # Questionable if I need this.
     # @pyqtSlot()
