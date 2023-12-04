@@ -19,7 +19,7 @@ def textToLatex(text, width, height, widget):
     ax = fig.gca()
 
 
-    ax.text(0.0,0.0,text,ha='center',fontsize=10)
+    ax.text(0.0,0.0,text,va='center',ha='center',fontsize=10)
     
     #ax.text(0.05, -0.02, r'{}'.format(text), ha="right")
     ax.axis('off')
@@ -28,7 +28,7 @@ def textToLatex(text, width, height, widget):
     
     #fig.patch.set_facecolor("black")
     fig.patch.set_facecolor('none')
-    fig.tight_layout(pad=0.0)
+    # fig.tight_layout(pad=0.0)
     
 
     canvas.draw()
