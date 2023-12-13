@@ -10,8 +10,9 @@ import pandas as pd
 import numpy as np
 
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
-from utility.latex_translation import textToLatex
+
 from PyQt5.QtWidgets import QFileDialog, QMessageBox, QTabWidget,\
     QGridLayout, QLabel, QPushButton, QApplication, QSpinBox, QComboBox, QTableWidget, \
     QHBoxLayout, QAbstractItemView, QFrame, QTableWidgetItem
@@ -20,77 +21,24 @@ from PyQt5.QtGui import QFont, QColor
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-from model_funcs.phase_diagram import plot_phase_diagram
-from model_funcs.test_optimizer_v2 import main
-from utility.export import exportData
-from utility.import_vals import importData
 from matplotlib import rcParams as rc
-from model_funcs import test_optimizer_v2
+
+from .model_funcs.phase_diagram import plot_phase_diagram
+from .model_funcs.test_optimizer_v2 import main
+from .model_funcs import test_optimizer_v2
+from .utility.export import exportData
+from .utility.import_vals import importData
+from .utility.latex_translation import textToLatex
+
+
+
 import cgitb
 cgitb.enable(format="text")
 
 
-
-class App(QtWidgets.QMainWindow):
+class CalibrationParametersWidget(QtWidgets.QWidget):
     def __init__(self):
-        super().__init__()
-        # Formatting
-        self.title = 'Shape Memory Alloy REACT (Rendering of Experimental Analysis and Calibration Tool)'
-        #MainWindow.resize(1552, 586)
-        #MainWindow.showFullScreen()
-        #Resize GUI to take up 75% of the screen (dynamic based on the user's resolution)
-        app = QtWidgets.QApplication(sys.argv)
-        screen = app.primaryScreen()
-        rect = screen.availableGeometry()
-        print(rect)
-        # width = rect.width()
-        # height = rect.height()
-        width = 1600
-        height = 900
-        # width = int(rect.width()*0.90)
-        # height = int(rect.height()*0.90)
-        self.left = int(rect.width()*0.05)
-        self.top = int(rect.height()*0.05)
-        self.width = width
-        self.height = height
-        # self.width = int(width*0.75)
-        # self.height = int(height*0.75)
-        #Resize to be exactly the resolution on my work computer.
-
-        #Set window icon to be the A&M Logo (of course)
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("TAM-LogoBox.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-
-        self.setWindowIcon(icon)
-        self.setWindowTitle(self.title)
-        self.setGeometry(self.left, self.top, self.width, self.height)
-
-
-        self.tabs = QTabWidget()
-        self.tabs.resize(self.width,self.height)
-        self.table_widget = MyTableWidget(self)
-
-        self.data_input_widget = DataInputWidget(self)
-
-        self.calibration_plotting = CalibrationWindow(self)
-
-        self.tabs.addTab(self.data_input_widget,'Data Input')
-        self.tabs.addTab(self.table_widget,"Material Property Calibration")
-
-
-        self.tabs.addTab(self.calibration_plotting,"Calibration Plotting Utility")
-
-
-        self.setCentralWidget(self.tabs)
-
-        self.tabs.setTabEnabled(1,False)
-        self.tabs.setTabEnabled(2,False)
-
-        self.show()
-
-class MyTableWidget(QtWidgets.QWidget):
-    def __init__(self, parent):
-        super(QtWidgets.QWidget,self).__init__(parent)
+        super(QtWidgets.QWidget,self).__init__()
 
         header_font_size = 10
         header_weight = 75
@@ -912,16 +860,16 @@ class MyTableWidget(QtWidgets.QWidget):
         self.num_iters.setAlignment(QtCore.Qt.AlignLeft)
 
         #%% Signals and connections
-        self.retranslateUi(MainWindow)
+        # self.retranslateUi(MainWindow)
         # INITIAL CONDITIONS
         self.loadDefaults()
 
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        # QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         # SIGNALS
         # self.pushButton_3.clicked.connect(self.importVals)
         # self.pushButton_2.clicked.connect(self.guess)
-        self.pushButton.clicked.connect(self.calibrate)
+        # self.pushButton.clicked.connect(self.calibrate)
         #self.file_button.clicked.connect(self.openFiles)
         #self.pushButton.clicked.connect(self.export)
         # self.defaults_button.clicked.connect(self.loadDefaults)
@@ -941,9 +889,9 @@ class MyTableWidget(QtWidgets.QWidget):
 
 
 
-    #%% Functions
+    # %% Functions
     def changeTabs(self):
-        ex.tabs.setCurrentIndex(2)
+        super().tabs.setCurrentIndex(2)
 
     def toggleFullScreen(self):
         if self.isFullScreen():
@@ -1334,19 +1282,19 @@ class MyTableWidget(QtWidgets.QWidget):
                     continue
         exportData(data, "bounds.csv")
 
-    def calibrate(self):
+    def calibrate(self, parent):
         self.getSpecifiedValues()
         bounds = self.getBounds()
         print(self.known_values)
         #print(bounds)
         QApplication.processEvents()
-        ex.tabs.setTabEnabled(2,True)
+        parent.tabs.setTabEnabled(2,True)
         self.changeTabs()
 
         error = test_optimizer_v2.main(bounds,
                                        self,
-                                       ex.data_input_widget.data,
-                                       ex.calibration_plotting)
+                                       parent.data_input_widget.data,
+                                       parent.calibration_plotting)
 
 
 
@@ -1900,508 +1848,147 @@ class MyTableWidget(QtWidgets.QWidget):
     #     for currentQTableWidgetItem in self.tableWidget.selectedItems():
     #         print(currentQTableWidgetItem.row(), currentQTableWidgetItem.column(), currentQTableWidgetItem.text())
 
-#%% Data input widget
-class DataInputWidget(QtWidgets.QWidget):
-    def __init__(self, parent):
-        super(QtWidgets.QWidget,self).__init__(parent)
-        self.main_layout = QGridLayout(self)
-        self.main_layout.setSpacing(20)
-        self.setLayout(self.main_layout)
-        self.files = []
-        self.data = {}
-
-        #FONTS
-        title_font = QFont()
-        title_font.setBold(True)
-        title_font.setPointSize(12)
-
-        bold_normal_font = QFont()
-        bold_normal_font.setBold(True)
-        bold_normal_font.setPointSize(10)
-
-        table_font = QFont()
-        table_font.setPointSize(8)
-
-        self.bold_table_font = QFont()
-        self.bold_table_font.setBold(True)
-        self.bold_table_font.setPointSize(8)
-
-        self.title = QLabel(self)
-        self.title.setText('File I/O')
-        self.title.setFont(title_font)
-        self.select_files_label = QLabel(self)
-        self.select_files_label.setText('Select files to analyze:')
-        self.select_files_label.setFont(bold_normal_font)
-        self.files_button = QPushButton(self)
-        self.files_button.setText('Open Files')
-        self.files_display = QLabel(self)
-        self.files_display.setText('')
-        self.header_skips_label = QLabel(self)
-        self.header_skips_label.setText('Header rows to skip:')
-        self.skips = QSpinBox(self)
-        self.skips.setMinimum(0)
-        self.skips.setMaximum(999)
-        self.skip_units = QLabel(self)
-        self.skip_units.setText('row(s)')
-        self.temp_data_col = QLabel(self)
-        self.temp_data_col.setText('Column for Temperature data:')
-        self.temp_col = QSpinBox(self)
-        self.temp_col.setMinimum(1)
-        self.temp_col.setMaximum(999)
-        self.temp_units = QComboBox(self)
-        self.temp_units.addItems(['[°C]', '[°F]', '[K]'])
-        self.strain_data_col = QLabel(self)
-        self.strain_data_col.setText('Column for Strain data:')
-        self.strain_col = QSpinBox(self)
-        self.strain_col.setMinimum(1)
-        self.strain_col.setMaximum(999)
-        self.strain_units = QComboBox(self)
-        self.strain_units.addItems(['[mm/mm]', '[%]'])
-        self.stress_data_col = QLabel(self)
-        self.stress_data_col.setText('Column for Stress data:')
-        self.stress_col = QSpinBox(self)
-        self.stress_col.setMinimum(1)
-        self.stress_col.setMaximum(999)
-        self.stress_units = QComboBox(self)
-        self.stress_units.addItems(['[MPa]', '[Pa]', '[psi]'])
-        self.preview = QTableWidget(self)
-        self.preview.setRowCount(100)
-        self.preview.setColumnCount(3)
-        self.preview.setDragDropOverwriteMode(False)
-        self.preview.setFont(table_font)
-        self.preview.setSelectionMode(QAbstractItemView.NoSelection)
-        self.preview.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.preview.setContextMenuPolicy(QtCore.Qt.PreventContextMenu)
-        self.preview.setFrameShape(QFrame.StyledPanel)
-        self.preview.setFrameShadow(QFrame.Plain)
-        self.preview.setLineWidth(1)
-        self.preview.setMidLineWidth(0)
-        self.preview.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
-        self.preview.setAutoScrollMargin(16)
-        self.preview.setShowGrid(True)
-        self.preview.setGridStyle(QtCore.Qt.SolidLine)
-        self.preview.setWordWrap(False)
-        self.preview.setCornerButtonEnabled(True)
-        self.preview.setTabKeyNavigation(False)
-        self.preview.setProperty("showDropIndicator", False)
-        self.preview.verticalHeader().setVisible(False)
-        self.asterisk = QLabel(self)
-        self.asterisk.setText('*All files must be formatted the same')
-
-        self.keys = QHBoxLayout(self)
-        # self.spacer = QSpacerItem()
-        # self.spacer2 = QSpacerItem()
-        # self.spacer3 = QSpacerItem()
-        # self.spacer4 = QSpacerItem()
-        min_color_height = 20
-        max_color_height = 50
-
-        min_color_width = 20
-        max_color_width = 50
-
-        self.temp_color = QLabel(self)
-        self.temp_color.setStyleSheet('background-color:rgb(0, 185, 80)')
-        self.temp_color.setMinimumSize(QtCore.QSize(min_color_width, min_color_height))
-        self.temp_color.setMaximumSize(QtCore.QSize(max_color_width, max_color_height))
-        self.temp_key = QLabel(self)
-        self.temp_key.setText('Temperature')
-        self.strain_color = QLabel(self)
-        self.strain_color.setStyleSheet('background-color:rgb(240, 228, 50)')
-        self.strain_color.setMinimumSize(QtCore.QSize(min_color_width, min_color_height))
-        self.strain_color.setMaximumSize(QtCore.QSize(max_color_width, max_color_height))
-        self.strain_key = QLabel(self)
-        self.strain_key.setText('Strain')
-        self.stress_color = QLabel(self)
-        self.stress_color.setStyleSheet('background-color:rgb(86, 200, 233)')
-        self.stress_color.setMinimumSize(QtCore.QSize(min_color_width, min_color_height))
-        self.stress_color.setMaximumSize(QtCore.QSize(max_color_width, max_color_height))
-        self.stress_key = QLabel(self)
-        self.stress_key.setText('Stress')
-        # self.keys.addSpacerItem(self.spacer)
-        self.keys.addWidget(self.temp_color)
-        self.keys.addWidget(self.temp_key)
-        # self.keys.addSpacerItem(self.spacer2)
-        self.keys.addWidget(self.strain_color)
-        self.keys.addWidget(self.strain_key)
-        # self.keys.addSpacerItem(self.spacer3)
-        self.keys.addWidget(self.stress_color)
-        self.keys.addWidget(self.stress_key)
-        # self.keys.addSpacerItem(self.spacer4)
-
-        #Push buttons
-        font_size = 14
-        font_weight = 75
-        font = QtGui.QFont()
-        font.setPointSize(font_size)
-        font.setBold(False)
-        font.setWeight(font_weight)
-
-        self.buttons = QtWidgets.QHBoxLayout(self)
-        self.buttons.setObjectName("buttons")
-        self.load_button = QtWidgets.QPushButton(self)
-        self.load_button.setMinimumSize(QtCore.QSize(100, 100))
-        # self.load_button.setMaximumSize(QtCore.QSize(100, 16777215))
-        self.load_button.setObjectName("load_button")
-        self.load_button.setText('Load Data')
-        self.load_button.setFont(font)
-        self.load_button.setEnabled(False)
-
-        self.continue_button = QtWidgets.QPushButton(self)
-        self.continue_button.setMinimumSize(QtCore.QSize(100, 100))
-        # self.continue_button.setMaximumSize(QtCore.QSize(100, 16777215))
-        self.continue_button.setObjectName("continue_button")
-        self.continue_button.setText('Continue to calibration')
-        self.continue_button.setFont(font)
-        self.continue_button.setEnabled(False)
-
-        self.main_layout.addWidget(self.title, 0, 0)
-        self.main_layout.addWidget(self.select_files_label, 1, 0)
-        self.main_layout.addWidget(self.files_button, 1, 1, 1, 2)
-        self.main_layout.addWidget(self.files_display, 1, 4)
-        self.main_layout.addWidget(self.header_skips_label, 2, 0)
-        self.main_layout.addWidget(self.skips, 2, 2)
-        self.main_layout.addWidget(self.skip_units, 2, 3)
-        self.main_layout.addWidget(self.temp_data_col, 3, 0)
-        self.main_layout.addWidget(self.temp_col, 3, 2)
-        self.main_layout.addWidget(self.temp_units, 3, 3)
-        self.main_layout.addWidget(self.strain_data_col, 4, 0)
-        self.main_layout.addWidget(self.strain_col, 4, 2)
-        self.main_layout.addWidget(self.strain_units, 4, 3)
-        self.main_layout.addWidget(self.stress_data_col, 5, 0)
-        self.main_layout.addWidget(self.stress_col, 5, 2)
-        self.main_layout.addWidget(self.load_button, 7, 0,3,2)
-        self.main_layout.addWidget(self.continue_button, 7, 2,3,2)
-        self.main_layout.addWidget(self.stress_units, 5, 3)
-        self.main_layout.addWidget(self.preview, 2, 4, 6, 6)
-        self.main_layout.addWidget(self.asterisk, 6, 0, 1, 1)
-        self.main_layout.addLayout(self.keys, 8, 4, 1, 4)
-
-
-
-        #SIGNALS
-        self.files_button.clicked.connect(self.openFiles)
-        self.load_button.clicked.connect(self.loadFiles)
-        self.continue_button.clicked.connect(self.changeTabs)
-        self.skips.valueChanged.connect(self.updatePreview)
-        self.temp_col.valueChanged.connect(self.updatePreview)
-        self.strain_col.valueChanged.connect(self.updatePreview)
-        self.stress_col.valueChanged.connect(self.updatePreview)
-
-    #FUNCTIONS
-    def openFiles(self):
-        file_browser = QFileDialog()
-        file_browser.setFileMode(QFileDialog.ExistingFiles)
-        self.files = file_browser.getOpenFileNames(self, 'Browse Files', '', 'All Files(*)')[0]
-
-        text = ''
-        for file in self.files:
-            filename = file[file.rindex('/') + 1:]
-            text += filename + ', '
-        self.files_display.setText(text[:-2])
-
-        # getting inputs
-        skip_rows = self.skips.value()
-        temp_col = self.temp_col.value() - 1
-        strain_col = self.strain_col.value() - 1
-        stress_col = self.stress_col.value() - 1
-
-        overlap = False
-        if temp_col == strain_col or temp_col == stress_col or strain_col == stress_col:
-            overlap = True
-
-        if overlap == False:
-            self.load_button.setEnabled(True)
-        else:
-            self.load_button.setEnabled(False)
-
-        # loading data
-        df_preview = pd.read_csv(self.files[0], nrows=100, header=None, skiprows=skip_rows, encoding='utf-8',
-                                 sep=None, engine='python')
-        col_labels = [str(x) for x in df_preview.columns]
-        self.preview.setColumnCount(len(col_labels))
-        self.preview.setHorizontalHeaderLabels(col_labels)
-        for i in range(len(col_labels)):
-            self.preview.horizontalHeaderItem(i).setFont(self.bold_table_font)
-
-        # filling table
-        for i in range(len(df_preview.index)):
-            for j in range(len(col_labels)):
-                try:
-                    item = QTableWidgetItem('{:.3f}'.format(df_preview.iloc[i, j]))
-                except:
-                    item = QTableWidgetItem(df_preview.iloc[i, j])
-
-                # colors
-                if j in [temp_col, stress_col, strain_col] and not overlap:
-                    if j == temp_col:
-                        item.setBackground(QColor(0, 185, 80))
-                    elif j == strain_col:
-                        item.setBackground(QColor(240, 228, 50))
-                    elif j == stress_col:
-                        item.setBackground(QColor(86, 200, 233))
-
-                self.preview.setItem(i, j, item)
-
-
-    def loadFiles(self):
-        # getting inputs
-        skip_rows = self.skips.value()
-        temp_col = self.temp_col.value() - 1
-        strain_col = self.strain_col.value() - 1
-        stress_col = self.stress_col.value() - 1
-        temp_units = self.temp_units.currentText()
-        strain_units = self.strain_units.currentText()
-        stress_units = self.stress_units.currentText()
-        overlap = False
-        if temp_col == strain_col or temp_col == stress_col or strain_col == stress_col:
-            overlap = True
-
-
-
-        # packaging data
-        if not overlap:
-            data = {'num_experiments': len(self.files)}
-            for i, file in enumerate(self.files):
-                df = pd.read_csv(file, header=None, skiprows=skip_rows, encoding='utf-8',
-                                     sep=None, engine='python')
-
-                # df = df[[df.columns[strain_col], df.columns[temp_col], df.columns[stress_col]]]
-
-                #Re-organize data to go from cold to hot
-                eps = df[df.columns[strain_col]].to_numpy()
-                sigma = df[df.columns[stress_col]].to_numpy()
-                T = df[df.columns[temp_col]].to_numpy()
-
-                min_T = T.min()
-                I = np.argmin(T)
-
-                T = np.concatenate((T[I:],T[0:I+1]))
-                sigma = np.concatenate((sigma[I:],sigma[0:I+1]))
-                eps = np.concatenate((eps[I:],eps[0:I+1]))
-
-                df = pd.DataFrame({"strain":eps, "temperature":T, "stress":sigma})
-
-                # converting stress
-                if stress_units == '[psi]':
-                    df["stress"] = df["stress"] * 6894.7572931783
-                elif stress_units == '[MPa]':
-                    df["stress"] = df["stress"] * 1E6
-
-                # converting temperature
-                if temp_units == '[°C]':
-                    df["temperature"] = df["temperature"] + 273.15
-                elif temp_units == '[°F]':
-                    df["temperature"] = (df["temperature"] - 32) * 5/9 + 273.15
-
-                # converting strain
-                if strain_units == '[%]':
-                    df["strain"] = df["strain"] * 100
-
-                # column_names = ['strain','temperature','stress']
-                # df.columns = column_names
-
-                data['exp_{}'.format(i)] = df
-
-            self.data = data
-            ex.tabs.setTabEnabled(1,True)
-            self.continue_button.setEnabled(True)
-
-    def changeTabs(self):
-        ex.tabs.setCurrentIndex(1)
-
-
-
-    def updatePreview(self):
-        if len(self.files) != 0:
-            # getting inputs
-            skip_rows = self.skips.value()
-            temp_col = self.temp_col.value() - 1
-            strain_col = self.strain_col.value() - 1
-            stress_col = self.stress_col.value() - 1
-            temp_units = self.temp_units.currentText()
-            strain_units = self.strain_units.currentText()
-            stress_units = self.stress_units.currentText()
-            overlap = False
-            if temp_col == strain_col or temp_col == stress_col or strain_col == stress_col:
-                overlap = True
-
-            if overlap == False:
-                self.load_button.setEnabled(True)
-            else:
-                self.load_button.setEnabled(False)
-
-            # loading data
-            df_preview = pd.read_csv(self.files[0], nrows=100, header=None, skiprows=skip_rows, encoding='utf-8',
-                                     sep=None, engine='python')
-            col_labels = [str(x) for x in df_preview.columns]
-            if not overlap:
-                col_labels[temp_col] = 'Temperature'
-                col_labels[strain_col] = 'Strain'
-                col_labels[stress_col] = 'Stress'
-            self.preview.setColumnCount(len(col_labels))
-            self.preview.setHorizontalHeaderLabels(col_labels)
-            for i in range(len(col_labels)):
-                self.preview.horizontalHeaderItem(i).setFont(self.bold_table_font)
-
-            # filling table
-            for i in range(len(df_preview.index)):
-                for j in range(len(col_labels)):
-                    try:
-                        item = QTableWidgetItem('{:.3f}'.format(df_preview.iloc[i, j]))
-                    except:
-                        item = QTableWidgetItem(df_preview.iloc[i, j])
-
-                    # colors
-                    if j in [temp_col, stress_col, strain_col] and not overlap:
-                        if j == temp_col:
-                            item.setBackground(QColor(0, 185, 80))
-                        elif j == strain_col:
-                            item.setBackground(QColor(240, 228, 50))
-                        elif j == stress_col:
-                            item.setBackground(QColor(86, 200, 233))
-
-                    self.preview.setItem(i, j, item)
 
 
 #%% Calibration window widget
-class CalibrationWindow(QtWidgets.QWidget):
-    def __init__(self,parent):
-        super(QtWidgets.QWidget,self).__init__(parent)
+# class CalibrationProgressWidget(QtWidgets.QWidget):
+#     def __init__(self):
+#         super(QtWidgets.QWidget,self).__init__()
 
-        rc.update({'font.size': 18})
+#         rc.update({'font.size': 18})
 
-        # SETUP
-        #self.setWindowTitle('Calibration Window')
-        self.main_layout = QGridLayout(self)
-        self.setLayout(self.main_layout)
+#         # SETUP
+#         #self.setWindowTitle('Calibration Window')
+#         self.main_layout = QGridLayout(self)
+#         self.setLayout(self.main_layout)
 
-        # CANVASES/GRAPHS
-        self.opt_progress_graph = Figure()
-        self.opt_progress_canvas = FigureCanvas(self.opt_progress_graph)
-        self.opt_progress_toolbar = NavigationToolbar(self.opt_progress_canvas, self)
+#         # CANVASES/GRAPHS
+#         self.opt_progress_graph = Figure()
+#         self.opt_progress_canvas = FigureCanvas(self.opt_progress_graph)
+#         self.opt_progress_toolbar = NavigationToolbar(self.opt_progress_canvas, self)
 
-        self.dv_vals_graph = Figure()
-        self.dv_vals_canvas = FigureCanvas(self.dv_vals_graph)
-        self.dv_vals_toolbar = NavigationToolbar(self.dv_vals_canvas, self)
-        keys = ['E_M', 'E_A', 'M_s', 'M_s - M_f', 'A_s', 'A_f - A_s', 'C_M', 'C_A', 'H_min', 'H_max - H_min', 'k',
-                'n_1', 'n_2', 'n_3', 'n_4', 'sig_crit', 'alpha']
-        y = np.zeros(len(keys))
-        self.ax_dv_vals = self.dv_vals_graph.add_subplot(111)
-        self.bars = self.ax_dv_vals.bar(keys, y, width=0.5)
-        self.ax_dv_vals.set_ylim([-0.1, 1.1])
-        self.ax_dv_vals.text(0.05,-0.066,'Lower bound')
-        self.ax_dv_vals.text(0.05,1.033,'Upper bound')
-        self.ax_dv_vals.set_ylabel('Normalized material property, -')
-        self.ax_dv_vals.axhline(0,color='black',linestyle='--')
-        self.ax_dv_vals.axhline(1,color='black',linestyle='--')
+#         self.dv_vals_graph = Figure()
+#         self.dv_vals_canvas = FigureCanvas(self.dv_vals_graph)
+#         self.dv_vals_toolbar = NavigationToolbar(self.dv_vals_canvas, self)
+#         keys = ['E_M', 'E_A', 'M_s', 'M_s - M_f', 'A_s', 'A_f - A_s', 'C_M', 'C_A', 'H_min', 'H_max - H_min', 'k',
+#                 'n_1', 'n_2', 'n_3', 'n_4', 'sig_crit', 'alpha']
+#         y = np.zeros(len(keys))
+#         self.ax_dv_vals = self.dv_vals_graph.add_subplot(111)
+#         self.bars = self.ax_dv_vals.bar(keys, y, width=0.5)
+#         self.ax_dv_vals.set_ylim([-0.1, 1.1])
+#         self.ax_dv_vals.text(0.05,-0.066,'Lower bound')
+#         self.ax_dv_vals.text(0.05,1.033,'Upper bound')
+#         self.ax_dv_vals.set_ylabel('Normalized material property, -')
+#         self.ax_dv_vals.axhline(0,color='black',linestyle='--')
+#         self.ax_dv_vals.axhline(1,color='black',linestyle='--')
 
-        self.dv_vals_graph.autofmt_xdate(rotation=45, ha='right')
+#         self.dv_vals_graph.autofmt_xdate(rotation=45, ha='right')
 
-        self.temp_strain_graph = Figure()
-        self.ax_temp_strain = self.temp_strain_graph.add_subplot(111)
-        self.temp_strain_canvas = FigureCanvas(self.temp_strain_graph)
-        self.temp_strain_toolbar = NavigationToolbar(self.temp_strain_canvas, self)
-        self.ax_temp_strain.set_autoscaley_on(True)
-        self.ax_temp_strain.set_xlabel('Temperature, K')
-        self.ax_temp_strain.set_ylabel('Strain, mm/mm')
-        self.ax_temp_strain.grid()
+#         self.temp_strain_graph = Figure()
+#         self.ax_temp_strain = self.temp_strain_graph.add_subplot(111)
+#         self.temp_strain_canvas = FigureCanvas(self.temp_strain_graph)
+#         self.temp_strain_toolbar = NavigationToolbar(self.temp_strain_canvas, self)
+#         self.ax_temp_strain.set_autoscaley_on(True)
+#         self.ax_temp_strain.set_xlabel('Temperature, K')
+#         self.ax_temp_strain.set_ylabel('Strain, mm/mm')
+#         self.ax_temp_strain.grid()
 
-        self.phase_diagram_graph = Figure()
-        self.ax_phase_digram = self.phase_diagram_graph.add_subplot(111)
-        self.phase_diagram_canvas = FigureCanvas(self.phase_diagram_graph)
-        self.phase_diagram_toolbar = NavigationToolbar(self.phase_diagram_canvas, self)
+#         self.phase_diagram_graph = Figure()
+#         self.ax_phase_digram = self.phase_diagram_graph.add_subplot(111)
+#         self.phase_diagram_canvas = FigureCanvas(self.phase_diagram_graph)
+#         self.phase_diagram_toolbar = NavigationToolbar(self.phase_diagram_canvas, self)
 
-        # ADDING TO WINDOW
-        self.main_layout.addWidget(self.opt_progress_canvas, 0, 0)
-        self.main_layout.addWidget(self.opt_progress_toolbar, 1, 0)
-        self.main_layout.addWidget(self.dv_vals_canvas, 2, 0)
-        self.main_layout.addWidget(self.dv_vals_toolbar, 3, 0)
-        self.main_layout.addWidget(self.temp_strain_canvas, 0, 1)
-        self.main_layout.addWidget(self.temp_strain_toolbar, 1, 1)
-        self.main_layout.addWidget(self.phase_diagram_canvas, 2, 1)
-        self.main_layout.addWidget(self.phase_diagram_toolbar, 3, 1)
-        self.show()
-
-
-    def run(self, bounds, knownValues, DV_flags):
-        QApplication.processEvents()
-        main(bounds, knownValues, DV_flags, self)
+#         # ADDING TO WINDOW
+#         self.main_layout.addWidget(self.opt_progress_canvas, 0, 0)
+#         self.main_layout.addWidget(self.opt_progress_toolbar, 1, 0)
+#         self.main_layout.addWidget(self.dv_vals_canvas, 2, 0)
+#         self.main_layout.addWidget(self.dv_vals_toolbar, 3, 0)
+#         self.main_layout.addWidget(self.temp_strain_canvas, 0, 1)
+#         self.main_layout.addWidget(self.temp_strain_toolbar, 1, 1)
+#         self.main_layout.addWidget(self.phase_diagram_canvas, 2, 1)
+#         self.main_layout.addWidget(self.phase_diagram_toolbar, 3, 1)
+#         self.show()
 
 
-    def updateOptProgress(self, gen, min_func_val, avg, std):
-        self.opt_progress_graph.clear()
-        ax = self.opt_progress_graph.add_subplot(111)
-        ax.plot(gen, min_func_val, color='red', label='Current best solution')
-        ax.plot(gen, avg, label='Average solution',color='black')
-        #ax.fill_between(gen, [x + y for x,y in zip(avg, std)], [x - y for x,y in zip(avg, std)],
-        #                                  color='#888888', alpha=0.2)
-        ax.legend(loc='best')
-        ax.set_xlim([0, max(gen) + 1])
-        ax.set_xlabel('Generation')
-        ax.set_ylabel('Error')
-        self.opt_progress_canvas.draw()
-        self.opt_progress_canvas.flush_events()
+#     def run(self, bounds, knownValues, DV_flags):
+#         QApplication.processEvents()
+#         main(bounds, knownValues, DV_flags, self)
 
 
-    def updateDVVals(self, dv,DV_flags):
-        count = 0
-        for i, bar in enumerate(self.bars):
-            if DV_flags[i] == True:
-                bar.set_height(dv[count])
-                count +=1
-            else:
-                pass
-                # bar.set_height(1)
-                # bar.set_color('red')
-
-        self.dv_vals_canvas.draw()
-        self.dv_vals_canvas.flush_events()
-
-
-    def plotExperimental(self, x, y, numExps):
-        self.ax_temp_strain.clear()
-        self.ax_temp_strain.plot(x, y, 'bo',label='Experiment')
-        self.temp_strain_canvas.draw()
-        self.temp_strain_canvas.flush_events()
-
-        self.lines = [self.ax_temp_strain.plot([], [], 'r-')[0] for _ in range(numExps)]
+#     def updateOptProgress(self, gen, min_func_val, avg, std):
+#         self.opt_progress_graph.clear()
+#         ax = self.opt_progress_graph.add_subplot(111)
+#         ax.plot(gen, min_func_val, color='red', label='Current best solution')
+#         ax.plot(gen, avg, label='Average solution',color='black')
+#         #ax.fill_between(gen, [x + y for x,y in zip(avg, std)], [x - y for x,y in zip(avg, std)],
+#         #                                  color='#888888', alpha=0.2)
+#         ax.legend(loc='best')
+#         ax.set_xlim([0, max(gen) + 1])
+#         ax.set_xlabel('Generation')
+#         ax.set_ylabel('Error')
+#         self.opt_progress_canvas.draw()
+#         self.opt_progress_canvas.flush_events()
 
 
-    def updateTempStrain(self, temp, strain, numExps):
-        for i in range(numExps):
-            self.lines[i].set_xdata(temp[i])
-            self.lines[i].set_ydata(strain[i])
+#     def updateDVVals(self, dv,DV_flags):
+#         count = 0
+#         for i, bar in enumerate(self.bars):
+#             if DV_flags[i] == True:
+#                 bar.set_height(dv[count])
+#                 count +=1
+#             else:
+#                 pass
+#                 # bar.set_height(1)
+#                 # bar.set_color('red')
 
-        self.lines[i].set(label='Model prediction')
-        self.ax_temp_strain.legend(loc='best')
-        self.ax_temp_strain.set_xlabel('Temperature, K',fontsize=18)
-        self.ax_temp_strain.set_ylabel('Strain, mm/mm',fontsize=18)
-
-        self.ax_temp_strain.relim()
-        self.ax_temp_strain.autoscale_view()
-
-        self.temp_strain_canvas.draw()
-        self.temp_strain_canvas.flush_events()
+#         self.dv_vals_canvas.draw()
+#         self.dv_vals_canvas.flush_events()
 
 
-    def updatePhaseDiagram(self, P, sigma_inp):
-        self.ax_phase_digram.clear()
-        plot_phase_diagram(P, sigma_inp, self.ax_phase_digram)
+#     def plotExperimental(self, x, y, numExps):
+#         self.ax_temp_strain.clear()
+#         self.ax_temp_strain.plot(x, y, 'bo',label='Experiment')
+#         self.temp_strain_canvas.draw()
+#         self.temp_strain_canvas.flush_events()
 
-        self.phase_diagram_canvas.draw()
-        self.phase_diagram_canvas.flush_events()
+#         self.lines = [self.ax_temp_strain.plot([], [], 'r-')[0] for _ in range(numExps)]
 
 
+#     def updateTempStrain(self, temp, strain, numExps):
+#         for i in range(numExps):
+#             self.lines[i].set_xdata(temp[i])
+#             self.lines[i].set_ydata(strain[i])
+
+#         self.lines[i].set(label='Model prediction')
+#         self.ax_temp_strain.legend(loc='best')
+#         self.ax_temp_strain.set_xlabel('Temperature, K',fontsize=18)
+#         self.ax_temp_strain.set_ylabel('Strain, mm/mm',fontsize=18)
+
+#         self.ax_temp_strain.relim()
+#         self.ax_temp_strain.autoscale_view()
+
+#         self.temp_strain_canvas.draw()
+#         self.temp_strain_canvas.flush_events()
+
+
+#     def updatePhaseDiagram(self, P, sigma_inp):
+#         self.ax_phase_digram.clear()
+#         plot_phase_diagram(P, sigma_inp, self.ax_phase_digram)
+
+#         self.phase_diagram_canvas.draw()
+#         self.phase_diagram_canvas.flush_events()
 
 
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ex = App()
-    #ui = Ui_MainWindow()
-    #ui.setupUi(MainWindow)
-    #MainWindow.show()
-    sys.exit(app.exec_())
+
+
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     MainWindow = QtWidgets.QMainWindow()
+#     ex = App()
+#     #ui = Ui_MainWindow()
+#     #ui.setupUi(MainWindow)
+#     #MainWindow.show()
+#     sys.exit(app.exec_())

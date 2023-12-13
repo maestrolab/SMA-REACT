@@ -1,5 +1,5 @@
 import numpy as np
-from model_funcs.util_funcs import (
+from .util_funcs import (
     H_cursolver,
     partial_Hcur_sigma,
     Elastic_Transformation_check_RI_stress,
