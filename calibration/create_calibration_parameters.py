@@ -1,42 +1,28 @@
-# -*- coding: utf-8 -*-
+'''
+create_calibration_parameters.py
 
-# Form implementation generated from reading ui file 'new_base_hort.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
+Script to define all model, algorithmic, and optimization parameters
+for calibration of the Lagoudas 1-D SMA model with smooth hardening
+
+# FIXME Add the citation of Lagoudas 2012 IJP.
+
+'''
+
 import random
-import pandas as pd
 import numpy as np
 
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QFileDialog, QMessageBox
 
-from PyQt5.QtWidgets import QFileDialog, QMessageBox, QTabWidget,\
-    QGridLayout, QLabel, QPushButton, QApplication, QSpinBox, QComboBox, QTableWidget, \
-    QHBoxLayout, QAbstractItemView, QFrame, QTableWidgetItem
-from PyQt5.QtGui import QFont, QColor
-
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-from matplotlib import rcParams as rc
-
-from .model_funcs.phase_diagram import plot_phase_diagram
-from .model_funcs.test_optimizer_v2 import main
-from .model_funcs import test_optimizer_v2
 from .utility.export import exportData
 from .utility.import_vals import importData
 from .utility.latex_translation import textToLatex
 
-
-
-import cgitb
-cgitb.enable(format="text")
-
-
 class CalibrationParametersWidget(QtWidgets.QWidget):
+    '''
+    Widget to define the tab where all the calibration parameters
+    can be tweaked.
+    '''
     def __init__(self):
         super(QtWidgets.QWidget,self).__init__()
 
@@ -84,6 +70,8 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.flags['modulus_flag'] = False
         self.flags['slope_flag'] = False
         self.flags['smooth_hardening_flag'] = False
+
+        self.known_values = {} #known values is slaved to DV_flags
         # Elastic properties
         #%% E_M
         self.E_M = QtWidgets.QHBoxLayout()
@@ -860,52 +848,15 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.num_iters.setAlignment(QtCore.Qt.AlignLeft)
 
         #%% Signals and connections
-        # self.retranslateUi(MainWindow)
         # INITIAL CONDITIONS
         self.loadDefaults()
-
-        # QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-        # SIGNALS
-        # self.pushButton_3.clicked.connect(self.importVals)
-        # self.pushButton_2.clicked.connect(self.guess)
-        # self.pushButton.clicked.connect(self.calibrate)
-        #self.file_button.clicked.connect(self.openFiles)
-        #self.pushButton.clicked.connect(self.export)
-        # self.defaults_button.clicked.connect(self.loadDefaults)
 
         sliders = self.centralwidget.findChildren(QtWidgets.QSlider)
         for slider in sliders:
             slider.setMinimumSize(QtCore.QSize(150, 20))
             slider.setMaximumSize(QtCore.QSize(150, 20))
 
-
-        # self.tabs = QTabWidget()
-        # self.tabs.addTab(self.centralwidget,"Material Property Calibration")
-        # self.tab2 = QtWidgets.QWidget()
-        # self.tabs.addTab(self.tab2,'tab 2')
-
-        # MainWindow.setCentralWidget(self.tabs)
-
-
-
     # %% Functions
-    def changeTabs(self):
-        super().tabs.setCurrentIndex(2)
-
-    def toggleFullScreen(self):
-        if self.isFullScreen():
-            self.showNormal()
-        else:
-            self.showFullScreen()
-
-    def retranslateUi(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-
-
-
-    # FUNCTIONS
     def openFiles(self):
         file_browser = QtWidgets.QFileDialog()
         file_browser.setFileMode(QFileDialog.ExistingFiles)
@@ -937,11 +888,17 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
                     for key in params.keys():
                         if key == self.gridLayout.itemAtPosition(i, j).objectName():
                             if "Lower Bound" in params[key]:
-                                self.gridLayout.itemAtPosition(i, j).itemAt(2).widget().setText(str(params[key]["Lower Bound"]))
+                                self.gridLayout.itemAtPosition(i, j).itemAt(2).widget().setText(
+                                    str(params[key]["Lower Bound"])
+                                    )
                             if "Upper Bound" in params[key]:
-                                self.gridLayout.itemAtPosition(i, j).itemAt(4).widget().setText(str(params[key]["Upper Bound"]))
+                                self.gridLayout.itemAtPosition(i, j).itemAt(4).widget().setText(
+                                    str(params[key]["Upper Bound"])
+                                    )
                             if "Guess" in params[key]:
-                                self.gridLayout.itemAtPosition(i, j).itemAt(6).widget().setText(str(params[key]["Guess"]))
+                                self.gridLayout.itemAtPosition(i, j).itemAt(6).widget().setText(
+                                    str(params[key]["Guess"])
+                                    )
 
     def uncheck(self,state):
         if state == QtCore.Qt.Checked:
@@ -1282,22 +1239,6 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
                     continue
         exportData(data, "bounds.csv")
 
-    def calibrate(self, parent):
-        self.getSpecifiedValues()
-        bounds = self.getBounds()
-        print(self.known_values)
-        #print(bounds)
-        QApplication.processEvents()
-        parent.tabs.setTabEnabled(2,True)
-        self.changeTabs()
-
-        error = test_optimizer_v2.main(bounds,
-                                       self,
-                                       parent.data_input_widget.data,
-                                       parent.calibration_plotting)
-
-
-
     def loadDefaults(self):
         #Current order:
             #E_M, E_A, M_s, M_s-M_f, A_s, A_f - A_s, C_M, C_A, H_min,
@@ -1393,8 +1334,12 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
                     break
                 val = self.gridLayout.itemAtPosition(i, j).itemAt(6).widget().text()
                 if not val == "":
-                    upper_bound = float(self.gridLayout.itemAtPosition(i, j).itemAt(4).widget().text())
-                    lower_bound = float(self.gridLayout.itemAtPosition(i, j).itemAt(2).widget().text())
+                    upper_bound = float(
+                        self.gridLayout.itemAtPosition(i, j).itemAt(4).widget().text()
+                        )
+                    lower_bound = float(
+                        self.gridLayout.itemAtPosition(i, j).itemAt(2).widget().text()
+                        )
                     if float(val) < lower_bound:
                         print('Setting lower bound to specified value for visualization')
                         lower_bound = self.gridLayout.itemAtPosition(i, j).itemAt(2).widget().setText(str(val))
@@ -1495,7 +1440,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         #get the values that were specified to be constrained
         ## MAYBE: ONLY MAKE THE TEXT BOXES ABLE TO BE ACCESSED WHEN THE ASSOCIATED
         ## CHECKBOX IS CLICKED
-        self.known_values = {}
+
 
         DV_order = ['E_M','E_A', 'M_s', 'M_s-M_f', 'A_s', 'A_f - A_s', 'C_M', 'C_A', 'H_min',
                     'H_max - H_min', 'k', 'n_1', 'n_2', 'n_3', 'n_4', 'sig_crit', 'alpha']
@@ -1600,7 +1545,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         property_object.setObjectName(str(name))
 
         property_object.label = textToLatex(
-            r"$"+name+"$ [$\mathrm{"+str(units)+"}$]:",
+            r"$"+name+r"$ [$\mathrm{"+str(units)+"}$]:",
             parameter_label_width,
             parameter_label_height,
             self.centralwidget
@@ -1743,7 +1688,6 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         parameter_object.setObjectName(name)
 
 
-        # self.label_34 = QtWidgets.QLabel(self.centralwidget)
         if latex_flag == True:
             parameter_object.label = textToLatex(
                 text,
@@ -1754,7 +1698,6 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         else:
             parameter_object.label = QtWidgets.QLabel(self.centralwidget)
             parameter_object.label.setText(text)
-            pass
 
         size_policy = self.set_size_policy(
             parameter_object.label
@@ -1784,7 +1727,9 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         parameter_object.label.setFont(font)
 
-        parameter_object.label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        parameter_object.label.setAlignment(
+            QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter
+            )
 
         parameter_object.label.setObjectName(name+"_label")
         parameter_object.addWidget(parameter_object.label)
@@ -1819,7 +1764,9 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             self,
             lineEdit,
             ):
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
+            )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(
@@ -1839,156 +1786,3 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         font.setWeight(font_weight)
 
         return font
-
-
-    # # Questionable if I need this.
-    # @pyqtSlot()
-    # def on_click(self):
-    #     print("\n")
-    #     for currentQTableWidgetItem in self.tableWidget.selectedItems():
-    #         print(currentQTableWidgetItem.row(), currentQTableWidgetItem.column(), currentQTableWidgetItem.text())
-
-
-
-#%% Calibration window widget
-# class CalibrationProgressWidget(QtWidgets.QWidget):
-#     def __init__(self):
-#         super(QtWidgets.QWidget,self).__init__()
-
-#         rc.update({'font.size': 18})
-
-#         # SETUP
-#         #self.setWindowTitle('Calibration Window')
-#         self.main_layout = QGridLayout(self)
-#         self.setLayout(self.main_layout)
-
-#         # CANVASES/GRAPHS
-#         self.opt_progress_graph = Figure()
-#         self.opt_progress_canvas = FigureCanvas(self.opt_progress_graph)
-#         self.opt_progress_toolbar = NavigationToolbar(self.opt_progress_canvas, self)
-
-#         self.dv_vals_graph = Figure()
-#         self.dv_vals_canvas = FigureCanvas(self.dv_vals_graph)
-#         self.dv_vals_toolbar = NavigationToolbar(self.dv_vals_canvas, self)
-#         keys = ['E_M', 'E_A', 'M_s', 'M_s - M_f', 'A_s', 'A_f - A_s', 'C_M', 'C_A', 'H_min', 'H_max - H_min', 'k',
-#                 'n_1', 'n_2', 'n_3', 'n_4', 'sig_crit', 'alpha']
-#         y = np.zeros(len(keys))
-#         self.ax_dv_vals = self.dv_vals_graph.add_subplot(111)
-#         self.bars = self.ax_dv_vals.bar(keys, y, width=0.5)
-#         self.ax_dv_vals.set_ylim([-0.1, 1.1])
-#         self.ax_dv_vals.text(0.05,-0.066,'Lower bound')
-#         self.ax_dv_vals.text(0.05,1.033,'Upper bound')
-#         self.ax_dv_vals.set_ylabel('Normalized material property, -')
-#         self.ax_dv_vals.axhline(0,color='black',linestyle='--')
-#         self.ax_dv_vals.axhline(1,color='black',linestyle='--')
-
-#         self.dv_vals_graph.autofmt_xdate(rotation=45, ha='right')
-
-#         self.temp_strain_graph = Figure()
-#         self.ax_temp_strain = self.temp_strain_graph.add_subplot(111)
-#         self.temp_strain_canvas = FigureCanvas(self.temp_strain_graph)
-#         self.temp_strain_toolbar = NavigationToolbar(self.temp_strain_canvas, self)
-#         self.ax_temp_strain.set_autoscaley_on(True)
-#         self.ax_temp_strain.set_xlabel('Temperature, K')
-#         self.ax_temp_strain.set_ylabel('Strain, mm/mm')
-#         self.ax_temp_strain.grid()
-
-#         self.phase_diagram_graph = Figure()
-#         self.ax_phase_digram = self.phase_diagram_graph.add_subplot(111)
-#         self.phase_diagram_canvas = FigureCanvas(self.phase_diagram_graph)
-#         self.phase_diagram_toolbar = NavigationToolbar(self.phase_diagram_canvas, self)
-
-#         # ADDING TO WINDOW
-#         self.main_layout.addWidget(self.opt_progress_canvas, 0, 0)
-#         self.main_layout.addWidget(self.opt_progress_toolbar, 1, 0)
-#         self.main_layout.addWidget(self.dv_vals_canvas, 2, 0)
-#         self.main_layout.addWidget(self.dv_vals_toolbar, 3, 0)
-#         self.main_layout.addWidget(self.temp_strain_canvas, 0, 1)
-#         self.main_layout.addWidget(self.temp_strain_toolbar, 1, 1)
-#         self.main_layout.addWidget(self.phase_diagram_canvas, 2, 1)
-#         self.main_layout.addWidget(self.phase_diagram_toolbar, 3, 1)
-#         self.show()
-
-
-#     def run(self, bounds, knownValues, DV_flags):
-#         QApplication.processEvents()
-#         main(bounds, knownValues, DV_flags, self)
-
-
-#     def updateOptProgress(self, gen, min_func_val, avg, std):
-#         self.opt_progress_graph.clear()
-#         ax = self.opt_progress_graph.add_subplot(111)
-#         ax.plot(gen, min_func_val, color='red', label='Current best solution')
-#         ax.plot(gen, avg, label='Average solution',color='black')
-#         #ax.fill_between(gen, [x + y for x,y in zip(avg, std)], [x - y for x,y in zip(avg, std)],
-#         #                                  color='#888888', alpha=0.2)
-#         ax.legend(loc='best')
-#         ax.set_xlim([0, max(gen) + 1])
-#         ax.set_xlabel('Generation')
-#         ax.set_ylabel('Error')
-#         self.opt_progress_canvas.draw()
-#         self.opt_progress_canvas.flush_events()
-
-
-#     def updateDVVals(self, dv,DV_flags):
-#         count = 0
-#         for i, bar in enumerate(self.bars):
-#             if DV_flags[i] == True:
-#                 bar.set_height(dv[count])
-#                 count +=1
-#             else:
-#                 pass
-#                 # bar.set_height(1)
-#                 # bar.set_color('red')
-
-#         self.dv_vals_canvas.draw()
-#         self.dv_vals_canvas.flush_events()
-
-
-#     def plotExperimental(self, x, y, numExps):
-#         self.ax_temp_strain.clear()
-#         self.ax_temp_strain.plot(x, y, 'bo',label='Experiment')
-#         self.temp_strain_canvas.draw()
-#         self.temp_strain_canvas.flush_events()
-
-#         self.lines = [self.ax_temp_strain.plot([], [], 'r-')[0] for _ in range(numExps)]
-
-
-#     def updateTempStrain(self, temp, strain, numExps):
-#         for i in range(numExps):
-#             self.lines[i].set_xdata(temp[i])
-#             self.lines[i].set_ydata(strain[i])
-
-#         self.lines[i].set(label='Model prediction')
-#         self.ax_temp_strain.legend(loc='best')
-#         self.ax_temp_strain.set_xlabel('Temperature, K',fontsize=18)
-#         self.ax_temp_strain.set_ylabel('Strain, mm/mm',fontsize=18)
-
-#         self.ax_temp_strain.relim()
-#         self.ax_temp_strain.autoscale_view()
-
-#         self.temp_strain_canvas.draw()
-#         self.temp_strain_canvas.flush_events()
-
-
-#     def updatePhaseDiagram(self, P, sigma_inp):
-#         self.ax_phase_digram.clear()
-#         plot_phase_diagram(P, sigma_inp, self.ax_phase_digram)
-
-#         self.phase_diagram_canvas.draw()
-#         self.phase_diagram_canvas.flush_events()
-
-
-
-
-
-
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     MainWindow = QtWidgets.QMainWindow()
-#     ex = App()
-#     #ui = Ui_MainWindow()
-#     #ui.setupUi(MainWindow)
-#     #MainWindow.show()
-#     sys.exit(app.exec_())

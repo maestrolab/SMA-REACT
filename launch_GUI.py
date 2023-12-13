@@ -11,61 +11,75 @@ import cgitb
 
 from PyQt5 import QtGui, QtWidgets
 
-from calibration.run_calibration_GUI import (
-    CalibrationParametersWidget,
-    )
+
 
 from data_input.create_data_input import (
     DataInputWidget
+    )
+
+from calibration.model_funcs.test_optimizer_v2 import main
+from calibration.create_calibration_parameters import (
+    CalibrationParametersWidget,
     )
 
 from calibration_progress.create_calibration_progress_widget import (
     CalibrationProgressWidget
     )
 
-from calibration.model_funcs.test_optimizer_v2 import main
 
 
 
 class App(QtWidgets.QMainWindow):
+    '''
+    Master GUI with all required tabs
+    (implemented as different classes). Inherits the
+    QtWidgets.QMainWindow class.
+
+
+    '''
     def __init__(self):
+        '''
+        Creates the main GUI page and calls all other
+        tabs.
+
+        Returns
+        -------
+        None.
+
+        '''
         super().__init__()
         # Formatting
-        self.title = 'Shape Memory Alloy REACT (Rendering of Experimental Analysis and Calibration Tool)'
-        #MainWindow.resize(1552, 586)
-        #MainWindow.showFullScreen()
-        #Resize GUI to take up 75% of the screen (dynamic based on the user's resolution)
+        self.title = 'Shape Memory Alloy REACT \
+        (Rendering of Experimental Analysis and Calibration Tool)'
+
         app = QtWidgets.QApplication(sys.argv)
         screen = app.primaryScreen()
         rect = screen.availableGeometry()
-        # print(rect)
-        # width = rect.width()
-        # height = rect.height()
+
+        left = int(rect.width()*0.05)
+        top = int(rect.height()*0.05)
         width = 1600
         height = 900
-        # width = int(rect.width()*0.90)
-        # height = int(rect.height()*0.90)
-        self.left = int(rect.width()*0.05)
-        self.top = int(rect.height()*0.05)
-        self.width = width
-        self.height = height
-        # self.width = int(width*0.75)
-        # self.height = int(height*0.75)
-        #Resize to be exactly the resolution on my work computer.
+
+        self.setGeometry(left, top, width, height)
+
 
         #Set window icon to be the A&M Logo (of course)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("TAM-LogoBox.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(
+            QtGui.QPixmap("TAM-LogoBox.ico"),
+            QtGui.QIcon.Normal,
+            QtGui.QIcon.Off
+            )
 
         self.setWindowIcon(icon)
         self.setWindowTitle(self.title)
-        self.setGeometry(self.left, self.top, self.width, self.height)
 
 
         self.tabs = QtWidgets.QTabWidget()
-        self.tabs.resize(self.width,self.height)
-        
-        
+        self.tabs.resize(width,height)
+
+
         self.calibration_parameters_widget = CalibrationParametersWidget()
 
         self.data_input_widget = DataInputWidget()
@@ -92,37 +106,71 @@ class App(QtWidgets.QMainWindow):
 
         self.tabs.setTabEnabled(1,False)
         self.tabs.setTabEnabled(2,False)
-        
+
         #connect the continue button to changing a tab
         self.data_input_widget.continue_button.clicked.connect(
-            lambda: self.changeTabs(
+            lambda: self.change_tabs(
                 index=1
                 )
             )
-        
+
         #connect the calibration button to the optimization
-        self.calibration_parameters_widget.pushButton.clicked.connect(self.runCalibration)
+        self.calibration_parameters_widget.pushButton.clicked.connect(
+            self.run_calibration
+            )
 
         self.show()
-        
-    def changeTabs(
+
+    def change_tabs(
             self,
             index,
             ):
+        '''Enables the specified tab and changes to that tab.
+        To connect this to a pushButton or another widget,
+        you must use a lambda function, like so:
+
+            widget.clicked.connect(
+                lambda : self.changeTabs(
+                    index = some_index
+                    )
+                )
+
+
+        Parameters
+        ----------
+        index : INT
+            Tab index that you would like to change to.
+
+        Returns
+        -------
+        None.
+
+        '''
         self.tabs.setTabEnabled(index,True)
         self.tabs.setCurrentIndex(index)
-        
-    def runCalibration(self):
+
+    def run_calibration(self):
+        '''
+        Runs the calibration optimization and changes to the progress
+        plotting tab.
+
+        #FIXME To-do: Include an export function here to make an
+        Abaqus material model or export all required properties as a
+        JSON or something similar.
+
+        Returns
+        -------
+        None.
+
+        '''
         self.calibration_parameters_widget.getSpecifiedValues()
         bounds = self.calibration_parameters_widget.getBounds()
         print(self.calibration_parameters_widget.known_values)
-        
+
         app.processEvents()
-        
-        self.changeTabs(index=2)
-        # self.tabs.setTabEnabled(2,True)
-        # self.tabs.setCurrentIndex(2)
-        
+
+        self.change_tabs(index=2)
+
         error = main(
             bounds,
             self.calibration_parameters_widget,
@@ -134,7 +182,7 @@ class App(QtWidgets.QMainWindow):
 
 if __name__ == "__main__":
     import sys
-    
+
     cgitb.enable(format="text") #for more detailed traceback reports
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
