@@ -48,6 +48,7 @@ class CalibrationProgressWidget(QtWidgets.QWidget):
         self.dv_vals_graph = Figure()
         self.dv_vals_canvas = FigureCanvas(self.dv_vals_graph)
         self.dv_vals_toolbar = NavigationToolbar(self.dv_vals_canvas, self)
+        #FIXME Pull this from something in the calibration parameters widget. 
         keys = ['E_M', 'E_A', 'M_s', 'M_s - M_f', 'A_s', 'A_f - A_s', 'C_M', 'C_A', 'H_min', 'H_max - H_min', 'k',
                 'n_1', 'n_2', 'n_3', 'n_4', 'sig_crit', 'alpha']
         y = np.zeros(len(keys))

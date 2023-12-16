@@ -8,31 +8,19 @@ from calibration.deap import (
     creator,
     tools
     )
-# from deap import base
-# from deap import creator
-# from deap import tools
+
 import scipy.optimize as opt
 import os
 import pprint
 
 from . import util_funcs
 from . import Full_Model_stress
-#from Full_Model_stress import Full_Model_stress
-#from util_funcs import minkowski_error, plot_settings, DynamicUpdate,symmetric_hausdorff
 
 import pandas as pd
 
 
 #Numpy presets
 np.seterr(all='raise') #tell numpy to raise floating point errors. 
-
-#Spyder presets
-#get_ipython().run_line_magic('matplotlib', 'qt') #plot in new window.
-
-# def plot_strain_temperature(T,eps_model,numExps,d):
-#     d.on_running(T,eps_model,numExps)
-    
-#     return
 
 def data_input(fileName):
     #Read in data
@@ -229,51 +217,59 @@ def resizeBounds(value, bounds=[1e3, 1e8]):
     value = (bounds[1] - bounds[0]) * value + bounds[0]
     return value
 
-def applyBounds(x):
-    """Transforms the individual (in [0,1]) to a bounded individual depending
-    on the optimization-specific bounds.
+# def applyBounds(x):
+#     """Transforms the individual (in [0,1]) to a bounded individual depending
+#     on the optimization-specific bounds.
 
-    Parameters
-    ----------
-    individual : array
-        Design vector for calibration. All entries are bounded between 0 and 1.
-    bounds : list
-        Bounds for the design vector, depending on the type of hardening.
-    substructureParameters : dict
-        Dictionary containing all important parameters (i.e., fixed values) pertaining to the substructure.
-    hardeningFlag : int
-        Flag to determine what type of hardening.
+#     Parameters
+#     ----------
+#     individual : array
+#         Design vector for calibration. All entries are bounded between 0 and 1.
+#     bounds : list
+#         Bounds for the design vector, depending on the type of hardening.
+#     substructureParameters : dict
+#         Dictionary containing all important parameters (i.e., fixed values) pertaining to the substructure.
+#     hardeningFlag : int
+#         Flag to determine what type of hardening.
 
-    Returns
-    -------
-    boundedIndividual : array
-        Design vector for calibration, actually bounded for analysis.
-    """
-    bounds = []
-    bounds.append([60E9,100E9]) #E^M
-    bounds.append([-10E9,10E9]) #E^A
-    bounds.append([273.15-60,273.15-20]) #M_s
-    bounds.append([0,30]) #M_s-M_f
-    bounds.append([273.15-30,273.15]) #A_s
-    bounds.append([0,30]) #A_f - A_s
-    bounds.append([4E6,12E6]) #C^M
-    bounds.append([4E6,12E6]) #C^A
-    bounds.append([0.0,0.05]) #H_min
-    bounds.append([0.01,0.1]) #H_sat-H_min
-    bounds.append([0.001E-6,0.1E-6]) #k
-    bounds.append([0.2,1.0]) #n_1
-    bounds.append([0.2,1.0]) #n_2
-    bounds.append([0.2,1.0]) #n_3
-    bounds.append([0.2,1.0]) #n_4
+#     Returns
+#     -------
+#     boundedIndividual : array
+#         Design vector for calibration, actually bounded for analysis.
+#     """
+#     bounds = []
+#     bounds.append([60E9,100E9]) #E^M
+#     bounds.append([-10E9,10E9]) #E^A
+#     bounds.append([273.15-60,273.15-20]) #M_s
+#     bounds.append([0,30]) #M_s-M_f
+#     bounds.append([273.15-30,273.15]) #A_s
+#     bounds.append([0,30]) #A_f - A_s
+#     bounds.append([4E6,12E6]) #C^M
+#     bounds.append([4E6,12E6]) #C^A
+#     bounds.append([0.0,0.05]) #H_min
+#     bounds.append([0.01,0.1]) #H_sat-H_min
+#     bounds.append([0.001E-6,0.1E-6]) #k
+#     bounds.append([0.2,1.0]) #n_1
+#     bounds.append([0.2,1.0]) #n_2
+#     bounds.append([0.2,1.0]) #n_3
+#     bounds.append([0.2,1.0]) #n_4
     
     
-    boundedX = np.zeros(shape=len(x))
-    for i in range(len(x)):
-        boundedX[i] = resizeBounds(x[i], bounds=list(bounds[i]))
-    return boundedX
+#     boundedX = np.zeros(shape=len(x))
+#     for i in range(len(x)):
+#         boundedX[i] = resizeBounds(x[i], bounds=list(bounds[i]))
+#     return boundedX
 
 
-def evaluate(x,data,calWin, GA_data = False, plot_flag = False,gradient_flag=False,final_flag=False):
+def evaluate(
+        x,
+        data,
+        calWin,
+        GA_data = False,
+        plot_flag = False,
+        gradient_flag=False,
+        final_flag=False
+        ):
     # INPUT: stress/strain/temperature, material properties (P)
     
     bounds = data['bounds']
@@ -376,7 +372,10 @@ def evaluate(x,data,calWin, GA_data = False, plot_flag = False,gradient_flag=Fal
         gens = GA_data[0]
         mins = GA_data[1]
         gens.append(max(gens)+1)
-        mins.append(np.mean(errors))
+        if np.mean(errors) < mins[-1]:
+            mins.append(np.mean(errors))
+        else:
+            mins.append(mins[-1])
         calWin.updateOptProgress(gens, mins,mins, 0.0)
         
     if final_flag == True:
@@ -496,6 +495,7 @@ def optimizer(toolbox,popSize,genSize,data, calWin, seed=None):
         # throughout the generations
         generations = logbook.select('gen')
         min_func_val = logbook.select('min')
+        
         avg = logbook.select('avg')
         std = logbook.select('std')
         calWin.updateOptProgress(generations, min_func_val, avg, std)

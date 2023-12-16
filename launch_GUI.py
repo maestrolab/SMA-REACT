@@ -4,14 +4,12 @@ Shape Memory Alloy Rendering of Experimental Analysis and Calibration Tool
 
 Main launch script
 
-Last updated: December 12th, 2023 (see GitHub for updates)
+Last updated: December 16th, 2023 (see GitHub for updates)
 """
 import cgitb
 
 
 from PyQt5 import QtGui, QtWidgets
-
-
 
 from data_input.create_data_input import (
     DataInputWidget
@@ -34,8 +32,6 @@ class App(QtWidgets.QMainWindow):
     Master GUI with all required tabs
     (implemented as different classes). Inherits the
     QtWidgets.QMainWindow class.
-
-
     '''
     def __init__(self):
         '''
@@ -50,7 +46,7 @@ class App(QtWidgets.QMainWindow):
         super().__init__()
         # Formatting
         self.title = 'Shape Memory Alloy REACT \
-        (Rendering of Experimental Analysis and Calibration Tool)'
+    (Rendering of Experimental Analysis and Calibration Tool)'
 
         #FIXME Start
         app = QtWidgets.QApplication(sys.argv)
@@ -59,8 +55,8 @@ class App(QtWidgets.QMainWindow):
 
         left = int(rect.width()*0.05)
         top = int(rect.height()*0.05)
-        width = int(rect.width()*0.75)
-        height = int(rect.height()*0.75)
+        width = 2000
+        height = 800
 
         self.setGeometry(left, top, width, height)
         #FIXME End
