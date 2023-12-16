@@ -2,16 +2,21 @@ import random
 import numpy as np
 import shelve
 import matplotlib.pyplot as plt
-from deap import algorithms
-from deap import base
-from deap import creator
-from deap import tools
+from calibration.deap import (
+    algorithms,
+    base,
+    creator,
+    tools
+    )
+# from deap import base
+# from deap import creator
+# from deap import tools
 import scipy.optimize as opt
 import os
 import pprint
 
-from model_funcs import util_funcs
-from model_funcs import Full_Model_stress
+from . import util_funcs
+from . import Full_Model_stress
 #from Full_Model_stress import Full_Model_stress
 #from util_funcs import minkowski_error, plot_settings, DynamicUpdate,symmetric_hausdorff
 
