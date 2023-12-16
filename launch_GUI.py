@@ -52,16 +52,18 @@ class App(QtWidgets.QMainWindow):
         self.title = 'Shape Memory Alloy REACT \
         (Rendering of Experimental Analysis and Calibration Tool)'
 
+        #FIXME Start
         app = QtWidgets.QApplication(sys.argv)
         screen = app.primaryScreen()
         rect = screen.availableGeometry()
 
         left = int(rect.width()*0.05)
         top = int(rect.height()*0.05)
-        width = 1600
-        height = 900
+        width = int(rect.width()*0.75)
+        height = int(rect.height()*0.75)
 
         self.setGeometry(left, top, width, height)
+        #FIXME End
 
 
         #Set window icon to be the A&M Logo (of course)
