@@ -57,9 +57,9 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
 
         self.centralwidget = QtWidgets.QWidget(self)
-        self.centralwidget.setObjectName("centralwidget")
+        # self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
-        self.gridLayout.setObjectName("gridLayout")
+        # self.gridLayout.setObjectName("gridLayout")
         # DV_flags is an array of booleans (T/F) that determines whether
         # a specific design variable is active
         # True = Active (unconstrained)
@@ -472,15 +472,15 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         # self.buttons.addWidget(self.pushButton_2)
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
 
-        size_policy = self.set_size_policy(
-            self.pushButton
-            )
-        self.pushButton.setSizePolicy(
-            size_policy
-            )
+        # size_policy = self.set_size_policy(
+        #     self.pushButton
+        #     )
+        # self.pushButton.setSizePolicy(
+        #     size_policy
+        #     )
 
-        self.pushButton.setMinimumSize(QtCore.QSize(200, 100))
-        self.pushButton.setMaximumSize(QtCore.QSize(200, 100))
+        # self.pushButton.setMinimumSize(QtCore.QSize(200, 100))
+        # self.pushButton.setMaximumSize(QtCore.QSize(200, 100))
         self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
         self.pushButton.setText('Calibrate')
@@ -660,12 +660,12 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.gen_label = QtWidgets.QLabel(self.centralwidget)
         self.gen_label.setText('Number of generations')
 
-        size_policy = self.set_size_policy(
-            self.gen_label
-            )
-        self.gen_label.setSizePolicy(
-            size_policy
-            )
+        # size_policy = self.set_size_policy(
+        #     self.gen_label
+        #     )
+        # self.gen_label.setSizePolicy(
+        #     size_policy
+        #     )
 
         #self.gen_label.setMinimumSize(QtCore.QSize(90, 0))
         #self.gen_label.setMaximumSize(QtCore.QSize(90, 16777215))
@@ -685,16 +685,16 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.num_gens.addStretch()
         self.gen_line = QtWidgets.QLineEdit(self.centralwidget)
 
-        size_policy = self.set_size_policy(
-            self.gen_line
-            )
-        self.gen_line.setSizePolicy(
-            size_policy
-            )
+        # size_policy = self.set_size_policy(
+        #     self.gen_line
+        #     )
+        # self.gen_line.setSizePolicy(
+        #     size_policy
+        #     )
 
 
-        self.gen_line.setMinimumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
-        self.gen_line.setMaximumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
+        # self.gen_line.setMinimumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
+        # self.gen_line.setMaximumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
         self.gen_line.setObjectName("gen_line")
         self.num_gens.addWidget(self.gen_line)
 
@@ -706,12 +706,12 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.pop_label.setText('Population size')
 
 
-        size_policy = self.set_size_policy(
-            self.pop_label
-            )
-        self.pop_label.setSizePolicy(
-            size_policy
-            )
+        # size_policy = self.set_size_policy(
+        #     self.pop_label
+        #     )
+        # self.pop_label.setSizePolicy(
+        #     size_policy
+        #     )
 
         #self.pop_label.setMinimumSize(QtCore.QSize(90, 0))
         #self.pop_label.setMaximumSize(QtCore.QSize(90, 16777215))
@@ -726,16 +726,16 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.pop_line = QtWidgets.QLineEdit(self.centralwidget)
 
 
-        size_policy = self.set_size_policy(
-            self.pop_line
-            )
-        self.pop_line.setSizePolicy(
-            size_policy
-            )
+        # size_policy = self.set_size_policy(
+        #     self.pop_line
+        #     )
+        # self.pop_line.setSizePolicy(
+        #     size_policy
+        #     )
 
 
-        self.pop_line.setMinimumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
-        self.pop_line.setMaximumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
+        # self.pop_line.setMinimumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
+        # self.pop_line.setMaximumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
         self.pop_line.setObjectName("pop_line")
 
         self.pop_size.addWidget(self.pop_line)
@@ -748,12 +748,12 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.iter_label.setText('Gradient-based iterations')
 
 
-        size_policy = self.set_size_policy(
-            self.iter_label
-            )
-        self.iter_label.setSizePolicy(
-            size_policy
-            )
+        # size_policy = self.set_size_policy(
+        #     self.iter_label
+        #     )
+        # self.iter_label.setSizePolicy(
+        #     size_policy
+        #     )
 
         #self.iter_label.setMinimumSize(QtCore.QSize(90, 0))
         #self.iter_label.setMaximumSize(QtCore.QSize(90, 16777215))
@@ -768,15 +768,15 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.iter_line = QtWidgets.QLineEdit(self.centralwidget)
 
 
-        size_policy = self.set_size_policy(
-            self.iter_line
-            )
-        self.iter_line.setSizePolicy(
-            size_policy
-            )
+        # size_policy = self.set_size_policy(
+        #     self.iter_line
+        #     )
+        # self.iter_line.setSizePolicy(
+        #     size_policy
+        #     )
 
-        self.iter_line.setMinimumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
-        self.iter_line.setMaximumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
+        # self.iter_line.setMinimumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
+        # self.iter_line.setMaximumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
         self.iter_line.setObjectName("iter_line")
 
         self.num_iters.addWidget(self.iter_line)
@@ -853,8 +853,9 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         sliders = self.centralwidget.findChildren(QtWidgets.QSlider)
         for slider in sliders:
-            slider.setMinimumSize(QtCore.QSize(150, 20))
-            slider.setMaximumSize(QtCore.QSize(150, 20))
+            pass
+            # slider.setMinimumSize(QtCore.QSize(150, 20))
+            # slider.setMaximumSize(QtCore.QSize(150, 20))
 
     # %% Functions
     def openFiles(self):
@@ -1495,25 +1496,25 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             ):
 
 
-        size_policy = self.set_size_policy(
-            label_object
-            )
-        label_object.setSizePolicy(
-            size_policy
-            )
+        # size_policy = self.set_size_policy(
+        #     label_object
+        #     )
+        # label_object.setSizePolicy(
+        #     size_policy
+        #     )
 
-        label_object.setMinimumSize(
-            QtCore.QSize(
-                parameter_label_width,
-                parameter_label_height
-                )
-            )
-        label_object.setMaximumSize(
-            QtCore.QSize(
-                parameter_label_width,
-                parameter_label_height
-                )
-            )
+        # label_object.setMinimumSize(
+        #     QtCore.QSize(
+        #         parameter_label_width,
+        #         parameter_label_height
+        #         )
+        #     )
+        # label_object.setMaximumSize(
+        #     QtCore.QSize(
+        #         parameter_label_width,
+        #         parameter_label_height
+        #         )
+        #     )
 
         label_object.setWordWrap(True)
         label_object.setText(label_text)
@@ -1556,18 +1557,18 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         property_object.minimum_bound = QtWidgets.QLineEdit(self.centralwidget)
 
-        size_policy = self.set_size_policy(
-            property_object.minimum_bound
-            )
-        property_object.minimum_bound.setSizePolicy(
-            size_policy
-            )
-        property_object.minimum_bound.setMinimumSize(
-            QtCore.QSize(line_edit_width, line_edit_height)
-            )
-        property_object.minimum_bound.setMaximumSize(
-            QtCore.QSize(line_edit_width, line_edit_height)
-            )
+        # size_policy = self.set_size_policy(
+        #     property_object.minimum_bound
+        #     )
+        # property_object.minimum_bound.setSizePolicy(
+        #     size_policy
+        #     )
+        # property_object.minimum_bound.setMinimumSize(
+        #     QtCore.QSize(line_edit_width, line_edit_height)
+        #     )
+        # property_object.minimum_bound.setMaximumSize(
+        #     QtCore.QSize(line_edit_width, line_edit_height)
+        #     )
         property_object.setObjectName(str(name)+"_minimum_bound")
         property_object.addWidget(property_object.minimum_bound)
 
@@ -1575,18 +1576,18 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         property_object.maximum_bound = QtWidgets.QLineEdit(self.centralwidget)
 
-        size_policy = self.set_size_policy(
-            property_object.maximum_bound
-            )
-        property_object.maximum_bound.setSizePolicy(
-            size_policy
-            )
-        property_object.maximum_bound.setMinimumSize(
-            QtCore.QSize(line_edit_width, line_edit_height)
-            )
-        property_object.maximum_bound.setMaximumSize(
-            QtCore.QSize(line_edit_width, line_edit_height)
-            )
+        # size_policy = self.set_size_policy(
+        #     property_object.maximum_bound
+        #     )
+        # property_object.maximum_bound.setSizePolicy(
+        #     size_policy
+        #     )
+        # property_object.maximum_bound.setMinimumSize(
+        #     QtCore.QSize(line_edit_width, line_edit_height)
+        #     )
+        # property_object.maximum_bound.setMaximumSize(
+        #     QtCore.QSize(line_edit_width, line_edit_height)
+        #     )
         property_object.setObjectName(str(name)+"_maximum_bound")
         property_object.addWidget(property_object.maximum_bound)
 
@@ -1603,15 +1604,15 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         property_object.specified_value = QtWidgets.QLineEdit(
             self.centralwidget
             )
-        property_object.specified_value.setSizePolicy(
-            size_policy
-            )
-        property_object.specified_value.setMinimumSize(
-            QtCore.QSize(line_edit_width, line_edit_height)
-            )
-        property_object.specified_value.setMaximumSize(
-            QtCore.QSize(line_edit_width, line_edit_height)
-            )
+        # property_object.specified_value.setSizePolicy(
+        #     size_policy
+        #     )
+        # property_object.specified_value.setMinimumSize(
+        #     QtCore.QSize(line_edit_width, line_edit_height)
+        #     )
+        # property_object.specified_value.setMaximumSize(
+        #     QtCore.QSize(line_edit_width, line_edit_height)
+        #     )
         property_object.setObjectName(str(name)+"_specified_value")
         property_object.addWidget(property_object.specified_value)
 
@@ -1699,25 +1700,25 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             parameter_object.label = QtWidgets.QLabel(self.centralwidget)
             parameter_object.label.setText(text)
 
-        size_policy = self.set_size_policy(
-            parameter_object.label
-            )
-        parameter_object.label.setSizePolicy(
-            size_policy
-            )
+        # size_policy = self.set_size_policy(
+        #     parameter_object.label
+        #     )
+        # parameter_object.label.setSizePolicy(
+        #     size_policy
+        #     )
 
-        parameter_object.label.setMinimumSize(
-            QtCore.QSize(
-                text_width,
-                0
-                )
-            )
-        parameter_object.label.setMaximumSize(
-            QtCore.QSize(
-                text_width,
-                16777215
-                )
-            )
+        # parameter_object.label.setMinimumSize(
+        #     QtCore.QSize(
+        #         text_width,
+        #         0
+        #         )
+        #     )
+        # parameter_object.label.setMaximumSize(
+        #     QtCore.QSize(
+        #         text_width,
+        #         16777215
+        #         )
+        #     )
 
         font = self.create_font(
             text_size,
@@ -1736,24 +1737,24 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
 
         parameter_object.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        size_policy = self.set_size_policy(
-            parameter_object.lineEdit
-            )
-        parameter_object.lineEdit.setSizePolicy(
-            size_policy
-            )
+        # size_policy = self.set_size_policy(
+        #     parameter_object.lineEdit
+        #     )
+        # parameter_object.lineEdit.setSizePolicy(
+        #     size_policy
+        #     )
 
-        parameter_object.lineEdit.setMinimumSize(QtCore.QSize(
-            lineEdit_width,
-            lineEdit_height
-            )
-            )
-        parameter_object.lineEdit.setMaximumSize(
-            QtCore.QSize(
-                lineEdit_width,
-                lineEdit_height
-                )
-            )
+        # parameter_object.lineEdit.setMinimumSize(QtCore.QSize(
+        #     lineEdit_width,
+        #     lineEdit_height
+        #     )
+        #     )
+        # parameter_object.lineEdit.setMaximumSize(
+        #     QtCore.QSize(
+        #         lineEdit_width,
+        #         lineEdit_height
+        #         )
+        #     )
         parameter_object.lineEdit.setObjectName(name+"_lineEdit")
         parameter_object.addWidget(parameter_object.lineEdit)
 

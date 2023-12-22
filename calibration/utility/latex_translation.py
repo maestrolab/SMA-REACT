@@ -41,7 +41,8 @@ def textToLatex(text, width, height, widget):
     label = QLabel(widget)
     label.setPixmap(pixmap)
     # label.setScaledContents(True)
-
+    import os
+    os.remove('latex.png')
     #sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
     #sizePolicy.setHorizontalStretch(0)
     #sizePolicy.setVerticalStretch(0)
