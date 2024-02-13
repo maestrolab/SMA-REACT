@@ -1555,9 +1555,9 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         # property_object.minimum_bound.setMinimumSize(
         #     QtCore.QSize(line_edit_width, line_edit_height)
         #     )
-        # property_object.minimum_bound.setMaximumSize(
-        #     QtCore.QSize(line_edit_width, line_edit_height)
-        #     )
+        property_object.minimum_bound.setMaximumSize(
+            QtCore.QSize(line_edit_width, line_edit_height)
+            )
         property_object.addWidget(property_object.minimum_bound)
 
         # property_object.addItem(regular_spacer)
@@ -1567,9 +1567,9 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         # property_object.maximum_bound.setMinimumSize(
         #     QtCore.QSize(line_edit_width, line_edit_height)
         #     )
-        # property_object.maximum_bound.setMaximumSize(
-        #     QtCore.QSize(line_edit_width, line_edit_height)
-        #     )
+        property_object.maximum_bound.setMaximumSize(
+            QtCore.QSize(line_edit_width, line_edit_height)
+            )
         property_object.addWidget(property_object.maximum_bound)
 
         # property_object.addItem(regular_spacer)
@@ -1587,9 +1587,9 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         # property_object.specified_value.setMinimumSize(
         #     QtCore.QSize(line_edit_width, line_edit_height)
         #     )
-        # property_object.specified_value.setMaximumSize(
-        #     QtCore.QSize(line_edit_width, line_edit_height)
-        #     )
+        property_object.specified_value.setMaximumSize(
+            QtCore.QSize(line_edit_width, line_edit_height)
+            )
         property_object.addWidget(property_object.specified_value)
 
         # property_object.addItem(regular_spacer)
@@ -1679,12 +1679,12 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         #         0
         #         )
         #     )
-        # parameter_object.label.setMaximumSize(
-        #     QtCore.QSize(
-        #         text_width,
-        #         16777215
-        #         )
-        #     )
+        parameter_object.label.setMaximumSize(
+            QtCore.QSize(
+                text_width,
+                16777215
+                )
+            )
 
         font = self.create_font(
             text_size,
@@ -1709,12 +1709,12 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         #     lineEdit_height
         #     )
         #     )
-        # parameter_object.lineEdit.setMaximumSize(
-        #     QtCore.QSize(
-        #         lineEdit_width,
-        #         lineEdit_height
-        #         )
-        #     )
+        parameter_object.lineEdit.setMaximumSize(
+            QtCore.QSize(
+                lineEdit_width,
+                lineEdit_height
+                )
+            )
         parameter_object.addWidget(parameter_object.lineEdit)
 
 
