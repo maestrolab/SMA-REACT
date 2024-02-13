@@ -24,11 +24,19 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
     can be tweaked.
     '''
     def __init__(self):
+        '''
+        Initialize the tab.
+
+        Returns
+        -------
+        None.
+
+        '''
         super(QtWidgets.QWidget,self).__init__()
 
-        header_font_size = 10
+        header_font_size = 8
         header_weight = 75
-        normal_font_size = 10
+        normal_font_size = 8
         normal_weight = 50
 
         lineEdit_height = 30
@@ -58,6 +66,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         self.centralwidget = QtWidgets.QWidget(self)
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout.setSpacing(20)
         # DV_flags is an array of booleans (T/F) that determines whether
         # a specific design variable is active
         # True = Active (unconstrained)
@@ -311,7 +320,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         #%% Left labels
         self.left_labels = QtWidgets.QHBoxLayout()
-        self.left_labels.setContentsMargins(0, -1, 5, -1)
+        # self.left_labels.setContentsMargins(0, -1, 5, -1)
         self.parameter_label = QtWidgets.QLabel(self.centralwidget)
 
         self.create_label(
@@ -324,7 +333,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
                 )
 
         self.left_labels.addWidget(self.parameter_label)
-        self.left_labels.addItem(small_spacer)
+        # self.left_labels.addItem(small_spacer)
         self.lower_bound_label = QtWidgets.QLabel(self.centralwidget)
 
         self.create_label(
@@ -337,7 +346,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
                 )
 
         self.left_labels.addWidget(self.lower_bound_label)
-        self.left_labels.addItem(regular_spacer)
+        # self.left_labels.addItem(regular_spacer)
 
 
         self.upper_bound_label = QtWidgets.QLabel(self.centralwidget)
@@ -353,7 +362,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         self.left_labels.addWidget(self.upper_bound_label)
 
-        self.left_labels.addItem(regular_spacer)
+        # self.left_labels.addItem(regular_spacer)
 
         self.specify_label = QtWidgets.QLabel(self.centralwidget)
 
@@ -367,7 +376,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
                 )
 
         self.left_labels.addWidget(self.specify_label)
-        self.left_labels.addItem(regular_spacer)
+        # self.left_labels.addItem(regular_spacer)
         self.value_label = QtWidgets.QLabel(self.centralwidget)
 
         self.create_label(
@@ -384,7 +393,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         #%% Right labels
         self.right_labels = QtWidgets.QHBoxLayout()
         self.right_labels.setContentsMargins(0, -1, 5, -1)
-        
+
         self.parameter_label_right = QtWidgets.QLabel(self.centralwidget)
         self.lower_bound_label_right = QtWidgets.QLabel(self.centralwidget)
         self.upper_bound_label_right = QtWidgets.QLabel(self.centralwidget)
@@ -401,7 +410,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
                 )
 
         self.right_labels.addWidget(self.parameter_label_right)
-        self.right_labels.addItem(small_spacer)
+        # self.right_labels.addItem(small_spacer)
 
         self.create_label(
                 self.lower_bound_label_right,
@@ -413,7 +422,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
                 )
 
         self.right_labels.addWidget(self.lower_bound_label_right)
-        self.right_labels.addItem(regular_spacer)
+        # self.right_labels.addItem(regular_spacer)
 
         self.create_label(
                 self.upper_bound_label_right,
@@ -425,7 +434,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
                 )
 
         self.right_labels.addWidget(self.upper_bound_label_right)
-        self.right_labels.addItem(regular_spacer)
+        # self.right_labels.addItem(regular_spacer)
 
         self.create_label(
                 self.specify_label_right,
@@ -438,7 +447,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         self.right_labels.addWidget(self.specify_label_right)
 
-        self.right_labels.addItem(regular_spacer)
+        # self.right_labels.addItem(regular_spacer)
 
         self.create_label(
                 self.value_label_right,
@@ -454,7 +463,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         #%% Pushbuttons
         self.buttons = QtWidgets.QHBoxLayout()
-        
+
         font_size = 14
         font_weight = 75
 
@@ -467,12 +476,6 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         # self.buttons.addWidget(self.pushButton_2)
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
 
-        # size_policy = self.set_size_policy(
-        #     self.pushButton
-        #     )
-        # self.pushButton.setSizePolicy(
-        #     size_policy
-        #     )
 
         # self.pushButton.setMinimumSize(QtCore.QSize(200, 100))
         # self.pushButton.setMaximumSize(QtCore.QSize(200, 100))
@@ -483,7 +486,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         #%% Design variable flags
         self.prop_constraints_label = QtWidgets.QHBoxLayout()
         self.prop_constraints_label.setContentsMargins(-1, -1, 5, -1)
-        
+
         # Header
         self.prop_constraints_header = QtWidgets.QLabel(self.centralwidget)
         self.prop_constraints_header.setText('Material property constraints')
@@ -549,7 +552,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         self.alg_params_label = QtWidgets.QHBoxLayout()
         self.alg_params_label.setContentsMargins(-1, -1, 5, -1)
-        
+
         # Header
         self.alg_param_header = QtWidgets.QLabel(self.centralwidget)
         self.alg_param_header.setText('Algorithmic Parameters')
@@ -567,7 +570,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         self.non_op_params = QtWidgets.QHBoxLayout()
         self.non_op_params.setContentsMargins(-1, -1, 5, -1)
-        
+
 
         # delta
         self.delta = QtWidgets.QHBoxLayout()
@@ -621,7 +624,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         self.op_params_label = QtWidgets.QHBoxLayout()
         self.op_params_label.setContentsMargins(-1, -1, 5, -1)
-        
+
         # Header
         self.opt_param_header = QtWidgets.QLabel(self.centralwidget)
         self.opt_param_header.setText('Optimization Parameters')
@@ -639,17 +642,10 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         # Number of generations
         self.num_gens = QtWidgets.QHBoxLayout()
         self.num_gens.setContentsMargins(-1, -1, 5, -1)
-        
+
 
         self.gen_label = QtWidgets.QLabel(self.centralwidget)
         self.gen_label.setText('Number of generations')
-
-        # size_policy = self.set_size_policy(
-        #     self.gen_label
-        #     )
-        # self.gen_label.setSizePolicy(
-        #     size_policy
-        #     )
 
         #self.gen_label.setMinimumSize(QtCore.QSize(90, 0))
         #self.gen_label.setMaximumSize(QtCore.QSize(90, 16777215))
@@ -668,12 +664,6 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.num_gens.addStretch()
         self.gen_line = QtWidgets.QLineEdit(self.centralwidget)
 
-        # size_policy = self.set_size_policy(
-        #     self.gen_line
-        #     )
-        # self.gen_line.setSizePolicy(
-        #     size_policy
-        #     )
 
 
         # self.gen_line.setMinimumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
@@ -682,17 +672,11 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         self.pop_size = QtWidgets.QHBoxLayout()
         self.pop_size.setContentsMargins(-1, -1, 5, -1)
-        
+
         self.pop_label = QtWidgets.QLabel(self.centralwidget)
         self.pop_label.setText('Population size')
 
 
-        # size_policy = self.set_size_policy(
-        #     self.pop_label
-        #     )
-        # self.pop_label.setSizePolicy(
-        #     size_policy
-        #     )
 
         #self.pop_label.setMinimumSize(QtCore.QSize(90, 0))
         #self.pop_label.setMaximumSize(QtCore.QSize(90, 16777215))
@@ -706,32 +690,17 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.pop_line = QtWidgets.QLineEdit(self.centralwidget)
 
 
-        # size_policy = self.set_size_policy(
-        #     self.pop_line
-        #     )
-        # self.pop_line.setSizePolicy(
-        #     size_policy
-        #     )
-
 
         # self.pop_line.setMinimumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
         # self.pop_line.setMaximumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
-        
+
         self.pop_size.addWidget(self.pop_line)
 
         self.num_iters = QtWidgets.QHBoxLayout()
         self.num_iters.setContentsMargins(-1, -1, 5, -1)
-        
+
         self.iter_label = QtWidgets.QLabel(self.centralwidget)
         self.iter_label.setText('Gradient-based iterations')
-
-
-        # size_policy = self.set_size_policy(
-        #     self.iter_label
-        #     )
-        # self.iter_label.setSizePolicy(
-        #     size_policy
-        #     )
 
         #self.iter_label.setMinimumSize(QtCore.QSize(90, 0))
         #self.iter_label.setMaximumSize(QtCore.QSize(90, 16777215))
@@ -745,16 +714,9 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.iter_line = QtWidgets.QLineEdit(self.centralwidget)
 
 
-        # size_policy = self.set_size_policy(
-        #     self.iter_line
-        #     )
-        # self.iter_line.setSizePolicy(
-        #     size_policy
-        #     )
-
         # self.iter_line.setMinimumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
         # self.iter_line.setMaximumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
-        
+
         self.num_iters.addWidget(self.iter_line)
 
 
@@ -834,50 +796,73 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             # slider.setMaximumSize(QtCore.QSize(150, 20))
 
     # %% Functions
-    def openFiles(self):
-        file_browser = QtWidgets.QFileDialog()
-        file_browser.setFileMode(QFileDialog.ExistingFiles)
-        files = file_browser.getOpenFileNames(
-            self.centralwidget,
-            'Browse Files',
-            '',
-            'All Files(*)'
-            )[0]
-        text = ''
-        for file in files:
-            filename = file[file.rindex('/') + 1:]
-            text += filename + '\n'
-        self.file_labels.setText(text)
+    # def openFiles(self):
+    #     '''
+    #     Open
+
+    #     Returns
+    #     -------
+    #     None.
+
+    #     '''
+    #     file_browser = QtWidgets.QFileDialog()
+    #     file_browser.setFileMode(QFileDialog.ExistingFiles)
+    #     files = file_browser.getOpenFileNames(
+    #         self.centralwidget,
+    #         'Browse Files',
+    #         '',
+    #         'All Files(*)'
+    #         )[0]
+    #     text = ''
+    #     for file in files:
+    #         filename = file[file.rindex('/') + 1:]
+    #         text += filename + '\n'
+    #     self.file_labels.setText(text)
 
 
-    def importVals(self):
-        fileloc = QFileDialog.getOpenFileName(
-            None,
-            "Open MTS Data File",
-            "",
-            "CSV Files (*.csv)"
-            )
-        if fileloc:
-            file = str(fileloc[0])
-            params = importData(file)
-            for i in range(1, 10):
-                for j in range(2):
-                    for key in params.keys():
-                        if key == self.gridLayout.itemAtPosition(i, j).objectName():
-                            if "Lower Bound" in params[key]:
-                                self.gridLayout.itemAtPosition(i, j).itemAt(2).widget().setText(
-                                    str(params[key]["Lower Bound"])
-                                    )
-                            if "Upper Bound" in params[key]:
-                                self.gridLayout.itemAtPosition(i, j).itemAt(4).widget().setText(
-                                    str(params[key]["Upper Bound"])
-                                    )
-                            if "Guess" in params[key]:
-                                self.gridLayout.itemAtPosition(i, j).itemAt(6).widget().setText(
-                                    str(params[key]["Guess"])
-                                    )
+    # def importVals(self):
+    #     fileloc = QFileDialog.getOpenFileName(
+    #         None,
+    #         "Open MTS Data File",
+    #         "",
+    #         "CSV Files (*.csv)"
+    #         )
+    #     if fileloc:
+    #         file = str(fileloc[0])
+    #         params = importData(file)
+    #         for i in range(1, 10):
+    #             for j in range(2):
+    #                 for key in params.keys():
+    #                     if key == self.gridLayout.itemAtPosition(i, j).objectName():
+    #                         if "Lower Bound" in params[key]:
+    #                             self.gridLayout.itemAtPosition(i, j).itemAt(2).widget().setText(
+    #                                 str(params[key]["Lower Bound"])
+    #                                 )
+    #                         if "Upper Bound" in params[key]:
+    #                             self.gridLayout.itemAtPosition(i, j).itemAt(4).widget().setText(
+    #                                 str(params[key]["Upper Bound"])
+    #                                 )
+    #                         if "Guess" in params[key]:
+    #                             self.gridLayout.itemAtPosition(i, j).itemAt(6).widget().setText(
+    #                                 str(params[key]["Guess"])
+    #                                 )
 
     def uncheck(self,state):
+        '''
+        Function that translates all of the checkboxes for each
+        material parameter to different DV flags.
+
+        Parameters
+        ----------
+        state : QtCore.Qt.Checked
+            state, either unchecked or checked, for each DV and
+            the other flags.
+
+        Returns
+        -------
+        None.
+
+        '''
         if state == QtCore.Qt.Checked:
             if self.E_M.sender() == self.E_M.checkBox:
                 print('The E_M checkbox is checked')
@@ -1217,6 +1202,15 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         exportData(data, "bounds.csv")
 
     def loadDefaults(self):
+        '''
+        Imports default values for lower and upper bounds
+        of all DVs.
+
+        Returns
+        -------
+        None.
+
+        '''
         #Current order:
             #E_M, E_A, M_s, M_s-M_f, A_s, A_f - A_s, C_M, C_A, H_min,
             #H_max - H_min, k, n_1, n_2, n_3, n_4, sigma_crit, alpha
@@ -1292,6 +1286,15 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
 
     def updateVal(self):
+        '''
+        Updates the values of upper and lower DV bounds, both in the
+        sliders and in the optimization limits.
+
+        Returns
+        -------
+        None.
+
+        '''
         for i in range(1, 10):
             for j in range(2):
                 if i == 9 and j == 1:
@@ -1305,6 +1308,14 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
 
     def updateSlider(self):
+        '''
+        Update slider values based on upper and lower bounds.
+
+        Returns
+        -------
+        None.
+
+        '''
         for i in range(1, 10):
             for j in range(2):
                 if i == 9 and j == 1:
@@ -1333,6 +1344,15 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
 
     def getBounds(self):
+        '''
+        Creates the bounds list of lists, that is used in the optimizer.
+
+        Returns
+        -------
+        bounds : LIST
+            List of lists containing all DV bounds.
+
+        '''
         # initialize bounds list of lists
         bounds = []
 
@@ -1414,7 +1434,15 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         return bounds
 
     def getSpecifiedValues(self):
-        #get the values that were specified to be constrained
+        '''
+        Get the values that were specified to be constrained.
+
+        Returns
+        -------
+        None.
+
+        '''
+        #
         ## MAYBE: ONLY MAKE THE TEXT BOXES ABLE TO BE ACCESSED WHEN THE ASSOCIATED
         ## CHECKBOX IS CLICKED
 
@@ -1472,13 +1500,6 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             ):
 
 
-        # size_policy = self.set_size_policy(
-        #     label_object
-        #     )
-        # label_object.setSizePolicy(
-        #     size_policy
-        #     )
-
         # label_object.setMinimumSize(
         #     QtCore.QSize(
         #         parameter_label_width,
@@ -1503,7 +1524,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         label_object.setFont(font)
         label_object.setAlignment(QtCore.Qt.AlignCenter)
-        
+
 
 
     def create_material_property(
@@ -1518,7 +1539,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             small_spacer,
             regular_spacer):
 
-        
+
         property_object.label = textToLatex(
             r"$"+name+r"$ [$\mathrm{"+str(units)+"}$]:",
             parameter_label_width,
@@ -1527,16 +1548,10 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             )
         property_object.addWidget(property_object.label)
 
-        property_object.addItem(small_spacer)
+        # property_object.addItem(small_spacer)
 
         property_object.minimum_bound = QtWidgets.QLineEdit(self.centralwidget)
 
-        # size_policy = self.set_size_policy(
-        #     property_object.minimum_bound
-        #     )
-        # property_object.minimum_bound.setSizePolicy(
-        #     size_policy
-        #     )
         # property_object.minimum_bound.setMinimumSize(
         #     QtCore.QSize(line_edit_width, line_edit_height)
         #     )
@@ -1545,16 +1560,10 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         #     )
         property_object.addWidget(property_object.minimum_bound)
 
-        property_object.addItem(regular_spacer)
+        # property_object.addItem(regular_spacer)
 
         property_object.maximum_bound = QtWidgets.QLineEdit(self.centralwidget)
 
-        # size_policy = self.set_size_policy(
-        #     property_object.maximum_bound
-        #     )
-        # property_object.maximum_bound.setSizePolicy(
-        #     size_policy
-        #     )
         # property_object.maximum_bound.setMinimumSize(
         #     QtCore.QSize(line_edit_width, line_edit_height)
         #     )
@@ -1563,21 +1572,18 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         #     )
         property_object.addWidget(property_object.maximum_bound)
 
-        property_object.addItem(regular_spacer)
+        # property_object.addItem(regular_spacer)
 
         property_object.checkBox = QtWidgets.QCheckBox(self.centralwidget)
         property_object.checkBox.stateChanged.connect(self.uncheck)
         property_object.checkBox.setText("")
         property_object.addWidget(property_object.checkBox)
 
-        property_object.addItem(regular_spacer)
+        # property_object.addItem(regular_spacer)
 
         property_object.specified_value = QtWidgets.QLineEdit(
             self.centralwidget
             )
-        # property_object.specified_value.setSizePolicy(
-        #     size_policy
-        #     )
         # property_object.specified_value.setMinimumSize(
         #     QtCore.QSize(line_edit_width, line_edit_height)
         #     )
@@ -1586,7 +1592,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         #     )
         property_object.addWidget(property_object.specified_value)
 
-        property_object.addItem(regular_spacer)
+        # property_object.addItem(regular_spacer)
         property_object.specified_value.setEnabled(False)
         property_object.checkBox.toggled.connect(
             property_object.specified_value.setEnabled
@@ -1610,7 +1616,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             latex_flag = False):
 
         constraint_object.setContentsMargins(-1, -1, 5, -1)
-        
+
         if latex_flag == False:
             pass
         else:
@@ -1653,7 +1659,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             ):
 
         parameter_object.setContentsMargins(-1, -1, 5, -1)
-        
+
 
         if latex_flag == True:
             parameter_object.label = textToLatex(
@@ -1666,12 +1672,6 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             parameter_object.label = QtWidgets.QLabel(self.centralwidget)
             parameter_object.label.setText(text)
 
-        # size_policy = self.set_size_policy(
-        #     parameter_object.label
-        #     )
-        # parameter_object.label.setSizePolicy(
-        #     size_policy
-        #     )
 
         # parameter_object.label.setMinimumSize(
         #     QtCore.QSize(
@@ -1702,12 +1702,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
 
         parameter_object.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        # size_policy = self.set_size_policy(
-        #     parameter_object.lineEdit
-        #     )
-        # parameter_object.lineEdit.setSizePolicy(
-        #     size_policy
-        #     )
+
 
         # parameter_object.lineEdit.setMinimumSize(QtCore.QSize(
         #     lineEdit_width,
