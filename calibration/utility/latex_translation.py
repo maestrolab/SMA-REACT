@@ -38,7 +38,7 @@ def textToLatex(text, width, height, widget):
     pixmap = QPixmap('latex.png')
     # size= pixmap.size()
     # pixmap = pixmap.scaled(size * 2)
-    label = QLabel(widget)
+    label = QLabel(self)
     label.setPixmap(pixmap)
     # label.setScaledContents(True)
     import os

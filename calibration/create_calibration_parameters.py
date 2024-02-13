@@ -13,10 +13,21 @@ import numpy as np
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog, QMessageBox
+from PyQt5.QtWidgets import QLabel, QSizePolicy
+from PyQt5.QtCore import QSize
+from PyQt5.QtGui import QPixmap
+
+from matplotlib.figure import Figure
+from matplotlib import rcParams as rc
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 from .utility.export import exportData
 from .utility.import_vals import importData
-from .utility.latex_translation import textToLatex
+# from .utility.latex_translation import textToLatex
+
+
+
+
 
 class CalibrationParametersWidget(QtWidgets.QWidget):
     '''
@@ -32,7 +43,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         None.
 
         '''
-        super(QtWidgets.QWidget,self).__init__()
+        super().__init__()
 
         header_font_size = 8
         header_weight = 75
@@ -63,9 +74,9 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             QtWidgets.QSizePolicy.Minimum
             )
 
-
-        self.centralwidget = QtWidgets.QWidget(self)
-        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout = QtWidgets.QGridLayout(self)
+        # self.centralwidget = QtWidgets.QWidget(self)
+        # self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setSpacing(20)
         # DV_flags is an array of booleans (T/F) that determines whether
         # a specific design variable is active
@@ -321,7 +332,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         #%% Left labels
         self.left_labels = QtWidgets.QHBoxLayout()
         # self.left_labels.setContentsMargins(0, -1, 5, -1)
-        self.parameter_label = QtWidgets.QLabel(self.centralwidget)
+        self.parameter_label = QtWidgets.QLabel(self)
 
         self.create_label(
                 self.parameter_label,
@@ -334,7 +345,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         self.left_labels.addWidget(self.parameter_label)
         # self.left_labels.addItem(small_spacer)
-        self.lower_bound_label = QtWidgets.QLabel(self.centralwidget)
+        self.lower_bound_label = QtWidgets.QLabel(self)
 
         self.create_label(
                 self.lower_bound_label,
@@ -349,7 +360,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         # self.left_labels.addItem(regular_spacer)
 
 
-        self.upper_bound_label = QtWidgets.QLabel(self.centralwidget)
+        self.upper_bound_label = QtWidgets.QLabel(self)
 
         self.create_label(
                 self.upper_bound_label,
@@ -364,7 +375,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         # self.left_labels.addItem(regular_spacer)
 
-        self.specify_label = QtWidgets.QLabel(self.centralwidget)
+        self.specify_label = QtWidgets.QLabel(self)
 
         self.create_label(
                 self.specify_label,
@@ -377,7 +388,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         self.left_labels.addWidget(self.specify_label)
         # self.left_labels.addItem(regular_spacer)
-        self.value_label = QtWidgets.QLabel(self.centralwidget)
+        self.value_label = QtWidgets.QLabel(self)
 
         self.create_label(
                 self.value_label,
@@ -394,11 +405,11 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.right_labels = QtWidgets.QHBoxLayout()
         self.right_labels.setContentsMargins(0, -1, 5, -1)
 
-        self.parameter_label_right = QtWidgets.QLabel(self.centralwidget)
-        self.lower_bound_label_right = QtWidgets.QLabel(self.centralwidget)
-        self.upper_bound_label_right = QtWidgets.QLabel(self.centralwidget)
-        self.specify_label_right = QtWidgets.QLabel(self.centralwidget)
-        self.value_label_right = QtWidgets.QLabel(self.centralwidget)
+        self.parameter_label_right = QtWidgets.QLabel(self)
+        self.lower_bound_label_right = QtWidgets.QLabel(self)
+        self.upper_bound_label_right = QtWidgets.QLabel(self)
+        self.specify_label_right = QtWidgets.QLabel(self)
+        self.value_label_right = QtWidgets.QLabel(self)
 
         self.create_label(
                 self.parameter_label_right,
@@ -474,7 +485,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             )
 
         # self.buttons.addWidget(self.pushButton_2)
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton = QtWidgets.QPushButton(self)
 
 
         # self.pushButton.setMinimumSize(QtCore.QSize(200, 100))
@@ -488,7 +499,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.prop_constraints_label.setContentsMargins(-1, -1, 5, -1)
 
         # Header
-        self.prop_constraints_header = QtWidgets.QLabel(self.centralwidget)
+        self.prop_constraints_header = QtWidgets.QLabel(self)
         self.prop_constraints_header.setText('Material property constraints')
 
         header_font = self.create_font(
@@ -554,7 +565,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.alg_params_label.setContentsMargins(-1, -1, 5, -1)
 
         # Header
-        self.alg_param_header = QtWidgets.QLabel(self.centralwidget)
+        self.alg_param_header = QtWidgets.QLabel(self)
         self.alg_param_header.setText('Algorithmic Parameters')
 
         # self.opt_param_header.setMinimumSize(QtCore.QSize(90, 0))
@@ -626,7 +637,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.op_params_label.setContentsMargins(-1, -1, 5, -1)
 
         # Header
-        self.opt_param_header = QtWidgets.QLabel(self.centralwidget)
+        self.opt_param_header = QtWidgets.QLabel(self)
         self.opt_param_header.setText('Optimization Parameters')
         # self.opt_param_header.setMinimumSize(QtCore.QSize(90, 0))
         # self.opt_param_header.setMaximumSize(QtCore.QSize(90, 16777215))
@@ -644,7 +655,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.num_gens.setContentsMargins(-1, -1, 5, -1)
 
 
-        self.gen_label = QtWidgets.QLabel(self.centralwidget)
+        self.gen_label = QtWidgets.QLabel(self)
         self.gen_label.setText('Number of generations')
 
         #self.gen_label.setMinimumSize(QtCore.QSize(90, 0))
@@ -662,7 +673,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             )
         self.num_gens.addWidget(self.gen_label)
         self.num_gens.addStretch()
-        self.gen_line = QtWidgets.QLineEdit(self.centralwidget)
+        self.gen_line = QtWidgets.QLineEdit(self)
 
 
 
@@ -673,7 +684,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.pop_size = QtWidgets.QHBoxLayout()
         self.pop_size.setContentsMargins(-1, -1, 5, -1)
 
-        self.pop_label = QtWidgets.QLabel(self.centralwidget)
+        self.pop_label = QtWidgets.QLabel(self)
         self.pop_label.setText('Population size')
 
 
@@ -687,7 +698,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             )
         self.pop_size.addWidget(self.pop_label)
         self.pop_size.addStretch()
-        self.pop_line = QtWidgets.QLineEdit(self.centralwidget)
+        self.pop_line = QtWidgets.QLineEdit(self)
 
 
 
@@ -699,7 +710,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.num_iters = QtWidgets.QHBoxLayout()
         self.num_iters.setContentsMargins(-1, -1, 5, -1)
 
-        self.iter_label = QtWidgets.QLabel(self.centralwidget)
+        self.iter_label = QtWidgets.QLabel(self)
         self.iter_label.setText('Gradient-based iterations')
 
         #self.iter_label.setMinimumSize(QtCore.QSize(90, 0))
@@ -711,7 +722,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             )
         self.num_iters.addWidget(self.iter_label)
         self.num_iters.addStretch()
-        self.iter_line = QtWidgets.QLineEdit(self.centralwidget)
+        self.iter_line = QtWidgets.QLineEdit(self)
 
 
         # self.iter_line.setMinimumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
@@ -789,7 +800,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         # INITIAL CONDITIONS
         self.loadDefaults()
 
-        sliders = self.centralwidget.findChildren(QtWidgets.QSlider)
+        sliders = self.gridLayout.findChildren(QtWidgets.QSlider)
         for slider in sliders:
             pass
             # slider.setMinimumSize(QtCore.QSize(150, 20))
@@ -1168,7 +1179,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
                     guess = round(random.uniform(lower_bound, upper_bound), 2)
                     self.gridLayout.itemAtPosition(i, j).itemAt(6).widget().setText(str(guess))
                 except:
-                    error = QtWidgets.QMessageBox(self.centralwidget)
+                    error = QtWidgets.QMessageBox(self)
                     error.setIcon(QMessageBox.Critical)
                     error.setText("Please fill all bounds first")
                     error.setWindowTitle("Error")
@@ -1540,17 +1551,16 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             regular_spacer):
 
 
-        property_object.label = textToLatex(
+        property_object.label = self.textToLatex(
             r"$"+name+r"$ [$\mathrm{"+str(units)+"}$]:",
             parameter_label_width,
             parameter_label_height,
-            self.centralwidget
             )
         property_object.addWidget(property_object.label)
 
         # property_object.addItem(small_spacer)
 
-        property_object.minimum_bound = QtWidgets.QLineEdit(self.centralwidget)
+        property_object.minimum_bound = QtWidgets.QLineEdit(self)
 
         # property_object.minimum_bound.setMinimumSize(
         #     QtCore.QSize(line_edit_width, line_edit_height)
@@ -1562,7 +1572,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         # property_object.addItem(regular_spacer)
 
-        property_object.maximum_bound = QtWidgets.QLineEdit(self.centralwidget)
+        property_object.maximum_bound = QtWidgets.QLineEdit(self)
 
         # property_object.maximum_bound.setMinimumSize(
         #     QtCore.QSize(line_edit_width, line_edit_height)
@@ -1574,7 +1584,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         # property_object.addItem(regular_spacer)
 
-        property_object.checkBox = QtWidgets.QCheckBox(self.centralwidget)
+        property_object.checkBox = QtWidgets.QCheckBox(self)
         property_object.checkBox.stateChanged.connect(self.uncheck)
         property_object.checkBox.setText("")
         property_object.addWidget(property_object.checkBox)
@@ -1582,7 +1592,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         # property_object.addItem(regular_spacer)
 
         property_object.specified_value = QtWidgets.QLineEdit(
-            self.centralwidget
+            self
             )
         # property_object.specified_value.setMinimumSize(
         #     QtCore.QSize(line_edit_width, line_edit_height)
@@ -1620,11 +1630,10 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         if latex_flag == False:
             pass
         else:
-            constraint_object.label = textToLatex(
+            constraint_object.label = self.textToLatex(
                 text,
                 text_width,
                 text_height,
-                self.centralwidget
                 )
 
         font = self.create_font(
@@ -1639,7 +1648,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             )
         constraint_object.addWidget(constraint_object.label)
 
-        constraint_object.checkbox = QtWidgets.QCheckBox(self.centralwidget)
+        constraint_object.checkbox = QtWidgets.QCheckBox(self)
         constraint_object.checkbox.stateChanged.connect(self.uncheck)
         constraint_object.checkbox.setText("")
         constraint_object.addWidget(constraint_object.checkbox)
@@ -1662,14 +1671,13 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
 
         if latex_flag == True:
-            parameter_object.label = textToLatex(
+            parameter_object.label = self.textToLatex(
                 text,
                 text_width,
                 text_height,
-                self.centralwidget
                 )
         else:
-            parameter_object.label = QtWidgets.QLabel(self.centralwidget)
+            parameter_object.label = QtWidgets.QLabel(self)
             parameter_object.label.setText(text)
 
 
@@ -1701,7 +1709,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         parameter_object.addWidget(parameter_object.label)
 
 
-        parameter_object.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
+        parameter_object.lineEdit = QtWidgets.QLineEdit(self)
 
 
         # parameter_object.lineEdit.setMinimumSize(QtCore.QSize(
@@ -1746,3 +1754,52 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         font.setWeight(font_weight)
 
         return font
+    
+    def textToLatex(self, text, width, height):
+        rc["font.serif"] = "Palatino Linotype"
+        rc["font.family"] = "serif"
+        rc["text.usetex"] = True
+
+        dpi = 125
+        fig = Figure(figsize=(width/dpi, height/dpi), dpi=dpi)
+        # fig = Figure(dpi=dpi)
+        canvas = FigureCanvas(fig)
+        ax = fig.gca()
+
+
+        ax.text(0.0,0.0,text,va='center',ha='center',fontsize=10)
+        
+        #ax.text(0.05, -0.02, r'{}'.format(text), ha="right")
+        ax.axis('off')
+        ax.margins(0)
+        ax.patch.set_facecolor('none')
+        
+        #fig.patch.set_facecolor("black")
+        fig.patch.set_facecolor('none')
+        # fig.tight_layout(pad=0.0)
+        
+
+        canvas.draw()
+
+        canvas.print_figure("latex.png",facecolor=fig.get_facecolor())
+
+        pixmap = QPixmap('latex.png')
+        # size= pixmap.size()
+        # pixmap = pixmap.scaled(size * 2)
+        label = QLabel(self)
+        label.setPixmap(pixmap)
+        # label.setScaledContents(True)
+        import os
+        os.remove('latex.png')
+        #sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        #sizePolicy.setHorizontalStretch(0)
+        #sizePolicy.setVerticalStretch(0)
+
+        #label.setSizePolicy(sizePolicy)
+        #label.setMaximumSize(QSize(width, height))
+        label.setMinimumSize(QSize(width, height))
+        #label.setAlignment(QtCore.Qt.AlignLeft)
+        #label.setAlignment(QtCore.Qt.AlignVCenter)
+
+
+        return label
