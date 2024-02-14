@@ -33,7 +33,16 @@ class CalibrationProgressWidget(QtWidgets.QWidget):
     def __init__(self):
         super(QtWidgets.QWidget,self).__init__()
 
-        rc.update({'font.size': 18})
+        rc.update(
+            {'font.size': 18,
+             'font.family':"sans-serif",
+             'font.sans-serif':"Arial",
+             "text.usetex":False,
+             }
+            )
+        # rc["font.serif"] = "Palatino Linotype"
+        # rc["font.family"] = "serif"
+        # rc["text.usetex"] = True
 
         # SETUP
         #self.setWindowTitle('Calibration Window')
