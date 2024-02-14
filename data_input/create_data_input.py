@@ -313,7 +313,7 @@ class DataInputWidget(QtWidgets.QWidget):
 
                 # converting strain
                 if strain_units == '[%]':
-                    df["strain"] = df["strain"] * 100
+                    df["strain"] = df["strain"] / 100
 
                 # column_names = ['strain','temperature','stress']
                 # df.columns = column_names

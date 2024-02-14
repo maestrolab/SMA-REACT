@@ -39,10 +39,10 @@ for i in range(int(len(temperature[0,:])/2)):
     cooling_strain = strain[0,2*i+1].T
     
     total_temperature = np.concatenate(
-        (heating_temperature,cooling_temperature)
+        (heating_temperature,cooling_temperature[::-1])
         )
     total_strain = np.concatenate(
-        (heating_strain,cooling_strain)
+        (heating_strain,cooling_strain[::-1])
         )
     total_stress = np.full(
         shape=(len(total_temperature),1),

@@ -50,7 +50,8 @@ def plot_phase_diagram(P,sigma_inp, ax):
         T_rev_0[i] = reverse_transformation(sigma[i],0,P,TP)
         T_rev_1[i] = reverse_transformation(sigma[i],1,P,TP)
         
-    
+    ax.ticklabel_format(axis='y', style='sci', scilimits=(6,6))
+
     ax.plot(T_fwd_1,sigma,'b--',label='Martensite finish')
     ax.plot(T_fwd_0,sigma,'b',label='Martensite start')
     ax.plot(T_rev_1,sigma,'r',label='Austenite start')
