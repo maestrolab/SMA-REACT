@@ -615,20 +615,62 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
                 )
 
         #MVF_tolerance
+        normal_font = self.create_font(
+            normal_font_size,
+            normal_weight,
+            bold_flag = False
+            )
+        
         self.MVF_tol = QtWidgets.QHBoxLayout()
+        self.MVF_tol.setContentsMargins(-1, -1, 5, -1)
 
-        self.create_parameter(
-                parameter_object=self.MVF_tol,
-                name='MVF_tol',
-                text="MVF Tol",
-                text_width=200,
-                text_height=43,
-                text_size=12,
-                text_weight=75,
-                lineEdit_width=lineEdit_width,
-                lineEdit_height=lineEdit_height,
-                latex_flag = False,
+
+        self.MVF_tol.label = QtWidgets.QLabel(self)
+        self.MVF_tol.label.setText('MVF Tolerance')
+
+        #self.gen_label.setMinimumSize(QtCore.QSize(90, 0))
+        #self.gen_label.setMaximumSize(QtCore.QSize(90, 16777215))
+
+
+
+        self.MVF_tol.label.setFont(normal_font)
+        self.MVF_tol.label.setAlignment(
+            QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter
+            )
+        self.MVF_tol.label.setMaximumSize(
+            QtCore.QSize(
+                200,
+                1000))
+        self.MVF_tol.addWidget(self.MVF_tol.label)
+        # self.MVF_tol.addStretch()
+        self.MVF_tol.lineEdit = QtWidgets.QLineEdit(self)
+        
+        self.MVF_tol.lineEdit.setMaximumSize(
+            QtCore.QSize(
+                lineEdit_width,
+                lineEdit_height
                 )
+            )
+
+
+
+        # self.gen_line.setMinimumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
+        # self.gen_line.setMaximumSize(QtCore.QSize(lineEdit_width, lineEdit_height))
+        self.MVF_tol.addWidget(self.MVF_tol.lineEdit)
+
+        # self.create_parameter(
+        #         parameter_object=self.MVF_tol,
+        #         name='MVF_tol',
+        #         text="MVF Tol",
+        #         text_width=200,
+        #         text_height=43,
+        #         text_size=12,
+        #         text_weight=75,
+        #         lineEdit_width=lineEdit_width,
+        #         lineEdit_height=lineEdit_height,
+        #         latex_flag = False,
+        #         bold_flag = False,
+        #         )
 
         #%%Optimization parameters
         #Might need to make this a grid with labels on the left and line edits on the right
@@ -661,11 +703,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         #self.gen_label.setMinimumSize(QtCore.QSize(90, 0))
         #self.gen_label.setMaximumSize(QtCore.QSize(90, 16777215))
 
-        normal_font = self.create_font(
-            normal_font_size,
-            normal_weight,
-            bold_flag = False
-            )
+
 
         self.gen_label.setFont(normal_font)
         self.gen_label.setAlignment(
@@ -1665,6 +1703,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             lineEdit_width,
             lineEdit_height,
             latex_flag = False,
+            bold_flag = True,
             ):
 
         parameter_object.setContentsMargins(-1, -1, 5, -1)
@@ -1697,7 +1736,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         font = self.create_font(
             text_size,
             text_weight,
-            bold_flag = True
+            bold_flag = bold_flag,
             )
 
         parameter_object.label.setFont(font)

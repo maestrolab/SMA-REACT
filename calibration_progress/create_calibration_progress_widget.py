@@ -86,6 +86,15 @@ class CalibrationProgressWidget(QtWidgets.QWidget):
         self.phase_diagram_canvas = FigureCanvas(self.phase_diagram_graph)
         self.phase_diagram_toolbar = NavigationToolbar(self.phase_diagram_canvas, self)
 
+        #Add an export button at the bottom.
+        self.export_button = QtWidgets.QPushButton(self)
+        self.export_button.setMinimumSize(QtCore.QSize(100, 100))
+        # self.load_button.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.export_button.setObjectName("export_button")
+        self.export_button.setText('Export Calibration Data')
+        # self.load_button.setFont(font)
+        self.export_button.setEnabled(False)
+
         # ADDING TO WINDOW
         self.main_layout.addWidget(self.opt_progress_canvas, 0, 0)
         self.main_layout.addWidget(self.opt_progress_toolbar, 1, 0)
@@ -95,12 +104,18 @@ class CalibrationProgressWidget(QtWidgets.QWidget):
         self.main_layout.addWidget(self.temp_strain_toolbar, 1, 1)
         self.main_layout.addWidget(self.phase_diagram_canvas, 2, 1)
         self.main_layout.addWidget(self.phase_diagram_toolbar, 3, 1)
+        self.main_layout.addWidget(self.export_button,4,0,2,1)
+        
+        self.export_button.clicked.connect(self.exportSolution)
+        
+        
         self.show()
 
 
     def run(self, bounds, knownValues, DV_flags):
         QApplication.processEvents()
         main(bounds, knownValues, DV_flags, self)
+        self.export_button.setEnabled(True)
 
 
     def updateOptProgress(self, gen, min_func_val, avg, std):
@@ -165,6 +180,9 @@ class CalibrationProgressWidget(QtWidgets.QWidget):
 
         self.phase_diagram_canvas.draw()
         self.phase_diagram_canvas.flush_events()
+        
+    def exportSolution(self):
+        pass
 
 
 
