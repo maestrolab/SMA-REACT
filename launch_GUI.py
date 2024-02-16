@@ -7,9 +7,12 @@ Main launch script
 Last updated: December 16th, 2023 (see GitHub for updates)
 """
 import cgitb
-
+import json
 
 from PyQt5 import QtGui, QtWidgets
+
+import os
+from datetime import date
 
 from data_input.create_data_input import (
     DataInputWidget
@@ -116,6 +119,9 @@ class App(QtWidgets.QMainWindow):
         self.calibration_parameters_widget.pushButton.clicked.connect(
             self.run_calibration
             )
+        
+        self.calibration_plotting_widget.export_button.clicked.connect(
+            self.export_solution)
 
         self.show()
 
@@ -169,12 +175,56 @@ class App(QtWidgets.QMainWindow):
 
         self.change_tabs(index=2)
 
-        error = main(
+        self.optimization_error = main(
             bounds,
             self.calibration_parameters_widget,
             self.data_input_widget.data,
             self.calibration_plotting_widget
             )
+        
+        self.calibration_plotting_widget.export_button.setEnabled(True)
+        
+    def export_solution(self):
+        self.calibration_parameters_widget.getSpecifiedValues()
+        bounds = self.calibration_parameters_widget.getBounds()
+        
+        print('Known Values \n')
+        print(self.calibration_parameters_widget.known_values)
+        
+        print('Bounds \n')
+        print(bounds)
+        
+        print('Final Optimization Error \n')
+        print(self.optimization_error)
+        
+        data_to_export = {
+            'final_error': self.optimization_error,
+            'final_solution': self.calibration_parameters_widget.known_values,
+            'bounds':bounds,
+            'date': str(date.today()),
+            }
+        
+        file_name = os.path.join(
+            os.getcwd(),
+            'output',
+            str(date.today())+'_calibration.json'
+            )
+        
+
+        with open(file_name, 'w', encoding='utf-8') as f:
+            json.dump(
+                data_to_export,
+                f,
+                ensure_ascii=False,
+                indent=4
+                )
+        
+
+        
+        
+        #FIXME I will need to pull the res2.x out of the evaluate function
+        # Probably need to make it the final solution on the calibration_parameters widget
+        # Then write a function to return the material data structure P
 
 
 

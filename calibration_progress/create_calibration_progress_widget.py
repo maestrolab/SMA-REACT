@@ -61,7 +61,9 @@ class CalibrationProgressWidget(QtWidgets.QWidget):
         keys = ['E_M', 'E_A', 'M_s', 'M_s - M_f', 'A_s', 'A_f - A_s', 'C_M', 'C_A', 'H_min', 'H_max - H_min', 'k',
                 'n_1', 'n_2', 'n_3', 'n_4', 'sig_crit', 'alpha']
         y = np.zeros(len(keys))
-        self.ax_dv_vals = self.dv_vals_graph.add_subplot(111)
+        self.ax_dv_vals = self.dv_vals_graph.add_subplot(
+            111,
+            )
         self.bars = self.ax_dv_vals.bar(keys, y, width=0.5)
         self.ax_dv_vals.set_ylim([-0.1, 1.1])
         self.ax_dv_vals.text(0.05,-0.066,'Lower bound')
@@ -106,21 +108,23 @@ class CalibrationProgressWidget(QtWidgets.QWidget):
         self.main_layout.addWidget(self.phase_diagram_toolbar, 3, 1)
         self.main_layout.addWidget(self.export_button,4,0,2,1)
         
-        self.export_button.clicked.connect(self.exportSolution)
+        # self.export_button.clicked.connect(self.exportSolution)
         
         
         self.show()
 
 
-    def run(self, bounds, knownValues, DV_flags):
-        QApplication.processEvents()
-        main(bounds, knownValues, DV_flags, self)
-        self.export_button.setEnabled(True)
+    # def run(self, bounds, knownValues, DV_flags):
+    #     QApplication.processEvents()
+    #     main(bounds, knownValues, DV_flags, self)
+        # self.export_button.setEnabled(True)
 
 
     def updateOptProgress(self, gen, min_func_val, avg, std):
         self.opt_progress_graph.clear()
-        ax = self.opt_progress_graph.add_subplot(111)
+        ax = self.opt_progress_graph.add_subplot(
+            111,
+            )
         ax.plot(gen, min_func_val, color='red', label='Current best solution')
         ax.plot(gen, avg, label='Average solution',color='black')
         #ax.fill_between(gen, [x + y for x,y in zip(avg, std)], [x - y for x,y in zip(avg, std)],
@@ -130,6 +134,7 @@ class CalibrationProgressWidget(QtWidgets.QWidget):
         ax.set_xlabel('Generation')
         ax.set_ylabel('Error')
         self.opt_progress_canvas.draw()
+        self.opt_progress_graph.tight_layout()
         self.opt_progress_canvas.flush_events()
 
 
@@ -181,8 +186,8 @@ class CalibrationProgressWidget(QtWidgets.QWidget):
         self.phase_diagram_canvas.draw()
         self.phase_diagram_canvas.flush_events()
         
-    def exportSolution(self):
-        pass
+    # def exportSolution(self):
+    #     pass
 
 
 

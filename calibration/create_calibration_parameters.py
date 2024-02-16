@@ -1530,9 +1530,9 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             elif self.DV_flags[counter] == False:
                 self.known_values[DV_order[counter]] = float(lineEdits[counter].text())
 
-        self.delta = float(self.delta.lineEdit.text())
-        self.sigma_cal = float(self.sigma_cal.lineEdit.text())
-        self.MVF_tol = float(self.MVF_tol.lineEdit.text())
+        self.delta.value = float(self.delta.lineEdit.text())
+        self.sigma_cal.value = float(self.sigma_cal.lineEdit.text())
+        self.MVF_tol.value = float(self.MVF_tol.lineEdit.text())
 
         self.num_gens = float(self.gen_line.text())
         self.pop_size = float(self.pop_line.text())

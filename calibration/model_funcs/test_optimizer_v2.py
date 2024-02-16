@@ -217,50 +217,6 @@ def resizeBounds(value, bounds=[1e3, 1e8]):
     value = (bounds[1] - bounds[0]) * value + bounds[0]
     return value
 
-# def applyBounds(x):
-#     """Transforms the individual (in [0,1]) to a bounded individual depending
-#     on the optimization-specific bounds.
-
-#     Parameters
-#     ----------
-#     individual : array
-#         Design vector for calibration. All entries are bounded between 0 and 1.
-#     bounds : list
-#         Bounds for the design vector, depending on the type of hardening.
-#     substructureParameters : dict
-#         Dictionary containing all important parameters (i.e., fixed values) pertaining to the substructure.
-#     hardeningFlag : int
-#         Flag to determine what type of hardening.
-
-#     Returns
-#     -------
-#     boundedIndividual : array
-#         Design vector for calibration, actually bounded for analysis.
-#     """
-#     bounds = []
-#     bounds.append([60E9,100E9]) #E^M
-#     bounds.append([-10E9,10E9]) #E^A
-#     bounds.append([273.15-60,273.15-20]) #M_s
-#     bounds.append([0,30]) #M_s-M_f
-#     bounds.append([273.15-30,273.15]) #A_s
-#     bounds.append([0,30]) #A_f - A_s
-#     bounds.append([4E6,12E6]) #C^M
-#     bounds.append([4E6,12E6]) #C^A
-#     bounds.append([0.0,0.05]) #H_min
-#     bounds.append([0.01,0.1]) #H_sat-H_min
-#     bounds.append([0.001E-6,0.1E-6]) #k
-#     bounds.append([0.2,1.0]) #n_1
-#     bounds.append([0.2,1.0]) #n_2
-#     bounds.append([0.2,1.0]) #n_3
-#     bounds.append([0.2,1.0]) #n_4
-    
-    
-#     boundedX = np.zeros(shape=len(x))
-#     for i in range(len(x)):
-#         boundedX[i] = resizeBounds(x[i], bounds=list(bounds[i]))
-#     return boundedX
-
-
 def evaluate(
         x,
         data,
@@ -363,10 +319,13 @@ def evaluate(
     
         
     if plot_flag == True:
-        # plot_strain_temperature(T_total,eps_model_total,i,d)
-        calWin.updateTempStrain(T_total, eps_model_total, i)
-        calWin.updatePhaseDiagram(P, [0, 200E6])
-        calWin.updateDVVals(x,data['DV_flags'])
+        try:
+            # plot_strain_temperature(T_total,eps_model_total,i,d)
+            calWin.updateTempStrain(T_total, eps_model_total, i)
+            calWin.updatePhaseDiagram(P, [0, 200E6])
+            calWin.updateDVVals(x,data['DV_flags'])
+        except:
+            pass
         
     if gradient_flag == True:
         gens = GA_data[0]
@@ -536,9 +495,9 @@ def main(bounds,calibration_class,data,calWin):
     data['slope_flag'] = slope_flag
     data['smooth_hardening_flag'] = smooth_hardening_flag
     
-    data['delta'] = calibration_class.delta
-    data['sigma_cal'] = calibration_class.sigma_cal
-    data['MVF_tol'] = calibration_class.MVF_tol
+    data['delta'] = calibration_class.delta.value
+    data['sigma_cal'] = calibration_class.sigma_cal.value
+    data['MVF_tol'] = calibration_class.MVF_tol.value
     
     data['DV_flags'] = DV_flags 
     

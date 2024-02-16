@@ -23,7 +23,7 @@ strain = mat['Ydata_TrueStrain_pct']
 
 colors = mat['LineColors']
 
-stress_levels = [400, 300, 200, 100, 50, 0]
+stress_levels = [400, 300, 200, 100, 50, 7]
 # red = [1, 0 , 0]
 # blue = [0, 0, 1]
 
@@ -31,12 +31,72 @@ stress_levels = [400, 300, 200, 100, 50, 0]
 
 data = {}
 
+from savitzky_golay import savitzky_golay
+from scipy.interpolate import Akima1DInterpolator, CubicSpline
+
+def resample_data(x_data,y_data,num_points):
+    resampled_x_data = np.linspace(min(x_data),max(x_data),num_points)
+    
+    # Filter based on a Savitzky-Golay 1-D filter
+    y_filtered = savitzky_golay(
+        y_data,
+        window_size=51,
+        order=4)
+    
+    x_filtered = savitzky_golay(
+        x_data,
+        window_size=51,
+        order=4)
+    
+    
+    # defining arbitrary parameter to parameterize the curve
+    path_t = np.linspace(0,1,x_filtered.size)
+    
+    r = np.hstack(
+        (x_filtered.reshape((x_filtered.size,1)),
+         y_filtered.reshape((y_filtered.size,1))))
+    
+    # defining values of the arbitrary parameter over which
+    # you want to interpolate x and y
+    # it MUST be within 0 and 1, since you defined
+    # the spline between path_t=0 and path_t=1
+    t = np.linspace(np.min(path_t),np.max(path_t),num_points)
+    
+    cs = CubicSpline(path_t, r)
+    
+    resampled_data = cs(t)
+    
+    resampled_x_data = resampled_data[:,0]
+    resampled_y_data = resampled_data[:,1]
+    
+    # plt.plot(resampled_x_data,resampled_y_data,'k.',
+    #          x_data,y_data,'b')
+    
+    
+    return resampled_x_data, resampled_y_data
+
+
 for i in range(int(len(temperature[0,:])/2)):
     heating_temperature = temperature[0,2*i].T
     cooling_temperature = temperature[0,2*i+1].T
     
     heating_strain = strain[0,2*i].T
     cooling_strain = strain[0,2*i+1].T
+    
+    heating_temperature,heating_strain = resample_data(
+        heating_temperature[:,0],
+        heating_strain[:,0],
+        num_points=200
+        )
+    
+    cooling_temperature, cooling_strain = resample_data(
+        cooling_temperature[:,0],
+        cooling_strain[:,0],
+        num_points = 200
+        )
+    
+    
+    
     
     total_temperature = np.concatenate(
         (heating_temperature,cooling_temperature[::-1])
@@ -51,8 +111,8 @@ for i in range(int(len(temperature[0,:])/2)):
     
     data = np.zeros((len(total_temperature),3))
     
-    data[:,0] = total_temperature[:,0]
-    data[:,1] = total_strain[:,0]
+    data[:,0] = total_temperature
+    data[:,1] = total_strain
     data[:,2] = total_stress[:,0]
     
     file_name = str(stress_levels[i])+' MPa.txt'

@@ -324,6 +324,17 @@ class DataInputWidget(QtWidgets.QWidget):
             self.data = data
 
             self.continue_button.setEnabled(True)
+            
+            
+    def downsampleData(self):
+        num_experiments = self.data['num_experiments']
+        
+        dataset_lengths = np.zeros(shape = num_experiments)
+        for i in range(num_experiments):
+            dataset_lengths[i] = len(self.data['exp_{}'.format(i)])
+            
+        mean_length = np.mean(dataset_lengths)
+        
 
 
 
