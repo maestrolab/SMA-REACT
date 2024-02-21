@@ -284,6 +284,23 @@ def evaluate(
     # Tolerance for change in MVF during implicit iteration
     P['MVF_tolerance']=data['MVF_tol']
     
+    P['E_A'] = 78.387E9
+    P['E_M'] = 20E9
+    P['M_s'] = 180 + 273.15
+    P['M_f'] = P['M_s'] - 5.0
+    P['A_s'] = 208 + 273.15
+    P['A_f'] = P['A_s'] + 5.0 
+    P['C_A'] = 16.54E6
+    P['C_M'] = 16.25E6 
+    P['H_min'] = 0.0
+    P['H_sat'] = 0.01771 
+    P['k'] = 0.01219E-6 
+    P['sig_crit'] = 0.0 
+    P['alpha'] = 9.11E-6 
+    P['n_1'] = 1.0
+    P['n_2'] = 1.0 
+    P['n_3'] = 1.0 
+    P['n_4'] = 1.0 
     
     i = 0 
     eps_model_total = []

@@ -11,6 +11,27 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 
+import os
+
+
+def celsius_to_kelvin(temperature):
+    return temperature + 273.15 
+
+def kelvin_to_celsius(temperature):
+    return temperature - 273.15
+
+'''MATPLOTLIB PRESETS'''
+#Graphs in a separate window
+get_ipython().run_line_magic('matplotlib', 'qt')
+#Graphs inline (ala Jupyter notebook)
+#get_ipython().run_line_magic('matplotlib', 'inline')
+plt.rc('font', family='serif') 
+plt.rc('font', serif='Times New Roman') 
+plt.rc('text', usetex='True') 
+plt.rcParams.update({'font.size': 10})
+plt.rcParams['svg.fonttype'] = 'none'
+
+
 get_ipython().run_line_magic('matplotlib','qt')
 
 file_name = 'Fig2a_FAT01_429_E195HT_550C3hrAC_T_C_H_LB True 2ndCycle.mat'
@@ -24,10 +45,10 @@ strain = mat['Ydata_TrueStrain_pct']
 colors = mat['LineColors']
 
 stress_levels = [400, 300, 200, 100, 50, 7]
-# red = [1, 0 , 0]
-# blue = [0, 0, 1]
+red = [1, 0 , 0]
+blue = [0, 0, 1]
 
-# fig, ax = plt.subplots(1,1)
+fig, ax = plt.subplots(1,1)
 
 data = {}
 
@@ -115,9 +136,9 @@ for i in range(int(len(temperature[0,:])/2)):
     data[:,1] = total_strain
     data[:,2] = total_stress[:,0]
     
-    file_name = str(stress_levels[i])+' MPa.txt'
+    # file_name = str(stress_levels[i])+' MPa.txt'
     
-    np.savetxt(file_name,data,delimiter='\t')
+    # np.savetxt(file_name,data,delimiter='\t')
     
     # data['experiment'+str(i)] = {}
     
@@ -128,14 +149,44 @@ for i in range(int(len(temperature[0,:])/2)):
     
     
     
-    # if colors[0,i][0,0] == 1:
-    #     color = 'r'
-    # elif colors[0,i][0,2] == 1:
-    #     color = 'b'
+    if colors[0,i][0,0] == 1:
+        color = 'r'
+    elif colors[0,i][0,2] == 1:
+        color = 'b'
         
-    # ax.scatter(temperature[0,i],strain[0,i],label=i)
+    ax.scatter(
+        cooling_temperature,
+        cooling_strain,
+        label=i,
+        color='b',
+        s=7.5)
     
-    # plt.show()
+    ax.scatter(
+        heating_temperature,
+        heating_strain,
+        color='r',
+        s=7.5)
+    
+    plt.show()
+    
+    
+for i in range(len(stress_levels)):
+    file_name = str(i)+'.csv'
+    file_path = os.path.join(os.getcwd(),'analytical calibration',file_name)
+    data = np.loadtxt(file_path,delimiter=',')
+    
+    ax.plot(data[:,0]-273.15,data[:,1]*100,color='k')
+    
+secax_x = ax.secondary_xaxis(
+    -0.25, functions=(celsius_to_kelvin, kelvin_to_celsius))
+secax_x.set_xlabel('Temperature, K')
+    
+ax.set_xlabel('Temperature, $^\circ$C')
+ax.set_ylabel('Strain, \%')
+
+fig.set_size_inches(6,3.5)
+
+fig.tight_layout()
     
 
 
