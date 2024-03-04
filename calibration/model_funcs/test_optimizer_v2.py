@@ -275,6 +275,28 @@ def evaluate(
     # Coefficient of thermal expansion
     #P['alpha'] = 0.   
     
+    #Optimizer properties
+    P = {
+        "H_min": 0.0,
+        "sig_crit": 0.0,
+        "E_M": 18800000000.0,
+        "E_A": 54500000000.0,
+        "M_s": 452.18,
+        "M_f": 430.86048295490906,
+        "A_s": 467.2241519134375,
+        "A_f": 494.2858328387219,
+        "C_M": 11060000.0,
+        "C_A": 14100000.0,
+        "H_sat": 0.015977966082100795,
+        "k": 1.41e-08,
+        "n_1": 1.0,
+        "n_2": 0.3403304149136804,
+        "n_3": 0.36489745211429625,
+        "n_4": 0.49746375234534973,
+        "alpha": 4.47e-06,
+    }
+    
+    
     # Algorithmic delta for modified smooth hardening function
     P['delta']=data['delta']
     
@@ -284,23 +306,25 @@ def evaluate(
     # Tolerance for change in MVF during implicit iteration
     P['MVF_tolerance']=data['MVF_tol']
     
-    P['E_A'] = 78.387E9
-    P['E_M'] = 20E9
-    P['M_s'] = 180 + 273.15
-    P['M_f'] = P['M_s'] - 5.0
-    P['A_s'] = 208 + 273.15
-    P['A_f'] = P['A_s'] + 5.0 
-    P['C_A'] = 16.54E6
-    P['C_M'] = 16.25E6 
-    P['H_min'] = 0.0
-    P['H_sat'] = 0.01771 
-    P['k'] = 0.01219E-6 
-    P['sig_crit'] = 0.0 
-    P['alpha'] = 9.11E-6 
-    P['n_1'] = 1.0
-    P['n_2'] = 1.0 
-    P['n_3'] = 1.0 
-    P['n_4'] = 1.0 
+    # P['E_A'] = 54.514E9
+    # P['E_M'] = 17.39E9
+    # P['M_s'] = 180 + 273.15
+    # P['M_f'] = P['M_s'] - 5.0
+    # P['A_s'] = 208 + 273.15
+    # P['A_f'] = P['A_s'] + 5.0
+    # P['C_A'] = 16.54E6
+    # P['C_M'] = 16.25E6 
+    # P['H_min'] = 0.0
+    # P['H_sat'] = 0.01696 
+    # P['k'] = 0.01261E-6 
+    # P['sig_crit'] = 0.0 
+    # P['alpha'] = 8.82E-6 
+    # P['n_1'] = 1.0
+    # P['n_2'] = 1.0 
+    # P['n_3'] = 1.0 
+    # P['n_4'] = 1.0 
+    
+
     
     i = 0 
     eps_model_total = []
@@ -337,6 +361,13 @@ def evaluate(
         
     if plot_flag == True:
         try:
+            for i in range(len(eps_model_total)):
+                file_name = 'optimal_model_'+str(i)+'.csv'
+                model_prediction = np.zeros(shape=(len(eps_model_total[0]),2))
+                model_prediction[:,0] = np.array(T_total[i])
+                model_prediction[:,1] = eps_model_total[i]
+                np.savetxt(file_name,model_prediction,delimiter=',')
+            
             # plot_strain_temperature(T_total,eps_model_total,i,d)
             calWin.updateTempStrain(T_total, eps_model_total, i)
             calWin.updatePhaseDiagram(P, [0, 200E6])
@@ -345,14 +376,14 @@ def evaluate(
             pass
         
     if gradient_flag == True:
-        gens = GA_data[0]
-        mins = GA_data[1]
-        gens.append(max(gens)+1)
-        if np.mean(errors) < mins[-1]:
-            mins.append(np.mean(errors))
+        calWin.gens = GA_data[0]
+        calWin.mins = GA_data[1]
+        calWin.gens.append(max(calWin.gens)+1)
+        if np.mean(errors) < calWin.mins[-1]:
+            calWin.mins.append(np.mean(errors))
         else:
-            mins.append(mins[-1])
-        calWin.updateOptProgress(gens, mins,mins, 0.0)
+            calWin.mins.append(calWin.mins[-1])
+        calWin.updateOptProgress(calWin.gens, calWin.mins,calWin.mins, 0.0)
         
     if final_flag == True:
         # pprint(x)
@@ -469,12 +500,12 @@ def optimizer(toolbox,popSize,genSize,data, calWin, seed=None):
         
         # Write a color map illustrating the genes of all the best population members
         # throughout the generations
-        generations = logbook.select('gen')
-        min_func_val = logbook.select('min')
+        calWin.gens = logbook.select('gen')
+        calWin.mins = logbook.select('min')
         
         avg = logbook.select('avg')
         std = logbook.select('std')
-        calWin.updateOptProgress(generations, min_func_val, avg, std)
+        calWin.updateOptProgress(calWin.gens, calWin.mins, avg, std)
         #print(pop[0])
         calWin.updateDVVals(pop[0],data['DV_flags'])
 

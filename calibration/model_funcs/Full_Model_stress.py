@@ -99,12 +99,19 @@ def Full_Model_stress(T, sigma, P, elastic_check, integration_scheme):
     # Initialize outputs
     
     #ASSUMES THE MATERIAL STARTS IN MARTENSITE
+    #Assumes the reference temperature is the maximum temperature
+    T_ref = max(T)
+    
     H_cur[0] = H_cursolver(sigma[0], P['sig_crit'],
                            P['k'], P['H_min'], P['H_sat'])
     eps_t[0] = H_cur[0]
-    eps[0] = H_cur[0] + sigma[0]/P['E_M'] #NOTE: WILL NEED TO ADDRESS THIS. 
+    eps[0] = H_cur[0] + sigma[0]/P['E_M'] + P['alpha']*(T[0] - T_ref) #NOTE: WILL NEED TO ADDRESS THIS. 
     MVF[0] = 1.
     E[0] = P['E_M']
+    # eps_t[0] = 0.0
+    # eps[0] = sigma[0]/P['E_A'] + P['alpha']*(T[0] - T_ref)
+    # MVF[0] = 0. 
+    # E[0] = P['E_A']
     # Array for number of iterations required for each load step
     increments = np.zeros((T.shape[0]), dtype=float)
     
@@ -125,7 +132,7 @@ def Full_Model_stress(T, sigma, P, elastic_check, integration_scheme):
             # Non-transformation surface rate-informed selected
             eps_i, eps_t_i, MVF_i, H_cur_i, Phi_fwd_i, Phi_rev_i, chck = \
                 Elastic_Transformation_check_stress(
-                P, TP, sigma[i], eps[i-1], T[i], T[i-1], T[1], 
+                P, TP, sigma[i], eps[i-1], T[i], T[i-1], T_ref, 
                 sigma[i-1], Phi_fwd[i-1], Phi_rev[i-1], E[i], 
                 MVF[i], eps_t[i], eps_t_r[i], MVF_r[i])
             eps[i] = eps_i
@@ -141,7 +148,7 @@ def Full_Model_stress(T, sigma, P, elastic_check, integration_scheme):
             # Transformation surface rate-informed selected
             eps_i, eps_t_i, MVF_i, H_cur_i, Phi_fwd_i, Phi_rev_i, chck = \
                 Elastic_Transformation_check_RI_stress(
-                P, TP, sigma[i], eps[i-1], T[i], T[i-1], T[1],
+                P, TP, sigma[i], eps[i-1], T[i], T[i-1], T_ref,
                 sigma[i-1], Phi_fwd[i-1], Phi_rev[i-1], E[i], 
                 MVF[i], eps_t[i], eps_t_r[i], MVF_r[i])
 
@@ -173,7 +180,7 @@ def Full_Model_stress(T, sigma, P, elastic_check, integration_scheme):
                 Explicit_Transformation_Correction_stress(
                             P, TP, chck, MVF[i], eps_t[i], E[i], MVF_r[i],\
                             eps_t_r[i], sigma[i], H_cur[i], eps[i], T[i], \
-                            T[1], Phi_fwd[i], Phi_rev[i])
+                            T_ref, Phi_fwd[i], Phi_rev[i])
             MVF[i] = MVF_i
             eps_t[i] = eps_t_i
             E[i] = E_i
@@ -191,7 +198,7 @@ def Full_Model_stress(T, sigma, P, elastic_check, integration_scheme):
                 Implicit_Transformation_Correction_stress(
                             P, TP, chck, MVF[i], eps_t[i], E[i], MVF_r[i],\
                             eps_t_r[i], sigma[i], H_cur[i], eps[i], T[i], \
-                            T[1], Phi_fwd[i], Phi_rev[i])
+                            T_ref, Phi_fwd[i], Phi_rev[i])
             MVF[i] = MVF_i
             eps_t[i] = eps_t_i
             E[i] = E_i

@@ -194,10 +194,24 @@ class App(QtWidgets.QMainWindow):
         print('Bounds \n')
         print(bounds)
         
+        print('Optimization History \n')
+        print(self.calibration_plotting_widget.gens)
+        print(self.calibration_plotting_widget.mins)
+        
+        print('Optimization parameters \n')
+        print('Population size = ',int(self.calibration_parameters_widget.pop_size))  # Population size for GA (must be divisible by 4)
+        print('Number of generations = ',int(self.calibration_parameters_widget.num_gens)) # Number of generations for GA
+        print('Number of gradient iterations =',int(self.calibration_parameters_widget.num_iters))
+        
         print('Final Optimization Error \n')
         print(self.optimization_error)
         
         data_to_export = {
+            'population size':int(self.calibration_parameters_widget.pop_size),
+            'number of generations':int(self.calibration_parameters_widget.num_gens),
+            'number of gradient-based iterations': int(self.calibration_parameters_widget.num_iters),
+            'optimization history (generations + iterations)':self.calibration_plotting_widget.gens,
+            'optimization history (min objective value)':self.calibration_plotting_widget.mins,
             'final_error': self.optimization_error,
             'final_solution': self.calibration_parameters_widget.known_values,
             'bounds':bounds,

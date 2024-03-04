@@ -136,6 +136,15 @@ for i in range(int(len(temperature[0,:])/2)):
     data[:,1] = total_strain
     data[:,2] = total_stress[:,0]
     
+    max_temperature_index = np.argmax(data[:,0])
+    max_temperature = np.max(data[:,0])
+    elastic_strain = data[max_temperature_index,1]
+    elastic_stress = data[max_temperature_index,2]
+    
+    print('max temp = ',max_temperature)
+    print('strain = ', elastic_strain)
+    print('stress = ', elastic_stress)
+    
     # file_name = str(stress_levels[i])+' MPa.txt'
     
     # np.savetxt(file_name,data,delimiter='\t')
@@ -171,11 +180,20 @@ for i in range(int(len(temperature[0,:])/2)):
     
     
 for i in range(len(stress_levels)):
-    file_name = str(i)+'.csv'
+    file_name = 'optimal_model_'+str(i)+'.csv'
     file_path = os.path.join(os.getcwd(),'analytical calibration',file_name)
     data = np.loadtxt(file_path,delimiter=',')
     
-    ax.plot(data[:,0]-273.15,data[:,1]*100,color='k')
+    max_temperature_index = np.argmax(data[:,0])
+    
+    model_heating = data[:max_temperature_index,0]-273.15
+    model_heating_strain = data[:max_temperature_index,1]*100
+    
+    model_cooling = data[max_temperature_index:,0]-273.15
+    model_cooling_strain = data[max_temperature_index:,1]*100
+    
+    ax.plot(model_heating,model_heating_strain,'r--')
+    ax.plot(model_cooling,model_cooling_strain,'b--')
     
 secax_x = ax.secondary_xaxis(
     -0.25, functions=(celsius_to_kelvin, kelvin_to_celsius))
