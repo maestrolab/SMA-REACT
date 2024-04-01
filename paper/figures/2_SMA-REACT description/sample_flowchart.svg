@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="165.10001mm"
+   height="76.199997mm"
+   viewBox="0 0 165.10001 76.199997"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="sample_flowchart.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.5946522"
+     inkscape:cx="314.46953"
+     inkscape:cy="206.00277"
+     inkscape:window-width="1368"
+     inkscape:window-height="850"
+     inkscape:window-x="1913"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-21.394068,-43.41737)">
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="35.423435"
+       y="51.282837"
+       id="text398"><tspan
+         sodipodi:role="line"
+         id="tspan396"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Bold';stroke-width:0.264583"
+         x="35.423435"
+         y="51.282837">1. Data input</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="80.421776"
+       y="51.282837"
+       id="text402"><tspan
+         sodipodi:role="line"
+         id="tspan400"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Bold';stroke-width:0.264583"
+         x="80.421776"
+         y="51.282837">2. Calibration parameters</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="140.79439"
+       y="51.282837"
+       id="text456"><tspan
+         sodipodi:role="line"
+         id="tspan454"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Bold';stroke-width:0.264583"
+         x="140.79439"
+         y="51.282837">3. Calibration routine</tspan></text>
+    <g
+       id="g1766"
+       transform="translate(12.290843,9.602394)">
+      <rect
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.353;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+         id="rect458"
+         width="13.570607"
+         height="19.577269"
+         x="25.843447"
+         y="59.880074" />
+      <rect
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.353;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+         id="rect1014"
+         width="13.570607"
+         height="19.577269"
+         x="27.960115"
+         y="61.996742" />
+      <rect
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.353;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+         id="rect1016"
+         width="13.570607"
+         height="19.577269"
+         x="30.076784"
+         y="63.584244" />
+      <text
+         xml:space="preserve"
+         style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+         x="31.554922"
+         y="74.599678"
+         id="text1020"><tspan
+           sodipodi:role="line"
+           id="tspan1018"
+           style="stroke-width:0.264583"
+           x="31.554922"
+           y="74.599678"><tspan
+   style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Bold Italic'"
+   id="tspan1748">ε</tspan>(T,σ)</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="47.960125"
+       y="61.289463"
+       id="text1752"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="47.960125"
+         y="61.289463"
+         id="tspan1758">a. Load experimental</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="47.960125"
+         y="66.581123"
+         id="tspan2009">data (.csv files)</tspan></text>
+    <g
+       id="g1863"
+       transform="translate(-21.194304,38.892462)">
+      <text
+         xml:space="preserve"
+         style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+         x="60.150341"
+         y="66.558815"
+         id="text1770"><tspan
+           sodipodi:role="line"
+           id="tspan1768"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';stroke-width:0.264583"
+           x="60.150341"
+           y="66.558815">mm, m, in</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+         x="61.706833"
+         y="72.602898"
+         id="text1774"><tspan
+           sodipodi:role="line"
+           id="tspan1772"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';stroke-width:0.264583"
+           x="61.706833"
+           y="72.602898">°C, K, °F</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+         x="58.527702"
+         y="78.72966"
+         id="text1831"><tspan
+           sodipodi:role="line"
+           id="tspan1829"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';stroke-width:0.264583"
+           x="58.527702"
+           y="78.72966">Pa, MPa, lbf</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="48.085182"
+       y="100.30844"
+       id="text1837"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="48.085182"
+         y="100.30844"
+         id="tspan1841">b. Specify units</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="104.73448"
+       y="61.291531"
+       id="text1869"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="104.73448"
+         y="61.291531"
+         id="tspan1877">a. Specify bounds, input</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="104.73448"
+         y="66.583191"
+         id="tspan1881">known property values</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="105.16708"
+       y="76.89299"
+       id="text1887"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="105.16708"
+         y="76.89299"
+         id="tspan1885"><tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic'"
+   id="tspan1901">E</tspan><tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65%;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';baseline-shift:super"
+   id="tspan1899">A</tspan> = 70 GPa</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="105.16708"
+         y="82.184654"
+         id="tspan1891"><tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic'"
+   id="tspan1905">M</tspan><tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65%;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';baseline-shift:sub"
+   id="tspan1897">s</tspan> = 325 K</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="105.16708"
+         y="88.064949"
+         id="tspan1893"><tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic'"
+   id="tspan1909">H</tspan><tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65%;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';baseline-shift:sub"
+   id="tspan1895">min</tspan> ∈ [0,0.01]</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="104.75722"
+       y="100.30844"
+       id="text1917"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="104.75722"
+         y="100.30844"
+         id="tspan1915">Specify optimization</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="104.75722"
+         y="105.60011"
+         id="tspan1941">parameters</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="104.80786"
+       y="110.59786"
+       id="text1937"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="104.80786"
+         y="110.59786"
+         id="tspan1935"><tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic'"
+   id="tspan1964">n</tspan><tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65%;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';baseline-shift:sub"
+   id="tspan1958">gen</tspan> = 20</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="104.80786"
+         y="115.88953"
+         id="tspan1954"><tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic'"
+   id="tspan1960">n</tspan><tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65%;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';baseline-shift:sub"
+   id="tspan1956">pop</tspan> = 30</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="41.861214"
+       y="151.53729"
+       id="text1970"><tspan
+         sodipodi:role="line"
+         id="tspan1968"
+         style="stroke-width:0.264583"
+         x="41.861214"
+         y="151.53729">Maybe color-code these to elucidate that all of the user</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="41.861214"
+         y="156.82895"
+         id="tspan1972">input is on the front and it doesn't take anything to </tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="41.861214"
+         y="162.12062"
+         id="tspan1974">run multiple optimizations. </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="162.63925"
+       y="68.542854"
+       id="text1980"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="162.63925"
+         y="68.542854"
+         id="tspan1978">Optimize constitutive</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="162.63925"
+         y="73.834518"
+         id="tspan1984">model to best fit</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="162.63925"
+         y="79.126183"
+         id="tspan1986">experimental data</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="162.63925"
+         y="84.417847"
+         id="tspan2005">(Figure 6)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="162.63925"
+       y="103.43694"
+       id="text1994"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="162.63925"
+         y="103.43694"
+         id="tspan1992">Export constitutive</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="162.63925"
+         y="108.72861"
+         id="tspan2001">model for use in other</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="162.63925"
+         y="114.02026"
+         id="tspan2003">tools (FEA, etc.)</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.354243;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect2065"
+       width="44.256073"
+       height="38.486927"
+       x="25.866196"
+       y="56.340816" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.354243;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect2126"
+       width="44.256073"
+       height="23.377048"
+       x="25.866196"
+       y="96.068565" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.376489;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect2158"
+       width="50.018021"
+       height="38.46468"
+       x="79.793686"
+       y="56.35194" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.354243;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect2160"
+       width="50.018021"
+       height="23.377045"
+       x="79.793686"
+       y="96.068565" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.354243;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect2162"
+       width="50.018021"
+       height="23.377045"
+       x="136.51588"
+       y="96.068565" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.376489;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect2164"
+       width="50.018021"
+       height="38.46468"
+       x="136.51588"
+       y="56.35194" />
+  </g>
+</svg>

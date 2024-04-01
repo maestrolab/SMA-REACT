@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="211.04897mm"
+   height="282.74866mm"
+   viewBox="0 0 211.04896 282.74866"
+   version="1.1"
+   id="svg4700"
+   inkscape:version="1.2-dev (7be2d9a5, 2021-09-13)"
+   sodipodi:docname="varied_phase_diagram.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview4702"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.0544998"
+     inkscape:cx="359.88627"
+     inkscape:cy="900.90107"
+     inkscape:window-width="1368"
+     inkscape:window-height="850"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     inkscape:pageshadow="2"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="50.51097,174.48549"
+       orientation="1,0"
+       id="guide1167" />
+    <sodipodi:guide
+       position="62.152639,174.48549"
+       orientation="0,-1"
+       id="guide4197" />
+    <sodipodi:guide
+       position="83.803552,21.301634"
+       orientation="1,0"
+       id="guide4785" />
+    <sodipodi:guide
+       position="146.27985,29.832535"
+       orientation="1,0"
+       id="guide5323" />
+  </sodipodi:namedview>
+  <defs
+     id="defs4697">
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Mend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) rotate(180) translate(10,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path5056" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) translate(10,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path5053" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker17037"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleInM"
+       inkscape:collect="always">
+      <path
+         transform="scale(-0.4)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path17035"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(47.441081,23.922718)">
+    <path
+       d="m -37.030707,97.080647 h 0.866535 V -23.922718 h -0.866535 z"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.0288847"
+       id="path22891"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.87765px;line-height:6.15439px;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.201418"
+       x="-18.42083"
+       y="-41.705936"
+       id="text22903"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       transform="rotate(-90)"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png"><tspan
+         id="tspan22901"
+         sodipodi:role="line"
+         x="-18.42083"
+         y="-41.705936"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.87765px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.201418">Stress, <tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic'"
+   id="tspan8302">σ</tspan></tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path22905"
+       d="m -43.382021,-14.589461 0.01089,9.894338"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.851645;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker17037)"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.87765px;line-height:6.15439px;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.201418"
+       x="34.719505"
+       y="115.38863"
+       id="text22909"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png"><tspan
+         id="tspan22907"
+         sodipodi:role="line"
+         x="34.719505"
+         y="115.38863"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.87765px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.201418">Temperature, <tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic'"
+   id="tspan8300">T</tspan></tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path22911"
+       d="m 74.462836,113.15928 -9.89435,0.0109"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.851645;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker17037)"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png" />
+    <path
+       style="fill:none;stroke:#0000ff;stroke-width:0.818777;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.63755, 0.818777;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 3.0698909,97.080647 V 84.340443 C 20.017243,41.209974 49.633804,10.121042 82.343606,-21.357914"
+       id="path23533"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:1.01127;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -18.656286,139.26292 70.303512,0.093 c 0,0 2.93116,-0.077 5.05379,0.53965 2.12263,0.61658 5.19695,1.94829 7.39392,3.61436 2.19694,1.66607 4.05593,3.75213 5.62339,6.1558 0.87628,1.34378 2.04043,4.50846 2.04043,4.50846 l 24.27739,68.33861 c 0,0 1.57787,3.82284 2.73819,5.59594 0.0279,0.0426 0.0555,0.084 0.0829,0.12411 1.161644,1.7043 2.610184,3.10738 4.080164,4.41165 1.41613,1.25649 2.91141,2.42701 4.52658,3.25395 1.23875,0.6342 2.7203,1.28114 3.893,1.27486 7.44422,-0.0398 22.291,0.0835 22.291,0.0835"
+       id="path848"
+       sodipodi:nodetypes="ccczaccssaasc"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\magvstemp3.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350" />
+    <g
+       id="g3287"
+       transform="matrix(0.61565218,0,0,0.61565218,-229.1978,294.01849)"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\magvstemp3.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350">
+      <path
+         d="m 312.41292,-73.529175 h 294.85317 v -1.39706 H 312.41292 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.0403652;stroke-miterlimit:10;stroke-dasharray:none"
+         id="path1682" />
+      <path
+         d="m 312.41292,-73.529175 h 1.39706 V -277.00168 h -1.39706 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.0580241;stroke-miterlimit:10;stroke-dasharray:none"
+         id="path1686" />
+    </g>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path16242"
+       d="m -43.382021,129.53875 0.01089,9.89434"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.851645;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker17037)"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.87765px;line-height:6.15439px;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.201418"
+       x="34.719505"
+       y="257.26041"
+       id="text16246"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png"><tspan
+         id="tspan16244"
+         sodipodi:role="line"
+         x="34.719505"
+         y="257.26041"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.87765px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.201418">Temperature, <tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic'"
+   id="tspan8296">T</tspan></tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path16248"
+       d="m 74.462836,255.03107 -9.89435,0.0109"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.851645;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker17037)"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png" />
+    <path
+       style="fill:none;stroke:#0000ff;stroke-width:1.01127;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 112.98206,237.24363 -73.267563,-0.0969 c 0,0 -2.931169,0.077 -5.053787,-0.53965 -2.122606,-0.61659 -5.196907,-1.94828 -7.393854,-3.61437 -2.196961,-1.66607 -4.05594,-3.75212 -5.62341,-6.15581 -0.876272,-1.34375 -2.04041,-4.50846 -2.04041,-4.50846 L 5.114592,153.98984 c 0,0 -1.577869,-3.82283 -2.738196,-5.59594 -0.02787,-0.0425 -0.05548,-0.084 -0.08285,-0.12411 -1.16163,-1.7043 -2.579332,-3.08508 -4.080163,-4.41164 -1.392331,-1.23065 -2.869708,-2.41257 -4.526576,-3.25393 -1.217495,-0.61825 -2.720303,-1.28117 -3.892993,-1.27489 -7.444225,0.0398 -22.291007,-0.0835 -22.291007,-0.0835"
+       id="path29033"
+       sodipodi:nodetypes="ccczaccssaasc"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\magvstemp3.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.87765px;line-height:6.15439px;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.201418"
+       x="-162.54904"
+       y="-41.705936"
+       id="text36880"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       transform="rotate(-90)"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png"><tspan
+         id="tspan36878"
+         sodipodi:role="line"
+         x="-162.54904"
+         y="-41.705936"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.87765px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.201418">Strain, <tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic'"
+   id="tspan8298">ε</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.38033px;fill:#000000;stroke:#000000;stroke-width:0.392828"
+       x="62.866997"
+       y="135.70937"
+       id="text5082"><tspan
+         sodipodi:role="line"
+         id="tspan5080"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.38033px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke:none;stroke-width:0.392828"
+         x="62.866997"
+         y="135.70937">A<tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.44721px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';baseline-shift:sub;stroke-width:0.392828"
+   id="tspan5084">s</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.38033px;fill:#000000;stroke:#000000;stroke-width:0.392828"
+       x="104.56055"
+       y="229.38678"
+       id="text5096"><tspan
+         sodipodi:role="line"
+         id="tspan5094"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.38033px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke:none;stroke-width:0.392828"
+         x="104.56055"
+         y="229.38678">A<tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.44721px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';baseline-shift:sub;stroke-width:0.392828"
+   id="tspan5092">f</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.38033px;fill:#000000;stroke:#000000;stroke-width:0.392828"
+       x="14.431514"
+       y="239.67709"
+       id="text5102"><tspan
+         sodipodi:role="line"
+         id="tspan5100"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.38033px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke:none;stroke-width:0.392828"
+         x="14.431514"
+         y="239.67709">M<tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.44721px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';baseline-shift:sub;stroke-width:0.392828"
+   id="tspan5098">s</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.38033px;fill:#000000;stroke:#000000;stroke-width:0.392828"
+       x="-12.713648"
+       y="153.62871"
+       id="text5108"><tspan
+         sodipodi:role="line"
+         id="tspan5106"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.38033px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke:none;stroke-width:0.392828"
+         x="-12.713648"
+         y="153.62871">M<tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.44721px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';baseline-shift:sub;stroke-width:0.392828"
+   id="tspan5104">f</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.38033px;fill:#000000;stroke:#000000;stroke-width:0.392828"
+       x="-1.7662039"
+       y="104.1144"
+       id="text5114"><tspan
+         sodipodi:role="line"
+         id="tspan5112"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.38033px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke:none;stroke-width:0.392828"
+         x="-1.7662039"
+         y="104.1144">M<tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.44721px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';baseline-shift:sub;stroke-width:0.392828"
+   id="tspan5110">f</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.38033px;fill:#000000;stroke:#000000;stroke-width:0.392828"
+       x="31.894028"
+       y="104.1144"
+       id="text5124"><tspan
+         sodipodi:role="line"
+         id="tspan5122"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.38033px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke:none;stroke-width:0.392828"
+         x="31.894028"
+         y="104.1144">M<tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.44721px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';baseline-shift:sub;stroke-width:0.392828"
+   id="tspan5120">s</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.38033px;fill:#000000;stroke:#000000;stroke-width:0.392828"
+       x="54.350868"
+       y="104.14304"
+       id="text5130"><tspan
+         sodipodi:role="line"
+         id="tspan5128"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.38033px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke:none;stroke-width:0.392828"
+         x="54.350868"
+         y="104.14304">A<tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.44721px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';baseline-shift:sub;stroke-width:0.392828"
+   id="tspan5126">s</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.38033px;fill:#000000;stroke:#000000;stroke-width:0.392828"
+       x="95.018234"
+       y="104.14304"
+       id="text5136"><tspan
+         sodipodi:role="line"
+         id="tspan5134"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.38033px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke:none;stroke-width:0.392828"
+         x="95.018234"
+         y="104.14304">A<tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.44721px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';baseline-shift:sub;stroke-width:0.392828"
+   id="tspan5132">f</tspan></tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-dasharray:1, 0.5;stroke-dashoffset:0"
+       d="M 54.782233,5.2285407 V -13.100138 h 18.376703"
+       id="path5201"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-dasharray:1, 0.5;stroke-dashoffset:0"
+       d="M 137.29453,7.3730303 V -13.100138 h 18.36434"
+       id="path5892"
+       sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       style="font-size:8.38033px;fill:#000000;stroke:#000000;stroke-width:0.392828"
+       x="43.028507"
+       y="4.9518223"
+       id="text6636"><tspan
+         sodipodi:role="line"
+         id="tspan6634"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.38033px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke:none;stroke-width:0.392828"
+         x="43.028507"
+         y="4.9518223">C<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan6638">M</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.38033px;fill:#000000;stroke:#000000;stroke-width:0.392828"
+       x="125.91599"
+       y="6.4265437"
+       id="text6644"><tspan
+         sodipodi:role="line"
+         id="tspan6642"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.38033px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke:none;stroke-width:0.392828"
+         x="125.91599"
+         y="6.4265437">C<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan6640">A</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.38033px;fill:#000000;stroke:#000000;stroke-width:0.392828"
+       x="27.205708"
+       y="230.08261"
+       id="text6650"><tspan
+         sodipodi:role="line"
+         id="tspan6648"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.38033px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke:none;stroke-width:0.392828"
+         x="27.205708"
+         y="230.08261" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.38033px;fill:#000000;stroke:#000000;stroke-width:0.392828"
+       x="4.6976304"
+       y="146.87294"
+       id="text6656"><tspan
+         sodipodi:role="line"
+         id="tspan6654"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.38033px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke:none;stroke-width:0.392828"
+         x="4.6976304"
+         y="146.87294" /></text>
+    <circle
+       style="fill:#000000;stroke:none;stroke-width:0.499999;stroke-dasharray:1, 0.499999;stroke-dashoffset:0"
+       id="path6710"
+       cx="2.9460158"
+       cy="149.26613"
+       r="1.4193548" />
+    <circle
+       style="fill:#000000;stroke:none;stroke-width:0.499999;stroke-dasharray:1, 0.499999;stroke-dashoffset:0"
+       id="circle6712"
+       cx="36.300854"
+       cy="237.25681"
+       r="1.4193548" />
+    <circle
+       style="fill:#000000;stroke:none;stroke-width:0.499999;stroke-dasharray:1, 0.499999;stroke-dashoffset:0"
+       id="circle6714"
+       cx="99.167908"
+       cy="228.67253"
+       r="1.4193548" />
+    <circle
+       style="fill:#000000;stroke:none;stroke-width:0.499999;stroke-dasharray:1, 0.499999;stroke-dashoffset:0"
+       id="circle6716"
+       cx="57.495846"
+       cy="140.14027"
+       r="1.4193548" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.75;stroke-dasharray:none;stroke-dashoffset:0;marker-start:url(#Arrow1Mstart);marker-end:url(#Arrow1Mend);stroke-miterlimit:4"
+       d="M 117.77648,138.20458 V 236.1383"
+       id="path10798" />
+    <text
+       xml:space="preserve"
+       style="font-size:8.38033px;fill:#000000;stroke:#000000;stroke-width:0.392828"
+       x="121.3433"
+       y="167.6797"
+       id="text11031"><tspan
+         sodipodi:role="line"
+         id="tspan11029"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.38033px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke:none;stroke-width:0.392828"
+         x="121.3433"
+         y="167.6797">H<tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.44721px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';baseline-shift:sub;stroke-width:0.392828"
+   id="tspan11027">min </tspan></tspan></text>
+    <path
+       style="fill:none;stroke:#0000ff;stroke-width:0.818777;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 36.407408,97.080647 V 84.340443 C 53.354764,41.209974 82.971325,10.121042 115.68121,-21.357914"
+       id="path2878"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:0.818777;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 58.425399,97.120238 V 84.380034 C 65.99302,43.947463 95.705693,7.556238 128.41549,-23.922718"
+       id="path3088"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:0.818777;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.63755, 0.818777;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 98.781062,96.214117 V 83.473913 C 106.34872,43.041342 136.06149,6.650117 168.77129,-24.828839"
+       id="path3938"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       sodipodi:nodetypes="ccc" />
+    <path
+       d="M -37.030707,97.080647 H 142.89395 v -0.86653 H -37.030707 Z"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.0299103"
+       id="path22975"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:2.25,2.25;stroke-dashoffset:0"
+       d="M -36.164172,84.340441 H 141.74419"
+       id="path4262" />
+    <text
+       xml:space="preserve"
+       style="font-size:8.38033px;fill:#000000;stroke:#000000;stroke-width:0.392828"
+       x="117.13255"
+       y="80.805779"
+       id="text4476"><tspan
+         sodipodi:role="line"
+         id="tspan4474"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.38033px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke:none;stroke-width:0.392828"
+         x="117.13255"
+         y="80.805779">σ<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan4472">crit</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.38033px;fill:#000000;stroke:#000000;stroke-width:0.392828"
+       x="-26.637936"
+       y="235.78635"
+       id="text1232"><tspan
+         sodipodi:role="line"
+         id="tspan1230"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.38033px;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke:none;stroke-width:0.392828"
+         x="-26.637936"
+         y="235.78635">σ = σ<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan1228">crit</tspan></tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.750001;stroke-linecap:square;paint-order:fill markers stroke"
+       id="rect1546"
+       width="33.950989"
+       height="11.792716"
+       x="-30.881098"
+       y="228.49159" />
+    <path
+       style="fill:none;stroke:#0000ff;stroke-width:0.818777;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;opacity:0.5"
+       d="M 39.053243,97.080647 V 84.340443 C 56.000599,41.209974 85.61716,10.121042 118.32706,-21.357914"
+       id="path1999"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:#0000ff;stroke-width:0.818777;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;opacity:0.5"
+       d="M 42.228245,97.080647 V 84.340443 C 59.175601,41.209974 88.792162,10.121042 121.50208,-21.357914"
+       id="path2001"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       sodipodi:nodetypes="ccc" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path2103"
+       d="m 51.029795,65.022672 -9.89435,0.0109"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.851645;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker17037)"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png" />
+    <path
+       style="fill:none;stroke:#0000ff;stroke-width:1.01127;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;opacity:0.75"
+       d="m 112.98206,237.24363 -69.563396,-0.0969 c 0,0 -2.931169,0.077 -5.053787,-0.53965 -2.122606,-0.61659 -5.196907,-1.94828 -7.393854,-3.61437 -2.196961,-1.66607 -4.094264,-3.83508 -5.62341,-6.15581 -0.9076,-1.37743 -2.04041,-4.50846 -2.04041,-4.50846 L 5.114592,153.98984 c 0,0 -1.577869,-3.82283 -2.738196,-5.59594 -0.02787,-0.0425 -0.05548,-0.084 -0.08285,-0.12411 -1.16163,-1.7043 -2.579332,-3.08508 -4.080163,-4.41164 -1.392331,-1.23065 -2.869708,-2.41257 -4.526576,-3.25393 -1.217495,-0.61825 -2.720303,-1.28117 -3.892993,-1.27489 -7.444225,0.0398 -22.291007,-0.0835 -22.291007,-0.0835"
+       id="path2105"
+       sodipodi:nodetypes="ccczaccssaasc"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\magvstemp3.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350" />
+    <path
+       style="fill:none;stroke:#0000ff;stroke-width:1.01127;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;opacity:0.5"
+       d="m 112.98206,237.24363 -65.859229,-0.0969 c 0,0 -2.931169,0.077 -5.053787,-0.53965 -2.122606,-0.61659 -5.196907,-1.94828 -7.393854,-3.61437 -2.196961,-1.66607 -4.094264,-3.83508 -5.62341,-6.15581 -0.9076,-1.37743 -2.04041,-4.50846 -2.04041,-4.50846 L 5.114592,153.98984 c 0,0 -1.577869,-3.82283 -2.738196,-5.59594 -0.02787,-0.0425 -0.05548,-0.084 -0.08285,-0.12411 -1.16163,-1.7043 -2.579332,-3.08508 -4.080163,-4.41164 -1.392331,-1.23065 -2.869708,-2.41257 -4.526576,-3.25393 -1.217495,-0.61825 -2.720303,-1.28117 -3.892993,-1.27489 -7.444225,0.0398 -22.291007,-0.0835 -22.291007,-0.0835"
+       id="path2458"
+       sodipodi:nodetypes="ccczaccssaasc"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\magvstemp3.png"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path2815"
+       d="m 24.55401,208.42295 -9.89435,0.0109"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.851645;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker17037)"
+       inkscape:export-xdpi="350"
+       inkscape:export-ydpi="350"
+       inkscape:export-filename="G:\My Drive\RESEARCH\Manuscripts\Chapter 1 SMA Book\Figures\inkscape\pathHW.png" />
+  </g>
+</svg>

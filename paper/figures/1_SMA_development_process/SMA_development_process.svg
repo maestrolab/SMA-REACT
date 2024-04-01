@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="152.73706mm"
+   height="62.164009mm"
+   viewBox="0 0 152.73705 62.164009"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="SMA_development_process.svg"
+   inkscape:export-filename="fig_1_SMA_development_process.png"
+   inkscape:export-xdpi="500"
+   inkscape:export-ydpi="500"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:zoom="0.84096521"
+     inkscape:cx="241.98385"
+     inkscape:cy="-81.454024"
+     inkscape:window-width="1368"
+     inkscape:window-height="850"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <sodipodi:guide
+       position="36.044107,116.61728"
+       orientation="1,0"
+       id="guide573"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0.26206857,-1.4802248)">
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Bold';stroke-width:0.264583"
+       x="-0.075000003"
+       y="6.2750001"
+       id="text290"><tspan
+         sodipodi:role="line"
+         id="tspan288"
+         style="stroke-width:0.264583"
+         x="-0.075000003"
+         y="6.2750001">Composition</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Bold';stroke-width:0.264583"
+       x="36.566746"
+       y="6.2750001"
+       id="text294"><tspan
+         sodipodi:role="line"
+         id="tspan292"
+         style="stroke-width:0.264583"
+         x="36.566746"
+         y="6.2750001">Processing</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Bold';stroke-width:0.264583"
+       x="68.776726"
+       y="6.2750001"
+       id="text298"><tspan
+         sodipodi:role="line"
+         id="tspan296"
+         style="stroke-width:0.264583"
+         x="68.776726"
+         y="6.2750001">Experimental data</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Bold';stroke-width:0.264583"
+       x="115.3486"
+       y="6.2750001"
+       id="text302"><tspan
+         sodipodi:role="line"
+         id="tspan300"
+         style="stroke-width:0.264583"
+         x="115.3486"
+         y="6.2750001">Material properties</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Bold';stroke-width:0.264583"
+       x="95.060455"
+       y="38.025013"
+       id="text356"><tspan
+         sodipodi:role="line"
+         id="tspan354"
+         style="stroke-width:0.264583"
+         x="95.060455"
+         y="38.025013">Calibrated constitutive model</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Bold';stroke-width:0.264583"
+       x="22.149971"
+       y="36.966679"
+       id="text360"><tspan
+         sodipodi:role="line"
+         id="tspan358"
+         style="stroke-width:0.264583"
+         x="22.149971"
+         y="36.966679">Engineered component</tspan></text>
+    <path
+       id="rect575"
+       style="fill:#ececec;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="m 32.672473,1.8423146 v 1.4717451 h -5.934522 v 3.309359 h 5.934522 v 1.472261 l 3.126941,-3.126941 z" />
+    <path
+       id="path1136"
+       style="fill:#ececec;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="m 64.485537,1.8423146 v 1.4717451 h -5.934522 v 3.309359 h 5.934522 v 1.472261 l 3.126941,-3.126941 z" />
+    <path
+       id="path1138"
+       style="fill:#ececec;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="m 111.20402,1.8423146 v 1.4717451 h -5.93452 v 3.309359 h 5.93452 v 1.472261 l 3.12694,-3.126941 z" />
+    <path
+       id="path1140"
+       style="fill:#ececec;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="m 81.798332,28.9408 v 5.934521 3.309359 h 5.934521 v 1.472262 l 3.126941,-3.126941 -3.126941,-3.126424 v 1.471744 H 85.107691 V 28.9408 Z" />
+    <path
+       id="path1142"
+       style="fill:#ececec;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="m 84.987414,41.341332 v 1.471745 h 5.93452 v 3.309359 h -5.93452 v 1.472261 l -3.12694,-3.126941 z" />
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="12.272556"
+       y="17.722519"
+       id="text1150"><tspan
+         sodipodi:role="line"
+         id="tspan1148"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="12.272555"
+         y="17.722519">Cartoons of</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="12.272556"
+         y="23.014181"
+         id="tspan1152">Ni, Ti, Pd, etc.</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="12.272556"
+         y="28.305843"
+         id="tspan1154">(Jacob)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="48.316666"
+       y="15.076688"
+       id="text1162"><tspan
+         sodipodi:role="line"
+         id="tspan1156"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="48.316666"
+         y="15.076688">Cartoons of</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="48.316666"
+         y="20.368349"
+         id="tspan1160">VAR, VIM, </tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="48.316666"
+         y="25.660011"
+         id="tspan1166">hot-rolling, etc.</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="48.316666"
+         y="30.951674"
+         id="tspan1168">(Jacob)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="84.300034"
+       y="15.076688"
+       id="text1178"><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="84.300034"
+         y="15.076688"
+         id="tspan1176">Notional</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="84.300034"
+         y="20.368349"
+         id="tspan1189">strain-temperature</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="84.300034"
+         y="25.660011"
+         id="tspan1191">response (Patrick)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="134.11333"
+       y="15.076688"
+       id="text1199"><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="134.11333"
+         y="15.076688"
+         id="tspan1197">Table of essential</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="134.11333"
+         y="20.368349"
+         id="tspan1206">ASTM properties</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="134.11333"
+         y="25.660011"
+         id="tspan1208">(Patrick)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="123.83283"
+       y="46.888683"
+       id="text1216"><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="123.83283"
+         y="46.888683"
+         id="tspan1214">Experimental data</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="123.83283"
+         y="52.180344"
+         id="tspan1223">from above with</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="123.83283"
+         y="57.472008"
+         id="tspan1225">model response superimposed</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="123.83283"
+         y="62.763672"
+         id="tspan1227">(Patrick)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';stroke-width:0.264583"
+       x="44.733585"
+       y="46.888683"
+       id="text1237"><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="44.733585"
+         y="46.888683"
+         id="tspan1235">Some showy example that</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="44.733585"
+         y="52.180344"
+         id="tspan1250">required a calibrated model.</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="44.733585"
+         y="57.472008"
+         id="tspan1254">VGC is a good example. </tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="44.733585"
+         y="62.763672"
+         id="tspan1256">(Patrick or Jacob)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-size:4.23333px;line-height:1.25;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';text-align:start;text-anchor:start;stroke-width:0.264583"
+       x="-0.27240384"
+       y="-36.391888"
+       id="text1264"><tspan
+         sodipodi:role="line"
+         style="text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="-0.27240384"
+         y="-36.391888"
+         id="tspan1262">Notes:</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="-0.27240384"
+         y="-31.100225"
+         id="tspan1271">1) Formatting/layout can be changed later.</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="-0.27240384"
+         y="-25.808563"
+         id="tspan1273">2) Figure should be double-column (6.5&quot; width)</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="-0.27240384"
+         y="-20.516901"
+         id="tspan1275">3) When formatting is complete, add boxes to denote where ASMADA, SMAnalytics, and our tool fit. </tspan></text>
+  </g>
+</svg>
