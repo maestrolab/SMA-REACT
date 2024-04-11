@@ -3,8 +3,8 @@
 
 <svg
    width="165.10001mm"
-   height="76.199997mm"
-   viewBox="0 0 165.10001 76.199997"
+   height="147.29927mm"
+   viewBox="0 0 165.10001 147.29927"
    version="1.1"
    id="svg5"
    inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
@@ -26,8 +26,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1"
-     inkscape:cx="189"
-     inkscape:cy="995.5"
+     inkscape:cx="319"
+     inkscape:cy="304.5"
      inkscape:window-width="1368"
      inkscape:window-height="850"
      inkscape:window-x="-6"
@@ -287,7 +287,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-21.394068,-43.41737)">
+     transform="translate(12.908102,-187.85499)">
     <rect
        style="fill:#beb7c8;stroke-width:0.412505;stroke-linecap:square"
        id="rect10"
@@ -563,12 +563,12 @@
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
          x="162.63925"
-         y="79.126183"
+         y="79.126175"
          id="tspan1986">experimental data</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype';text-align:center;text-anchor:middle;stroke-width:0.264583"
          x="162.63925"
-         y="84.417847"
+         y="84.417839"
          id="tspan2005">(Figure 6)</tspan></text>
     <text
        xml:space="preserve"
