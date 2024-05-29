@@ -4,15 +4,15 @@ Shape Memory Alloy Rendering of Experimental Analysis and Calibration Tool
 
 Main launch script
 
-Last updated: December 16th, 2023 (see GitHub for updates)
+Last updated: May 20th, 2024 (see GitHub for updates)
 """
+
 import cgitb
 import json
-
-from PyQt5 import QtGui, QtWidgets
-
 import os
 from datetime import date
+from PyQt5 import QtGui, QtWidgets
+
 
 from data_input.create_data_input import (
     DataInputWidget
@@ -26,8 +26,6 @@ from calibration.create_calibration_parameters import (
 from calibration_progress.create_calibration_progress_widget import (
     CalibrationProgressWidget
     )
-
-
 
 
 class App(QtWidgets.QMainWindow):
@@ -119,7 +117,7 @@ class App(QtWidgets.QMainWindow):
         self.calibration_parameters_widget.pushButton.clicked.connect(
             self.run_calibration
             )
-        
+
         self.calibration_plotting_widget.export_button.clicked.connect(
             self.export_solution)
 
@@ -181,65 +179,81 @@ class App(QtWidgets.QMainWindow):
             self.data_input_widget.data,
             self.calibration_plotting_widget
             )
-        
+
         self.calibration_plotting_widget.export_button.setEnabled(True)
-        
+
     def export_solution(self):
+        '''
+        Prints and exports the calibrated solution,
+        with all of the important intermediary data.
+
+        Returns
+        -------
+        None.
+
+        '''
         self.calibration_parameters_widget.getSpecifiedValues()
         bounds = self.calibration_parameters_widget.getBounds()
-        
+
         print('Known Values \n')
         print(self.calibration_parameters_widget.known_values)
-        
+
         print('Bounds \n')
         print(bounds)
-        
+
         print('Optimization History \n')
         print(self.calibration_plotting_widget.gens)
         print(self.calibration_plotting_widget.mins)
-        
+
         print('Optimization parameters \n')
-        print('Population size = ',int(self.calibration_parameters_widget.pop_size))  # Population size for GA (must be divisible by 4)
-        print('Number of generations = ',int(self.calibration_parameters_widget.num_gens)) # Number of generations for GA
+        print(
+            'Population size = ',
+            int(self.calibration_parameters_widget.pop_size)
+            )  # Population size for GA (must be divisible by 4)
+        print(
+            'Number of generations = ',
+            int(self.calibration_parameters_widget.num_gens)
+            ) # Number of generations for GA
         print('Number of gradient iterations =',int(self.calibration_parameters_widget.num_iters))
-        
+
         print('Final Optimization Error \n')
         print(self.optimization_error)
-        
+
         data_to_export = {
-            'population size':int(self.calibration_parameters_widget.pop_size),
-            'number of generations':int(self.calibration_parameters_widget.num_gens),
-            'number of gradient-based iterations': int(self.calibration_parameters_widget.num_iters),
-            'optimization history (generations + iterations)':self.calibration_plotting_widget.gens,
-            'optimization history (min objective value)':self.calibration_plotting_widget.mins,
-            'final_error': self.optimization_error,
-            'final_solution': self.calibration_parameters_widget.known_values,
-            'bounds':bounds,
-            'date': str(date.today()),
+            'population size':
+                int(self.calibration_parameters_widget.pop_size),
+            'number of generations':
+                int(self.calibration_parameters_widget.num_gens),
+            'number of gradient-based iterations':
+                int(self.calibration_parameters_widget.num_iters),
+            'optimization history (generations + iterations)':
+                self.calibration_plotting_widget.gens,
+            'optimization history (min objective value)':
+                self.calibration_plotting_widget.mins,
+            'final_error':
+                self.optimization_error,
+            'final_solution':
+                self.calibration_parameters_widget.known_values,
+            'bounds':
+                bounds,
+            'date':
+                str(date.today()),
             }
-        
+
         file_name = os.path.join(
             os.getcwd(),
             'output',
             str(date.today())+'_calibration.json'
             )
-        
 
-        with open(file_name, 'w', encoding='utf-8') as f:
+
+        with open(file_name, 'w', encoding='utf-8') as file:
             json.dump(
                 data_to_export,
-                f,
+                file,
                 ensure_ascii=False,
                 indent=4
                 )
-        
-
-        
-        
-        #FIXME I will need to pull the res2.x out of the evaluate function
-        # Probably need to make it the final solution on the calibration_parameters widget
-        # Then write a function to return the material data structure P
-
 
 
 if __name__ == "__main__":
@@ -249,8 +263,4 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ex = App()
-    #ui = Ui_MainWindow()
-    #ui.setupUi(MainWindow)
-    # MainWindow.show()
-
     sys.exit(app.exec_())

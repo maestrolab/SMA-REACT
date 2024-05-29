@@ -1,26 +1,45 @@
-# FIXME
-# Add module docstring with proper attribution of ASMADA
-import random
+'''
+Shape Memory Alloy Rendering of Experimental Analysis and Calibration Tool
+(SMA-REACT)
+------------------------------------
+Data Input Script
+------------------------------------
+This file contains all relevant functions for data input to
+the calibration GUI. This framework heavily borrows from
+ASMADA (citation given below).
+
+M. C. Kuner, A. A. Karakalas, and D. C. Lagoudas,
+“ASMADA—A tool for automatic analysis of shape memory alloy
+thermal cycling data under constant stress,”
+Smart Mater. Struct., vol. 30, no. 12, p. 125003, 2021.
+'''
 import pandas as pd
 import numpy as np
 
-
-
 from PyQt5 import QtCore, QtWidgets
 
-from PyQt5.QtWidgets import QFileDialog, \
-    QGridLayout, QLabel, QPushButton, QSpinBox, QComboBox, QTableWidget, \
-    QHBoxLayout, QAbstractItemView, QFrame, QTableWidgetItem
+from PyQt5.QtWidgets import (
+    QFileDialog,
+    QGridLayout,
+    QLabel,
+    QPushButton,
+    QSpinBox,
+    QComboBox,
+    QTableWidget,
+    QHBoxLayout,
+    QAbstractItemView,
+    QFrame,
+    QTableWidgetItem
+    )
 from PyQt5.QtGui import QFont, QColor
-
-
-
-
-
 
 
 #%% Data input widget
 class DataInputWidget(QtWidgets.QWidget):
+    '''
+    Tab for all of the data input functionality.
+    Inherits the QtWidgets.QWidget class.
+    '''
     def __init__(self):
         super().__init__()
         self.main_layout = QGridLayout(self)
@@ -198,15 +217,26 @@ class DataInputWidget(QtWidgets.QWidget):
 
 
         #SIGNALS
-        self.files_button.clicked.connect(self.openFiles)
-        self.load_button.clicked.connect(self.loadFiles)
-        self.skips.valueChanged.connect(self.updatePreview)
-        self.temp_col.valueChanged.connect(self.updatePreview)
-        self.strain_col.valueChanged.connect(self.updatePreview)
-        self.stress_col.valueChanged.connect(self.updatePreview)
+        self.files_button.clicked.connect(self.open_files)
+        self.load_button.clicked.connect(self.load_files)
+        self.skips.valueChanged.connect(self.update_preview)
+        self.temp_col.valueChanged.connect(self.update_preview)
+        self.strain_col.valueChanged.connect(self.update_preview)
+        self.stress_col.valueChanged.connect(self.update_preview)
 
     #FUNCTIONS
-    def openFiles(self):
+    def open_files(self):
+        '''
+        Opens all text files with experimental data.
+        Currently, only accepts .csv files or comma-separated
+        text files. All text files must have the same format,
+        and each experiment must be contained within its own file.
+
+        Returns
+        -------
+        None.
+
+        '''
         file_browser = QFileDialog()
         file_browser.setFileMode(QFileDialog.ExistingFiles)
         self.files = file_browser.getOpenFileNames(self, 'Browse Files', '', 'All Files(*)')[0]
@@ -227,14 +257,21 @@ class DataInputWidget(QtWidgets.QWidget):
         if temp_col == strain_col or temp_col == stress_col or strain_col == stress_col:
             overlap = True
 
-        if overlap == False:
+        if overlap is False:
             self.load_button.setEnabled(True)
         else:
             self.load_button.setEnabled(False)
 
         # loading data
-        df_preview = pd.read_csv(self.files[0], nrows=100, header=None, skiprows=skip_rows, encoding='utf-8',
-                                 sep=None, engine='python')
+        df_preview = pd.read_csv(
+            self.files[0],
+            nrows=100,
+            header=None,
+            skiprows=skip_rows,
+            encoding='utf-8',
+            sep=None,
+            engine='python'
+            )
         col_labels = [str(x) for x in df_preview.columns]
         self.preview.setColumnCount(len(col_labels))
         self.preview.setHorizontalHeaderLabels(col_labels)
@@ -261,15 +298,16 @@ class DataInputWidget(QtWidgets.QWidget):
                 self.preview.setItem(i, j, item)
 
 
-    def loadFiles(self):
+    def load_files(self):
+        '''
+        Loads all the text files. Currently only accepts
+        comma-delimited text files or .csv files.
+        '''
         # getting inputs
         skip_rows = self.skips.value()
         temp_col = self.temp_col.value() - 1
         strain_col = self.strain_col.value() - 1
         stress_col = self.stress_col.value() - 1
-        temp_units = self.temp_units.currentText()
-        strain_units = self.strain_units.currentText()
-        stress_units = self.stress_units.currentText()
         overlap = False
         if temp_col == strain_col or temp_col == stress_col or strain_col == stress_col:
             overlap = True
@@ -280,88 +318,155 @@ class DataInputWidget(QtWidgets.QWidget):
         if not overlap:
             data = {'num_experiments': len(self.files)}
             for i, file in enumerate(self.files):
-                df = pd.read_csv(file, header=None, skiprows=skip_rows, encoding='utf-8',
-                                     sep=None, engine='python')
-
-                # df = df[[df.columns[strain_col], df.columns[temp_col], df.columns[stress_col]]]
+                experimental_data = pd.read_csv(
+                    file,
+                    header=None,
+                    skiprows=skip_rows,
+                    encoding='utf-8',
+                    sep=None,
+                    engine='python')
 
                 #Re-organize data to go from cold to hot
-                eps = df[df.columns[strain_col]].to_numpy()
-                sigma = df[df.columns[stress_col]].to_numpy()
-                T = df[df.columns[temp_col]].to_numpy()
+                eps = experimental_data[
+                    experimental_data.columns[
+                        strain_col
+                        ]
+                    ].to_numpy()
+                sigma = experimental_data[
+                    experimental_data.columns[
+                        stress_col
+                        ]
+                    ].to_numpy()
+                temperature = experimental_data[
+                    experimental_data.columns[
+                        temp_col
+                        ]
+                    ].to_numpy()
 
-                min_T = T.min()
-                I = np.argmin(T)
+                # min_T = T.min()
+                min_index = np.argmin(temperature)
 
-                T = np.concatenate((T[I:],T[0:I+1]))
-                sigma = np.concatenate((sigma[I:],sigma[0:I+1]))
-                eps = np.concatenate((eps[I:],eps[0:I+1]))
+                temperature = np.concatenate(
+                    (
+                        temperature[min_index:],
+                        temperature[0:min_index+1]
+                        )
+                    )
+                sigma = np.concatenate(
+                    (
+                        sigma[min_index:],
+                        sigma[0:min_index+1]
+                        )
+                    )
+                eps = np.concatenate(
+                    (
+                        eps[min_index:],
+                        eps[0:min_index+1]
+                        )
+                    )
 
-                df = pd.DataFrame({"strain":eps, "temperature":T, "stress":sigma})
+                experimental_data = pd.DataFrame(
+                    {
+                        "strain":eps,
+                        "temperature":temperature,
+                        "stress":sigma
+                        }
+                    )
+
 
                 # converting stress
-                if stress_units == '[psi]':
-                    df["stress"] = df["stress"] * 6894.7572931783
-                elif stress_units == '[MPa]':
-                    df["stress"] = df["stress"] * 1E6
+                if self.stress_units.currentText() == '[psi]':
+                    experimental_data["stress"] = \
+                        experimental_data["stress"] * 6894.7572931783
+                elif self.stress_units.currentText() == '[MPa]':
+                    experimental_data["stress"] = \
+                        experimental_data["stress"] * 1E6
 
                 # converting temperature
-                if temp_units == '[°C]':
-                    df["temperature"] = df["temperature"] + 273.15
-                elif temp_units == '[°F]':
-                    df["temperature"] = (df["temperature"] - 32) * 5/9 + 273.15
+                if self.temp_units.currentText() == '[°C]':
+                    experimental_data["temperature"] =\
+                        experimental_data["temperature"] + 273.15
+                elif self.temp_units.currentText() == '[°F]':
+                    experimental_data["temperature"] =\
+                    (experimental_data["temperature"] - 32) * 5/9 + 273.15
 
                 # converting strain
-                if strain_units == '[%]':
-                    df["strain"] = df["strain"] / 100
+                if self.strain_units.currentText() == '[%]':
+                    experimental_data["strain"] =\
+                        experimental_data["strain"] / 100
 
-                # column_names = ['strain','temperature','stress']
-                # df.columns = column_names
 
-                data['exp_{}'.format(i)] = df
+                data['exp_{}'.format(i)] = experimental_data
 
 
             self.data = data
 
             self.continue_button.setEnabled(True)
-            
-            
-    def downsampleData(self):
+
+
+    def downsample_data(self):
+        '''
+        Skeleton function to start to downsample all experimental data,
+        in case a need arises where the data is too dense for
+        efficient calibration.
+
+        Add a call to load_files to downsample this dataseries.
+
+        Returns
+        -------
+        None.
+
+        '''
         num_experiments = self.data['num_experiments']
-        
+
         dataset_lengths = np.zeros(shape = num_experiments)
         for i in range(num_experiments):
             dataset_lengths[i] = len(self.data['exp_{}'.format(i)])
-            
-        mean_length = np.mean(dataset_lengths)
-        
+
+        # mean_length = np.mean(dataset_lengths)
 
 
 
 
 
-    def updatePreview(self):
+
+    def update_preview(self):
+        '''
+        Previews the experimental data by coloring each column
+        with its respective variable.
+
+        Returns
+        -------
+        None.
+
+        '''
         if len(self.files) != 0:
             # getting inputs
             skip_rows = self.skips.value()
             temp_col = self.temp_col.value() - 1
             strain_col = self.strain_col.value() - 1
             stress_col = self.stress_col.value() - 1
-            temp_units = self.temp_units.currentText()
-            strain_units = self.strain_units.currentText()
-            stress_units = self.stress_units.currentText()
             overlap = False
-            if temp_col == strain_col or temp_col == stress_col or strain_col == stress_col:
-                overlap = True
+            if temp_col == strain_col \
+                or temp_col == stress_col \
+                    or strain_col == stress_col:
+                        overlap = True
 
-            if overlap == False:
+            if overlap is False:
                 self.load_button.setEnabled(True)
             else:
                 self.load_button.setEnabled(False)
 
             # loading data
-            df_preview = pd.read_csv(self.files[0], nrows=100, header=None, skiprows=skip_rows, encoding='utf-8',
-                                     sep=None, engine='python')
+            df_preview = pd.read_csv(
+                self.files[0],
+                nrows=100,
+                header=None,
+                skiprows=skip_rows,
+                encoding='utf-8',
+                sep=None,
+                engine='python'
+                )
             col_labels = [str(x) for x in df_preview.columns]
             if not overlap:
                 col_labels[temp_col] = 'Temperature'
@@ -390,4 +495,3 @@ class DataInputWidget(QtWidgets.QWidget):
                             item.setBackground(QColor(86, 200, 233))
 
                     self.preview.setItem(i, j, item)
-                    

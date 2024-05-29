@@ -8,25 +8,16 @@ for calibration of the Lagoudas 1-D SMA model with smooth hardening
 
 '''
 
-import random
 import numpy as np
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QFileDialog, QMessageBox
-from PyQt5.QtWidgets import QLabel, QSizePolicy
+from PyQt5.QtWidgets import QLabel
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QPixmap
 
 from matplotlib.figure import Figure
 from matplotlib import rcParams as rc
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-
-from .utility.export import exportData
-from .utility.import_vals import importData
-# from .utility.latex_translation import textToLatex
-
-
-
 
 
 class CalibrationParametersWidget(QtWidgets.QWidget):
@@ -74,10 +65,10 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             QtWidgets.QSizePolicy.Minimum
             )
 
-        self.gridLayout = QtWidgets.QGridLayout(self)
+        self.grid_layout = QtWidgets.QGridLayout(self)
         # self.centralwidget = QtWidgets.QWidget(self)
-        # self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
-        self.gridLayout.setSpacing(20)
+        # self.grid_layout = QtWidgets.QGridLayout(self.centralwidget)
+        self.grid_layout.setSpacing(20)
         # DV_flags is an array of booleans (T/F) that determines whether
         # a specific design variable is active
         # True = Active (unconstrained)
@@ -620,7 +611,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             normal_weight,
             bold_flag = False
             )
-        
+
         self.MVF_tol = QtWidgets.QHBoxLayout()
         self.MVF_tol.setContentsMargins(-1, -1, 5, -1)
 
@@ -644,7 +635,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.MVF_tol.addWidget(self.MVF_tol.label)
         # self.MVF_tol.addStretch()
         self.MVF_tol.lineEdit = QtWidgets.QLineEdit(self)
-        
+
         self.MVF_tol.lineEdit.setMaximumSize(
             QtCore.QSize(
                 lineEdit_width,
@@ -770,50 +761,50 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
 
         #%% Grid layout commands
-        #Will need to figure out gridLayout at a later date.
+        #Will need to figure out grid_layout at a later date.
         #Elastic properties
-        self.gridLayout.addLayout(self.E_M, 1, 0, 1, 1)
-        self.gridLayout.addLayout(self.E_A, 1, 1, 1, 1)
+        self.grid_layout.addLayout(self.E_M, 1, 0, 1, 1)
+        self.grid_layout.addLayout(self.E_A, 1, 1, 1, 1)
         #Phase diagram properties
-        self.gridLayout.addLayout(self.M_s, 2, 0, 1, 1)
-        self.gridLayout.addLayout(self.M_s_M_f, 2, 1, 1, 1)
-        self.gridLayout.addLayout(self.A_s, 3, 0, 1, 1)
-        self.gridLayout.addLayout(self.A_f_A_s, 3, 1, 1, 1)
-        self.gridLayout.addLayout(self.C_M, 4, 0, 1, 1)
-        self.gridLayout.addLayout(self.C_A, 4, 1, 1, 1)
+        self.grid_layout.addLayout(self.M_s, 2, 0, 1, 1)
+        self.grid_layout.addLayout(self.M_s_M_f, 2, 1, 1, 1)
+        self.grid_layout.addLayout(self.A_s, 3, 0, 1, 1)
+        self.grid_layout.addLayout(self.A_f_A_s, 3, 1, 1, 1)
+        self.grid_layout.addLayout(self.C_M, 4, 0, 1, 1)
+        self.grid_layout.addLayout(self.C_A, 4, 1, 1, 1)
         #Transformation strain properties
-        self.gridLayout.addLayout(self.H_min, 5, 0, 1, 1)
-        self.gridLayout.addLayout(self.H_max_H_min, 5, 1, 1, 1)
-        self.gridLayout.addLayout(self.sigma_0, 6, 0, 1, 1)
-        self.gridLayout.addLayout(self.k, 6, 1, 1, 1)
+        self.grid_layout.addLayout(self.H_min, 5, 0, 1, 1)
+        self.grid_layout.addLayout(self.H_max_H_min, 5, 1, 1, 1)
+        self.grid_layout.addLayout(self.sigma_0, 6, 0, 1, 1)
+        self.grid_layout.addLayout(self.k, 6, 1, 1, 1)
         #Other properties
-        self.gridLayout.addLayout(self.n_1, 7, 0, 1, 1)
-        self.gridLayout.addLayout(self.n_2, 7, 1, 1, 1)
-        self.gridLayout.addLayout(self.n_3, 8, 0, 1, 1)
-        self.gridLayout.addLayout(self.n_4, 8, 1, 1, 1)
-        self.gridLayout.addLayout(self.alpha, 9, 0, 1, 1)
+        self.grid_layout.addLayout(self.n_1, 7, 0, 1, 1)
+        self.grid_layout.addLayout(self.n_2, 7, 1, 1, 1)
+        self.grid_layout.addLayout(self.n_3, 8, 0, 1, 1)
+        self.grid_layout.addLayout(self.n_4, 8, 1, 1, 1)
+        self.grid_layout.addLayout(self.alpha, 9, 0, 1, 1)
 
-        self.gridLayout.addLayout(self.prop_constraints_label,0,2,1,1)
-        self.gridLayout.addLayout(self.modulus_flag,1,2,1,1)
-        self.gridLayout.addLayout(self.slope_flag,2,2,1,1)
-        self.gridLayout.addLayout(self.smooth_hardening_flag,3,2,1,1)
+        self.grid_layout.addLayout(self.prop_constraints_label,0,2,1,1)
+        self.grid_layout.addLayout(self.modulus_flag,1,2,1,1)
+        self.grid_layout.addLayout(self.slope_flag,2,2,1,1)
+        self.grid_layout.addLayout(self.smooth_hardening_flag,3,2,1,1)
 
         #Algorithmic parameters
-        self.gridLayout.addLayout(self.alg_params_label,4,2,1,1)
-        self.gridLayout.addLayout(self.delta,5,2,1,1)
-        self.gridLayout.addLayout(self.sigma_cal,6,2,1,1)
-        self.gridLayout.addLayout(self.MVF_tol,7,2,1,1)
+        self.grid_layout.addLayout(self.alg_params_label,4,2,1,1)
+        self.grid_layout.addLayout(self.delta,5,2,1,1)
+        self.grid_layout.addLayout(self.sigma_cal,6,2,1,1)
+        self.grid_layout.addLayout(self.MVF_tol,7,2,1,1)
 
         #Optimization parameters
-        self.gridLayout.addLayout(self.op_params_label, 8, 2, 1, 1)
-        self.gridLayout.addLayout(self.num_gens, 9, 2, 1, 1)
-        self.gridLayout.addLayout(self.pop_size, 10, 2, 1, 1)
-        self.gridLayout.addLayout(self.num_iters, 11, 2, 1, 1)
+        self.grid_layout.addLayout(self.op_params_label, 8, 2, 1, 1)
+        self.grid_layout.addLayout(self.num_gens, 9, 2, 1, 1)
+        self.grid_layout.addLayout(self.pop_size, 10, 2, 1, 1)
+        self.grid_layout.addLayout(self.num_iters, 11, 2, 1, 1)
         #Buttons and Labels
 
-        self.gridLayout.addLayout(self.buttons, 12, 2, 2, 2)
-        self.gridLayout.addLayout(self.right_labels, 0, 1, 1, 1)
-        self.gridLayout.addLayout(self.left_labels, 0, 0, 1, 1)
+        self.grid_layout.addLayout(self.buttons, 12, 2, 2, 2)
+        self.grid_layout.addLayout(self.right_labels, 0, 1, 1, 1)
+        self.grid_layout.addLayout(self.left_labels, 0, 0, 1, 1)
 
 
         #%% Alignment commands need to be after the grid layout
@@ -834,71 +825,13 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         self.pop_size.setAlignment(QtCore.Qt.AlignLeft)
         self.num_iters.setAlignment(QtCore.Qt.AlignLeft)
 
-        #%% Signals and connections
-        # INITIAL CONDITIONS
+        #%% Initial conditions
         self.loadDefaults()
 
-        sliders = self.gridLayout.findChildren(QtWidgets.QSlider)
-        for slider in sliders:
-            pass
-            # slider.setMinimumSize(QtCore.QSize(150, 20))
-            # slider.setMaximumSize(QtCore.QSize(150, 20))
-
-    # %% Functions
-    # def openFiles(self):
-    #     '''
-    #     Open
-
-    #     Returns
-    #     -------
-    #     None.
-
-    #     '''
-    #     file_browser = QtWidgets.QFileDialog()
-    #     file_browser.setFileMode(QFileDialog.ExistingFiles)
-    #     files = file_browser.getOpenFileNames(
-    #         self.centralwidget,
-    #         'Browse Files',
-    #         '',
-    #         'All Files(*)'
-    #         )[0]
-    #     text = ''
-    #     for file in files:
-    #         filename = file[file.rindex('/') + 1:]
-    #         text += filename + '\n'
-    #     self.file_labels.setText(text)
-
-
-    # def importVals(self):
-    #     fileloc = QFileDialog.getOpenFileName(
-    #         None,
-    #         "Open MTS Data File",
-    #         "",
-    #         "CSV Files (*.csv)"
-    #         )
-    #     if fileloc:
-    #         file = str(fileloc[0])
-    #         params = importData(file)
-    #         for i in range(1, 10):
-    #             for j in range(2):
-    #                 for key in params.keys():
-    #                     if key == self.gridLayout.itemAtPosition(i, j).objectName():
-    #                         if "Lower Bound" in params[key]:
-    #                             self.gridLayout.itemAtPosition(i, j).itemAt(2).widget().setText(
-    #                                 str(params[key]["Lower Bound"])
-    #                                 )
-    #                         if "Upper Bound" in params[key]:
-    #                             self.gridLayout.itemAtPosition(i, j).itemAt(4).widget().setText(
-    #                                 str(params[key]["Upper Bound"])
-    #                                 )
-    #                         if "Guess" in params[key]:
-    #                             self.gridLayout.itemAtPosition(i, j).itemAt(6).widget().setText(
-    #                                 str(params[key]["Guess"])
-    #                                 )
-
+    # %% Functions 
     def uncheck(self,state):
         '''
-        Function that translates all of the checkboxes for each
+        Translates all of the checkboxes for each
         material parameter to different DV flags.
 
         Parameters
@@ -1202,54 +1135,6 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         print(self.DV_flags)
 
-
-    def guess(self):
-        invalid = False
-        for i in range(1, 10):
-            for j in range(2):
-                if i == 9 and j == 1:
-                    continue
-                try:
-                    bound = str(self.gridLayout.itemAtPosition(i, j).itemAt(4).widget().text())
-                    upper_bound = float(bound)
-                    bound = str(self.gridLayout.itemAtPosition(i, j).itemAt(2).widget().text())
-                    lower_bound = float(bound)
-                    guess = round(random.uniform(lower_bound, upper_bound), 2)
-                    self.gridLayout.itemAtPosition(i, j).itemAt(6).widget().setText(str(guess))
-                except:
-                    error = QtWidgets.QMessageBox(self)
-                    error.setIcon(QMessageBox.Critical)
-                    error.setText("Please fill all bounds first")
-                    error.setWindowTitle("Error")
-                    error.show()
-                    invalid = True
-                if invalid:
-                    break
-            if invalid:
-                break
-
-
-    def export(self):
-        data = {}
-        for i in range(1, 10):
-            for j in range(2):
-                if i == 9 and j == 1:
-                    continue
-                key = self.gridLayout.itemAtPosition(i, j).objectName()
-                data[key] = {}
-                try:
-                    bound = str(self.gridLayout.itemAtPosition(i, j).itemAt(4).widget().text())
-                    upper_bound = float(bound)
-                    bound = str(self.gridLayout.itemAtPosition(i, j).itemAt(2).widget().text())
-                    lower_bound = float(bound)
-                    guess = float(self.gridLayout.itemAtPosition(i, j).itemAt(6).widget().text())
-                    data[key]["Lower Bound"] = lower_bound
-                    data[key]["Upper Bound"] = upper_bound
-                    data[key]["Guess"] = guess
-                except:
-                    continue
-        exportData(data, "bounds.csv")
-
     def loadDefaults(self):
         '''
         Imports default values for lower and upper bounds
@@ -1348,10 +1233,10 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             for j in range(2):
                 if i == 9 and j == 1:
                     break
-                upper_bound = float(self.gridLayout.itemAtPosition(i, j).itemAt(4).widget().text())
-                lower_bound = float(self.gridLayout.itemAtPosition(i, j).itemAt(2).widget().text())
-                slider_val = self.gridLayout.itemAtPosition(i, j).itemAt(3).widget().value()
-                guess = self.gridLayout.itemAtPosition(i, j).itemAt(6).widget()
+                upper_bound = float(self.grid_layout.itemAtPosition(i, j).itemAt(4).widget().text())
+                lower_bound = float(self.grid_layout.itemAtPosition(i, j).itemAt(2).widget().text())
+                slider_val = self.grid_layout.itemAtPosition(i, j).itemAt(3).widget().value()
+                guess = self.grid_layout.itemAtPosition(i, j).itemAt(6).widget()
                 step = (upper_bound - lower_bound)/100
                 guess.setText(str(slider_val * step + lower_bound))
 
@@ -1369,27 +1254,39 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             for j in range(2):
                 if i == 9 and j == 1:
                     break
-                val = self.gridLayout.itemAtPosition(i, j).itemAt(6).widget().text()
+                val = self.grid_layout.itemAtPosition(i, j).itemAt(6).widget().text()
                 if not val == "":
                     upper_bound = float(
-                        self.gridLayout.itemAtPosition(i, j).itemAt(4).widget().text()
+                        self.grid_layout.itemAtPosition(i, j).itemAt(4).widget().text()
                         )
                     lower_bound = float(
-                        self.gridLayout.itemAtPosition(i, j).itemAt(2).widget().text()
+                        self.grid_layout.itemAtPosition(i, j).itemAt(2).widget().text()
                         )
                     if float(val) < lower_bound:
                         print('Setting lower bound to specified value for visualization')
-                        lower_bound = self.gridLayout.itemAtPosition(i, j).itemAt(2).widget().setText(str(val))
+                        lower_bound = self.grid_layout.itemAtPosition(
+                            i, j
+                            ).itemAt(2).widget().setText(str(val))
                     elif float(val) > upper_bound:
                         print('Setting upper bound to specified value for visualization')
-                        upper_bound = self.gridLayout.itemAtPosition(i, j).itemAt(4).widget().setText(str(val))
-                    upper_bound = float(self.gridLayout.itemAtPosition(i, j).itemAt(4).widget().text())
-                    lower_bound = float(self.gridLayout.itemAtPosition(i, j).itemAt(2).widget().text())
+                        upper_bound = self.grid_layout.itemAtPosition(
+                            i, j
+                            ).itemAt(4).widget().setText(str(val))
+                    upper_bound = float(
+                        self.grid_layout.itemAtPosition(
+                            i, j
+                            ).itemAt(4).widget().text())
+                    lower_bound = float(
+                        self.grid_layout.itemAtPosition(
+                            i, j
+                            ).itemAt(2).widget().text())
                     step = (upper_bound - lower_bound)/100
 
                     val = float(val)
                     normalized_value = int(val/step-int(lower_bound)/step)
-                    self.gridLayout.itemAtPosition(i, j).itemAt(3).widget().setValue(normalized_value)
+                    self.grid_layout.itemAtPosition(
+                        i, j
+                        ).itemAt(3).widget().setValue(normalized_value)
 
 
     def getBounds(self):
@@ -1525,8 +1422,9 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
                 pass
             elif DV_order[counter] == 'C_A' and self.flags['slope_flag'] == True:
                 pass
-            elif DV_order[counter] in ['n_2','n_3','n_4'] and self.flags['smooth_hardening_flag'] == True:
-                pass
+            elif DV_order[counter] in ['n_2','n_3','n_4'] and \
+                self.flags['smooth_hardening_flag'] == True:
+                    pass
             elif self.DV_flags[counter] == False:
                 self.known_values[DV_order[counter]] = float(lineEdits[counter].text())
 
@@ -1793,7 +1691,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         font.setWeight(font_weight)
 
         return font
-    
+
     def textToLatex(self, text, width, height):
         rc["font.serif"] = "Palatino Linotype"
         rc["font.family"] = "serif"
@@ -1807,16 +1705,16 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
 
         ax.text(0.0,0.0,text,va='center',ha='center',fontsize=10)
-        
+
         #ax.text(0.05, -0.02, r'{}'.format(text), ha="right")
         ax.axis('off')
         ax.margins(0)
         ax.patch.set_facecolor('none')
-        
+
         #fig.patch.set_facecolor("black")
         fig.patch.set_facecolor('none')
         # fig.tight_layout(pad=0.0)
-        
+
 
         canvas.draw()
 
