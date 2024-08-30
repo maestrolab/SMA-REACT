@@ -370,7 +370,7 @@ def evaluate(
                 np.savetxt(file_name,model_prediction,delimiter=',')
             
             # plot_strain_temperature(T_total,eps_model_total,i,d)
-            calWin.updateTempStrain(T_total, eps_model_total, i)
+            calWin.updateTempStrain(T_total, eps_model_total, len(eps_model_total))
             calWin.updatePhaseDiagram(P, [0, 200E6])
             calWin.updateDVVals(x,data['DV_flags'])
         except:
