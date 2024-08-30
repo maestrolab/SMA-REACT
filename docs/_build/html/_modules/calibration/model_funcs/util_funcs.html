@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>calibration.model_funcs.util_funcs &mdash; SMA-REACT 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            SMA-REACT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SMA-REACT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">calibration.model_funcs.util_funcs</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for calibration.model_funcs.util_funcs</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">UTILITY FUNCTIONS FOR THE SMA-REACT TOOL</span>
+
+<span class="sd">All functions are presented in semi-chronological order. </span>
+
+<span class="sd">Last updated:</span>
+<span class="sd">    6/28/2022</span>
+<span class="sd">    Patrick Walgren</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">exp</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sign</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">minkowski_distance</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">directed_hausdorff</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<div class="viewcode-block" id="DynamicUpdate">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.DynamicUpdate">[docs]</a>
+<span class="k">class</span> <span class="nc">DynamicUpdate</span><span class="p">():</span>
+    <span class="c1">#Suppose we know the x range</span>
+
+
+<div class="viewcode-block" id="DynamicUpdate.on_launch">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.DynamicUpdate.on_launch">[docs]</a>
+    <span class="k">def</span> <span class="nf">on_launch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x_data</span><span class="p">,</span><span class="n">y_data</span><span class="p">,</span><span class="n">numExps</span><span class="p">):</span>
+        <span class="c1">#Set up plot</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">exp</span><span class="p">,</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span><span class="n">y_data</span><span class="p">,</span><span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],[],</span> <span class="s1">&#39;r-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numExps</span><span class="p">)]</span>
+        <span class="c1">#Autoscale on unknown axis and known lims on the other</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_autoscaley_on</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature, K&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Strain, mm/mm&#39;</span><span class="p">)</span>
+        <span class="c1">#self.ax.set_xlim(self.min_x, self.max_x)</span>
+        <span class="c1">#Other stuff</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="DynamicUpdate.on_running">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.DynamicUpdate.on_running">[docs]</a>
+    <span class="k">def</span> <span class="nf">on_running</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span><span class="n">numExps</span><span class="p">):</span>
+        <span class="c1">#Update data (with the new _and_ the old points)</span>
+        <span class="c1"># print(numExps)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numExps</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xdata</span><span class="p">(</span><span class="n">xdata</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ydata</span><span class="p">(</span><span class="n">ydata</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="c1">#Need both of these in order to rescale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">relim</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">autoscale_view</span><span class="p">()</span>
+        <span class="c1">#We need to draw *and* flush</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">flush_events</span><span class="p">()</span></div>
+
+
+    <span class="c1">#Example</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_launch</span><span class="p">()</span>
+        <span class="n">xdata</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ydata</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.5</span><span class="p">):</span>
+            <span class="n">xdata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">ydata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">on_running</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span></div>
+
+
+
+<div class="viewcode-block" id="plot_settings">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.plot_settings">[docs]</a>
+<span class="k">def</span> <span class="nf">plot_settings</span><span class="p">(</span><span class="n">format_flag</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Settings for easy generation of pretty plots. </span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    format_flag : STR</span>
+<span class="sd">        Options: &#39;presentation&#39; or &#39;publication&#39;.</span>
+<span class="sd">        Presentation makes figures with franklin gothic medium</span>
+<span class="sd">        Publication makes figures with times new roman</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;svg.fonttype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span>
+    
+    <span class="k">if</span> <span class="n">format_flag</span> <span class="o">==</span> <span class="s2">&quot;presentation&quot;</span><span class="p">:</span>
+        <span class="n">font_name</span> <span class="o">=</span> <span class="s2">&quot;FranklinGothic&quot;</span>
+        <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;text.usetex&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+    <span class="k">elif</span> <span class="n">format_flag</span> <span class="o">==</span> <span class="s2">&quot;publication&quot;</span><span class="p">:</span>
+        <span class="n">font_name</span> <span class="o">=</span> <span class="s2">&quot;TimesNewRoman&quot;</span>
+        <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;text.usetex&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1"># Choose between two font groups</span>
+    <span class="k">if</span> <span class="n">font_name</span> <span class="o">==</span> <span class="s2">&quot;FranklinGothic&quot;</span><span class="p">:</span>
+        <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.sans-serif&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Franklin Gothic Medium&quot;</span>
+        <span class="c1"># Then, &quot;ALWAYS use sans-serif fonts&quot;</span>
+        <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.family&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
+    <span class="k">if</span> <span class="n">font_name</span> <span class="o">==</span> <span class="s2">&quot;TimesNewRoman&quot;</span><span class="p">:</span>
+        <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.serif&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Times New Roman&quot;</span>
+        <span class="c1"># Then, &quot;ALWAYS use serif fonts&quot;</span>
+        <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.family&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;serif&quot;</span>
+        
+    <span class="k">return</span> </div>
+
+
+
+<div class="viewcode-block" id="minkowski_error">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.minkowski_error">[docs]</a>
+<span class="k">def</span> <span class="nf">minkowski_error</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Calculate the raw minkowski error between training and testing data.</span>
+<span class="sd">    </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    experiment : LIST</span>
+<span class="sd">        strain-temperature data for the experiment </span>
+<span class="sd">    model : LIST</span>
+<span class="sd">        strain-temperature data for the model prediction</span>
+<span class="sd">    order : INT, optional</span>
+<span class="sd">        Order of the minkowski distance. The default is 2.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    minkowski_distance : FLT</span>
+<span class="sd">        Minkowski distance between experiment and model</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">minkowski_distance</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="n">order</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="symmetric_hausdorff">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.symmetric_hausdorff">[docs]</a>
+<span class="k">def</span> <span class="nf">symmetric_hausdorff</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span><span class="n">model</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Calculate the general (symmetric) Hausdorff distance between two</span>
+<span class="sd">    2-D arrays of coordinates</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    experiment : LIST</span>
+<span class="sd">        strain-temperature data for the experiment </span>
+<span class="sd">    model : LIST</span>
+<span class="sd">        strain-temperature data for the model prediction</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">directed_hausdorff</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span> <span class="n">model</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">directed_hausdorff</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">experiment</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span></div>
+
+    
+
+
+
+<div class="viewcode-block" id="H_cursolver">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.H_cursolver">[docs]</a>
+<span class="k">def</span> <span class="nf">H_cursolver</span><span class="p">(</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">sigma_crit</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">H_min</span><span class="p">,</span> <span class="n">H_sat</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to determine the current transformation strain H^cur using</span>
+<span class="sd">    inputs for stress, critical stress, k, Hsat and Hmin.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sigma : FLT</span>
+<span class="sd">        current material stress</span>
+<span class="sd">    sigma_crit : FLT</span>
+<span class="sd">        critical stress at which transformation strain initiates.</span>
+<span class="sd">    k : FLT</span>
+<span class="sd">        coefficient that governs the evolution of transformation </span>
+<span class="sd">        strain with respect to applied stress. For more information, </span>
+<span class="sd">        see IJP, 2012, eq. 3.7 (DOI: https://doi.org/10.1016/j.ijplas.2011.10.009)</span>
+<span class="sd">    H_min : FLT</span>
+<span class="sd">        minimium transformation strain</span>
+<span class="sd">    H_sat : FLT</span>
+<span class="sd">        maximum, or saturated transformation strain</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    H_cur : FLT</span>
+<span class="sd">        current available transformation strain</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">sigma_crit</span><span class="p">:</span>
+        <span class="n">H_cur</span><span class="o">=</span><span class="n">H_min</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">H_cur</span> <span class="o">=</span> <span class="n">H_min</span> <span class="o">+</span> <span class="p">(</span><span class="n">H_sat</span> <span class="o">-</span> <span class="n">H_min</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span><span class="o">-</span><span class="n">sigma_crit</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="n">H_cur</span></div>
+
+
+
+<div class="viewcode-block" id="partial_Hcur_sigma">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Hcur_sigma">[docs]</a>
+<span class="k">def</span> <span class="nf">partial_Hcur_sigma</span><span class="p">(</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">sigma_crit</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">Hsat</span><span class="p">,</span> <span class="n">Hmin</span> <span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to solve for the partial derivative of the current</span>
+<span class="sd">    transformation strain (Hcur) with respect to sigma (stress)    </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sigma : FLT</span>
+<span class="sd">        current material stress</span>
+<span class="sd">    sigma_crit : FLT</span>
+<span class="sd">        critical stress at which transformation strain initiates.</span>
+<span class="sd">    k : FLT</span>
+<span class="sd">        coefficient that governs the evolution of transformation </span>
+<span class="sd">        strain with respect to applied stress. For more information, </span>
+<span class="sd">        see IJP, 2012, eq. 3.7 (DOI: https://doi.org/10.1016/j.ijplas.2011.10.009)</span>
+<span class="sd">    H_min : FLT</span>
+<span class="sd">        minimium transformation strain</span>
+<span class="sd">    H_sat : FLT</span>
+<span class="sd">        maximum, or saturated transformation strain</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    partial_Hcur_sigma : FLT</span>
+<span class="sd">        Partial derivative of the current transformation strain with respect</span>
+<span class="sd">        to current applied stress. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># first solve for the partial derivative of abs(sigma) with respect to sigma</span>
+    <span class="k">if</span> <span class="n">sigma</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">partial_abssigma</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">sigma</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">partial_abssigma</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">partial_abssigma</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+    <span class="c1"># Solve for partial derivative of current transformation strain</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">sigma_crit</span><span class="p">:</span>
+        <span class="n">partial_Hcur_sigma</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">partial_Hcur_sigma</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="n">Hsat</span><span class="o">-</span><span class="n">Hmin</span><span class="p">)</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span><span class="o">-</span><span class="n">sigma_crit</span><span class="p">))</span><span class="o">*</span><span class="n">partial_abssigma</span>
+
+    <span class="k">return</span> <span class="n">partial_Hcur_sigma</span></div>
+
+
+
+<div class="viewcode-block" id="Elastic_Transformation_check_stress">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Elastic_Transformation_check_stress">[docs]</a>
+<span class="k">def</span> <span class="nf">Elastic_Transformation_check_stress</span><span class="p">(</span> <span class="n">P</span><span class="p">,</span><span class="n">TP</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">eps_prev</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_prev</span><span class="p">,</span> <span class="n">T0</span><span class="p">,</span> \
+                                        <span class="n">sigma_prev</span><span class="p">,</span> <span class="n">Phi_fwd_prev</span><span class="p">,</span> <span class="n">Phi_rev_prev</span><span class="p">,</span>\
+                                        <span class="n">E</span><span class="p">,</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">MVF_r</span> <span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to return Elastic prediction and also check for transformation</span>
+<span class="sd">    without using scaled projections (non-transformation surface rate-informed)</span>
+<span class="sd">    </span>
+<span class="sd">    Returns chck=1 for forward transformation, 2 for reverse transformation </span>
+<span class="sd">    and 0 for no transformation</span>
+<span class="sd">    </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    P : DICT</span>
+<span class="sd">        Material properties for the SMA. See the documentation for </span>
+<span class="sd">        all properties and their meanings.</span>
+<span class="sd">    TP : DICT</span>
+<span class="sd">        Transformation properties for the SMA. Just another dictionary </span>
+<span class="sd">        comprised of intermediate calculations</span>
+<span class="sd">    sigma : FLT</span>
+<span class="sd">        Current stress</span>
+<span class="sd">    eps_prev : FLT</span>
+<span class="sd">        Previous total strain</span>
+<span class="sd">    T : FLT</span>
+<span class="sd">        Current temperature</span>
+<span class="sd">    T_prev : FLT</span>
+<span class="sd">        Previous temperature</span>
+<span class="sd">    T0 : FLT</span>
+<span class="sd">        Initial temperature</span>
+<span class="sd">    sigma_prev : FLT</span>
+<span class="sd">        Previous stress</span>
+<span class="sd">    Phi_fwd_prev : FLT</span>
+<span class="sd">        Forward transformation function value for the previous increment</span>
+<span class="sd">    Phi_rev_prev : FLT</span>
+<span class="sd">        Reverse transformation function value for the previous increment</span>
+<span class="sd">    E : FLT</span>
+<span class="sd">        Youngs modulus</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current value for martensitic volume fraction</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current value for transformation strain</span>
+<span class="sd">    eps_t_r : FLT</span>
+<span class="sd">        Current value for transformation strain at transformation reversal</span>
+<span class="sd">    MVF_r : FLT</span>
+<span class="sd">        Current value for martensitic volume fraction at transformation reversal</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    eps : FLT</span>
+<span class="sd">        Current total strain</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current transformation strain</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current martensitic volume fraction</span>
+<span class="sd">    H_cur : FLT</span>
+<span class="sd">        Current maximum transformation strain</span>
+<span class="sd">    Phi_fwd : FLT</span>
+<span class="sd">        Current Forward transformation function value</span>
+<span class="sd">    Phi_rev : FLT</span>
+<span class="sd">        Current Reverse transformation function value</span>
+<span class="sd">    chck : INT</span>
+<span class="sd">        Flag to describe if transformation is occuring, and in what direction.</span>
+<span class="sd">        chck=1 for forward transformation (A-&gt;M)</span>
+<span class="sd">             2 for reverse transformation (M-&gt;A)</span>
+<span class="sd">             0 for no transformation (Elastic)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c1"># Solve for strain using elastic prediciton</span>
+    <span class="n">eps</span><span class="o">=</span><span class="n">sigma</span><span class="o">/</span><span class="n">E</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T0</span><span class="p">)</span><span class="o">+</span><span class="n">eps_t</span>
+    
+    <span class="c1">#  Solve for current transformational strain</span>
+    <span class="n">H_cur</span><span class="o">=</span><span class="n">H_cursolver</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_crit&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_min&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_sat&#39;</span><span class="p">])</span>
+    
+    <span class="c1"># Solve for hardening functions </span>
+    <span class="n">f_fwd</span> <span class="o">=</span> <span class="mf">.5</span><span class="o">*</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">MVF</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="p">)</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_2&#39;</span><span class="p">])</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">]</span>
+    <span class="n">f_rev</span> <span class="o">=</span> <span class="mf">.5</span><span class="o">*</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">MVF</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_3&#39;</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="p">)</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_4&#39;</span><span class="p">])</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Solve for the forward transformation surface</span>
+    <span class="n">chck</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">Phi_fwd</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span><span class="o">*</span><span class="n">H_cur</span><span class="o">+</span>\
+              <span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span>\
+              <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">f_fwd</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">]</span>
+    <span class="c1"># If the forward transformation surface is greater than zero the material</span>
+    <span class="c1"># is undergoing a forward transformation (chck=1)</span>
+    <span class="k">if</span> <span class="n">Phi_fwd</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">chck</span><span class="o">=</span><span class="mi">1</span>
+    
+    <span class="c1"># Solve for the reverse transformation surface</span>
+    <span class="n">Phi_rev</span><span class="o">=</span><span class="mi">0</span>
+    
+    <span class="k">if</span> <span class="n">MVF_r</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Reverse transformation strain remains zero if Martensitic Strain at</span>
+        <span class="c1"># transformation reversal is zero</span>
+        <span class="n">MVR_r</span> <span class="o">=</span> <span class="mi">0</span>
+        
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Phi_rev</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">eps_t_r</span><span class="o">/</span><span class="n">MVF_r</span><span class="o">-</span>\
+                 <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span>\
+                 <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">f_rev</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">]</span>
+        <span class="c1"># If the revverse transformation surface is greater than zero the material</span>
+        <span class="c1"># is undergoing a forward transformation (chck=2)</span>
+        <span class="k">if</span> <span class="n">Phi_rev</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">chck</span><span class="o">=</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">eps</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">H_cur</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span><span class="n">Phi_rev</span><span class="p">,</span> <span class="n">chck</span></div>
+
+
+
+
+<div class="viewcode-block" id="Elastic_Transformation_check_RI_stress">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Elastic_Transformation_check_RI_stress">[docs]</a>
+<span class="k">def</span> <span class="nf">Elastic_Transformation_check_RI_stress</span><span class="p">(</span> <span class="n">P</span><span class="p">,</span> <span class="n">TP</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">eps_prev</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_prev</span><span class="p">,</span> <span class="n">T0</span><span class="p">,</span> \
+                                           <span class="n">sigma_prev</span><span class="p">,</span> <span class="n">Phi_fwd_prev</span><span class="p">,</span> <span class="n">Phi_rev_prev</span><span class="p">,</span> \
+                                               <span class="n">E</span><span class="p">,</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">MVF_r</span> <span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to return elastic prediction and check for transformation using</span>
+<span class="sd">    scaled elastic projections (transformation surface rate-informed)</span>
+<span class="sd">    </span>
+<span class="sd">    Returns chck=1 for forward transformation, 2 for reverse transformation </span>
+<span class="sd">    and 0 for no transformation</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    P : DICT</span>
+<span class="sd">        Material properties for the SMA. See the documentation for </span>
+<span class="sd">        all properties and their meanings.</span>
+<span class="sd">    TP : DICT</span>
+<span class="sd">        Transformation properties for the SMA. Just another dictionary </span>
+<span class="sd">        comprised of intermediate calculations</span>
+<span class="sd">    sigma : FLT</span>
+<span class="sd">        Current stress</span>
+<span class="sd">    eps_prev : FLT</span>
+<span class="sd">        Previous total strain</span>
+<span class="sd">    T : FLT</span>
+<span class="sd">        Current temperature</span>
+<span class="sd">    T_prev : FLT</span>
+<span class="sd">        Previous temperature</span>
+<span class="sd">    T0 : FLT</span>
+<span class="sd">        Initial temperature</span>
+<span class="sd">    sigma_prev : FLT</span>
+<span class="sd">        Previous stress</span>
+<span class="sd">    Phi_fwd_prev : FLT</span>
+<span class="sd">        Forward transformation function value for the previous increment</span>
+<span class="sd">    Phi_rev_prev : FLT</span>
+<span class="sd">        Reverse transformation function value for the previous increment</span>
+<span class="sd">    E : FLT</span>
+<span class="sd">        Youngs modulus</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current value for martensitic volume fraction</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current value for transformation strain</span>
+<span class="sd">    eps_t_r : FLT</span>
+<span class="sd">        Current value for transformation strain at transformation reversal</span>
+<span class="sd">    MVF_r : FLT</span>
+<span class="sd">        Current value for martensitic volume fraction at transformation reversal</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    eps : FLT</span>
+<span class="sd">        Current total strain</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current transformation strain</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current martensitic volume fraction</span>
+<span class="sd">    H_cur : FLT</span>
+<span class="sd">        Current maximum transformation strain</span>
+<span class="sd">    Phi_fwd : FLT</span>
+<span class="sd">        Current Forward transformation function value</span>
+<span class="sd">    Phi_rev : FLT</span>
+<span class="sd">        Current Reverse transformation function value</span>
+<span class="sd">    chck : INT</span>
+<span class="sd">        Flag to describe if transformation is occuring, and in what direction.</span>
+<span class="sd">        chck=1 for forward transformation (A-&gt;M)</span>
+<span class="sd">             2 for reverse transformation (M-&gt;A)</span>
+<span class="sd">             0 for no transformation (Elastic)</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    
+    <span class="c1"># Solve for strain using elastic prediciton</span>
+    <span class="n">eps</span><span class="o">=</span><span class="n">sigma</span><span class="o">/</span><span class="n">E</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T0</span><span class="p">)</span><span class="o">+</span><span class="n">eps_t</span>
+    
+    <span class="c1"># Solve for current transformational strain  </span>
+    <span class="n">H_cur</span><span class="o">=</span><span class="n">H_cursolver</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_crit&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_min&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_sat&#39;</span><span class="p">])</span>
+    
+    <span class="c1"># Solve for hardening functions </span>
+    <span class="n">f_fwd</span> <span class="o">=</span> <span class="mf">.5</span><span class="o">*</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">MVF</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="p">)</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_2&#39;</span><span class="p">])</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">]</span>
+    <span class="n">f_rev</span> <span class="o">=</span> <span class="mf">.5</span><span class="o">*</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">MVF</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_3&#39;</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="p">)</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_4&#39;</span><span class="p">])</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Solve for the forward transformation surface</span>
+    <span class="n">Phi_fwd</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span><span class="o">*</span><span class="n">H_cur</span><span class="o">+</span><span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">f_fwd</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Solve for the reverse transformation surface</span>
+    <span class="n">Phi_rev</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="n">MVF_r</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">MVR_r</span> <span class="o">=</span><span class="mi">0</span>
+        <span class="c1"># Reverse transformation strain remains zero if Martensitic Strain at</span>
+        <span class="c1"># transformation reversal is zero</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Phi_rev</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">eps_t_r</span><span class="o">/</span><span class="n">MVF_r</span><span class="o">-</span><span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">f_rev</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Find the scaled projections of strain, temperature (and the scaled change</span>
+    <span class="c1"># (delta) in these values</span>
+    <span class="c1"># s: scaling factor</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="mf">0.001</span>
+    <span class="n">scaled_d_eps</span> <span class="o">=</span> <span class="n">s</span><span class="o">*</span><span class="p">(</span><span class="n">eps</span> <span class="o">-</span> <span class="n">eps_prev</span><span class="p">);</span>
+    <span class="n">scaled_d_T</span> <span class="o">=</span> <span class="n">s</span><span class="o">*</span><span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">T_prev</span><span class="p">);</span>
+    <span class="n">scaled_T</span> <span class="o">=</span> <span class="n">scaled_d_T</span> <span class="o">+</span> <span class="n">T_prev</span><span class="p">;</span>
+    
+    <span class="c1"># Find the scaled projection of stress using scaled projections for strain</span>
+    <span class="c1"># and temperature</span>
+    <span class="n">scaled_d_sigma</span><span class="o">=</span> <span class="n">E</span><span class="o">*</span><span class="p">((</span><span class="n">eps_prev</span><span class="o">+</span><span class="n">scaled_d_eps</span><span class="p">)</span> <span class="o">-</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">scaled_T</span> <span class="o">-</span> <span class="n">T0</span><span class="p">)</span> <span class="o">-</span> <span class="n">eps_t</span><span class="p">)</span> <span class="o">-</span> <span class="n">sigma_prev</span>
+    <span class="n">scaled_sigma</span><span class="o">=</span> <span class="n">scaled_d_sigma</span> <span class="o">+</span> <span class="n">sigma_prev</span><span class="p">;</span>
+    
+    <span class="c1"># Calculate the scaled projections for forward and reverse transformation</span>
+    <span class="c1"># surface</span>
+    <span class="c1"># Calculate the current transformational strain for these scaled values</span>
+    <span class="c1"># (required to find the transformation surfaces)</span>
+    <span class="n">scaled_H_cur</span> <span class="o">=</span> <span class="n">H_cursolver</span><span class="p">(</span><span class="n">scaled_sigma</span><span class="p">,</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_crit&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_min&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_sat&#39;</span><span class="p">])</span>
+    <span class="c1"># Forward transformation surface for scaled values</span>
+    <span class="n">scaled_Phi_fwd</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">scaled_sigma</span><span class="p">)</span><span class="o">*</span><span class="n">scaled_H_cur</span><span class="o">+</span><span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">scaled_sigma</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">scaled_T</span> <span class="o">-</span> <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">f_fwd</span> <span class="o">-</span> <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">]</span>
+    <span class="c1"># Reverse transformation surface for scaled values</span>
+    <span class="n">scaled_Phi_rev</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="n">MVF_r</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">MVR_r</span> <span class="o">=</span><span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">scaled_Phi_rev</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">scaled_sigma</span><span class="o">*</span><span class="n">eps_t_r</span><span class="o">/</span><span class="n">MVF_r</span> <span class="o">-</span> <span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">scaled_sigma</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">scaled_T</span> <span class="o">+</span> <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">f_rev</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">]</span>
+    
+    
+    <span class="c1"># Check for transformation</span>
+    <span class="c1"># Determine change in transformation surface from the previous value to the</span>
+    <span class="c1"># scaled projection</span>
+    <span class="n">scaled_d_Phi_fwd</span> <span class="o">=</span> <span class="n">scaled_Phi_fwd</span> <span class="o">-</span> <span class="n">Phi_fwd_prev</span>
+    <span class="n">scaled_d_Phi_rev</span> <span class="o">=</span> <span class="n">scaled_Phi_rev</span> <span class="o">-</span> <span class="n">Phi_rev_prev</span>
+    
+    <span class="c1"># Forward Transformation Check</span>
+    <span class="k">if</span> <span class="n">scaled_d_Phi_fwd</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">scaled_d_Phi_rev</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">Phi_fwd</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">MVF</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># Forward transformation</span>
+            <span class="n">chck</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># No transformation</span>
+            <span class="n">chck</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># Reverse transformation check    </span>
+    <span class="k">elif</span> <span class="n">scaled_d_Phi_rev</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">scaled_d_Phi_fwd</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">Phi_rev</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">MVF</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># Reverse transformation</span>
+            <span class="n">chck</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1">#No transformation</span>
+            <span class="n">chck</span> <span class="o">=</span> <span class="mi">0</span>
+        
+    <span class="k">elif</span> <span class="n">scaled_d_Phi_rev</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">scaled_d_Phi_fwd</span> <span class="o">&lt;=</span><span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># No transformation</span>
+        <span class="n">chck</span> <span class="o">=</span> <span class="mi">0</span>
+        
+    <span class="k">elif</span> <span class="n">scaled_d_Phi_fwd</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">scaled_d_Phi_rev</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">Phi_fwd</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">Phi_rev</span> <span class="o">&lt;=</span><span class="mi">0</span><span class="p">:</span>
+            <span class="c1">#No transformation</span>
+            <span class="n">chck</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">Phi_fwd</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">Phi_rev</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># Check for forward transformation</span>
+            <span class="k">if</span> <span class="n">Phi_fwd</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">MVF</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1"># Forward transformation</span>
+                <span class="n">chck</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># No transformation</span>
+                <span class="n">chck</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">elif</span> <span class="n">Phi_rev</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">Phi_fwd</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># Check for reverse transformation</span>
+            <span class="k">if</span> <span class="n">Phi_rev</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">MVF</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># Reverse transformation</span>
+                <span class="n">chck</span> <span class="o">=</span> <span class="mi">2</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1">#No transformation</span>
+                <span class="n">chck</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># If both transformation surfaces are greater than zero, check which one</span>
+        <span class="c1"># has the higher rate of change</span>
+        <span class="k">elif</span> <span class="n">Phi_fwd</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">Phi_rev</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">scaled_d_Phi_fwd</span> <span class="o">&gt;</span> <span class="n">scaled_d_Phi_rev</span><span class="p">:</span>
+                <span class="c1"># Check for forward transformation</span>
+                <span class="k">if</span> <span class="n">Phi_fwd</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">MVF</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="c1"># Forward transformation</span>
+                    <span class="n">chck</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># No transformation</span>
+                    <span class="n">chck</span> <span class="o">=</span> <span class="mi">0</span>
+            
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Check for reverse transformation</span>
+                <span class="k">if</span> <span class="n">Phi_rev</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">MVF</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># Reverse transformation</span>
+                    <span class="n">chck</span> <span class="o">=</span> <span class="mi">2</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1">#No transformation</span>
+                    <span class="n">chck</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1">#chck</span>
+    <span class="k">return</span> <span class="n">eps</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">H_cur</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span> <span class="n">Phi_rev</span><span class="p">,</span> <span class="n">chck</span></div>
+
+
+
+<div class="viewcode-block" id="Explicit_Transformation_Correction_stress">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Explicit_Transformation_Correction_stress">[docs]</a>
+<span class="k">def</span> <span class="nf">Explicit_Transformation_Correction_stress</span><span class="p">(</span> <span class="n">P</span><span class="p">,</span> <span class="n">TP</span><span class="p">,</span> <span class="n">chck</span><span class="p">,</span><span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span>\
+                                              <span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">H_cur</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span>\
+                                                  <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span> <span class="n">Phi_rev</span> <span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to return the outputs for Martensitic volume fraction, stress,</span>
+<span class="sd">    transformation strain, Young&#39;s modulus, etc. using explicit integration</span>
+<span class="sd">    scheme. Input variables are from elastic prediction.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    P : DICT</span>
+<span class="sd">        Material properties for the SMA. See the documentation for </span>
+<span class="sd">        all properties and their meanings.</span>
+<span class="sd">    TP : DICT</span>
+<span class="sd">        Transformation properties for the SMA. Just another dictionary </span>
+<span class="sd">        comprised of intermediate calculations</span>
+<span class="sd">    chck : INT</span>
+<span class="sd">        Flag to describe if transformation is occuring, and in what direction.</span>
+<span class="sd">        chck=1 for forward transformation (A-&gt;M)</span>
+<span class="sd">             2 for reverse transformation (M-&gt;A)</span>
+<span class="sd">             0 for no transformation (Elastic)</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current martensitic volume fraction</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current transformation strain</span>
+<span class="sd">    E : FLT</span>
+<span class="sd">        Youngs modulus</span>
+<span class="sd">    MVF_r : FLT</span>
+<span class="sd">        Current value for martensitic volume fraction at transformation reversal</span>
+<span class="sd">    eps_t_r : FLT</span>
+<span class="sd">        Current value for transformation strain at transformation reversal</span>
+<span class="sd">    sigma : FLT</span>
+<span class="sd">        Current stress</span>
+<span class="sd">    H_cur : FLT</span>
+<span class="sd">        Current maximum transformation strain</span>
+<span class="sd">    eps : FLT</span>
+<span class="sd">        Current total strain</span>
+<span class="sd">    T : FLT</span>
+<span class="sd">        Current temperature</span>
+<span class="sd">    T0 : FLT</span>
+<span class="sd">        Initial temperature</span>
+<span class="sd">    Phi_fwd : FLT</span>
+<span class="sd">        Current Forward transformation function value</span>
+<span class="sd">    Phi_rev : FLT</span>
+<span class="sd">        Current Reverse transformation function value</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current martensitic volume fraction</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current transformation strain</span>
+<span class="sd">    E : FLT</span>
+<span class="sd">        Youngs modulus</span>
+<span class="sd">    MVF_r : FLT</span>
+<span class="sd">        Current value for martensitic volume fraction at transformation reversal</span>
+<span class="sd">    eps_t_r : FLT</span>
+<span class="sd">        Current value for transformation strain at transformation reversal</span>
+<span class="sd">    eps : FLT</span>
+<span class="sd">        Current total strain</span>
+<span class="sd">    Phi_fwd : FLT</span>
+<span class="sd">        Current Forward transformation function value</span>
+<span class="sd">    Phi_rev : FLT</span>
+<span class="sd">        Current Reverse transformation function value</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    
+    <span class="c1"># Return elastic predictions if no transformation is occuring</span>
+    <span class="k">if</span> <span class="n">chck</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span> <span class="n">Phi_rev</span>
+     
+    <span class="c1"># Forward Transformation correction    </span>
+    <span class="k">if</span> <span class="n">chck</span> <span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="p">(</span><span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span>    \
+         <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">)</span> <span class="o">=</span> \
+            <span class="n">Explicit_fwd_transformation_correction_stress</span><span class="p">(</span> \
+                        <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">H_cur</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">TP</span> <span class="p">)</span>
+        
+    <span class="c1"># Reverse Transformation correction    </span>
+    <span class="k">elif</span> <span class="n">chck</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="p">(</span><span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span>     \
+         <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_rev</span> <span class="p">)</span> <span class="o">=</span> \
+            <span class="n">Explicit_rev_transformation_correction_stress</span><span class="p">(</span> \
+                <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span><span class="n">P</span><span class="p">,</span> <span class="n">TP</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span> <span class="n">Phi_rev</span></div>
+
+
+<div class="viewcode-block" id="Explicit_fwd_transformation_correction_stress">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Explicit_fwd_transformation_correction_stress">[docs]</a>
+<span class="k">def</span> <span class="nf">Explicit_fwd_transformation_correction_stress</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">H_cur</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span><span class="n">P</span><span class="p">,</span> <span class="n">TP</span> <span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to correct for forward transformation using explicit integration scheme</span>
+<span class="sd">    Input variables are from elastic prediction</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current martensitic volume fraction</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current transformation strain</span>
+<span class="sd">    sigma : FLT</span>
+<span class="sd">        Current stress</span>
+<span class="sd">    H_cur : FLT</span>
+<span class="sd">        Current maximum transformation strain</span>
+<span class="sd">    eps : FLT</span>
+<span class="sd">        Current total strain</span>
+<span class="sd">    T : FLT</span>
+<span class="sd">        Current temperature</span>
+<span class="sd">    T0 : FLT</span>
+<span class="sd">        Initial temperature</span>
+<span class="sd">    P : DICT</span>
+<span class="sd">        Material properties for the SMA. See the documentation for </span>
+<span class="sd">        all properties and their meanings.</span>
+<span class="sd">    TP : DICT</span>
+<span class="sd">        Transformation properties for the SMA. Just another dictionary </span>
+<span class="sd">        comprised of intermediate calculations</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current martensitic volume fraction</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current transformation strain</span>
+<span class="sd">    E : FLT</span>
+<span class="sd">        Youngs modulus</span>
+<span class="sd">    MVF_r : FLT</span>
+<span class="sd">        Current value for martensitic volume fraction at transformation reversal</span>
+<span class="sd">    eps_t_r : FLT</span>
+<span class="sd">        Current value for transformation strain at transformation reversal</span>
+<span class="sd">    eps : FLT</span>
+<span class="sd">        Current total strain</span>
+<span class="sd">    Phi_fwd : FLT</span>
+<span class="sd">        Current Forward transformation function value</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># P: Material Properties</span>
+    <span class="c1"># TP: Transformation Properties</span>
+
+    <span class="c1"># Calculate forward hardening function</span>
+    <span class="n">f_fwd</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span><span class="o">*</span><span class="n">H_cur</span><span class="o">+</span><span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Solve for corrected MVF (explicit formula only works for n1=n2=n3=n4=1)</span>
+    <span class="c1"># Hold values of MVF from previous load to for calculation of eps_t </span>
+    <span class="n">MVF_previous</span><span class="o">=</span><span class="n">MVF</span>
+    <span class="n">MVF</span><span class="o">=</span><span class="p">(</span><span class="n">f_fwd</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">]</span>
+    <span class="c1"># Correct if MVF bounds violated</span>
+    <span class="k">if</span> <span class="n">MVF</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">MVF</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># Solve for transformation direction</span>
+    <span class="n">lamda</span> <span class="o">=</span> <span class="n">H_cur</span><span class="o">*</span><span class="n">sign</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+
+    <span class="c1"># Solve for transformation strain</span>
+    <span class="n">eps_t</span><span class="o">=</span><span class="n">eps_t</span><span class="o">+</span><span class="p">(</span><span class="n">MVF</span><span class="o">-</span><span class="n">MVF_previous</span><span class="p">)</span><span class="o">*</span><span class="n">lamda</span>
+    <span class="c1"># Update transformation strain and martensitic volume fraction at transformation reversal</span>
+    <span class="n">eps_t_r</span><span class="o">=</span><span class="n">eps_t</span>
+    <span class="n">MVF_r</span><span class="o">=</span><span class="n">MVF</span>
+
+    <span class="c1"># Update Output Variables</span>
+    <span class="c1"># Solve for Young&#39;s Modulus</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">MVF</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">]))</span>
+    <span class="c1"># E= inv(inv(P[&#39;E_A&#39;])+MVF*(inv(P[&#39;E_M&#39;])-inv(P[&#39;E_A&#39;])))</span>
+    <span class="c1"># Solve for Strain</span>
+    <span class="n">eps</span><span class="o">=</span><span class="n">sigma</span><span class="o">/</span><span class="n">E</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T_0</span><span class="p">)</span><span class="o">+</span><span class="n">eps_t</span>
+
+    <span class="c1"># Update the forward transformation surface</span>
+    <span class="n">Phi_fwd</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span><span class="o">*</span><span class="n">H_cur</span><span class="o">+</span><span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">f_fwd</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_fwd</span></div>
+
+
+<div class="viewcode-block" id="Explicit_rev_transformation_correction_stress">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Explicit_rev_transformation_correction_stress">[docs]</a>
+<span class="k">def</span> <span class="nf">Explicit_rev_transformation_correction_stress</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span><span class="n">P</span><span class="p">,</span> <span class="n">TP</span> <span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to correct for reverse transformation using implicit integration scheme</span>
+<span class="sd">    Input variables are from elastic prediction</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current martensitic volume fraction</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current transformation strain</span>
+<span class="sd">    MVF_r : FLT</span>
+<span class="sd">        Current value for martensitic volume fraction at transformation reversal</span>
+<span class="sd">    eps_t_r : FLT</span>
+<span class="sd">        Current value for transformation strain at transformation reversal</span>
+<span class="sd">    sigma : FLT</span>
+<span class="sd">        Current stress</span>
+<span class="sd">    eps : FLT</span>
+<span class="sd">        Current total strain</span>
+<span class="sd">    T : FLT</span>
+<span class="sd">        Current temperature</span>
+<span class="sd">    T0 : FLT</span>
+<span class="sd">        Initial temperature</span>
+<span class="sd">    P : DICT</span>
+<span class="sd">        Material properties for the SMA. See the documentation for </span>
+<span class="sd">        all properties and their meanings.</span>
+<span class="sd">    TP : DICT</span>
+<span class="sd">        Transformation properties for the SMA. Just another dictionary </span>
+<span class="sd">        comprised of intermediate calculations</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current martensitic volume fraction</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current transformation strain</span>
+<span class="sd">    E : FLT</span>
+<span class="sd">        Youngs modulus</span>
+<span class="sd">    MVF_r : FLT</span>
+<span class="sd">        Current value for martensitic volume fraction at transformation reversal</span>
+<span class="sd">    eps_t_r : FLT</span>
+<span class="sd">        Current value for transformation strain at transformation reversal</span>
+<span class="sd">    eps : FLT</span>
+<span class="sd">        Current total strain</span>
+<span class="sd">    Phi_rev : FLT</span>
+<span class="sd">        Current Reverse transformation function value</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># Calculate reverse hardening function</span>
+    <span class="n">f_rev</span><span class="o">=-</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">eps_t_r</span><span class="o">/</span><span class="n">MVF_r</span><span class="o">-</span><span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Hold values of MVF from previous load to for calculation of eps_t </span>
+    <span class="n">MVF_previous</span><span class="o">=</span><span class="n">MVF</span>
+    <span class="c1"># Solve for corrected MVF (explicit formula only works for n1=n2=n3=n4=1)</span>
+    <span class="n">MVF</span><span class="o">=</span><span class="p">(</span><span class="n">f_rev</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">]</span>
+    <span class="c1"># Correct if MVF bounds violated</span>
+    <span class="k">if</span> <span class="n">MVF</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">MVF</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Solve for Transformation Direction</span>
+    <span class="n">lamda</span> <span class="o">=</span> <span class="n">eps_t_r</span><span class="o">/</span><span class="n">MVF_r</span>
+
+    <span class="c1"># Solve for transformation strain</span>
+    <span class="n">eps_t</span><span class="o">=</span><span class="n">eps_t</span><span class="o">+</span><span class="p">(</span><span class="n">MVF</span><span class="o">-</span><span class="n">MVF_previous</span><span class="p">)</span><span class="o">*</span><span class="n">lamda</span>
+    <span class="c1"># eps_t_r does not change</span>
+
+    <span class="c1"># Update transformation strain and martensitic volume fraction at transformation reversal</span>
+    <span class="k">if</span> <span class="n">MVF</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">MVF_r</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">eps_t_r</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+    <span class="c1"># Update Output Variables</span>
+    <span class="c1"># Solve for Young&#39;s Modulus</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">MVF</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">]))</span><span class="o">**-</span><span class="mi">1</span>
+    <span class="c1"># Solve for Strain</span>
+    <span class="n">eps</span><span class="o">=</span><span class="n">sigma</span><span class="o">/</span><span class="n">E</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T_0</span><span class="p">)</span><span class="o">+</span><span class="n">eps_t</span>
+
+    <span class="c1"># Solve for the reverse transformation surface</span>
+    <span class="n">Phi_rev</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">if</span> <span class="n">MVF_r</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Reverse transformation strain remains zero if Martensitic Strain at transformation reversal is zero</span>
+        <span class="n">Phi_rev</span><span class="o">=</span><span class="mi">0</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Phi_rev</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">eps_t_r</span><span class="o">/</span><span class="n">MVF_r</span><span class="o">-</span><span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">f_rev</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_rev</span></div>
+
+
+<div class="viewcode-block" id="Implicit_Transformation_Correction_stress">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Implicit_Transformation_Correction_stress">[docs]</a>
+<span class="k">def</span> <span class="nf">Implicit_Transformation_Correction_stress</span><span class="p">(</span> <span class="n">P</span><span class="p">,</span> <span class="n">TP</span><span class="p">,</span> <span class="n">chck</span><span class="p">,</span><span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span>\
+                                              <span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">H_cur</span><span class="p">,</span>\
+                                                  <span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span> <span class="n">Phi_rev</span> <span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to return the outputs for Martensitic volume fraction, stress,</span>
+<span class="sd">    transformation strain, Young&#39;s modulus, etc. using implicit integration</span>
+<span class="sd">    scheme. Input variables are from elastic prediction</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    P : DICT</span>
+<span class="sd">        Material properties for the SMA. See the documentation for </span>
+<span class="sd">        all properties and their meanings.</span>
+<span class="sd">    TP : DICT</span>
+<span class="sd">        Transformation properties for the SMA. Just another dictionary </span>
+<span class="sd">        comprised of intermediate calculations</span>
+<span class="sd">    chck : INT</span>
+<span class="sd">        Flag to describe if transformation is occuring, and in what direction.</span>
+<span class="sd">        chck=1 for forward transformation (A-&gt;M)</span>
+<span class="sd">             2 for reverse transformation (M-&gt;A)</span>
+<span class="sd">             0 for no transformation (Elastic)</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current martensitic volume fraction</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current transformation strain</span>
+<span class="sd">    E : FLT</span>
+<span class="sd">        Youngs modulus</span>
+<span class="sd">    MVF_r : FLT</span>
+<span class="sd">        Current value for martensitic volume fraction at transformation reversal</span>
+<span class="sd">    eps_t_r : FLT</span>
+<span class="sd">        Current value for transformation strain at transformation reversal</span>
+<span class="sd">    sigma : FLT</span>
+<span class="sd">        Current stress</span>
+<span class="sd">    H_cur : FLT</span>
+<span class="sd">        Current maximum transformation strain</span>
+<span class="sd">    eps : FLT</span>
+<span class="sd">        Current total strain</span>
+<span class="sd">    T : FLT</span>
+<span class="sd">        Current temperature</span>
+<span class="sd">    T0 : FLT</span>
+<span class="sd">        Initial temperature</span>
+<span class="sd">    Phi_fwd : FLT</span>
+<span class="sd">        Current Forward transformation function value</span>
+<span class="sd">    Phi_rev : FLT</span>
+<span class="sd">        Current Reverse transformation function value</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current martensitic volume fraction</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current transformation strain</span>
+<span class="sd">    E : FLT</span>
+<span class="sd">        Youngs modulus</span>
+<span class="sd">    MVF_r : FLT</span>
+<span class="sd">        Current value for martensitic volume fraction at transformation reversal</span>
+<span class="sd">    eps_t_r : FLT</span>
+<span class="sd">        Current value for transformation strain at transformation reversal</span>
+<span class="sd">    eps : FLT</span>
+<span class="sd">        Current total strain</span>
+<span class="sd">    Phi_fwd : FLT</span>
+<span class="sd">        Current Forward transformation function value</span>
+<span class="sd">    Phi_rev : FLT</span>
+<span class="sd">        Current Reverse transformation function value</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    
+    <span class="c1"># Return elastic predictions if no transformation is occuring</span>
+    <span class="k">if</span> <span class="n">chck</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span> <span class="n">Phi_rev</span>
+
+    <span class="c1"># Forward transformation correction</span>
+    <span class="k">if</span> <span class="n">chck</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        
+        <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span>   \
+        <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_fwd</span> <span class="o">=</span> \
+            <span class="n">Implicit_fwd_transformation_correction_stress</span><span class="p">(</span> \
+                <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span><span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> \
+                <span class="n">H_cur</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span><span class="n">Phi_fwd</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">TP</span> <span class="p">)</span>
+        
+    <span class="c1"># Reverse transformation correction    </span>
+    <span class="k">elif</span> <span class="n">chck</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span>
+        <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span>   \
+        <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_rev</span> <span class="o">=</span> \
+            <span class="n">Implicit_rev_transformation_correction_stress</span><span class="p">(</span> \
+                <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span><span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> \
+                <span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span><span class="n">Phi_rev</span><span class="p">,</span><span class="n">P</span><span class="p">,</span> <span class="n">TP</span><span class="p">)</span>
+            
+    <span class="k">return</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span> <span class="n">Phi_rev</span></div>
+
+
+<div class="viewcode-block" id="Implicit_fwd_transformation_correction_stress">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Implicit_fwd_transformation_correction_stress">[docs]</a>
+<span class="k">def</span> <span class="nf">Implicit_fwd_transformation_correction_stress</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span><span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">H_cur</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span><span class="n">P</span><span class="p">,</span> <span class="n">TP</span> <span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to correct for forward transformation using implicit integration scheme.</span>
+<span class="sd">    Input variables are from elastic prediction</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current martensitic volume fraction</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current transformation strain</span>
+<span class="sd">    E : FLT</span>
+<span class="sd">        Youngs modulus</span>
+<span class="sd">    MVF_r : FLT</span>
+<span class="sd">        Current value for martensitic volume fraction at transformation reversal</span>
+<span class="sd">    eps_t_r : FLT</span>
+<span class="sd">        Current value for transformation strain at transformation reversal</span>
+<span class="sd">    sigma : FLT</span>
+<span class="sd">        Current stress</span>
+<span class="sd">    H_cur : FLT</span>
+<span class="sd">        Current maximum transformation strain</span>
+<span class="sd">    eps : FLT</span>
+<span class="sd">        Current total strain</span>
+<span class="sd">    T : FLT</span>
+<span class="sd">        Current temperature</span>
+<span class="sd">    T0 : FLT</span>
+<span class="sd">        Initial temperature</span>
+<span class="sd">    P : DICT</span>
+<span class="sd">        Material properties for the SMA. See the documentation for </span>
+<span class="sd">        all properties and their meanings.</span>
+<span class="sd">    TP : DICT</span>
+<span class="sd">        Transformation properties for the SMA. Just another dictionary </span>
+<span class="sd">        comprised of intermediate calculations</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    exception</span>
+<span class="sd">        Return mapping algorithm failed. </span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current martensitic volume fraction</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current transformation strain</span>
+<span class="sd">    E : FLT</span>
+<span class="sd">        Youngs modulus</span>
+<span class="sd">    MVF_r : FLT</span>
+<span class="sd">        Current value for martensitic volume fraction at transformation reversal</span>
+<span class="sd">    eps_t_r : FLT</span>
+<span class="sd">        Current value for transformation strain at transformation reversal</span>
+<span class="sd">    eps : FLT</span>
+<span class="sd">        Current total strain</span>
+<span class="sd">    Phi_fwd : FLT</span>
+<span class="sd">        Current Forward transformation function value</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    
+    <span class="c1"># Find initial values for iteration (k=1)</span>
+    <span class="c1"># Evaluate transformation direction (Lambda)</span>
+    <span class="n">Lambda</span> <span class="o">=</span> <span class="n">H_cur</span><span class="o">*</span><span class="n">sign</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="c1"># Iterate MVF until its change after an iteration is negligible (less than</span>
+    <span class="c1"># assigned tolerance MVF_tolerance) or until Martensitic volume fraction</span>
+    <span class="c1"># reaches bound of 1</span>
+    <span class="n">maxiter</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxiter</span><span class="p">):</span>
+        <span class="c1"># Determine the partial derivative of the current</span>
+        <span class="c1"># transformation strain (Hcur) and transformation surface (Phi)</span>
+        <span class="c1"># with respect to stress using functions for these equations</span>
+        <span class="n">partial_Hcur_sigma_k</span><span class="o">=</span><span class="n">partial_Hcur_sigma</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_crit&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_sat&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_min&#39;</span><span class="p">])</span>
+        <span class="n">partial_Phi_fwd_sigma_k</span><span class="o">=</span><span class="n">partial_Phi_fwd_sigma</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="n">H_cur</span><span class="p">,</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">],</span><span class="n">partial_Hcur_sigma_k</span><span class="p">,</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span>
+        
+        <span class="c1"># Determine the partial derivative of transformation surface</span>
+        <span class="c1"># (Phi) with respect to Martensitic volume fraction</span>
+        <span class="n">partial_Phi_fwd_MVF_k</span><span class="o">=</span><span class="n">partial_Phi_fwd_MVF</span><span class="p">(</span><span class="n">MVF</span><span class="p">,</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;delta&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_2&#39;</span><span class="p">],</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">],</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">],</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">])</span>
+        
+        <span class="c1"># Use partial derivatives and MVF evolution to solve A^t</span>
+        <span class="n">A_t</span><span class="o">=</span><span class="n">partial_Phi_fwd_MVF_k</span><span class="o">-</span><span class="n">partial_Phi_fwd_sigma_k</span><span class="o">*</span><span class="n">E</span><span class="o">*</span><span class="p">((</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">+</span><span class="n">Lambda</span><span class="p">)</span>
+        
+        <span class="c1"># Determine the correction for MVF for the current iteration</span>
+        <span class="n">delta_MVF</span><span class="o">=-</span><span class="n">Phi_fwd</span><span class="o">/</span><span class="n">partial_Phi_fwd_MVF_k</span>
+        
+        <span class="c1"># Hold the MVF value of the previous iteration in case of</span>
+        <span class="c1"># MVF &gt; 1 correction</span>
+        <span class="n">MVF_k</span><span class="o">=</span><span class="n">MVF</span>
+        <span class="c1"># Update MVF using the delta MVF value</span>
+        <span class="n">MVF</span><span class="o">=</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta_MVF</span>
+        
+        <span class="c1"># Correct if MVF reaches a bound of 1</span>
+        <span class="k">if</span> <span class="n">MVF</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">MVF</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="c1"># Recalculate transformation strain for corrected MVF</span>
+            <span class="n">eps_t</span><span class="o">=</span><span class="n">eps_t</span><span class="o">+</span><span class="p">(</span><span class="n">MVF</span><span class="o">-</span><span class="n">MVF_k</span><span class="p">)</span><span class="o">*</span><span class="n">Lambda</span>
+            <span class="c1"># Youngs Modulus for completely martensite material</span>
+            <span class="n">E</span><span class="o">=</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span>
+            <span class="c1"># Update transformation reversal values</span>
+            <span class="n">eps_t_r</span><span class="o">=</span><span class="n">eps_t</span>
+            <span class="n">MVF_r</span><span class="o">=</span><span class="n">MVF</span>
+            <span class="k">break</span>        
+        <span class="c1"># Update transformation strain using  calculated values for change in</span>
+        <span class="c1"># MVF (delta_MVF) and transformation direction</span>
+        <span class="n">eps_t</span><span class="o">=</span><span class="n">eps_t</span><span class="o">+</span><span class="n">delta_MVF</span><span class="o">*</span><span class="n">Lambda</span><span class="p">;</span>
+        <span class="c1"># Update value for Young&#39;s Modulus </span>
+        <span class="n">E</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">MVF</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">]))</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1"># Update transformation surface/output variables for next</span>
+        <span class="c1"># iteration using values for current transformation strain,</span>
+        <span class="c1"># transformation direction and hardening function</span>
+        <span class="c1"># Update current transformation strain</span>
+        <span class="n">H_cur</span><span class="o">=</span><span class="n">H_cursolver</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_crit&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_min&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_sat&#39;</span><span class="p">])</span>
+        <span class="c1"># Update transformation direction</span>
+        <span class="n">Lambda</span> <span class="o">=</span> <span class="n">H_cur</span><span class="o">*</span><span class="n">sign</span><span class="p">(</span><span class="n">sigma</span><span class="p">);</span>
+        <span class="c1"># Update hardeing function</span>
+        <span class="n">f_fwd</span> <span class="o">=</span> <span class="mf">.5</span><span class="o">*</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">MVF</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">MVF</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;delta&#39;</span><span class="p">])</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">]</span><span class="o">-</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_2&#39;</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;delta&#39;</span><span class="p">])</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_2&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_2&#39;</span><span class="p">])</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">]</span>
+        <span class="c1"># Update transformation surface</span>
+        <span class="n">Phi_fwd</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span><span class="o">*</span><span class="n">H_cur</span><span class="o">+</span><span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">f_fwd</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">]</span>
+        
+        <span class="c1"># Update transformation reversal values</span>
+        <span class="n">eps_t_r</span><span class="o">=</span><span class="n">eps_t</span>
+        <span class="n">MVF_r</span><span class="o">=</span><span class="n">MVF</span>
+        
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">delta_MVF</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;MVF_tolerance&#39;</span><span class="p">]:</span>
+            <span class="k">break</span>
+        
+        <span class="k">if</span> <span class="nb">iter</span> <span class="o">==</span> <span class="n">maxiter</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">exception</span><span class="p">([</span><span class="s1">&#39;ERROR: MAXIMUM NUMBER OF ITERATIONS (&#39;</span><span class="p">,</span> <span class="n">num2str</span><span class="p">(</span><span class="nb">iter</span><span class="p">),</span>  <span class="s1">&#39;) REACHED IN THE RMA&#39;</span><span class="p">])</span>
+        
+        
+    <span class="c1"># Update strain (eps) using known values of sigma, T and updated values</span>
+    <span class="c1"># of E and eps_t</span>
+    <span class="n">eps</span><span class="o">=</span> <span class="n">sigma</span><span class="o">/</span><span class="n">E</span> <span class="o">+</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T_0</span><span class="p">)</span><span class="o">+</span><span class="n">eps_t</span>
+    <span class="k">return</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_fwd</span></div>
+
+
+<div class="viewcode-block" id="Implicit_rev_transformation_correction_stress">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Implicit_rev_transformation_correction_stress">[docs]</a>
+<span class="k">def</span> <span class="nf">Implicit_rev_transformation_correction_stress</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span><span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">Phi_rev</span><span class="p">,</span><span class="n">P</span><span class="p">,</span> <span class="n">TP</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to correct for reverse transformation using implicit integration scheme</span>
+<span class="sd">    Input variables are from elastic prediction/ transformation check</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current martensitic volume fraction</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current transformation strain</span>
+<span class="sd">    E : FLT</span>
+<span class="sd">        Youngs modulus</span>
+<span class="sd">    MVF_r : FLT</span>
+<span class="sd">        Current value for martensitic volume fraction at transformation reversal</span>
+<span class="sd">    eps_t_r : FLT</span>
+<span class="sd">        Current value for transformation strain at transformation reversal</span>
+<span class="sd">    sigma : FLT</span>
+<span class="sd">        Current stress</span>
+<span class="sd">    eps : FLT</span>
+<span class="sd">        Current total strain</span>
+<span class="sd">    T : FLT</span>
+<span class="sd">        Current temperature</span>
+<span class="sd">    T0 : FLT</span>
+<span class="sd">        Initial temperature</span>
+<span class="sd">    P : DICT</span>
+<span class="sd">        Material properties for the SMA. See the documentation for </span>
+<span class="sd">        all properties and their meanings.</span>
+<span class="sd">    TP : DICT</span>
+<span class="sd">        Transformation properties for the SMA. Just another dictionary </span>
+<span class="sd">        comprised of intermediate calculations</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    exception</span>
+<span class="sd">        Return mapping algorithm failed. </span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    MVF : FLT</span>
+<span class="sd">        Current martensitic volume fraction</span>
+<span class="sd">    eps_t : FLT</span>
+<span class="sd">        Current transformation strain</span>
+<span class="sd">    E : FLT</span>
+<span class="sd">        Youngs modulus</span>
+<span class="sd">    MVF_r : FLT</span>
+<span class="sd">        Current value for martensitic volume fraction at transformation reversal</span>
+<span class="sd">    eps_t_r : FLT</span>
+<span class="sd">        Current value for transformation strain at transformation reversal</span>
+<span class="sd">    eps : FLT</span>
+<span class="sd">        Current total strain</span>
+<span class="sd">    Phi_rev : FLT</span>
+<span class="sd">        Current Reverse transformation function value</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="c1"># Find initial values for iteration (k=1)</span>
+    <span class="c1"># Transformation Direction for reverse transformation</span>
+    <span class="n">Lamda</span> <span class="o">=</span> <span class="n">eps_t_r</span><span class="o">/</span><span class="n">MVF_r</span>
+
+    <span class="c1"># Iterate MVF until its change after an iteration is negligible (less than</span>
+    <span class="c1"># assigned tolerance MVF_tolerance) or until MVF reaches bound of 0</span>
+
+    <span class="n">maxiter</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxiter</span><span class="p">):</span>
+        
+        <span class="c1"># Determine the partial derivative of the transformation</span>
+        <span class="c1"># surface (Phi) with respect to stress</span>
+        <span class="n">partial_Phi_rev_sigma_k</span><span class="o">=-</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">eps_t_r</span><span class="o">/</span><span class="n">MVF_r</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span>
+        
+        <span class="c1"># Determine the partial derivative of transformation surface</span>
+        <span class="c1"># (Phi) with respect to Martensitic volume fraction</span>
+        <span class="n">partial_Phi_rev_MVF_k</span><span class="o">=</span><span class="n">partial_Phi_rev_MVF</span><span class="p">(</span><span class="n">MVF</span><span class="p">,</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;delta&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_3&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_4&#39;</span><span class="p">],</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">],</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">],</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">])</span>
+        
+        <span class="c1"># Use partial derivatives and MVF evolution to solve A^t</span>
+        <span class="n">A_t</span><span class="o">=</span><span class="n">partial_Phi_rev_MVF_k</span><span class="o">-</span><span class="n">partial_Phi_rev_sigma_k</span><span class="o">*</span><span class="n">E</span><span class="o">*</span><span class="p">((</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">+</span><span class="n">Lamda</span><span class="p">)</span>
+        
+        <span class="c1"># Determine the correction for MVF for the current iteration</span>
+        <span class="n">delta_MVF</span><span class="o">=-</span><span class="n">Phi_rev</span><span class="o">/</span><span class="n">partial_Phi_rev_MVF_k</span>
+        
+        <span class="c1"># Update MVF using the delta MVF value</span>
+        <span class="c1"># Hold the MVF value of the previous iteration in case of</span>
+        <span class="c1"># MVF &lt; 0 correction</span>
+        <span class="n">MVF_k</span><span class="o">=</span><span class="n">MVF</span>
+        <span class="n">MVF</span><span class="o">=</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta_MVF</span>
+        
+        <span class="c1"># Correct if MVF reaches a bound of 0</span>
+        <span class="k">if</span> <span class="n">MVF</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">MVF</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="c1"># Recalculate transformation strain for corrected MVF</span>
+            <span class="n">eps_t</span><span class="o">=</span><span class="n">eps_t</span><span class="o">+</span><span class="p">(</span><span class="n">MVF</span><span class="o">-</span><span class="n">MVF_k</span><span class="p">)</span><span class="o">*</span><span class="n">Lamda</span>
+            <span class="c1"># Youngs Modulus for austenite material</span>
+            <span class="n">E</span><span class="o">=</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">]</span>
+            <span class="c1"># Update transformation reversal values to zero</span>
+            <span class="n">eps_t_r</span><span class="o">=</span><span class="mi">0</span>
+            <span class="n">MVF_r</span><span class="o">=</span><span class="mi">0</span>
+            <span class="k">break</span>
+        
+    
+        <span class="c1"># Update transformation strain using calculated values for change in</span>
+        <span class="c1"># MVF (delta_MVF) and transformation direction</span>
+        <span class="n">eps_t</span><span class="o">=</span><span class="n">eps_t</span><span class="o">+</span><span class="n">delta_MVF</span><span class="o">*</span><span class="n">Lamda</span>
+        <span class="c1"># Update value for Young&#39;s Modulus and use this value to determine</span>
+        <span class="c1"># stress (sigma)</span>
+        
+        <span class="n">E</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">MVF</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">]))</span><span class="o">**-</span><span class="mi">1</span>
+    
+        
+        <span class="c1"># Update transformation surface/output variables for next</span>
+        <span class="c1"># iteration</span>
+        <span class="c1"># Update transformation direction</span>
+
+        <span class="n">Lamda</span> <span class="o">=</span> <span class="n">eps_t_r</span><span class="o">/</span><span class="n">MVF_r</span>
+        <span class="c1"># Update hardening function</span>
+        <span class="n">f_rev</span> <span class="o">=</span> <span class="mf">.5</span><span class="o">*</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">MVF</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_3&#39;</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">MVF</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;delta&#39;</span><span class="p">])</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_3&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_3&#39;</span><span class="p">]</span><span class="o">-</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_4&#39;</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;delta&#39;</span><span class="p">])</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_4&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_4&#39;</span><span class="p">])</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">]</span>
+        <span class="c1"># Update transformation surface</span>
+        <span class="n">Phi_rev</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">eps_t_r</span><span class="o">/</span><span class="n">MVF_r</span><span class="o">-</span><span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">f_rev</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">]</span>
+        
+        <span class="c1"># Transformation reversal values remain the same</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">delta_MVF</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;MVF_tolerance&#39;</span><span class="p">]:</span>
+            <span class="k">break</span>
+    
+        
+        <span class="k">if</span> <span class="nb">iter</span> <span class="o">==</span> <span class="n">maxiter</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">exception</span><span class="p">([</span><span class="s1">&#39;ERROR: MAXIMUM NUMBER OF ITERATIONS (&#39;</span><span class="p">,</span> <span class="n">num2str</span><span class="p">(</span><span class="nb">iter</span><span class="p">),</span>  <span class="s1">&#39;) REACHED IN THE RMA&#39;</span><span class="p">])</span>
+
+
+    <span class="c1"># Update strain (eps) using known values of sigma, T and updated values </span>
+    <span class="c1"># of E and eps_t</span>
+    <span class="n">eps</span><span class="o">=</span> <span class="n">sigma</span><span class="o">/</span><span class="n">E</span> <span class="o">+</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T_0</span><span class="p">)</span><span class="o">+</span><span class="n">eps_t</span>
+    <span class="k">return</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_rev</span></div>
+
+
+<div class="viewcode-block" id="partial_Phi_fwd_MVF">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Phi_fwd_MVF">[docs]</a>
+<span class="k">def</span> <span class="nf">partial_Phi_fwd_MVF</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">a3</span> <span class="p">):</span>
+    <span class="c1"># Solve for the partial derivative of transformation surfade Phi with</span>
+    <span class="c1"># respect to the martensitic volume fraction MVF.</span>
+    <span class="n">partial_Phi_fwd_MVF</span><span class="o">=-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n2</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n2</span><span class="o">*</span><span class="n">MVF</span><span class="o">+</span><span class="n">MVF</span><span class="o">*</span><span class="p">(</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n1</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n1</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n2</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">delta</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n2</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n2</span><span class="o">+</span><span class="p">(</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n1</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">delta</span><span class="p">)</span><span class="o">*</span><span class="n">a1</span>
+    
+    <span class="k">return</span> <span class="n">partial_Phi_fwd_MVF</span></div>
+
+
+<div class="viewcode-block" id="partial_Phi_fwd_sigma">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Phi_fwd_sigma">[docs]</a>
+<span class="k">def</span> <span class="nf">partial_Phi_fwd_sigma</span><span class="p">(</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">Hcur</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">partial_H_cur_sigma</span><span class="p">,</span> <span class="n">E_M</span><span class="p">,</span> <span class="n">E_A</span> <span class="p">):</span>
+    <span class="c1"># Solve the partial derivative of forward Transformation Surface (Phi_t) </span>
+    <span class="c1"># with respect to stress (sigma)</span>
+
+    <span class="k">if</span> <span class="n">sigma</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">partial_Phi_fwd_t_sigma</span><span class="o">=-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">D</span><span class="p">)</span><span class="o">*</span><span class="n">Hcur</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">D</span><span class="p">)</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span><span class="o">*</span><span class="n">partial_H_cur_sigma</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">E_M</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">E_A</span><span class="p">)</span><span class="o">*</span><span class="n">sigma</span>
+    <span class="k">elif</span> <span class="n">sigma</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">partial_Phi_fwd_t_sigma</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">D</span><span class="p">)</span><span class="o">*</span><span class="n">Hcur</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">D</span><span class="p">)</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span><span class="o">*</span><span class="n">partial_H_cur_sigma</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">E_M</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">E_A</span><span class="p">)</span><span class="o">*</span><span class="n">sigma</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">partial_Phi_fwd_t_sigma</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">return</span> <span class="n">partial_Phi_fwd_t_sigma</span></div>
+
+
+<div class="viewcode-block" id="partial_Phi_rev_MVF">
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Phi_rev_MVF">[docs]</a>
+<span class="k">def</span> <span class="nf">partial_Phi_rev_MVF</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">n3</span><span class="p">,</span> <span class="n">n4</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">a3</span> <span class="p">):</span>
+    <span class="c1"># Solve for the partial derivative of transformation surfade Phi with</span>
+    <span class="c1"># respect to the martensitic volume fraction MVF.</span>
+    
+    <span class="n">partial_Phi_rev_MVF</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n4</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n4</span><span class="o">*</span><span class="n">MVF</span><span class="o">+</span><span class="n">MVF</span><span class="o">*</span><span class="p">(</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n3</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n3</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n4</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">delta</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n4</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n4</span><span class="o">+</span><span class="p">(</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n3</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">delta</span><span class="p">)</span><span class="o">*</span><span class="n">a2</span>
+    <span class="k">return</span> <span class="n">partial_Phi_rev_MVF</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Patrick Walgren and Jacob Mingear.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

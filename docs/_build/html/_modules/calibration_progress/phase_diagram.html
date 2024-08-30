@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>calibration_progress.phase_diagram &mdash; SMA-REACT 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            SMA-REACT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SMA-REACT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">calibration_progress.phase_diagram</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for calibration_progress.phase_diagram</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">calibration.model_funcs.util_funcs</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">H_cursolver</span><span class="p">,</span>
+    <span class="n">partial_Hcur_sigma</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<div class="viewcode-block" id="plot_phase_diagram">
+<a class="viewcode-back" href="../../calibration_progress.html#calibration_progress.phase_diagram.plot_phase_diagram">[docs]</a>
+<span class="k">def</span> <span class="nf">plot_phase_diagram</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">sigma_inp</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+    <span class="c1"># Transformation strain at calibration stress (H_cur)</span>
+    <span class="n">H_cur_cal</span> <span class="o">=</span> <span class="n">H_cursolver</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_cal&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_crit&#39;</span><span class="p">],</span>
+                            <span class="n">P</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_min&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_sat&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Partial Derivative of H_cur at calibration stress (dH_cur)</span>
+    <span class="n">dH_cur</span> <span class="o">=</span> <span class="n">partial_Hcur_sigma</span><span class="p">(</span>
+        <span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_cal&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_crit&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_sat&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_min&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Transformation Parameters (structure: TP)</span>
+    <span class="c1"># Intermediate calculations </span>
+    <span class="n">TP</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;C_M&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;C_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">H_cur_cal</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_cal&#39;</span><span class="p">]</span>
+                          <span class="o">*</span> <span class="n">dH_cur</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_cal&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])))</span><span class="o">/</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;C_M&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;C_A&#39;</span><span class="p">])</span>
+    <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;C_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;C_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">H_cur_cal</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_cal&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">dH_cur</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_cal&#39;</span><span class="p">]</span> <span class="o">*</span>
+               <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])))</span><span class="o">/</span><span class="p">((</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;C_M&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;C_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">H_cur_cal</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_cal&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">dH_cur</span><span class="p">))</span>
+    <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;M_f&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;M_s&#39;</span><span class="p">])</span>
+    <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;A_s&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;A_f&#39;</span><span class="p">])</span>
+    <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_2&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> \
+        <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_3&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_4&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;M_s&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;A_f&#39;</span><span class="p">])</span>
+    <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;M_s&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;A_f&#39;</span><span class="p">])</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">]</span>
+
+    <span class="c1">#Create stress array</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">sigma_inp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">sigma_inp</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    
+    <span class="c1">#Create zero arrays for transformation surfaces</span>
+    <span class="c1"># T_fwd_0: Temperature array for forward transformation at MVF=0</span>
+    <span class="n">T_fwd_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">sigma</span><span class="p">))</span>
+
+    <span class="c1"># T_fwd_1: Temperature array for forward transformation at MVF=1</span>
+    <span class="n">T_fwd_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">sigma</span><span class="p">))</span>
+
+    <span class="c1"># T_rev_0: Temperature array for reverse transformation at MVF=0</span>
+    <span class="n">T_rev_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">sigma</span><span class="p">))</span>
+
+    <span class="c1"># T_rev_0: Temperature array for reverse transformation at MVF=1</span>
+    <span class="n">T_rev_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">sigma</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sigma</span><span class="p">)):</span>
+        <span class="n">T_fwd_0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">forward_transformation</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">0</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">TP</span><span class="p">)</span>
+        <span class="n">T_fwd_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">forward_transformation</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">1</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">TP</span><span class="p">)</span>
+        <span class="n">T_rev_0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">reverse_transformation</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">0</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">TP</span><span class="p">)</span>
+        <span class="n">T_rev_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">reverse_transformation</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">1</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">TP</span><span class="p">)</span>
+        
+    <span class="n">ax</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;sci&#39;</span><span class="p">,</span> <span class="n">scilimits</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_fwd_1</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="s1">&#39;b--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Martensite finish&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_fwd_0</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Martensite start&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_rev_1</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Austenite start&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_rev_0</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Austenite finish&#39;</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature, K&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Stress, Pa&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="n">sigma_inp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">sigma_inp</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+  
+    <span class="k">return</span></div>
+
+
+<div class="viewcode-block" id="forward_transformation">
+<a class="viewcode-back" href="../../calibration_progress.html#calibration_progress.phase_diagram.forward_transformation">[docs]</a>
+<span class="k">def</span> <span class="nf">forward_transformation</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="n">MVF</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">TP</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Function to return the Temperature (T) value for a stress (sigma)under a</span>
+<span class="sd">     forward transformation at an inputed Martensite Volume Fraction (MVF) &#39;&#39;&#39;</span>
+    
+    <span class="c1"># Calculate the hardening function</span>
+    <span class="n">f_fwd</span> <span class="o">=</span> <span class="mf">.5</span><span class="o">*</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">MVF</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">MVF</span><span class="p">)</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_2&#39;</span><span class="p">])</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">]</span>
+    
+    <span class="n">delta_S</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span>
+    <span class="n">H_cur</span><span class="o">=</span> <span class="n">H_cursolver</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_crit&#39;</span><span class="p">],</span>
+                            <span class="n">P</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_min&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_sat&#39;</span><span class="p">])</span>
+    
+    <span class="c1"># Output the temperature using the Transformation Surface equation (set</span>
+    <span class="c1"># equal to 0 during transformation)</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="p">(</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">f_fwd</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span><span class="o">-</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">2.0</span><span class="o">*</span><span class="n">delta_S</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mf">2.0</span><span class="o">-</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span><span class="o">*</span><span class="n">H_cur</span><span class="p">)</span><span class="o">/</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">T</span></div>
+
+
+    
+
+
+<div class="viewcode-block" id="reverse_transformation">
+<a class="viewcode-back" href="../../calibration_progress.html#calibration_progress.phase_diagram.reverse_transformation">[docs]</a>
+<span class="k">def</span> <span class="nf">reverse_transformation</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="n">MVF</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">TP</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Function to return the Temperature (T) value for a stress (sigma)under a</span>
+<span class="sd">    reverse transformation at an inputed Martensite Volume Fraction (MVF)&#39;&#39;&#39;</span>
+
+    <span class="c1"># Calculate the hardening function</span>
+    <span class="n">f_rev</span> <span class="o">=</span> <span class="mf">.5</span><span class="o">*</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">MVF</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_3&#39;</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">MVF</span><span class="p">)</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_4&#39;</span><span class="p">])</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">]</span>
+
+    <span class="n">delta_S</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span>
+
+
+    <span class="c1"># Output the temperature using the Transformation Surface equation (set</span>
+    <span class="c1"># equal to 0 during transformation)</span>
+    <span class="c1"># Note: assumed MVF_r=1 for Phase Diagram</span>
+    <span class="n">MVF_r</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
+    <span class="n">eps_t_r</span><span class="o">=</span> <span class="n">H_cursolver</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_crit&#39;</span><span class="p">],</span>
+                            <span class="n">P</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_min&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_sat&#39;</span><span class="p">])</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">eps_t_r</span><span class="o">/</span><span class="n">MVF_r</span><span class="o">-</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">2.0</span><span class="o">*</span><span class="n">delta_S</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mf">2.0</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">f_rev</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">T</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">70E9</span><span class="p">,</span><span class="mf">30E9</span>
+    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;M_s&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;M_f&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">273</span><span class="p">,</span><span class="mi">253</span>
+    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;A_s&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;A_f&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">303</span><span class="p">,</span><span class="mi">323</span>
+    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;C_A&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;C_M&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">6E6</span><span class="p">,</span><span class="mf">12E6</span>
+    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_min&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.02</span>
+    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_sat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.04</span>
+    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1E-6</span>
+    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_crit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">100E6</span>
+    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_2&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_3&#39;</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_4&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span>
+    
+    <span class="c1"># Algorithmic delta for modified smooth hardening function</span>
+    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;delta&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">1e-5</span>
+    
+    <span class="c1"># Calibration Stress</span>
+    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_cal&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">200E6</span>
+    
+    <span class="c1"># Tolerance for change in MVF during implicit iteration</span>
+    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;MVF_tolerance&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">1e-8</span>
+    
+    <span class="n">plot_phase_diagram</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">400E6</span><span class="p">])</span>
+    
+        
+        
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Patrick Walgren and Jacob Mingear.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

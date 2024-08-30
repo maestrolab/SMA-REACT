@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>preprocessor.sync_window &mdash; SMA-REACT 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            SMA-REACT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">SMAREACTcleaned</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SMA-REACT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">preprocessor.sync_window</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for preprocessor.sync_window</h1><div class="highlight"><pre>
+<span></span><span class="c1"># IMPORT STATEMENTS</span>
+<span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QHBoxLayout</span><span class="p">,</span> <span class="n">QLabel</span><span class="p">,</span> <span class="n">QSlider</span><span class="p">,</span> <span class="n">QLineEdit</span><span class="p">,</span> <span class="n">QSpacerItem</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="p">,</span> <span class="n">QPushButton</span><span class="p">,</span> <span class="n">QCheckBox</span>
+<span class="kn">from</span> <span class="nn">PyQt5.QtGui</span> <span class="kn">import</span> <span class="n">QFont</span>
+<span class="kn">from</span> <span class="nn">PyQt5.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">pyqtSignal</span>
+<span class="kn">from</span> <span class="nn">matplotlib.backends.backend_qt5agg</span> <span class="kn">import</span> <span class="n">FigureCanvasQTAgg</span> <span class="k">as</span> <span class="n">FigureCanvas</span>
+<span class="kn">from</span> <span class="nn">matplotlib.backends.backend_qt5agg</span> <span class="kn">import</span> <span class="n">NavigationToolbar2QT</span> <span class="k">as</span> <span class="n">NavigationToolbar</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">auc</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib.figure</span> <span class="kn">import</span> <span class="n">Figure</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">minmax_scale</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+
+<div class="viewcode-block" id="SyncWindow">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow">[docs]</a>
+<span class="k">class</span> <span class="nc">SyncWindow</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
+    <span class="n">delay_changed</span> <span class="o">=</span> <span class="n">pyqtSignal</span><span class="p">()</span>
+    <span class="n">start_time_changed</span> <span class="o">=</span> <span class="n">pyqtSignal</span><span class="p">()</span>
+    <span class="n">end_time_changed</span> <span class="o">=</span> <span class="n">pyqtSignal</span><span class="p">()</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="nb">max</span><span class="p">,</span> <span class="n">delay</span><span class="p">,</span> <span class="n">mts_time</span><span class="p">,</span> <span class="n">fluke_time</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">disp</span><span class="p">,</span> <span class="n">mts_temp</span><span class="p">,</span> <span class="n">synced_absolute</span><span class="p">,</span> <span class="n">disp_title</span><span class="p">,</span>
+                 <span class="n">fluke_temp_title</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Test Sync&quot;</span><span class="p">)</span>
+
+        <span class="c1"># MAIN LAYOUT</span>
+        <span class="n">layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+
+        <span class="c1"># GRAPHS SECTION</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">synced_data</span> <span class="o">=</span> <span class="n">synced_absolute</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disp_title</span> <span class="o">=</span> <span class="n">disp_title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fluke_temp_title</span> <span class="o">=</span> <span class="n">fluke_temp_title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">graph</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span> <span class="o">=</span> <span class="n">FigureCanvas</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar</span> <span class="o">=</span> <span class="n">NavigationToolbar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+        <span class="c1"># creating and plotting the mts fig (normalized temp and displacement)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_temp_fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">()</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mts_temp_fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+        <span class="n">times</span> <span class="o">=</span> <span class="n">mts_time</span>
+        <span class="n">temps</span> <span class="o">=</span> <span class="n">minmax_scale</span><span class="p">(</span><span class="n">mts_temp</span><span class="p">,</span> <span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">disp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Displacement&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">temps</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Temperature&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;MTS Temperature and Displacement&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_temp</span> <span class="o">=</span> <span class="n">temps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_canvas</span> <span class="o">=</span> <span class="n">FigureCanvas</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_temp_fig</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_toolbar</span> <span class="o">=</span> <span class="n">NavigationToolbar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_canvas</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_canvas</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toolbar</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_toolbar</span><span class="p">)</span>
+
+        <span class="n">layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph_layout</span><span class="p">)</span>
+        <span class="n">layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toolbar_layout</span><span class="p">)</span>
+
+        <span class="c1"># INITIAL CONDITIONS</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="n">delay</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay2</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_time</span> <span class="o">=</span> <span class="n">mts_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fluke_time</span> <span class="o">=</span> <span class="n">fluke_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disp</span> <span class="o">=</span> <span class="n">disp</span>
+
+
+        <span class="c1"># FONTS</span>
+        <span class="n">font</span> <span class="o">=</span> <span class="n">QFont</span><span class="p">()</span>
+        <span class="n">font</span><span class="o">.</span><span class="n">setPointSize</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">bold_font</span> <span class="o">=</span> <span class="n">QFont</span><span class="p">()</span>
+        <span class="n">bold_font</span><span class="o">.</span><span class="n">setBold</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">bold_font</span><span class="o">.</span><span class="n">setPointSize</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+
+        <span class="c1"># DELAY SECTION</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="n">instructions</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">()</span>
+        <span class="n">instructions</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+        <span class="n">instructions</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Drag slider to adjust delay or enter a value in the box:&quot;</span><span class="p">)</span>
+        <span class="n">horizontal_spacer</span> <span class="o">=</span> <span class="n">QSpacerItem</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">)</span>
+        <span class="n">horizontal_spacer2</span> <span class="o">=</span> <span class="n">QSpacerItem</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">)</span>
+        <span class="n">horizontal_spacer3</span><span class="o">=</span> <span class="n">QSpacerItem</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">)</span>
+        <span class="n">horizontal_spacer4</span> <span class="o">=</span> <span class="n">QSpacerItem</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">)</span>
+        <span class="n">instructions</span><span class="o">.</span><span class="n">setMaximumHeight</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_layout</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">horizontal_spacer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">instructions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_slider</span> <span class="o">=</span> <span class="n">QSlider</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">Horizontal</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_slider</span><span class="o">.</span><span class="n">setMinimum</span><span class="p">(</span><span class="o">-</span><span class="nb">max</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_slider</span><span class="o">.</span><span class="n">setMaximum</span><span class="p">(</span><span class="nb">max</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_slider</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_edit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_edit</span><span class="o">.</span><span class="n">setMaximumWidth</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_edit</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_slider</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_edit</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_layout</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">horizontal_spacer2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_button</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Check&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_button</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">bold_font</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_button</span><span class="o">.</span><span class="n">setMaximumWidth</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_layout</span><span class="o">.</span><span class="n">insertWidget</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_button</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">abs_time_switch</span> <span class="o">=</span> <span class="n">QCheckBox</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">abs_time_switch</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Absolute Time&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">abs_time_switch</span><span class="p">)</span>
+
+
+        <span class="c1"># START/END TIME SECTION</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="n">start_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">()</span>
+        <span class="n">start_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Start Time:&quot;</span><span class="p">)</span>
+        <span class="n">start_label</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+        <span class="n">start_label</span><span class="o">.</span><span class="n">setMaximumHeight</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_edit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_edit</span><span class="o">.</span><span class="n">setMaximumWidth</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+        <span class="n">end_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">()</span>
+        <span class="n">end_label</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+        <span class="n">end_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;End Time:&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_edit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_edit</span><span class="o">.</span><span class="n">setMaximumWidth</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_button</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_button</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">bold_font</span><span class="p">)</span>
+        <span class="n">min_intersect_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">()</span>
+        <span class="n">min_intersect_label</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+        <span class="n">min_intersect_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Minimum distance between intersections:&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_intersect_edit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_intersect_edit</span><span class="o">.</span><span class="n">setMaximumWidth</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">horizontal_spacer3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">start_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_edit</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">end_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_edit</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">min_intersect_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">min_intersect_edit</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_button</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">horizontal_spacer4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intersect_tolerance</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># AREA SECTION</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Calculated Area Between Curves:&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area_label</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">bold_font</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area_label</span><span class="o">.</span><span class="n">setMaximumHeight</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area_label</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignCenter</span><span class="p">)</span>
+
+        <span class="c1"># TEMPORARY MTS TEMP DISP TROUUBLESHOOTING</span>
+        <span class="n">horizontal_spacer5</span> <span class="o">=</span> <span class="n">QSpacerItem</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">)</span>
+        <span class="n">horizontal_spacer6</span> <span class="o">=</span> <span class="n">QSpacerItem</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">)</span>
+        <span class="n">horizontal_spacer7</span> <span class="o">=</span> <span class="n">QSpacerItem</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">)</span>
+        <span class="n">horizontal_spacer8</span> <span class="o">=</span> <span class="n">QSpacerItem</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">)</span>
+        <span class="n">horizontal_spacer9</span> <span class="o">=</span> <span class="n">QSpacerItem</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">)</span>
+        <span class="n">horizontal_spacer10</span> <span class="o">=</span> <span class="n">QSpacerItem</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">)</span>
+        <span class="n">horizontal_spacer11</span> <span class="o">=</span> <span class="n">QSpacerItem</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">)</span>
+        <span class="n">horizontal_spacer12</span> <span class="o">=</span> <span class="n">QSpacerItem</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_layout2</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout2</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="n">mts_delay</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">()</span>
+        <span class="n">mts_delay</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Delay:&quot;</span><span class="p">)</span>
+        <span class="n">mts_delay</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+        <span class="n">mts_delay</span><span class="o">.</span><span class="n">setMaximumHeight</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_delay</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_delay</span><span class="o">.</span><span class="n">setMaximumWidth</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_check_button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_check_button</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">bold_font</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_check_button</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Check&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_check_button</span><span class="o">.</span><span class="n">setMaximumWidth</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_layout2</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">horizontal_spacer5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_layout2</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">mts_delay</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_layout2</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_delay</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_layout2</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_check_button</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_layout2</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">horizontal_spacer6</span><span class="p">)</span>
+        <span class="n">mts_start_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">()</span>
+        <span class="n">mts_start_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Start Time:&quot;</span><span class="p">)</span>
+        <span class="n">mts_start_label</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+        <span class="n">mts_start_label</span><span class="o">.</span><span class="n">setMaximumHeight</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_start</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_start</span><span class="o">.</span><span class="n">setMaximumWidth</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+        <span class="n">mts_end_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">()</span>
+        <span class="n">mts_end_label</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+        <span class="n">mts_end_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;End Time:&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_end</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_end</span><span class="o">.</span><span class="n">setMaximumWidth</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+        <span class="n">mts_min_intersect_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">()</span>
+        <span class="n">mts_min_intersect_label</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+        <span class="n">mts_min_intersect_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Minimum distance between intersections:&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_min_intersect</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_min_intersect</span><span class="o">.</span><span class="n">setMaximumWidth</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_test_button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_test_button</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_test_button</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">bold_font</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout2</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">horizontal_spacer10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout2</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">mts_start_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout2</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_start</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout2</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">mts_end_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout2</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_end</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout2</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">mts_min_intersect_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout2</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_min_intersect</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout2</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_test_button</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times_layout2</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">horizontal_spacer9</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area2</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area2</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Calculated Area Between Curves: &quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area2</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignCenter</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area2</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">bold_font</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area2</span><span class="o">.</span><span class="n">setMaximumHeight</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_delay_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="n">delay_plotter_title</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">()</span>
+        <span class="n">delay_plotter_title</span><span class="o">.</span><span class="n">setMaximumHeight</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+        <span class="n">delay_plotter_title</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">bold_font</span><span class="p">)</span>
+        <span class="n">delay_plotter_title</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;Plot Delay vs. Area&#39;</span><span class="p">)</span>
+        <span class="n">delay_plotter_title</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignCenter</span><span class="p">)</span>
+        <span class="n">delay_initial_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">()</span>
+        <span class="n">delay_initial_label</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+        <span class="n">delay_initial_label</span><span class="o">.</span><span class="n">setMaximumHeight</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+        <span class="n">delay_initial_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Initial Delay:&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">range_initial</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">range_initial</span><span class="o">.</span><span class="n">setMaximumWidth</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+        <span class="n">delay_final_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">()</span>
+        <span class="n">delay_final_label</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+        <span class="n">delay_final_label</span><span class="o">.</span><span class="n">setMaximumHeight</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+        <span class="n">delay_final_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Final Delay:&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">range_final</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">range_final</span><span class="o">.</span><span class="n">setMaximumWidth</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+        <span class="n">delay_interval_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">()</span>
+        <span class="n">delay_interval_label</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+        <span class="n">delay_interval_label</span><span class="o">.</span><span class="n">setMaximumHeight</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+        <span class="n">delay_interval_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Delay Interval:&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_interval</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_interval</span><span class="o">.</span><span class="n">setMaximumWidth</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_button</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Plot&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_button</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">bold_font</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_delay_layout</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">horizontal_spacer7</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_delay_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">delay_initial_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_delay_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">range_initial</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_delay_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">delay_final_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_delay_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">range_final</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_delay_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">delay_interval_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_delay_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_interval</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_delay_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plot_button</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_delay_layout</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">horizontal_spacer8</span><span class="p">)</span>
+
+        <span class="c1"># TEMPORARY GROUPING FOR TROUBLESHOOTING</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fluke_disp_calcs</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fluke_disp_calcs</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fluke_disp_calcs</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">times_layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fluke_disp_calcs</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">area_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_disp_calcs</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_disp_calcs</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_layout2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_disp_calcs</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">times_layout2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_disp_calcs</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">area2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_disp_calcs</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">delay_plotter_title</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_disp_calcs</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plot_delay_layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_calcs</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_calcs</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fluke_disp_calcs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_calcs</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_disp_calcs</span><span class="p">)</span>
+
+
+        <span class="c1"># CORRECT LAYOUT (commented out stuff)</span>
+        <span class="c1"># layout.addLayout(self.delay_layout)</span>
+        <span class="c1"># layout.addLayout(self.times_layout)</span>
+        <span class="c1"># layout.addWidget(self.area_label)</span>
+        <span class="n">layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_calcs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+
+        <span class="c1"># SIGNALS</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_slider</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sliderMove</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_edit</span><span class="o">.</span><span class="n">editingFinished</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delayChange</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">changeGraph</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_edit</span><span class="o">.</span><span class="n">editingFinished</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getStartTime</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_edit</span><span class="o">.</span><span class="n">editingFinished</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getEndTime</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_intersect_edit</span><span class="o">.</span><span class="n">editingFinished</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getIntersectDistanceTolerance</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calcArea</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">abs_time_switch</span><span class="o">.</span><span class="n">stateChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graphToAbsolute</span><span class="p">)</span>
+        <span class="c1"># self.test_button.clicked.connect(self.plotTimes)</span>
+        <span class="c1">#TEMPORARY SIGNALS</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_delay</span><span class="o">.</span><span class="n">editingFinished</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delayChange2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_check_button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">changeGraph2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_test_button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calcArea2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plotDelayArea</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SyncWindow.sliderMove">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.sliderMove">[docs]</a>
+    <span class="k">def</span> <span class="nf">sliderMove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay_slider</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_edit</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="n">val</span></div>
+
+
+<div class="viewcode-block" id="SyncWindow.delayChange">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.delayChange">[docs]</a>
+    <span class="k">def</span> <span class="nf">delayChange</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_edit</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_slider</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="n">val</span></div>
+
+
+
+<div class="viewcode-block" id="SyncWindow.changeGraph">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.changeGraph">[docs]</a>
+    <span class="k">def</span> <span class="nf">changeGraph</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+        <span class="n">mts_time</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mts_time</span><span class="p">]</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mts_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">disp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Displacement&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fluke_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Temperature&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Fluke Temperature and Displacement&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_changed</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="SyncWindow.graphToAbsolute">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.graphToAbsolute">[docs]</a>
+    <span class="k">def</span> <span class="nf">graphToAbsolute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">abs_time_switch</span><span class="o">.</span><span class="n">isChecked</span><span class="p">():</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">synced_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+            <span class="n">disp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">synced_data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">disp_title</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">disp</span> <span class="o">=</span> <span class="n">minmax_scale</span><span class="p">(</span><span class="n">disp</span><span class="p">,</span> <span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">temps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">synced_data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">fluke_temp_title</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">temps</span> <span class="o">=</span> <span class="n">minmax_scale</span><span class="p">(</span><span class="n">temps</span><span class="p">,</span> <span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">disp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Displacement&#39;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">temps</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Temperature&#39;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Fluke Temperature and Displacement&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+            <span class="n">mts_time</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mts_time</span><span class="p">]</span>
+
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mts_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">disp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Displacement&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fluke_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Temperature&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Fluke Temperature and Displacement&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span></div>
+
+
+    <span class="c1"># TEMPORARY FOR TROUBLESHOOTING</span>
+<div class="viewcode-block" id="SyncWindow.changeGraph2">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.changeGraph2">[docs]</a>
+    <span class="k">def</span> <span class="nf">changeGraph2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">mts_time</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mts_time</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_temp_fig</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">ax1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mts_temp_fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+        <span class="c1"># temp = np.array([self.mts_temp, np.zeros(len(self.mts_temp))])</span>
+        <span class="c1"># temp = normalize(temp)[0]</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">minmax_scale</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_temp</span><span class="p">,</span> <span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mts_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">disp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Displacement&quot;</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_time</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Temperature&quot;</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;MTS Temperature and Displacement&quot;</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">mts_canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span></div>
+
+
+    <span class="c1"># TEMPORARY FOR TROUBLESHOOTING</span>
+<div class="viewcode-block" id="SyncWindow.delayChange2">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.delayChange2">[docs]</a>
+    <span class="k">def</span> <span class="nf">delayChange2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_delay</span><span class="o">.</span><span class="n">text</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="SyncWindow.getDelay">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.getDelay">[docs]</a>
+    <span class="k">def</span> <span class="nf">getDelay</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay</span></div>
+
+
+
+<div class="viewcode-block" id="SyncWindow.getStartTime">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.getStartTime">[docs]</a>
+    <span class="k">def</span> <span class="nf">getStartTime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_edit</span><span class="o">.</span><span class="n">text</span><span class="p">())</span></div>
+
+
+
+<div class="viewcode-block" id="SyncWindow.returnEndTime">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.returnEndTime">[docs]</a>
+    <span class="k">def</span> <span class="nf">returnEndTime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span></div>
+
+
+
+<div class="viewcode-block" id="SyncWindow.returnStartTime">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.returnStartTime">[docs]</a>
+    <span class="k">def</span> <span class="nf">returnStartTime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span></div>
+
+
+
+<div class="viewcode-block" id="SyncWindow.getEndTime">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.getEndTime">[docs]</a>
+    <span class="k">def</span> <span class="nf">getEndTime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_edit</span><span class="o">.</span><span class="n">text</span><span class="p">())</span></div>
+
+
+
+<div class="viewcode-block" id="SyncWindow.plotTimes">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.plotTimes">[docs]</a>
+    <span class="k">def</span> <span class="nf">plotTimes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">lines</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+        <span class="c1"># x_min = min(self.mts_time) - self.delay</span>
+        <span class="c1"># x_max = max(self.mts_time) - self.delay</span>
+        <span class="c1"># ax.set_xlim([x_min, x_max])</span>
+        <span class="n">start_line</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+        <span class="n">end_line</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">end_time</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="SyncWindow.getIntersectDistanceTolerance">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.getIntersectDistanceTolerance">[docs]</a>
+    <span class="k">def</span> <span class="nf">getIntersectDistanceTolerance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intersect_tolerance</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">min_intersect_edit</span><span class="o">.</span><span class="n">text</span><span class="p">())</span></div>
+
+
+
+<div class="viewcode-block" id="SyncWindow.calcArea">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.calcArea">[docs]</a>
+    <span class="k">def</span> <span class="nf">calcArea</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_time_changed</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_time_changed</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span>
+
+        <span class="c1"># finding points within interval</span>
+        <span class="n">mts_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mts_time</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">fluke_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fluke_time</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+        <span class="n">start_ind_mts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">mts_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mts_time</span><span class="p">[</span><span class="n">start_ind_mts</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">))</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mts_time</span><span class="p">[</span><span class="n">start_ind_mts</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">)):</span>
+            <span class="n">start_ind_mts</span> <span class="o">=</span> <span class="n">start_ind_mts</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">end_ind_mts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">mts_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mts_time</span><span class="p">[</span><span class="n">end_ind_mts</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_time</span><span class="p">))</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mts_time</span><span class="p">[</span><span class="n">end_ind_mts</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_time</span><span class="p">)):</span>
+            <span class="n">end_ind_mts</span> <span class="o">=</span> <span class="n">end_ind_mts</span> <span class="o">-</span> <span class="mi">1</span>
+
+
+        <span class="n">start_ind_fluke</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">fluke_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fluke_time</span><span class="p">[</span><span class="n">start_ind_fluke</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">))</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fluke_time</span><span class="p">[</span><span class="n">start_ind_fluke</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">)):</span>
+            <span class="n">start_ind_fluke</span> <span class="o">=</span> <span class="n">start_ind_fluke</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">end_ind_fluke</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">fluke_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fluke_time</span><span class="p">[</span><span class="n">end_ind_fluke</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_time</span><span class="p">))</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fluke_time</span><span class="p">[</span><span class="n">end_ind_fluke</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_time</span><span class="p">)):</span>
+            <span class="n">end_ind_fluke</span> <span class="o">=</span> <span class="n">end_ind_fluke</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="n">mts_time</span> <span class="o">=</span> <span class="n">mts_time</span><span class="p">[</span><span class="n">start_ind_mts</span><span class="p">:</span> <span class="n">end_ind_mts</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">disp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">disp</span><span class="p">[</span><span class="n">start_ind_mts</span><span class="p">:</span> <span class="n">end_ind_mts</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">fluke_time</span> <span class="o">=</span> <span class="n">fluke_time</span><span class="p">[</span><span class="n">start_ind_fluke</span><span class="p">:</span> <span class="n">end_ind_fluke</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="p">[</span><span class="n">start_ind_fluke</span><span class="p">:</span> <span class="n">end_ind_fluke</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+        <span class="c1"># finding intersection points</span>
+        <span class="n">longer_indices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">shorter_indices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">time_tol</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">y_tol</span> <span class="o">=</span> <span class="mf">0.01</span>
+        <span class="n">index_sep_tol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">intersect_tolerance</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">disp</span><span class="p">)):</span>
+            <span class="n">longer_arr</span> <span class="o">=</span> <span class="n">temp</span>
+            <span class="n">longer_time</span> <span class="o">=</span> <span class="n">fluke_time</span>
+            <span class="n">shorter_arr</span> <span class="o">=</span> <span class="n">disp</span>
+            <span class="n">shorter_time</span> <span class="o">=</span> <span class="n">mts_time</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">longer_arr</span> <span class="o">=</span> <span class="n">disp</span>
+            <span class="n">longer_time</span> <span class="o">=</span> <span class="n">mts_time</span>
+            <span class="n">shorter_arr</span> <span class="o">=</span> <span class="n">temp</span>
+            <span class="n">shorter_time</span> <span class="o">=</span> <span class="n">fluke_time</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">longer_indices</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">longer_indices</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">index_sep_tol</span><span class="p">):</span>
+            <span class="n">longer_indices</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="n">shorter_indices</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">disp</span><span class="p">))):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">disp</span><span class="p">))):</span>
+                    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">longer_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">shorter_arr</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="n">y_tol</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">longer_time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">shorter_time</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="n">time_tol</span><span class="p">:</span>
+                        <span class="n">longer_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">j</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">shorter_indices</span><span class="p">:</span>
+                            <span class="n">shorter_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+            <span class="n">y_tol</span> <span class="o">+=</span> <span class="mf">0.005</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">longer_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="n">longer_indices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># print(longer_indices)</span>
+        <span class="c1"># print(shorter_indices)</span>
+        <span class="c1"># for ind in longer_indices:</span>
+        <span class="c1">#     print(&quot;{}: {}&quot;.format(longer_time[ind], longer_arr[ind]))</span>
+        <span class="c1"># print(&quot;BREAK&quot;)</span>
+        <span class="c1"># for id in shorter_indices:</span>
+        <span class="c1">#     print(&quot;{}: {}&quot;.format(shorter_time[id], shorter_arr[id]))</span>
+
+
+        <span class="c1"># new intervals between intersection points</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">longer_arr</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">)):</span>
+            <span class="n">temp_indices</span> <span class="o">=</span> <span class="n">longer_indices</span>
+            <span class="n">disp_indices</span> <span class="o">=</span> <span class="n">shorter_indices</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">temp_indices</span> <span class="o">=</span> <span class="n">shorter_indices</span>
+            <span class="n">disp_indices</span> <span class="o">=</span> <span class="n">longer_indices</span>
+        <span class="n">mts_time</span> <span class="o">=</span> <span class="n">mts_time</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">disp_indices</span><span class="p">):</span><span class="nb">max</span><span class="p">(</span><span class="n">disp_indices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">disp</span> <span class="o">=</span> <span class="n">disp</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">disp_indices</span><span class="p">):</span><span class="nb">max</span><span class="p">(</span><span class="n">disp_indices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">fluke_time</span> <span class="o">=</span> <span class="n">fluke_time</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">temp_indices</span><span class="p">):</span><span class="nb">max</span><span class="p">(</span><span class="n">temp_indices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">temp_indices</span><span class="p">):</span><span class="nb">max</span><span class="p">(</span><span class="n">temp_indices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># calculating area</span>
+        <span class="n">area_mts</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">mts_time</span><span class="p">,</span> <span class="n">disp</span><span class="p">)</span>
+        <span class="n">area_fluke</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">fluke_time</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
+
+        <span class="n">area_between_curves</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">area_mts</span> <span class="o">-</span> <span class="n">area_fluke</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">area_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Intersections detected at times: </span><span class="si">{}</span><span class="s2">s and </span><span class="si">{}</span><span class="s2">s; Calculated Area: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">mts_time</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">mts_time</span><span class="p">),</span> <span class="n">area_between_curves</span><span class="p">))</span></div>
+
+
+    <span class="c1"># TEMPORARY FOR TROUBLESHOOTING</span>
+<div class="viewcode-block" id="SyncWindow.calcArea2">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.calcArea2">[docs]</a>
+    <span class="k">def</span> <span class="nf">calcArea2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_start</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_end</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+        <span class="n">index_sep_tol</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_min_intersect</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+
+        <span class="c1"># finding points within interval</span>
+        <span class="n">disp_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mts_time</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">temp_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_time</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+        <span class="n">start_ind_disp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">disp_time</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">disp_time</span><span class="p">[</span><span class="n">start_ind_disp</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">start</span><span class="p">))</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span>
+                <span class="n">disp_time</span><span class="p">[</span><span class="n">start_ind_disp</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">start</span><span class="p">)):</span>
+            <span class="n">start_ind_disp</span> <span class="o">=</span> <span class="n">start_ind_disp</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">end_ind_disp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">disp_time</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">disp_time</span><span class="p">[</span><span class="n">end_ind_disp</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">end</span><span class="p">))</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">disp_time</span><span class="p">[</span><span class="n">end_ind_disp</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">end</span><span class="p">)):</span>
+            <span class="n">end_ind_disp</span> <span class="o">=</span> <span class="n">end_ind_disp</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="n">start_ind_temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">temp_time</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">temp_time</span><span class="p">[</span><span class="n">start_ind_temp</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">start</span><span class="p">))</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span>
+                <span class="n">temp_time</span><span class="p">[</span><span class="n">start_ind_temp</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">start</span><span class="p">)):</span>
+            <span class="n">start_ind_temp</span> <span class="o">=</span> <span class="n">start_ind_temp</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">end_ind_temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">temp_time</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">temp_time</span><span class="p">[</span><span class="n">end_ind_temp</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">end</span><span class="p">))</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span>
+                <span class="n">temp_time</span><span class="p">[</span><span class="n">end_ind_temp</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">end</span><span class="p">)):</span>
+            <span class="n">end_ind_temp</span> <span class="o">=</span> <span class="n">end_ind_temp</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="n">disp_time</span> <span class="o">=</span> <span class="n">disp_time</span><span class="p">[</span><span class="n">start_ind_disp</span><span class="p">:</span> <span class="n">end_ind_disp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">disp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">disp</span><span class="p">[</span><span class="n">start_ind_disp</span><span class="p">:</span> <span class="n">end_ind_disp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">temp_time</span> <span class="o">=</span> <span class="n">temp_time</span><span class="p">[</span><span class="n">start_ind_temp</span><span class="p">:</span> <span class="n">end_ind_temp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_temp</span><span class="p">[</span><span class="n">start_ind_temp</span><span class="p">:</span> <span class="n">end_ind_temp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+        <span class="c1"># finding intersection points</span>
+        <span class="n">longer_indices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">shorter_indices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">time_tol</span> <span class="o">=</span> <span class="mi">25</span>
+        <span class="n">y_tol</span> <span class="o">=</span> <span class="mf">0.01</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">disp</span><span class="p">)):</span>
+            <span class="n">longer_arr</span> <span class="o">=</span> <span class="n">temp</span>
+            <span class="n">longer_time</span> <span class="o">=</span> <span class="n">temp_time</span>
+            <span class="n">shorter_arr</span> <span class="o">=</span> <span class="n">disp</span>
+            <span class="n">shorter_time</span> <span class="o">=</span> <span class="n">disp_time</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">longer_arr</span> <span class="o">=</span> <span class="n">disp</span>
+            <span class="n">longer_time</span> <span class="o">=</span> <span class="n">disp_time</span>
+            <span class="n">shorter_arr</span> <span class="o">=</span> <span class="n">temp</span>
+            <span class="n">shorter_time</span> <span class="o">=</span> <span class="n">temp_time</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">longer_indices</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">longer_indices</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">index_sep_tol</span><span class="p">):</span>
+            <span class="n">longer_indices</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="n">shorter_indices</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">disp</span><span class="p">))):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">disp</span><span class="p">))):</span>
+                    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">longer_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">shorter_arr</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="n">y_tol</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">longer_time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">shorter_time</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="n">time_tol</span><span class="p">:</span>
+                        <span class="n">longer_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">j</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">shorter_indices</span><span class="p">:</span>
+                            <span class="n">shorter_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+            <span class="n">y_tol</span> <span class="o">+=</span> <span class="mf">0.005</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">longer_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">longer_indices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">longer_indices</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">longer_time</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">longer_arr</span><span class="p">[</span><span class="n">ind</span><span class="p">]))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;BREAK&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">shorter_indices</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">shorter_time</span><span class="p">[</span><span class="nb">id</span><span class="p">],</span> <span class="n">shorter_arr</span><span class="p">[</span><span class="nb">id</span><span class="p">]))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">y_tol</span><span class="p">)</span>
+
+        <span class="c1"># new intervals between intersection points</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">longer_arr</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">)):</span>
+            <span class="n">temp_indices</span> <span class="o">=</span> <span class="n">longer_indices</span>
+            <span class="n">disp_indices</span> <span class="o">=</span> <span class="n">shorter_indices</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">temp_indices</span> <span class="o">=</span> <span class="n">shorter_indices</span>
+            <span class="n">disp_indices</span> <span class="o">=</span> <span class="n">longer_indices</span>
+        <span class="n">disp_time</span> <span class="o">=</span> <span class="n">disp_time</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">disp_indices</span><span class="p">):</span><span class="nb">max</span><span class="p">(</span><span class="n">disp_indices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">disp</span> <span class="o">=</span> <span class="n">disp</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">disp_indices</span><span class="p">):</span><span class="nb">max</span><span class="p">(</span><span class="n">disp_indices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">temp_time</span> <span class="o">=</span> <span class="n">temp_time</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">temp_indices</span><span class="p">):</span><span class="nb">max</span><span class="p">(</span><span class="n">temp_indices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">temp_indices</span><span class="p">):</span><span class="nb">max</span><span class="p">(</span><span class="n">temp_indices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># calculating area</span>
+        <span class="n">area_mts</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">disp_time</span><span class="p">,</span> <span class="n">disp</span><span class="p">)</span>
+        <span class="n">area_fluke</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">temp_time</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
+
+        <span class="n">area_between_curves</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">area_mts</span> <span class="o">-</span> <span class="n">area_fluke</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">area2</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Intersections detected at </span><span class="si">{}</span><span class="s2">s and </span><span class="si">{}</span><span class="s2">s; Calculated Area: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">disp_time</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">disp_time</span><span class="p">),</span> <span class="n">area_between_curves</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="SyncWindow.areaTester">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.areaTester">[docs]</a>
+    <span class="k">def</span> <span class="nf">areaTester</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">index_sep_tol</span><span class="p">,</span> <span class="n">delay</span><span class="p">):</span>
+        <span class="c1"># finding points within interval</span>
+        <span class="n">disp_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span> <span class="o">-</span> <span class="n">delay</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mts_time</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">temp_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_time</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+        <span class="n">start_ind_disp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">disp_time</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">disp_time</span><span class="p">[</span><span class="n">start_ind_disp</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">start</span><span class="p">))</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span>
+                <span class="n">disp_time</span><span class="p">[</span><span class="n">start_ind_disp</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">start</span><span class="p">)):</span>
+            <span class="n">start_ind_disp</span> <span class="o">=</span> <span class="n">start_ind_disp</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">end_ind_disp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">disp_time</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+        <span class="c1"># if abs(disp_time[end_ind_disp] - float(end)) &gt; abs(disp_time[end_ind_disp - 1] - float(end)):</span>
+        <span class="c1">#     end_ind_disp = end_ind_disp - 1</span>
+
+        <span class="n">start_ind_temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">temp_time</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">temp_time</span><span class="p">[</span><span class="n">start_ind_temp</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">start</span><span class="p">))</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span>
+                <span class="n">temp_time</span><span class="p">[</span><span class="n">start_ind_temp</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">start</span><span class="p">)):</span>
+            <span class="n">start_ind_temp</span> <span class="o">=</span> <span class="n">start_ind_temp</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">end_ind_temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">temp_time</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">temp_time</span><span class="p">[</span><span class="n">end_ind_temp</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">end</span><span class="p">))</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span>
+                <span class="n">temp_time</span><span class="p">[</span><span class="n">end_ind_temp</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">end</span><span class="p">)):</span>
+            <span class="n">end_ind_temp</span> <span class="o">=</span> <span class="n">end_ind_temp</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="n">disp_time</span> <span class="o">=</span> <span class="n">disp_time</span><span class="p">[</span><span class="n">start_ind_disp</span><span class="p">:</span> <span class="n">end_ind_disp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">disp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">disp</span><span class="p">[</span><span class="n">start_ind_disp</span><span class="p">:</span> <span class="n">end_ind_disp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">temp_time</span> <span class="o">=</span> <span class="n">temp_time</span><span class="p">[</span><span class="n">start_ind_temp</span><span class="p">:</span> <span class="n">end_ind_temp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_temp</span><span class="p">[</span><span class="n">start_ind_temp</span><span class="p">:</span> <span class="n">end_ind_temp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+        <span class="c1"># finding intersection points</span>
+        <span class="n">longer_indices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">shorter_indices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">time_tol</span> <span class="o">=</span> <span class="mi">25</span>
+        <span class="n">y_tol</span> <span class="o">=</span> <span class="mf">0.01</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">disp</span><span class="p">)):</span>
+            <span class="n">longer_arr</span> <span class="o">=</span> <span class="n">temp</span>
+            <span class="n">longer_time</span> <span class="o">=</span> <span class="n">temp_time</span>
+            <span class="n">shorter_arr</span> <span class="o">=</span> <span class="n">disp</span>
+            <span class="n">shorter_time</span> <span class="o">=</span> <span class="n">disp_time</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">longer_arr</span> <span class="o">=</span> <span class="n">disp</span>
+            <span class="n">longer_time</span> <span class="o">=</span> <span class="n">disp_time</span>
+            <span class="n">shorter_arr</span> <span class="o">=</span> <span class="n">temp</span>
+            <span class="n">shorter_time</span> <span class="o">=</span> <span class="n">temp_time</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">longer_indices</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">longer_indices</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">index_sep_tol</span><span class="p">):</span>
+            <span class="n">longer_indices</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="n">shorter_indices</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">disp</span><span class="p">))):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">disp</span><span class="p">))):</span>
+                    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">longer_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">shorter_arr</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="n">y_tol</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">longer_time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">shorter_time</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="n">time_tol</span><span class="p">:</span>
+                        <span class="n">longer_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">j</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">shorter_indices</span><span class="p">:</span>
+                            <span class="n">shorter_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+            <span class="n">y_tol</span> <span class="o">+=</span> <span class="mf">0.005</span>
+            <span class="k">if</span> <span class="n">y_tol</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">:</span>
+                <span class="n">time_tol</span> <span class="o">*=</span> <span class="mi">2</span>
+                <span class="n">y_tol</span> <span class="o">=</span> <span class="mf">0.01</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">longer_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">longer_indices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># new intervals between intersection points</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">longer_arr</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">)):</span>
+            <span class="n">temp_indices</span> <span class="o">=</span> <span class="n">longer_indices</span>
+            <span class="n">disp_indices</span> <span class="o">=</span> <span class="n">shorter_indices</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">temp_indices</span> <span class="o">=</span> <span class="n">shorter_indices</span>
+            <span class="n">disp_indices</span> <span class="o">=</span> <span class="n">longer_indices</span>
+        <span class="n">disp_time</span> <span class="o">=</span> <span class="n">disp_time</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">disp_indices</span><span class="p">):</span><span class="nb">max</span><span class="p">(</span><span class="n">disp_indices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">disp</span> <span class="o">=</span> <span class="n">disp</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">disp_indices</span><span class="p">):</span><span class="nb">max</span><span class="p">(</span><span class="n">disp_indices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">temp_time</span> <span class="o">=</span> <span class="n">temp_time</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">temp_indices</span><span class="p">):</span><span class="nb">max</span><span class="p">(</span><span class="n">temp_indices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">temp_indices</span><span class="p">):</span><span class="nb">max</span><span class="p">(</span><span class="n">temp_indices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># calculating area</span>
+        <span class="n">area_mts</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">disp_time</span><span class="p">,</span> <span class="n">disp</span><span class="p">)</span>
+        <span class="n">area_fluke</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">temp_time</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
+
+        <span class="n">area_between_curves</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">area_mts</span> <span class="o">-</span> <span class="n">area_fluke</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">area_between_curves</span></div>
+
+
+
+<div class="viewcode-block" id="SyncWindow.plotDelayArea">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.sync_window.SyncWindow.plotDelayArea">[docs]</a>
+    <span class="k">def</span> <span class="nf">plotDelayArea</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">initial</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">range_initial</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+        <span class="n">final</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">range_final</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+        <span class="n">interval</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_interval</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+
+        <span class="n">start</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_start</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_end</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+        <span class="n">min_dist</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mts_min_intersect</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+
+        <span class="n">delays</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="n">final</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">interval</span><span class="p">)]</span>
+        <span class="n">areas</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="n">final</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">interval</span><span class="p">):</span>
+            <span class="n">areas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">areaTester</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">min_dist</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">delays</span><span class="p">,</span> <span class="n">areas</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+</div>
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Patrick Walgren and Jacob Mingear.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

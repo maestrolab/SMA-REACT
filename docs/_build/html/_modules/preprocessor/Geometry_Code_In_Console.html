@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>preprocessor.Geometry_Code_In_Console &mdash; SMA-REACT 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            SMA-REACT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SMA-REACT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">preprocessor.Geometry_Code_In_Console</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for preprocessor.Geometry_Code_In_Console</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on Mon Sep 27 13:06:07 2021</span>
+<span class="sd">@author: Tiago</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># SMAEAT Geometry Code</span>
+
+
+<span class="c1">################################################################################################################</span>
+<span class="c1"># ------------------------------------------AREA-CALCULATION-FUNCTION-------------------------------------------#</span>
+<span class="c1">################################################################################################################</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="Geometry_input">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.Geometry_Code_In_Console.Geometry_input">[docs]</a>
+<span class="k">def</span> <span class="nf">Geometry_input</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">unit_in</span><span class="p">,</span> <span class="n">unit_out</span><span class="p">,</span> <span class="n">meas1</span><span class="p">,</span> <span class="n">meas2</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Calculates area of cross section given dimensions and performs unit conversion&#39;&#39;&#39;</span>
+
+    <span class="c1">########################################### SHAPE SELECTION ###############################################</span>
+
+    <span class="c1"># print()</span>
+    <span class="c1"># print(</span>
+    <span class="c1">#     &#39;This code calculates the area of a cross-section specified by the user.&#39;)  # Creating function for calculating the cross-sectional area of &#39;Test specimen&#39;.</span>
+    <span class="c1"># shape = input(</span>
+    <span class="c1">#     &#39;Select shape of cross-section from list [(C)ircle, (S)quare, (R)ectangle, S(p)ecial]: &#39;)  # Creates an input variable. This variable will be the letter representing one of the shapes for the cross-section. This will allow code to determine what parameters to ask for to calculate the area.</span>
+    <span class="c1"># shape = shape.upper()  # Makes variable &#39;shape&#39; be upper case to make it easier to check if user&#39;s input is one of the acceptable inputs (C, S, R, P).</span>
+    <span class="c1"># acceptable = [&#39;C&#39;, &#39;S&#39;, &#39;R&#39;,&#39;P&#39;]  # This list represents allowable inputs. If input does not match one of the letters in &quot;acceptable&quot; list, program will ask user to input again.</span>
+    <span class="c1">#</span>
+    <span class="c1"># while shape not in acceptable:  # If user inputs a letter that is not in the list of acceptable letters, this loop begins. This while loop continues until user inputs a valid letter.</span>
+    <span class="c1">#     print()</span>
+    <span class="c1">#     print(&#39;Invalid input.&#39;)  # Message to user to inform them that input is not valid.</span>
+    <span class="c1">#     print()</span>
+    <span class="c1">#     shape = input(&#39;Please select shape of cross-section from list [(C)ircle, (S)quare, (R)ectangle, S(p)ecial]: &#39;)</span>
+    <span class="c1">#     shape = shape.upper()</span>
+
+        <span class="c1">########################################### UNIT SELECTION ################################################</span>
+
+    <span class="c1"># print()  # Asks user for units for input measurements</span>
+    <span class="c1"># unit_in = input(&#39;Select unit for input measurements from list [in, mm, m]: &#39;)</span>
+    <span class="c1"># unit_in = unit_in.upper()</span>
+    <span class="c1"># while unit_in not in [&#39;IN&#39;, &#39;MM&#39;, &#39;M&#39;]:</span>
+    <span class="c1">#     print()</span>
+    <span class="c1">#     print(&#39;Invalid input.&#39;)</span>
+    <span class="c1">#     print()</span>
+    <span class="c1">#     unit_in = input(&#39;Please select unit for input measurements from list [in, mm, m]: &#39;)</span>
+    <span class="c1">#     unit_in = unit_in.upper()</span>
+    <span class="c1">#</span>
+    <span class="c1"># print()  # Asks user for desired units of output measurements</span>
+    <span class="c1"># unit_out = input(&#39;Select desired unit for output area from list [in, mm, m] (units will be squared): &#39;)</span>
+    <span class="c1"># unit_out = unit_out.upper()</span>
+    <span class="c1"># while unit_out not in [&#39;IN&#39;, &#39;MM&#39;, &#39;M&#39;]:</span>
+    <span class="c1">#     print()</span>
+    <span class="c1">#     print(&#39;Invalid input.&#39;)</span>
+    <span class="c1">#     print()</span>
+    <span class="c1">#     unit_out = input(&#39;Please select desired unit for output area from list [in, mm, m] (units will be squared): &#39;)</span>
+    <span class="c1">#     unit_out = unit_out.upper()</span>
+
+    <span class="c1">########################################## UNIT CONVERSION ################################################</span>
+    <span class="n">unit_in</span> <span class="o">=</span> <span class="n">unit_in</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">unit_out</span> <span class="o">=</span> <span class="n">unit_out</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="c1"># For m to mm</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;MM&#39;</span><span class="p">):</span>
+        <span class="n">cf</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># cf = conversion factor</span>
+
+    <span class="c1"># For mm to m</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;MM&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">):</span>
+        <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">1000</span>
+
+    <span class="c1"># For mm to in</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;MM&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;IN&#39;</span><span class="p">):</span>
+        <span class="n">cf</span> <span class="o">=</span> <span class="mf">0.0393701</span>
+
+    <span class="c1"># For in to mm</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;IN&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;MM&#39;</span><span class="p">):</span>
+        <span class="n">cf</span> <span class="o">=</span> <span class="mf">25.4</span>
+
+        <span class="c1"># For m to in</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;IN&#39;</span><span class="p">):</span>
+        <span class="n">cf</span> <span class="o">=</span> <span class="mf">39.3701</span>
+
+        <span class="c1"># For in to m</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;IN&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">):</span>
+        <span class="n">cf</span> <span class="o">=</span> <span class="mf">0.0254</span>
+
+    <span class="c1"># For m to m</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">):</span>
+        <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># For in to in</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;IN&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;IN&#39;</span><span class="p">):</span>
+        <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># For mm to mm</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;MM&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;MM&#39;</span><span class="p">):</span>
+        <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">unit_out</span> <span class="o">=</span> <span class="n">unit_out</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="c1">########################################### AREA CACULATION ###############################################</span>
+
+    <span class="k">if</span> <span class="n">shape</span> <span class="o">==</span> <span class="s1">&#39;Circle&#39;</span><span class="p">:</span>  <span class="c1"># If statement to calculate area for circle</span>
+        <span class="c1"># diameter = input(&#39;Input diameter: &#39;)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">area</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">cf</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">meas1</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="c1">#print(f&#39;The area of the circle is {area} {unit_out}^2.&#39;)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input invalid, please type a number for the diameter.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">shape</span> <span class="o">==</span> <span class="s1">&#39;Square&#39;</span><span class="p">:</span>  <span class="c1"># If statement to calculate area for square</span>
+        <span class="c1"># side = input(&#39;Input side legth: &#39;)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">area</span> <span class="o">=</span> <span class="p">(</span><span class="n">cf</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">meas1</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="c1">#print(f&#39;The area of the square is {area} {unit_out}^2.&#39;)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input invalid, please type a number for the side.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">shape</span> <span class="o">==</span> <span class="s1">&#39;Rectangle&#39;</span><span class="p">:</span>  <span class="c1"># If statement to calculate area for rectangle</span>
+        <span class="c1"># length = input(&#39;Input length: &#39;)</span>
+        <span class="c1"># width = input(&#39;Input width: &#39;)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">area</span> <span class="o">=</span> <span class="p">(</span><span class="n">cf</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">meas1</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">cf</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">meas2</span><span class="p">))</span>
+
+            <span class="c1">#print(f&#39;The area of the rectangle is {area} {unit_out}^2.&#39;)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input invalid, please type numbers for the length and width.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">shape</span> <span class="o">==</span> <span class="s1">&#39;Cintraquad&#39;</span><span class="p">:</span>  <span class="c1"># If statement for calculating cross-sectional area of suqare with circular hole in middle</span>
+        <span class="c1"># side = input(&#39;Input side: &#39;)</span>
+        <span class="c1"># diameter = input(&#39;Input diameter of hole: &#39;)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">area</span> <span class="o">=</span> <span class="p">(</span><span class="n">cf</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">meas1</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.25</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">cf</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">meas2</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="c1"># print(f&#39;The area of the cross-section is {area} {unit_out}^2.&#39;)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input invalid, please type numbers for the side and diameter.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">shape</span> <span class="o">==</span> <span class="s2">&quot;Custom&quot;</span><span class="p">:</span>
+        <span class="n">area</span> <span class="o">=</span> <span class="n">meas1</span>
+
+    <span class="k">return</span> <span class="n">area</span></div>
+
+
+
+<span class="c1">################################################################################################################</span>
+<span class="c1"># -------------------------------------------UNIT-CONVERSION-FUNCTION-------------------------------------------#</span>
+<span class="c1">################################################################################################################</span>
+
+<div class="viewcode-block" id="Unit_Conversion">
+<a class="viewcode-back" href="../../preprocessor.html#preprocessor.Geometry_Code_In_Console.Unit_Conversion">[docs]</a>
+<span class="k">def</span> <span class="nf">Unit_Conversion</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; This function performs unit conversion calculations&#39;&#39;&#39;</span>
+    <span class="c1">########################################## FORCE/LENGTH/STRESS ############################################</span>
+    <span class="n">measurement</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+        <span class="s1">&#39;Select the measurement you would like to covert the units for  [(F)orce, (L)ength, (S)tress]: &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>  <span class="c1"># Selecting what to perform conversion on</span>
+    <span class="k">while</span> <span class="n">measurement</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">]:</span>  <span class="c1"># Checking if input is acceptable. If not acceptable, while loop starts</span>
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Invalid input.&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="n">measurement</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+            <span class="s1">&#39;Please select the measurement you would like to covert the units for [(F)orce, (L)ength, (S)tress]: &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+    <span class="c1"># ------------------------------------------------ FORCE -------------------------------------------------</span>
+    <span class="k">if</span> <span class="n">measurement</span> <span class="o">==</span> <span class="s1">&#39;F&#39;</span><span class="p">:</span>
+        <span class="c1">########################################### UNIT SELECTION ############################################</span>
+
+        <span class="nb">print</span><span class="p">()</span>  <span class="c1"># Asks user for units for input measurements</span>
+        <span class="n">unit_in</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Select unit for input Force from list [N, lbf]: &#39;</span><span class="p">)</span>
+        <span class="n">unit_in</span> <span class="o">=</span> <span class="n">unit_in</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">unit_in</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;LBF&#39;</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Invalid input.&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="n">unit_in</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Please select unit for input Force from list [N, lbf]: &#39;</span><span class="p">)</span>
+            <span class="n">unit_in</span> <span class="o">=</span> <span class="n">unit_in</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+        <span class="nb">print</span><span class="p">()</span>  <span class="c1"># Asks user for desired units of output measurements</span>
+        <span class="n">unit_out</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Select desired unit for output Force from list [N, lbf]: &#39;</span><span class="p">)</span>
+        <span class="n">unit_out</span> <span class="o">=</span> <span class="n">unit_out</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">unit_out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;LBF&#39;</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Invalid input.&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="n">unit_out</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Please select desired unit for output Force from list [N, lbf]: &#39;</span><span class="p">)</span>
+            <span class="n">unit_out</span> <span class="o">=</span> <span class="n">unit_out</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+        <span class="c1">########################################## UNIT CONVERSION ############################################</span>
+
+        <span class="c1"># For N to N</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># cf = conversion factor</span>
+
+        <span class="c1"># For lbf to lbf</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;LBF&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;LBF&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="c1"># For lbf to N</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;LBF&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mf">4.44822</span>
+
+        <span class="c1"># For N to lbf</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;LBF&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mf">0.224809</span>
+
+        <span class="k">if</span> <span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;LBF&#39;</span><span class="p">:</span>
+            <span class="n">unit_out</span> <span class="o">=</span> <span class="n">unit_out</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="c1">############################################# FORCE INPUT #############################################</span>
+
+        <span class="n">force_in</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Input force magnitude: &#39;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">force_in</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">force_in</span><span class="p">)</span>
+            <span class="n">force_out</span> <span class="o">=</span> <span class="n">force_in</span> <span class="o">*</span> <span class="n">cf</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Output force: </span><span class="si">{</span><span class="n">force_out</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">unit_out</span><span class="si">}</span><span class="s1"> .&#39;</span><span class="p">)</span>
+
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error: Force input is not a number.&#39;</span><span class="p">)</span>
+
+    <span class="c1"># ------------------------------------------------ LENGTH -------------------------------------------------</span>
+    <span class="k">if</span> <span class="n">measurement</span> <span class="o">==</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span>
+        <span class="c1">########################################### UNIT SELECTION ################################################</span>
+
+        <span class="nb">print</span><span class="p">()</span>  <span class="c1"># Asks user for units for input measurements</span>
+        <span class="n">unit_in</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Select unit for input length from list [in, mm, m]: &#39;</span><span class="p">)</span>
+        <span class="n">unit_in</span> <span class="o">=</span> <span class="n">unit_in</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">unit_in</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;IN&#39;</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Invalid input.&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="n">unit_in</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Please select unit for input length from list [in, mm, m]: &#39;</span><span class="p">)</span>
+            <span class="n">unit_in</span> <span class="o">=</span> <span class="n">unit_in</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+        <span class="nb">print</span><span class="p">()</span>  <span class="c1"># Asks user for desired units of output measurements</span>
+        <span class="n">unit_out</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Select desired unit for output length from list [in, mm, m]: &#39;</span><span class="p">)</span>
+        <span class="n">unit_out</span> <span class="o">=</span> <span class="n">unit_out</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">unit_out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;IN&#39;</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Invalid input.&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="n">unit_out</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Please select desired unit for output length from list [in, mm, m]: &#39;</span><span class="p">)</span>
+            <span class="n">unit_out</span> <span class="o">=</span> <span class="n">unit_out</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+        <span class="c1">########################################## UNIT CONVERSION ################################################</span>
+
+        <span class="c1"># For m to mm</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;MM&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># cf = conversion factor</span>
+
+        <span class="c1"># For mm to m</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;MM&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">1000</span>
+
+        <span class="c1"># For mm to in</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;MM&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;IN&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mf">0.0393701</span>
+
+        <span class="c1"># For in to mm</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;IN&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;MM&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mf">25.4</span>
+
+            <span class="c1"># For m to in</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;IN&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mf">39.3701</span>
+
+            <span class="c1"># For in to m</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;IN&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mf">0.0254</span>
+
+        <span class="c1"># For m to m</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="c1"># For in to in</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;IN&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;IN&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="c1"># For mm to mm</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;MM&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;MM&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="n">unit_out</span> <span class="o">=</span> <span class="n">unit_out</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="n">length_in</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Input length magnitude:&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">length_in</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">length_in</span><span class="p">)</span>
+
+            <span class="n">length_out</span> <span class="o">=</span> <span class="n">length_in</span> <span class="o">*</span> <span class="n">cf</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output length: </span><span class="si">{</span><span class="n">length_out</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">unit_out</span><span class="si">}</span><span class="s2"> .&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error: length input is not a number.&#39;</span><span class="p">)</span>
+
+    <span class="c1"># ------------------------------------------------- STRESS ---------------------------------------------------</span>
+    <span class="k">if</span> <span class="n">measurement</span> <span class="o">==</span> <span class="s1">&#39;S&#39;</span><span class="p">:</span>
+        <span class="c1">########################################### UNIT SELECTION ################################################</span>
+
+        <span class="nb">print</span><span class="p">()</span>  <span class="c1"># Asks user for units for input stress</span>
+        <span class="n">unit_in</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Select unit for input stress from list [psi, ksi, MPa, Pa]: &#39;</span><span class="p">)</span>
+        <span class="n">unit_in</span> <span class="o">=</span> <span class="n">unit_in</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">unit_in</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;PSI&#39;</span><span class="p">,</span> <span class="s1">&#39;KSI&#39;</span><span class="p">,</span> <span class="s1">&#39;MPA&#39;</span><span class="p">,</span> <span class="s1">&#39;PA&#39;</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Invalid input.&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="n">unit_in</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Please select unit for input stress from list [psi, ksi, MPa, Pa]: &#39;</span><span class="p">)</span>
+            <span class="n">unit_in</span> <span class="o">=</span> <span class="n">unit_in</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+        <span class="nb">print</span><span class="p">()</span>  <span class="c1"># Asks user for desired units of output stress</span>
+        <span class="n">unit_out</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Select desired unit for output stress from list [psi, ksi, MPa, Pa]: &#39;</span><span class="p">)</span>
+        <span class="n">unit_out</span> <span class="o">=</span> <span class="n">unit_out</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">unit_out</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;PSI&#39;</span><span class="p">,</span> <span class="s1">&#39;KSI&#39;</span><span class="p">,</span> <span class="s1">&#39;MPA&#39;</span><span class="p">,</span> <span class="s1">&#39;PA&#39;</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Invalid input.&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="n">unit_out</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Please select desired unit for output stress from list [psi, ksi, MPa, Pa]: &#39;</span><span class="p">)</span>
+            <span class="n">unit_out</span> <span class="o">=</span> <span class="n">unit_out</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+        <span class="c1">########################################## UNIT CONVERSION ################################################</span>
+
+        <span class="c1"># For psi to psi</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;PSI&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;PSI&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># cf = conversion factor</span>
+
+        <span class="c1"># For ksi to ksi</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;KSI&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;KSI&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="c1"># For MPa to MPa</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;MPA&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;MPA&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="c1"># For Pa to Pa</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;PA&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;PA&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span>
+
+            <span class="c1"># For Pa to MPa</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;PA&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;MPA&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">1000000</span>
+
+            <span class="c1"># For Pa to psi</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;PA&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;PSI&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mf">0.000145038</span>
+
+        <span class="c1"># For Pa to ksi</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;PA&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;KSI&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mf">0.000145038</span> <span class="o">/</span> <span class="mi">1000</span>
+
+        <span class="c1"># For MPa to Pa</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;MPA&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;PA&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">10000000</span>
+
+        <span class="c1"># For MPA to psi</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;MPA&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;PSI&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mf">145.038</span>
+
+        <span class="c1"># For MPA to ksi</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;MPA&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;KSI&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mf">0.145038</span>
+
+        <span class="c1"># For psi to ksi</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;PSI&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;KSI&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">1000</span>
+
+        <span class="c1"># For psi to MPa</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;PSI&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;MPA&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mf">0.00689476</span>
+
+        <span class="c1"># For psi to Pa</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;PSI&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;PA&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mf">6894.76</span>
+
+        <span class="c1"># For ksi to Pa</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;KSI&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;PA&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">6894760</span>
+
+        <span class="c1"># For ksi to MPa</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;KSI&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;MPA&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mf">6.89476</span>
+
+        <span class="c1"># For ksi to psi</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unit_in</span> <span class="o">==</span> <span class="s1">&#39;KSI&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;PSI&#39;</span><span class="p">):</span>
+            <span class="n">cf</span> <span class="o">=</span> <span class="mi">1000</span>
+
+        <span class="k">if</span> <span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;MPA&#39;</span><span class="p">:</span>  <span class="c1"># Changing from all uppercase [MPA, PA, PSI, KSI] to appropriate format [MPa, Pa, psi, ksi]</span>
+            <span class="n">unit_out</span> <span class="o">=</span> <span class="s1">&#39;MPa&#39;</span>
+        <span class="k">elif</span> <span class="n">unit_out</span> <span class="o">==</span> <span class="s1">&#39;PA&#39;</span><span class="p">:</span>
+            <span class="n">unit_out</span> <span class="o">=</span> <span class="s1">&#39;Pa&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">unit_out</span> <span class="o">=</span> <span class="n">unit_out</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="n">stress_in</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Input stress magnitude: &#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">stress_in</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">stress_in</span><span class="p">)</span>
+
+            <span class="n">stress_out</span> <span class="o">=</span> <span class="n">stress_in</span> <span class="o">*</span> <span class="n">cf</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output stress: </span><span class="si">{</span><span class="n">stress_out</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">unit_out</span><span class="si">}</span><span class="s2"> .&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error: stress input is not a number.&#39;</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Patrick Walgren and Jacob Mingear.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
