@@ -4,7 +4,7 @@ Shape Memory Alloy Rendering of Experimental Analysis and Calibration Tool
 
 Main launch script
 
-Last updated: May 20th, 2024 (see GitHub for updates)
+Last updated: August 30th, 2024 (see GitHub for updates)
 """
 
 import cgitb
@@ -49,7 +49,7 @@ class App(QtWidgets.QMainWindow):
         self.title = 'Shape Memory Alloy REACT \
     (Rendering of Experimental Analysis and Calibration Tool)'
 
-        #FIXME Start
+        # Change the size of the GUI here.
         app = QtWidgets.QApplication(sys.argv)
         screen = app.primaryScreen()
         rect = screen.availableGeometry()
@@ -60,7 +60,6 @@ class App(QtWidgets.QMainWindow):
         height = 800
 
         self.setGeometry(left, top, width, height)
-        #FIXME End
 
 
         #Set window icon to be the A&M Logo (of course)
