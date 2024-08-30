@@ -2,7 +2,7 @@ import random
 import numpy as np
 import shelve
 import matplotlib.pyplot as plt
-from calibration.deap import (
+from deap import (
     algorithms,
     base,
     creator,
