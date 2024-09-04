@@ -1445,6 +1445,29 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             parameter_label_width,
             parameter_label_height,
             ):
+        '''
+        Utility function to create the a qlabel. 
+
+        Parameters
+        ----------
+        label_object : qlabel object
+            empty label
+        label_text : str
+            string to display in the label
+        font_size : float
+            size of the font to be displayed.
+        font_weight : float
+            weight of the font (0-100).
+        parameter_label_width : int
+            width of the label (pixels).
+        parameter_label_height : int
+            height of the label (pixels).
+
+        Returns
+        -------
+        None.
+
+        '''
 
 
         # label_object.setMinimumSize(
@@ -1485,6 +1508,37 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             line_edit_height,
             small_spacer,
             regular_spacer):
+        '''
+        Utility function to create all the necessary components
+        of a material property (label, upper and lower bounds, 
+        specified value, and checkbox). 
+
+        Parameters
+        ----------
+        property_object : class
+            class to contain all objects under a material property
+        name : str
+            name of the property.
+        units : str
+            units (SI) of the property.
+        parameter_label_width : int
+            label width (pixels)
+        parameter_label_height : int
+            label height (pixels)
+        line_edit_width : int
+            line edit width (pixels).
+        line_edit_height : int
+            line edit height (pixels).
+        small_spacer : class
+            spacer class to give everything room to breathe.
+        regular_spacer : class
+            spacer class to give everything room to breathe.
+
+        Returns
+        -------
+        None.
+
+        '''
 
 
         property_object.label = self.textToLatex(
@@ -1560,6 +1614,34 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             font_weight,
             font_size,
             latex_flag = False):
+        '''
+        Utility function to create a constraint box. 
+        A constraint box is something like "E_A = E_M"
+
+        Parameters
+        ----------
+        constraint_object : TYPE
+            class to contain all objects under a material property
+        name : str
+            constraint name.
+        text : str
+            text to display. May require latex if latex_flag = True.
+        text_width : int
+            bounding box width of the text (pixels).
+        text_height : int
+            bounding box height of the text (pixels).
+        font_weight : int
+            font weight (0-100)
+        font_size : int
+            font size (pts).
+        latex_flag : bool, optional
+            flag to use latex to render the text. The default is False.
+
+        Returns
+        -------
+        None.
+
+        '''
 
         constraint_object.setContentsMargins(-1, -1, 5, -1)
 
@@ -1603,6 +1685,40 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             latex_flag = False,
             bold_flag = True,
             ):
+        '''
+        Utility function to create a label, line edit, bounds, 
+        and a checkbox. 
+
+        Parameters
+        ----------
+        parameter_object : class
+            class to contain all objects that fall in this one parameter
+        name : str
+            property name.
+        text : str
+            text to display with the property (needs Latex if latex_flag=True).
+        text_width : int
+            text width (pixels)
+        text_height : int
+            text height (pixels)
+        text_size : int
+            text size (pts).
+        text_weight : int
+            text weight (0-100).
+        line_edit_width : int
+            line edit width (pixels).
+        line_edit_height : int
+            line edit height (pixels).
+        latex_flag : bool, optional
+            flag to use latex to render the text. The default is False.
+        bold_flag : bool, optional
+            flag to make text bold. The default is True.
+            
+        Returns
+        -------
+        None.
+
+        '''
 
         parameter_object.setContentsMargins(-1, -1, 5, -1)
 
@@ -1669,6 +1785,20 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             self,
             lineEdit,
             ):
+        '''
+        Creates a generic sign policy to keep line count down in code.
+
+        Parameters
+        ----------
+        lineEdit : class
+            line edit class to which the size policy will be applied.
+
+        Returns
+        -------
+        sizePolicy : QtWidgets.QSizePolicy
+            generic size policy.
+
+        '''
         sizePolicy = QtWidgets.QSizePolicy(
             QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
             )
@@ -1685,6 +1815,25 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             font_weight,
             bold_flag = False,
             ):
+        '''
+        
+
+        Parameters
+        ----------
+        font_size : int
+            font size (pts).
+        font_weight : int
+            font weight (0-100)
+        bold_flag : bool, optional
+            flag to make the font bold. The default is False.
+
+        Returns
+        -------
+        font : QFont object
+            font with size, weight, and bold.
+
+        '''
+        
         font = QtGui.QFont()
         font.setPointSize(font_size)
         font.setBold(bold_flag)
@@ -1693,6 +1842,24 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         return font
 
     def textToLatex(self, text, width, height):
+        '''
+        Creates a png from text to render latex 
+
+        Parameters
+        ----------
+        text : str
+            text to render.
+        width : int
+            size of the text box (pixels).
+        height : int
+            size of the text box (pixels).
+
+        Returns
+        -------
+        label : QLabel object
+            png with latex rendered font .
+
+        '''
         rc["font.serif"] = "Palatino Linotype"
         rc["font.family"] = "serif"
         rc["text.usetex"] = True

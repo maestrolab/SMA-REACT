@@ -1,7 +1,15 @@
+'''
+optimizer.py
+
+This script contains all the optimization-specific routines. 
+'''
 import random
-import numpy as np
 import shelve
-import matplotlib.pyplot as plt
+import pprint
+
+import numpy as np
+import scipy.optimize as opt
+
 from deap import (
     algorithms,
     base,
@@ -9,104 +17,11 @@ from deap import (
     tools
     )
 
-import scipy.optimize as opt
-import os
-import pprint
-
 from . import util_funcs
 from . import Full_Model_stress
 
-import pandas as pd
-
-
 #Numpy presets
-np.seterr(all='raise') #tell numpy to raise floating point errors. 
-
-def data_input(fileName):
-    #Read in data
-    #Format = Temperature [C], Strain [mm/mm], Stress [MPa]
-    data = np.loadtxt(fileName, dtype=float)
-    
-    #Convert temperature to Kelvin
-    T = data[:,0] + 273.15
-    
-    #Grab strain
-    eps = data[:,1]
-    
-    #Shift strain to be zeroed - THIS IS SKETCHY. NEED TO FIX LATER
-    eps = eps# - eps.min()
-    
-    #Grab stress
-    sigma = data[:,2]
-    
-    
-    #Commented out right now.
-    #Re-organize data to go from cold to hot
-    min_T = T.min()
-    I = np.argmin(T)
-    
-    T = np.concatenate((T[I:],T[0:I+1]))
-    sigma = np.concatenate((sigma[I:],sigma[0:I+1]))*1e6
-    eps = np.concatenate((eps[I:],eps[0:I+1]))
-    
-    #transform into pascals
-    #sigma = np.ones(shape=sigma.shape[0])*7e6
-    
-    return eps,T,sigma
-
-def material_data(x):
-    # MATERIAL PARAMETERS (Structure: P)
-    P = {}
-    # Young's Modulus for Austenite and Martensite 
-    P['E_M'] = x[0]
-    P['E_A'] = x[0] - x[1]
-    #P['E_A'] = 119E9
-    #P['E_M'] = P['E_A']
-    # Transformation temperatures (M:Martensite, A:Austenite), (s:start,f:final)
-    P['M_s'] = x[2]
-    P['M_f'] = x[2] - x[3]
-    P['A_s'] = x[4]
-    P['A_f'] = x[5] + x[4]
-    
-    # P['M_s'] = 273.15-30.0
-    # P['M_f'] = 273.15-45.0
-    # P['A_s'] = 273.15-10.0
-    # P['A_f'] = 273.15+15.0
-    
-    # Slopes of transformation boundarings into austenite [C_A] and
-    # martensite [C_M] at Calibration Stress 
-    P['C_M'] = x[6]
-    P['C_A'] = x[7]
-    
-    # Maximum and minimum transformation strain
-    #Changing H_min to 0
-    P['H_min'] = x[8]
-    P['H_sat'] = x[8] + x[9]
-    
-    
-    P['k'] = x[10]
-    P['sig_crit'] = 0.
-    
-    # Coefficient of thermal expansion
-    P['alpha'] = 0.
-    
-    # Smoothn hardening parameters 
-    # NOTE: smoothness parameters must be 1 for explicit integration scheme
-    P['n_1'] = x[11]
-    P['n_2'] = x[12]
-    P['n_3'] = x[13]
-    P['n_4'] = x[14]
-    
-    # Algorithmic delta for modified smooth hardening function
-    P['delta']=1e-5
-    
-    # Calibration Stress
-    P['sig_cal']=200E6
-    
-    # Tolerance for change in MVF during implicit iteration
-    P['MVF_tolerance']=1e-8
-    
-    return P
+np.seterr(all='raise') #tell numpy to raise floating point errors.
 
 def cxTwoPointCopy(ind1, ind2):
     """Execute a two points crossover with copy on the input individuals. The
@@ -175,16 +90,19 @@ def psh(popSize, genSize, toolbox):
     )
     print(hof)
     return pop, stats, hof
-    
+
 def exponentialBounds(value, bounds=[1e3, 1e8]):
-    """[summary]
+    """Creates a bounded function based on an exponential distribution.
+    Very convenient for values that span many orders of magnitude
+    (i.e., the rise time k).
 
     Parameters
     ----------
-    value : [type]
-        [description]
+    value : flt
+        Entry in the design vector
     bounds : list, optional
-        [description], by default [1e3, 1e8]
+        bounds for the specific entry in the design vector.
+        By default [1e3, 1e8].
 
     Returns
     -------
@@ -196,7 +114,7 @@ def exponentialBounds(value, bounds=[1e3, 1e8]):
     boundedValue = a * b ** (value / 1.0)  # tau (time constant) is one
     return boundedValue
 
-    
+
 
 def resizeBounds(value, bounds=[1e3, 1e8]):
     """Maps an entry of the design vector (bounds [0,1]) to the isotropic
@@ -207,12 +125,13 @@ def resizeBounds(value, bounds=[1e3, 1e8]):
     value : flt
         Entry in the design vector
     bounds : list, optional
-        [description], by default [1e3, 1e8]
+        bounds for the specific entry in the design vector.
+        By default [1e3, 1e8].
 
     Returns
     -------
     value : flt
-        Isotropic hardening modulus
+        Bounded entry in the design vector.
     """
     value = (bounds[1] - bounds[0]) * value + bounds[0]
     return value
@@ -226,11 +145,53 @@ def evaluate(
         gradient_flag=False,
         final_flag=False
         ):
+    '''
+    Evaluates the current design vector, measures the error between
+    the model prediction and experimental data, re-plots the
+    GUI outputs (strain-temperature history, design vector, etc.),
+    and returns the error to the optimizer.
+
+    Parameters
+    ----------
+    x : TYPE
+        DESCRIPTION.
+    data : dict
+        dictionary to contain problem-specific data,
+        including (but not limited to) variable bounds and flags and
+        experimental stress-strain-temperature histories.
+    calWin : class
+        class that describes the calibration progress window
+        (animated plots).
+    GA_data : list of lists, optional
+        data passed from the genetic algorithm
+        for aggregate stats. the two fields are the
+        minimum objective value and the average objective
+        value for each generation.
+        The default is False.
+    plot_flag : bool, optional
+        flag to update plots. The default is False.
+    gradient_flag : bool, optional
+        flag to specify whether the optimization
+        is a genetic algorithm or gradient-based.
+        The only thing it changes here is the frequency
+        of plotting.
+        The default is False.
+    final_flag : bool, optional
+        flag to specify the last (optimal) functional evaluation.
+        plots the best result in the calibration progress window.
+        The default is False.
+
+    Returns
+    -------
+    flt
+        error of the evaluation.
+
+    '''
     # INPUT: stress/strain/temperature, material properties (P)
-    
+
     bounds = data['bounds']
     boundedX = np.zeros(shape=len(x))
-    prop_count = 0 
+    prop_count = 0
     for j in range(len(x)):
         boundedX[j] = resizeBounds(x[j], bounds=list(bounds[j]))
 
@@ -258,23 +219,23 @@ def evaluate(
         else:
             pass
         prop_count +=1
-        
+
     if data['modulus_flag'] == True: #Set E_A = E_M
         P['E_A'] = P['E_M']
-        
+
     if data['slope_flag'] == True: #Set C_A = C_M
         P['C_A'] = P['C_M']
-        
+
     if data['smooth_hardening_flag'] == True: #Set n_1 = n_2 = n_3 = n_4
         P['n_2'] = P['n_1']
         P['n_3'] = P['n_1']
-        P['n_4'] = P['n_1'] 
-        
+        P['n_4'] = P['n_1']
+
     #P['sig_crit'] = 0.
-    
+
     # Coefficient of thermal expansion
-    #P['alpha'] = 0.   
-    
+    #P['alpha'] = 0.
+
     #Optimizer properties
     # This commented dictionary is an optimal solution
     # P = {
@@ -296,17 +257,17 @@ def evaluate(
     #     "n_4": 0.49746375234534973,
     #     "alpha": 4.47e-06,
     # }
-    
-    
+
+
     # Algorithmic delta for modified smooth hardening function
     P['delta']=data['delta']
-    
+
     # Calibration Stress
     P['sig_cal']=data['sigma_cal']
-    
+
     # Tolerance for change in MVF during implicit iteration
     P['MVF_tolerance']=data['MVF_tol']
-    
+
     # P['E_A'] = 54.514E9
     # P['E_M'] = 17.39E9
     # P['M_s'] = 180 + 273.15
@@ -314,20 +275,20 @@ def evaluate(
     # P['A_s'] = 208 + 273.15
     # P['A_f'] = P['A_s'] + 5.0
     # P['C_A'] = 16.54E6
-    # P['C_M'] = 16.25E6 
+    # P['C_M'] = 16.25E6
     # P['H_min'] = 0.0
-    # P['H_sat'] = 0.01696 
-    # P['k'] = 0.01261E-6 
-    # P['sig_crit'] = 0.0 
-    # P['alpha'] = 8.82E-6 
+    # P['H_sat'] = 0.01696
+    # P['k'] = 0.01261E-6
+    # P['sig_crit'] = 0.0
+    # P['alpha'] = 8.82E-6
     # P['n_1'] = 1.0
-    # P['n_2'] = 1.0 
-    # P['n_3'] = 1.0 
-    # P['n_4'] = 1.0 
-    
+    # P['n_2'] = 1.0
+    # P['n_3'] = 1.0
+    # P['n_4'] = 1.0
 
-    
-    i = 0 
+
+
+    i = 0
     eps_model_total = []
     T_total = []
     num_experiments = data['num_experiments']
@@ -335,31 +296,48 @@ def evaluate(
     for i in range(num_experiments):
         eps = data['exp_'+str(i)]['strain']
         T = data['exp_'+str(i)]['temperature']
-        sigma = data['exp_'+str(i)]['stress']     
-        
+        sigma = data['exp_'+str(i)]['stress']
 
-        
+
+
         #Solver options
         elastic_check = 'N'
         integration_scheme = 'I'
-        
+
         error_flag = 'two_norm'
         try:
-            eps_model, MVF, eps_t, E, MVF_r, eps_t_r = Full_Model_stress.Full_Model_stress(T, sigma, P, elastic_check, integration_scheme)
+            eps_model= Full_Model_stress.Full_Model_stress(
+                T,
+                sigma,
+                P,
+                elastic_check,
+                integration_scheme
+                )[0]
             eps_model_total.append(eps_model)
             T_total.append(T)
             if error_flag == 'two_norm':
-                errors[i] = util_funcs.minkowski_error(eps,eps_model,order=2)
+                errors[i] = util_funcs.minkowski_error(
+                    eps,
+                    eps_model,
+                    order=2
+                    )
             elif error_flag == 'infinity_norm':
-                errors[i] = util_funcs.minkowski_error(eps,eps_model,order=10)
+                errors[i] = util_funcs.minkowski_error(
+                    eps,
+                    eps_model,
+                    order=10
+                    )
             elif error_flag == 'hausdorff':
-                errors[i] = util_funcs.symmetric_hausdorff(eps.to_numpy()[..., np.newaxis],eps_model[..., np.newaxis])
+                errors[i] = util_funcs.symmetric_hausdorff(
+                    eps.to_numpy()[..., np.newaxis],
+                    eps_model[..., np.newaxis]
+                    )
         except:
             errors[i] = 1E12
         i +=1
-        
-    
-        
+
+
+
     if plot_flag == True:
         try:
             for i in range(len(eps_model_total)):
@@ -368,14 +346,14 @@ def evaluate(
                 model_prediction[:,0] = np.array(T_total[i])
                 model_prediction[:,1] = eps_model_total[i]
                 np.savetxt(file_name,model_prediction,delimiter=',')
-            
+
             # plot_strain_temperature(T_total,eps_model_total,i,d)
-            calWin.updateTempStrain(T_total, eps_model_total, len(eps_model_total))
-            calWin.updatePhaseDiagram(P, [0, 200E6])
-            calWin.updateDVVals(x,data['DV_flags'])
+            calWin.update_temp_strain(T_total, eps_model_total, len(eps_model_total))
+            calWin.update_phase_diagram(P, [0, 200E6])
+            calWin.update_design_variable_vals(x,data['DV_flags'])
         except:
             pass
-        
+
     if gradient_flag == True:
         calWin.gens = GA_data[0]
         calWin.mins = GA_data[1]
@@ -384,45 +362,79 @@ def evaluate(
             calWin.mins.append(np.mean(errors))
         else:
             calWin.mins.append(calWin.mins[-1])
-        calWin.updateOptProgress(calWin.gens, calWin.mins,calWin.mins, 0.0)
-        
+        calWin.update_opt_progress(calWin.gens, calWin.mins,calWin.mins, 0.0)
+
     if final_flag == True:
         # pprint(x)
         pprint.pprint(P)
 
     if error_flag in ['two_norm','infinity_norm']:
         return np.mean(errors),
-    elif error_flag == 'hausdorff':
+    if error_flag == 'hausdorff':
         return np.max(errors),
 
 
 
 def optimizer(toolbox,popSize,genSize,data, calWin, seed=None):
-    random.seed(seed)
-    failFlag = False
+    '''
+    Runs the hybrid optimization to find optimal
+    material properties.
 
-    CXPB = 0.9
+    Parameters
+    ----------
+    toolbox : class
+        deap-specific class that contains evolutionary operators.
+        for more information, see:
+            https://deap.readthedocs.io/en/master/api/base.html#toolbox
+    popSize : int
+        population size for each generation.
+    genSize : int
+        number of generations.
+    data : dict
+        dictionary that contains number of experiments, experimental data, etc.
+    calWin : class
+        pyqt class that defines the calibration progress window
+        (animated plots).
+    seed : int, optional
+        seed for random reproducibility. The default is None.
+
+    Returns
+    -------
+    pop : list of lists
+        the current population of design variables
+    logbook : class
+        deap-specific class that contains ``Evolution records
+        as a chronological list of dictionaries.'' for more information, see:
+        https://deap.readthedocs.io/en/master/api/tools.html?highlight=logbook#logbook
+    d : class
+        class to dynamically update matplotlib plots.
+
+    '''
+    random.seed(seed)
+
+    CXPB = 0.9 #crossover probability
     nGenSave = 20 #Best population will be saved every nGenSave
-    i = 0 
+    i = 0
     d = util_funcs.DynamicUpdate()
 
+    #collect the data into one dictionary
     num_experiments = data['num_experiments']
     for i in range(num_experiments):
         eps,T = data['exp_'+str(i)]['strain'],data['exp_'+str(i)]['temperature']
-        #T = 
+        #T =
 
-        
+
         if i == 0:
             total_strain = eps
             total_temperature = T
         else:
             total_strain = np.concatenate((total_strain,eps))
             total_temperature = np.concatenate((total_temperature,T))
-        
+
         i +=1
 
     # d.on_launch(total_temperature,total_strain,i)
-    calWin.plotExperimental(total_temperature, total_strain, i)
+    calWin.plot_experimental(total_temperature, total_strain, i)
 
 
 
@@ -447,7 +459,7 @@ def optimizer(toolbox,popSize,genSize,data, calWin, seed=None):
     for ind in invalid_ind:
         arrayofGenes.append(ind)
         ind.fitness.values = evaluate(ind,data, calWin)
-        
+
     # This is just to assign the crowding distance to the individuals
     # no actual selection is done
     pop = toolbox.select(pop, len(pop))
@@ -457,34 +469,31 @@ def optimizer(toolbox,popSize,genSize,data, calWin, seed=None):
     print(logbook.stream)
 
     # Begin the generational process
-    # db=shelve.open('popLog.dat') Open in simManager
-    pixList = []
-    pixString = ''
     totGen = 1
     gen = 1
     cntGenSave = 1
-    
+
     while gen < genSize+1:
         # Vary the population
         offspring = toolbox.select(pop, len(pop))
         offspring = [toolbox.clone(ind) for ind in offspring]
-        
+
         for ind1, ind2 in zip(offspring[::2], offspring[1::2]):
             if random.random() <= CXPB:
                 toolbox.mate(ind1, ind2)
-            
+
             toolbox.mutate(ind1)
             toolbox.mutate(ind2)
             del ind1.fitness.values, ind2.fitness.values
-            
+
         # Evaluate the individuals with an invalid fitness
         invalid_ind = [ind for ind in offspring if not ind.fitness.valid]
-        
+
         arrayofGenes = []
         for ind in invalid_ind:
             arrayofGenes.append(ind)
             ind.fitness.values = evaluate(ind,data, calWin)
-        
+
         # Select the next generation population
         pop = toolbox.select(pop + offspring, popSize)
         record = stats.compile(pop)
@@ -494,21 +503,29 @@ def optimizer(toolbox,popSize,genSize,data, calWin, seed=None):
         db=shelve.open('popLog')
         db['lastPop']=pop
         if cntGenSave == nGenSave:
-            db[repr(gen)+'Pop']=pop    
+            db[repr(gen)+'Pop']=pop
             cntGenSave = 0
         db.close()
 
-        
+
         # Write a color map illustrating the genes of all the best population members
         # throughout the generations
         calWin.gens = logbook.select('gen')
         calWin.mins = logbook.select('min')
-        
+
         avg = logbook.select('avg')
         std = logbook.select('std')
-        calWin.updateOptProgress(calWin.gens, calWin.mins, avg, std)
+        calWin.update_opt_progress(
+            calWin.gens,
+            calWin.mins,
+            avg,
+            std
+            )
         #print(pop[0])
-        calWin.updateDVVals(pop[0],data['DV_flags'])
+        calWin.update_design_variable_vals(
+            pop[0],
+            data['DV_flags']
+            )
 
 
         #pop[0] is the best current individual
@@ -518,49 +535,68 @@ def optimizer(toolbox,popSize,genSize,data, calWin, seed=None):
         cntGenSave +=1
         gen += 1
         totGen += 1
-        
+
     return pop, logbook,d
-        
-    
+
+
 
 #if __name__ == '__main__':
 def main(bounds,calibration_class,data,calWin):
+    '''
+    Initialize and run the optimization.
+
+    Parameters
+    ----------
+    bounds : list of lists
+        bounds for each active design variable.
+        the structure is [[lower_bound_1, upper_bound_1], [...], ...]
+    calibration_class : class
+        calibration parameters widget, contains all flags and values.
+    data : dict
+        dictionary containing experimental data/calibration specifics/etc.
+    calWin : class
+        calibration progress widget, dynamically updates plots.
+
+    Returns
+    -------
+    error : float
+        final error for the optimization.
+
+    '''
     util_funcs.plot_settings(format_flag="presentation")
 
-    modulus_flag = calibration_class.flags['modulus_flag'] #flag to set both moduli (E_M and E_A) equal to each other
-    slope_flag = calibration_class.flags['slope_flag'] #flag to set both stress-influence coefficients (C_M and C_A) equal to each other
-    smooth_hardening_flag = calibration_class.flags['smooth_hardening_flag'] #flag to set all smooth hardening coefficients (n_1 -- n_4) equal
-    DV_flags = calibration_class.DV_flags 
+    #set both moduli (E_M and E_A) equal to each other
+    data['modulus_flag'] = calibration_class.flags['modulus_flag']
+    #set both stress-influence coefficients (C_M and C_A) equal to each other
+    data['slope_flag'] = calibration_class.flags['slope_flag']
+    #flag to set all smooth hardening coefficients (n_1 -- n_4) equal
+    data['smooth_hardening_flag'] = calibration_class.flags['smooth_hardening_flag']
+    data['DV_flags'] = calibration_class.DV_flags
     known_values = calibration_class.known_values
-    
-    
-    
-    if modulus_flag == True:
-        DV_flags[1] = False #If we want both moduli to be the same, just make the E_M - E_A DV inactive
-        
-    # Add in similar code for slope and hardening flags
-        
-    data['modulus_flag'] = modulus_flag
-    data['slope_flag'] = slope_flag
-    data['smooth_hardening_flag'] = smooth_hardening_flag
-    
+
+
+    #If we want both moduli to be the same, just make the E_M - E_A DV inactive
+    if data['modulus_flag'] == True:
+        data['DV_flags'][1] = False
+
     data['delta'] = calibration_class.delta.value
     data['sigma_cal'] = calibration_class.sigma_cal.value
     data['MVF_tol'] = calibration_class.MVF_tol.value
-    
-    data['DV_flags'] = DV_flags 
-    
-    num_DVs = DV_flags.sum()
-    
-    ## Initialize bounds based on the DV_flags
 
-    
-    data['bounds'] = bounds 
+
+    num_DVs = data['DV_flags'].sum()
+
+    ## Initialize bounds based on the DV_flags
+    data['bounds'] = bounds
     data['P'] = known_values
 
-    popSize = int(calibration_class.pop_size)  # Population size for GA (must be divisible by 4)
-    genSize = int(calibration_class.num_gens) # Number of generations for GA
-    maxIterGradient = int(calibration_class.num_iters)  # Maximum iterations for the gradient-based optimizer
+    # Population size for GA (must be divisible by 4)
+    popSize = int(calibration_class.pop_size)
+    # Number of generations for GA
+    genSize = int(calibration_class.num_gens)
+    # Maximum iterations for the gradient-based optimizer
+    maxIterGradient = int(calibration_class.num_iters)
+
     # DEAP
     creator.create(
         "FitnessMin", base.Fitness, weights=(-1.0,)
@@ -581,8 +617,8 @@ def main(bounds,calibration_class,data,calWin):
     toolbox.register("mutate", tools.mutFlipBit, indpb=0.05)
     toolbox.register("select", tools.selTournament, tournsize=3)
     # startTime = time.perf_counter()
-    pop, stats,d  = optimizer(toolbox,popSize,genSize,data, calWin)
-    
+    pop, stats = optimizer(toolbox,popSize,genSize,data, calWin)[0:2]
+
     print('\n')
     print('Entering gradient-based optimizer')
     print('\n')
@@ -602,19 +638,11 @@ def main(bounds,calibration_class,data,calWin):
         ),
         #callback=calWin.updateDVVals,
     )
-    
-    error = evaluate(res2.x,data, calWin, 
+
+    error = evaluate(res2.x,data, calWin,
                      GA_data = False,
                      plot_flag=True,
                      gradient_flag=False,
                      final_flag=True)
-    
-    return error
-    
 
-    
-    
-    
-    
-    
-    
+    return error

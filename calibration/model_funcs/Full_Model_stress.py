@@ -170,8 +170,8 @@ def Full_Model_stress(T, sigma, P, elastic_check, integration_scheme):
             # Explicit integration scheme selected
             # Display error if n1,n2,n3, or n4 are not equal to 1
             if P['n_1'] != 1 or P['n_2'] != 1 or P['n_3'] != 1 or P['n_4'] != 1:
-                h = print(
-                    'Smoothness parameters must be changed to 1 for explicit integration scheme.', 'Error', 'error')
+                print(
+                    'Smoothness parameters must be changed to 1 for explicit integration scheme.')
                 break
 
             # Call function to return output variables for explicit correction

@@ -18,7 +18,7 @@ from data_input.create_data_input import (
     DataInputWidget
     )
 
-from calibration.model_funcs.test_optimizer_v2 import main
+from calibration.model_funcs.optimizer import main
 from calibration.create_calibration_parameters import (
     CalibrationParametersWidget,
     )

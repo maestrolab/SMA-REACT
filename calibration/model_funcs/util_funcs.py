@@ -17,10 +17,31 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 class DynamicUpdate():
+    '''
+    Class to define dynamically updating plots in pyqt5
+    
+    '''
     #Suppose we know the x range
 
 
     def on_launch(self,x_data,y_data,numExps):
+        '''
+        Launching function
+
+        Parameters
+        ----------
+        x_data : np array
+            x data series
+        y_data : np array
+            y data series
+        numExps : int
+            number of experiments being analyzed
+
+        Returns
+        -------
+        None.
+
+        '''
         #Set up plot
         self.figure, self.ax = plt.subplots()
         
@@ -36,6 +57,23 @@ class DynamicUpdate():
         ...
 
     def on_running(self, xdata, ydata,numExps):
+        '''
+        Updating function
+
+        Parameters
+        ----------
+        x_data : np array
+            x data series
+        y_data : np array
+            y data series
+        numExps : int
+            number of experiments being analyzed
+
+        Returns
+        -------
+        None.
+
+        '''
         #Update data (with the new _and_ the old points)
         # print(numExps)
         for i in range(numExps):
@@ -50,6 +88,17 @@ class DynamicUpdate():
 
     #Example
     def __call__(self):
+        '''
+        Calling function (example)
+
+        Returns
+        -------
+        xdata : np array
+            example x data
+        ydata : np array
+            example y data
+
+        '''
         self.on_launch()
         xdata = []
         ydata = []
@@ -994,7 +1043,7 @@ def Implicit_fwd_transformation_correction_stress( MVF, eps_t, E,MVF_r,eps_t_r,s
             break
         
         if iter == maxiter:
-            raise exception(['ERROR: MAXIMUM NUMBER OF ITERATIONS (', num2str(iter),  ') REACHED IN THE RMA'])
+            raise exception(['ERROR: MAXIMUM NUMBER OF ITERATIONS (' +str(iter) + ') REACHED IN THE RMA'])
         
         
     # Update strain (eps) using known values of sigma, T and updated values
@@ -1126,7 +1175,7 @@ def Implicit_rev_transformation_correction_stress( MVF, eps_t, E,MVF_r,eps_t_r,s
     
         
         if iter == maxiter:
-            raise exception(['ERROR: MAXIMUM NUMBER OF ITERATIONS (', num2str(iter),  ') REACHED IN THE RMA'])
+            raise exception(['ERROR: MAXIMUM NUMBER OF ITERATIONS (' +str(iter) + ') REACHED IN THE RMA'])
 
 
     # Update strain (eps) using known values of sigma, T and updated values 
