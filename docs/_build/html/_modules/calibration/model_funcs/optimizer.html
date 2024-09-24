@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>calibration.model_funcs.test_optimizer_v2 &mdash; SMA-REACT 1.0.0 documentation</title>
+  <title>calibration.model_funcs.optimizer &mdash; SMA-REACT 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=92fd9be5" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
@@ -41,8 +41,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">SMAREACTcleaned</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -58,7 +61,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">calibration.model_funcs.test_optimizer_v2</li>
+      <li class="breadcrumb-item active">calibration.model_funcs.optimizer</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -67,11 +70,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for calibration.model_funcs.test_optimizer_v2</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+  <h1>Source code for calibration.model_funcs.optimizer</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">optimizer.py</span>
+
+<span class="sd">This script contains all the optimization-specific routines. </span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">shelve</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pprint</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.optimize</span> <span class="k">as</span> <span class="nn">opt</span>
+
 <span class="kn">from</span> <span class="nn">deap</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">algorithms</span><span class="p">,</span>
     <span class="n">base</span><span class="p">,</span>
@@ -79,113 +90,14 @@
     <span class="n">tools</span>
     <span class="p">)</span>
 
-<span class="kn">import</span> <span class="nn">scipy.optimize</span> <span class="k">as</span> <span class="nn">opt</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">pprint</span>
-
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">util_funcs</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Full_Model_stress</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-
 <span class="c1">#Numpy presets</span>
-<span class="n">np</span><span class="o">.</span><span class="n">seterr</span><span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="s1">&#39;raise&#39;</span><span class="p">)</span> <span class="c1">#tell numpy to raise floating point errors. </span>
-
-<div class="viewcode-block" id="data_input">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.test_optimizer_v2.data_input">[docs]</a>
-<span class="k">def</span> <span class="nf">data_input</span><span class="p">(</span><span class="n">fileName</span><span class="p">):</span>
-    <span class="c1">#Read in data</span>
-    <span class="c1">#Format = Temperature [C], Strain [mm/mm], Stress [MPa]</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-    
-    <span class="c1">#Convert temperature to Kelvin</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">273.15</span>
-    
-    <span class="c1">#Grab strain</span>
-    <span class="n">eps</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
-    
-    <span class="c1">#Shift strain to be zeroed - THIS IS SKETCHY. NEED TO FIX LATER</span>
-    <span class="n">eps</span> <span class="o">=</span> <span class="n">eps</span><span class="c1"># - eps.min()</span>
-    
-    <span class="c1">#Grab stress</span>
-    <span class="n">sigma</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
-    
-    
-    <span class="c1">#Commented out right now.</span>
-    <span class="c1">#Re-organize data to go from cold to hot</span>
-    <span class="n">min_T</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-    <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-    
-    <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">T</span><span class="p">[</span><span class="n">I</span><span class="p">:],</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">]))</span>
-    <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">sigma</span><span class="p">[</span><span class="n">I</span><span class="p">:],</span><span class="n">sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">]))</span><span class="o">*</span><span class="mf">1e6</span>
-    <span class="n">eps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">eps</span><span class="p">[</span><span class="n">I</span><span class="p">:],</span><span class="n">eps</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">]))</span>
-    
-    <span class="c1">#transform into pascals</span>
-    <span class="c1">#sigma = np.ones(shape=sigma.shape[0])*7e6</span>
-    
-    <span class="k">return</span> <span class="n">eps</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">sigma</span></div>
-
-
-<div class="viewcode-block" id="material_data">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.test_optimizer_v2.material_data">[docs]</a>
-<span class="k">def</span> <span class="nf">material_data</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="c1"># MATERIAL PARAMETERS (Structure: P)</span>
-    <span class="n">P</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="c1"># Young&#39;s Modulus for Austenite and Martensite </span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="c1">#P[&#39;E_A&#39;] = 119E9</span>
-    <span class="c1">#P[&#39;E_M&#39;] = P[&#39;E_A&#39;]</span>
-    <span class="c1"># Transformation temperatures (M:Martensite, A:Austenite), (s:start,f:final)</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;M_s&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;M_f&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;A_s&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;A_f&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
-    
-    <span class="c1"># P[&#39;M_s&#39;] = 273.15-30.0</span>
-    <span class="c1"># P[&#39;M_f&#39;] = 273.15-45.0</span>
-    <span class="c1"># P[&#39;A_s&#39;] = 273.15-10.0</span>
-    <span class="c1"># P[&#39;A_f&#39;] = 273.15+15.0</span>
-    
-    <span class="c1"># Slopes of transformation boundarings into austenite [C_A] and</span>
-    <span class="c1"># martensite [C_M] at Calibration Stress </span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;C_M&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;C_A&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
-    
-    <span class="c1"># Maximum and minimum transformation strain</span>
-    <span class="c1">#Changing H_min to 0</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_min&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_sat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>
-    
-    
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_crit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
-    
-    <span class="c1"># Coefficient of thermal expansion</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
-    
-    <span class="c1"># Smoothn hardening parameters </span>
-    <span class="c1"># NOTE: smoothness parameters must be 1 for explicit integration scheme</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_4&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span>
-    
-    <span class="c1"># Algorithmic delta for modified smooth hardening function</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;delta&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">1e-5</span>
-    
-    <span class="c1"># Calibration Stress</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_cal&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">200E6</span>
-    
-    <span class="c1"># Tolerance for change in MVF during implicit iteration</span>
-    <span class="n">P</span><span class="p">[</span><span class="s1">&#39;MVF_tolerance&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">1e-8</span>
-    
-    <span class="k">return</span> <span class="n">P</span></div>
-
+<span class="n">np</span><span class="o">.</span><span class="n">seterr</span><span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="s1">&#39;raise&#39;</span><span class="p">)</span> <span class="c1">#tell numpy to raise floating point errors.</span>
 
 <div class="viewcode-block" id="cxTwoPointCopy">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.test_optimizer_v2.cxTwoPointCopy">[docs]</a>
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.cxTwoPointCopy">[docs]</a>
 <span class="k">def</span> <span class="nf">cxTwoPointCopy</span><span class="p">(</span><span class="n">ind1</span><span class="p">,</span> <span class="n">ind2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute a two points crossover with copy on the input individuals. The</span>
 <span class="sd">    copy is required because the slicing in numpy returns a view of the data,</span>
@@ -217,7 +129,7 @@
 
 
 <div class="viewcode-block" id="psh">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.test_optimizer_v2.psh">[docs]</a>
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.psh">[docs]</a>
 <span class="k">def</span> <span class="nf">psh</span><span class="p">(</span><span class="n">popSize</span><span class="p">,</span> <span class="n">genSize</span><span class="p">,</span> <span class="n">toolbox</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates DEAP things.</span>
 
@@ -257,18 +169,21 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">hof</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">pop</span><span class="p">,</span> <span class="n">stats</span><span class="p">,</span> <span class="n">hof</span></div>
 
-    
+
 <div class="viewcode-block" id="exponentialBounds">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.test_optimizer_v2.exponentialBounds">[docs]</a>
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.exponentialBounds">[docs]</a>
 <span class="k">def</span> <span class="nf">exponentialBounds</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">[</span><span class="mf">1e3</span><span class="p">,</span> <span class="mf">1e8</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;[summary]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a bounded function based on an exponential distribution.</span>
+<span class="sd">    Very convenient for values that span many orders of magnitude</span>
+<span class="sd">    (i.e., the rise time k).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    value : [type]</span>
-<span class="sd">        [description]</span>
+<span class="sd">    value : flt</span>
+<span class="sd">        Entry in the design vector</span>
 <span class="sd">    bounds : list, optional</span>
-<span class="sd">        [description], by default [1e3, 1e8]</span>
+<span class="sd">        bounds for the specific entry in the design vector.</span>
+<span class="sd">        By default [1e3, 1e8].</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -281,10 +196,10 @@
     <span class="k">return</span> <span class="n">boundedValue</span></div>
 
 
-    
+
 
 <div class="viewcode-block" id="resizeBounds">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.test_optimizer_v2.resizeBounds">[docs]</a>
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.resizeBounds">[docs]</a>
 <span class="k">def</span> <span class="nf">resizeBounds</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">[</span><span class="mf">1e3</span><span class="p">,</span> <span class="mf">1e8</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Maps an entry of the design vector (bounds [0,1]) to the isotropic</span>
 <span class="sd">    hardening modulus.</span>
@@ -294,19 +209,20 @@
 <span class="sd">    value : flt</span>
 <span class="sd">        Entry in the design vector</span>
 <span class="sd">    bounds : list, optional</span>
-<span class="sd">        [description], by default [1e3, 1e8]</span>
+<span class="sd">        bounds for the specific entry in the design vector.</span>
+<span class="sd">        By default [1e3, 1e8].</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    value : flt</span>
-<span class="sd">        Isotropic hardening modulus</span>
+<span class="sd">        Bounded entry in the design vector.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">value</span> <span class="o">+</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">value</span></div>
 
 
 <div class="viewcode-block" id="evaluate">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.test_optimizer_v2.evaluate">[docs]</a>
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.evaluate">[docs]</a>
 <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span>
         <span class="n">x</span><span class="p">,</span>
         <span class="n">data</span><span class="p">,</span>
@@ -316,11 +232,53 @@
         <span class="n">gradient_flag</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">final_flag</span><span class="o">=</span><span class="kc">False</span>
         <span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Evaluates the current design vector, measures the error between</span>
+<span class="sd">    the model prediction and experimental data, re-plots the</span>
+<span class="sd">    GUI outputs (strain-temperature history, design vector, etc.),</span>
+<span class="sd">    and returns the error to the optimizer.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : TYPE</span>
+<span class="sd">        DESCRIPTION.</span>
+<span class="sd">    data : dict</span>
+<span class="sd">        dictionary to contain problem-specific data,</span>
+<span class="sd">        including (but not limited to) variable bounds and flags and</span>
+<span class="sd">        experimental stress-strain-temperature histories.</span>
+<span class="sd">    calWin : class</span>
+<span class="sd">        class that describes the calibration progress window</span>
+<span class="sd">        (animated plots).</span>
+<span class="sd">    GA_data : list of lists, optional</span>
+<span class="sd">        data passed from the genetic algorithm</span>
+<span class="sd">        for aggregate stats. the two fields are the</span>
+<span class="sd">        minimum objective value and the average objective</span>
+<span class="sd">        value for each generation.</span>
+<span class="sd">        The default is False.</span>
+<span class="sd">    plot_flag : bool, optional</span>
+<span class="sd">        flag to update plots. The default is False.</span>
+<span class="sd">    gradient_flag : bool, optional</span>
+<span class="sd">        flag to specify whether the optimization</span>
+<span class="sd">        is a genetic algorithm or gradient-based.</span>
+<span class="sd">        The only thing it changes here is the frequency</span>
+<span class="sd">        of plotting.</span>
+<span class="sd">        The default is False.</span>
+<span class="sd">    final_flag : bool, optional</span>
+<span class="sd">        flag to specify the last (optimal) functional evaluation.</span>
+<span class="sd">        plots the best result in the calibration progress window.</span>
+<span class="sd">        The default is False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    flt</span>
+<span class="sd">        error of the evaluation.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="c1"># INPUT: stress/strain/temperature, material properties (P)</span>
-    
+
     <span class="n">bounds</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;bounds&#39;</span><span class="p">]</span>
     <span class="n">boundedX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    <span class="n">prop_count</span> <span class="o">=</span> <span class="mi">0</span> 
+    <span class="n">prop_count</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
         <span class="n">boundedX</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">resizeBounds</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">bounds</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
 
@@ -348,23 +306,23 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">pass</span>
         <span class="n">prop_count</span> <span class="o">+=</span><span class="mi">1</span>
-        
+
     <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;modulus_flag&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span> <span class="c1">#Set E_A = E_M</span>
         <span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span>
-        
+
     <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;slope_flag&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span> <span class="c1">#Set C_A = C_M</span>
         <span class="n">P</span><span class="p">[</span><span class="s1">&#39;C_A&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;C_M&#39;</span><span class="p">]</span>
-        
+
     <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;smooth_hardening_flag&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span> <span class="c1">#Set n_1 = n_2 = n_3 = n_4</span>
         <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">]</span>
         <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">]</span>
-        <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_4&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">]</span> 
-        
+        <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_4&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">]</span>
+
     <span class="c1">#P[&#39;sig_crit&#39;] = 0.</span>
-    
+
     <span class="c1"># Coefficient of thermal expansion</span>
-    <span class="c1">#P[&#39;alpha&#39;] = 0.   </span>
-    
+    <span class="c1">#P[&#39;alpha&#39;] = 0.</span>
+
     <span class="c1">#Optimizer properties</span>
     <span class="c1"># This commented dictionary is an optimal solution</span>
     <span class="c1"># P = {</span>
@@ -386,17 +344,17 @@
     <span class="c1">#     &quot;n_4&quot;: 0.49746375234534973,</span>
     <span class="c1">#     &quot;alpha&quot;: 4.47e-06,</span>
     <span class="c1"># }</span>
-    
-    
+
+
     <span class="c1"># Algorithmic delta for modified smooth hardening function</span>
     <span class="n">P</span><span class="p">[</span><span class="s1">&#39;delta&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;delta&#39;</span><span class="p">]</span>
-    
+
     <span class="c1"># Calibration Stress</span>
     <span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_cal&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;sigma_cal&#39;</span><span class="p">]</span>
-    
+
     <span class="c1"># Tolerance for change in MVF during implicit iteration</span>
     <span class="n">P</span><span class="p">[</span><span class="s1">&#39;MVF_tolerance&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MVF_tol&#39;</span><span class="p">]</span>
-    
+
     <span class="c1"># P[&#39;E_A&#39;] = 54.514E9</span>
     <span class="c1"># P[&#39;E_M&#39;] = 17.39E9</span>
     <span class="c1"># P[&#39;M_s&#39;] = 180 + 273.15</span>
@@ -404,20 +362,20 @@
     <span class="c1"># P[&#39;A_s&#39;] = 208 + 273.15</span>
     <span class="c1"># P[&#39;A_f&#39;] = P[&#39;A_s&#39;] + 5.0</span>
     <span class="c1"># P[&#39;C_A&#39;] = 16.54E6</span>
-    <span class="c1"># P[&#39;C_M&#39;] = 16.25E6 </span>
+    <span class="c1"># P[&#39;C_M&#39;] = 16.25E6</span>
     <span class="c1"># P[&#39;H_min&#39;] = 0.0</span>
-    <span class="c1"># P[&#39;H_sat&#39;] = 0.01696 </span>
-    <span class="c1"># P[&#39;k&#39;] = 0.01261E-6 </span>
-    <span class="c1"># P[&#39;sig_crit&#39;] = 0.0 </span>
-    <span class="c1"># P[&#39;alpha&#39;] = 8.82E-6 </span>
+    <span class="c1"># P[&#39;H_sat&#39;] = 0.01696</span>
+    <span class="c1"># P[&#39;k&#39;] = 0.01261E-6</span>
+    <span class="c1"># P[&#39;sig_crit&#39;] = 0.0</span>
+    <span class="c1"># P[&#39;alpha&#39;] = 8.82E-6</span>
     <span class="c1"># P[&#39;n_1&#39;] = 1.0</span>
-    <span class="c1"># P[&#39;n_2&#39;] = 1.0 </span>
-    <span class="c1"># P[&#39;n_3&#39;] = 1.0 </span>
-    <span class="c1"># P[&#39;n_4&#39;] = 1.0 </span>
-    
+    <span class="c1"># P[&#39;n_2&#39;] = 1.0</span>
+    <span class="c1"># P[&#39;n_3&#39;] = 1.0</span>
+    <span class="c1"># P[&#39;n_4&#39;] = 1.0</span>
 
-    
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> 
+
+
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">eps_model_total</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">T_total</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">num_experiments</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;num_experiments&#39;</span><span class="p">]</span>
@@ -425,31 +383,48 @@
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_experiments</span><span class="p">):</span>
         <span class="n">eps</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;exp_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)][</span><span class="s1">&#39;strain&#39;</span><span class="p">]</span>
         <span class="n">T</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;exp_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)][</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span>
-        <span class="n">sigma</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;exp_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)][</span><span class="s1">&#39;stress&#39;</span><span class="p">]</span>     
-        
+        <span class="n">sigma</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;exp_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)][</span><span class="s1">&#39;stress&#39;</span><span class="p">]</span>
 
-        
+
+
         <span class="c1">#Solver options</span>
         <span class="n">elastic_check</span> <span class="o">=</span> <span class="s1">&#39;N&#39;</span>
         <span class="n">integration_scheme</span> <span class="o">=</span> <span class="s1">&#39;I&#39;</span>
-        
+
         <span class="n">error_flag</span> <span class="o">=</span> <span class="s1">&#39;two_norm&#39;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">eps_model</span><span class="p">,</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span> <span class="o">=</span> <span class="n">Full_Model_stress</span><span class="o">.</span><span class="n">Full_Model_stress</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">elastic_check</span><span class="p">,</span> <span class="n">integration_scheme</span><span class="p">)</span>
+            <span class="n">eps_model</span><span class="o">=</span> <span class="n">Full_Model_stress</span><span class="o">.</span><span class="n">Full_Model_stress</span><span class="p">(</span>
+                <span class="n">T</span><span class="p">,</span>
+                <span class="n">sigma</span><span class="p">,</span>
+                <span class="n">P</span><span class="p">,</span>
+                <span class="n">elastic_check</span><span class="p">,</span>
+                <span class="n">integration_scheme</span>
+                <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">eps_model_total</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eps_model</span><span class="p">)</span>
             <span class="n">T_total</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">error_flag</span> <span class="o">==</span> <span class="s1">&#39;two_norm&#39;</span><span class="p">:</span>
-                <span class="n">errors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">util_funcs</span><span class="o">.</span><span class="n">minkowski_error</span><span class="p">(</span><span class="n">eps</span><span class="p">,</span><span class="n">eps_model</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">errors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">util_funcs</span><span class="o">.</span><span class="n">minkowski_error</span><span class="p">(</span>
+                    <span class="n">eps</span><span class="p">,</span>
+                    <span class="n">eps_model</span><span class="p">,</span>
+                    <span class="n">order</span><span class="o">=</span><span class="mi">2</span>
+                    <span class="p">)</span>
             <span class="k">elif</span> <span class="n">error_flag</span> <span class="o">==</span> <span class="s1">&#39;infinity_norm&#39;</span><span class="p">:</span>
-                <span class="n">errors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">util_funcs</span><span class="o">.</span><span class="n">minkowski_error</span><span class="p">(</span><span class="n">eps</span><span class="p">,</span><span class="n">eps_model</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                <span class="n">errors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">util_funcs</span><span class="o">.</span><span class="n">minkowski_error</span><span class="p">(</span>
+                    <span class="n">eps</span><span class="p">,</span>
+                    <span class="n">eps_model</span><span class="p">,</span>
+                    <span class="n">order</span><span class="o">=</span><span class="mi">10</span>
+                    <span class="p">)</span>
             <span class="k">elif</span> <span class="n">error_flag</span> <span class="o">==</span> <span class="s1">&#39;hausdorff&#39;</span><span class="p">:</span>
-                <span class="n">errors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">util_funcs</span><span class="o">.</span><span class="n">symmetric_hausdorff</span><span class="p">(</span><span class="n">eps</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span><span class="n">eps_model</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+                <span class="n">errors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">util_funcs</span><span class="o">.</span><span class="n">symmetric_hausdorff</span><span class="p">(</span>
+                    <span class="n">eps</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span>
+                    <span class="n">eps_model</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+                    <span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="n">errors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1E12</span>
         <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>
-        
-    
-        
+
+
+
     <span class="k">if</span> <span class="n">plot_flag</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">eps_model_total</span><span class="p">)):</span>
@@ -458,14 +433,14 @@
                 <span class="n">model_prediction</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">T_total</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
                 <span class="n">model_prediction</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">eps_model_total</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
                 <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span><span class="n">model_prediction</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-            
+
             <span class="c1"># plot_strain_temperature(T_total,eps_model_total,i,d)</span>
-            <span class="n">calWin</span><span class="o">.</span><span class="n">updateTempStrain</span><span class="p">(</span><span class="n">T_total</span><span class="p">,</span> <span class="n">eps_model_total</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">eps_model_total</span><span class="p">))</span>
-            <span class="n">calWin</span><span class="o">.</span><span class="n">updatePhaseDiagram</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">200E6</span><span class="p">])</span>
-            <span class="n">calWin</span><span class="o">.</span><span class="n">updateDVVals</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;DV_flags&#39;</span><span class="p">])</span>
+            <span class="n">calWin</span><span class="o">.</span><span class="n">update_temp_strain</span><span class="p">(</span><span class="n">T_total</span><span class="p">,</span> <span class="n">eps_model_total</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">eps_model_total</span><span class="p">))</span>
+            <span class="n">calWin</span><span class="o">.</span><span class="n">update_phase_diagram</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">200E6</span><span class="p">])</span>
+            <span class="n">calWin</span><span class="o">.</span><span class="n">update_design_variable_vals</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;DV_flags&#39;</span><span class="p">])</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">pass</span>
-        
+
     <span class="k">if</span> <span class="n">gradient_flag</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
         <span class="n">calWin</span><span class="o">.</span><span class="n">gens</span> <span class="o">=</span> <span class="n">GA_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">calWin</span><span class="o">.</span><span class="n">mins</span> <span class="o">=</span> <span class="n">GA_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -474,48 +449,82 @@
             <span class="n">calWin</span><span class="o">.</span><span class="n">mins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">errors</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">calWin</span><span class="o">.</span><span class="n">mins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calWin</span><span class="o">.</span><span class="n">mins</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">calWin</span><span class="o">.</span><span class="n">updateOptProgress</span><span class="p">(</span><span class="n">calWin</span><span class="o">.</span><span class="n">gens</span><span class="p">,</span> <span class="n">calWin</span><span class="o">.</span><span class="n">mins</span><span class="p">,</span><span class="n">calWin</span><span class="o">.</span><span class="n">mins</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-        
+        <span class="n">calWin</span><span class="o">.</span><span class="n">update_opt_progress</span><span class="p">(</span><span class="n">calWin</span><span class="o">.</span><span class="n">gens</span><span class="p">,</span> <span class="n">calWin</span><span class="o">.</span><span class="n">mins</span><span class="p">,</span><span class="n">calWin</span><span class="o">.</span><span class="n">mins</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
     <span class="k">if</span> <span class="n">final_flag</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
         <span class="c1"># pprint(x)</span>
         <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">error_flag</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;two_norm&#39;</span><span class="p">,</span><span class="s1">&#39;infinity_norm&#39;</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">errors</span><span class="p">),</span>
-    <span class="k">elif</span> <span class="n">error_flag</span> <span class="o">==</span> <span class="s1">&#39;hausdorff&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">error_flag</span> <span class="o">==</span> <span class="s1">&#39;hausdorff&#39;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">errors</span><span class="p">),</span></div>
 
 
 
 
 <div class="viewcode-block" id="optimizer">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.test_optimizer_v2.optimizer">[docs]</a>
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.optimizer">[docs]</a>
 <span class="k">def</span> <span class="nf">optimizer</span><span class="p">(</span><span class="n">toolbox</span><span class="p">,</span><span class="n">popSize</span><span class="p">,</span><span class="n">genSize</span><span class="p">,</span><span class="n">data</span><span class="p">,</span> <span class="n">calWin</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
-    <span class="n">failFlag</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Runs the hybrid optimization to find optimal</span>
+<span class="sd">    material properties.</span>
 
-    <span class="n">CXPB</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    toolbox : class</span>
+<span class="sd">        deap-specific class that contains evolutionary operators.</span>
+<span class="sd">        for more information, see:</span>
+<span class="sd">            https://deap.readthedocs.io/en/master/api/base.html#toolbox</span>
+<span class="sd">    popSize : int</span>
+<span class="sd">        population size for each generation.</span>
+<span class="sd">    genSize : int</span>
+<span class="sd">        number of generations.</span>
+<span class="sd">    data : dict</span>
+<span class="sd">        dictionary that contains number of experiments, experimental data, etc.</span>
+<span class="sd">    calWin : class</span>
+<span class="sd">        pyqt class that defines the calibration progress window</span>
+<span class="sd">        (animated plots).</span>
+<span class="sd">    seed : int, optional</span>
+<span class="sd">        seed for random reproducibility. The default is None.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pop : list of lists</span>
+<span class="sd">        the current population of design variables</span>
+<span class="sd">    logbook : class</span>
+<span class="sd">        deap-specific class that contains ``Evolution records</span>
+<span class="sd">        as a chronological list of dictionaries.&#39;&#39; for more information, see:</span>
+<span class="sd">        https://deap.readthedocs.io/en/master/api/tools.html?highlight=logbook#logbook</span>
+<span class="sd">    d : class</span>
+<span class="sd">        class to dynamically update matplotlib plots.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+    <span class="n">CXPB</span> <span class="o">=</span> <span class="mf">0.9</span> <span class="c1">#crossover probability</span>
     <span class="n">nGenSave</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1">#Best population will be saved every nGenSave</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> 
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">util_funcs</span><span class="o">.</span><span class="n">DynamicUpdate</span><span class="p">()</span>
 
+    <span class="c1">#collect the data into one dictionary</span>
     <span class="n">num_experiments</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;num_experiments&#39;</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_experiments</span><span class="p">):</span>
         <span class="n">eps</span><span class="p">,</span><span class="n">T</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;exp_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)][</span><span class="s1">&#39;strain&#39;</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;exp_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)][</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span>
-        <span class="c1">#T = </span>
+        <span class="c1">#T =</span>
 
-        
+
         <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">total_strain</span> <span class="o">=</span> <span class="n">eps</span>
             <span class="n">total_temperature</span> <span class="o">=</span> <span class="n">T</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">total_strain</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">total_strain</span><span class="p">,</span><span class="n">eps</span><span class="p">))</span>
             <span class="n">total_temperature</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">total_temperature</span><span class="p">,</span><span class="n">T</span><span class="p">))</span>
-        
+
         <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>
 
     <span class="c1"># d.on_launch(total_temperature,total_strain,i)</span>
-    <span class="n">calWin</span><span class="o">.</span><span class="n">plotExperimental</span><span class="p">(</span><span class="n">total_temperature</span><span class="p">,</span> <span class="n">total_strain</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">calWin</span><span class="o">.</span><span class="n">plot_experimental</span><span class="p">(</span><span class="n">total_temperature</span><span class="p">,</span> <span class="n">total_strain</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
 
 
 
@@ -540,7 +549,7 @@
     <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">invalid_ind</span><span class="p">:</span>
         <span class="n">arrayofGenes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
         <span class="n">ind</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">ind</span><span class="p">,</span><span class="n">data</span><span class="p">,</span> <span class="n">calWin</span><span class="p">)</span>
-        
+
     <span class="c1"># This is just to assign the crowding distance to the individuals</span>
     <span class="c1"># no actual selection is done</span>
     <span class="n">pop</span> <span class="o">=</span> <span class="n">toolbox</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">pop</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pop</span><span class="p">))</span>
@@ -550,34 +559,31 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">logbook</span><span class="o">.</span><span class="n">stream</span><span class="p">)</span>
 
     <span class="c1"># Begin the generational process</span>
-    <span class="c1"># db=shelve.open(&#39;popLog.dat&#39;) Open in simManager</span>
-    <span class="n">pixList</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">pixString</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="n">totGen</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">gen</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">cntGenSave</span> <span class="o">=</span> <span class="mi">1</span>
-    
+
     <span class="k">while</span> <span class="n">gen</span> <span class="o">&lt;</span> <span class="n">genSize</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
         <span class="c1"># Vary the population</span>
         <span class="n">offspring</span> <span class="o">=</span> <span class="n">toolbox</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">pop</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pop</span><span class="p">))</span>
         <span class="n">offspring</span> <span class="o">=</span> <span class="p">[</span><span class="n">toolbox</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">offspring</span><span class="p">]</span>
-        
+
         <span class="k">for</span> <span class="n">ind1</span><span class="p">,</span> <span class="n">ind2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">offspring</span><span class="p">[::</span><span class="mi">2</span><span class="p">],</span> <span class="n">offspring</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]):</span>
             <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">CXPB</span><span class="p">:</span>
                 <span class="n">toolbox</span><span class="o">.</span><span class="n">mate</span><span class="p">(</span><span class="n">ind1</span><span class="p">,</span> <span class="n">ind2</span><span class="p">)</span>
-            
+
             <span class="n">toolbox</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">ind1</span><span class="p">)</span>
             <span class="n">toolbox</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">ind2</span><span class="p">)</span>
             <span class="k">del</span> <span class="n">ind1</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">ind2</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">values</span>
-            
+
         <span class="c1"># Evaluate the individuals with an invalid fitness</span>
         <span class="n">invalid_ind</span> <span class="o">=</span> <span class="p">[</span><span class="n">ind</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">offspring</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ind</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">valid</span><span class="p">]</span>
-        
+
         <span class="n">arrayofGenes</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">invalid_ind</span><span class="p">:</span>
             <span class="n">arrayofGenes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
             <span class="n">ind</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">ind</span><span class="p">,</span><span class="n">data</span><span class="p">,</span> <span class="n">calWin</span><span class="p">)</span>
-        
+
         <span class="c1"># Select the next generation population</span>
         <span class="n">pop</span> <span class="o">=</span> <span class="n">toolbox</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">pop</span> <span class="o">+</span> <span class="n">offspring</span><span class="p">,</span> <span class="n">popSize</span><span class="p">)</span>
         <span class="n">record</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span>
@@ -587,21 +593,29 @@
         <span class="n">db</span><span class="o">=</span><span class="n">shelve</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;popLog&#39;</span><span class="p">)</span>
         <span class="n">db</span><span class="p">[</span><span class="s1">&#39;lastPop&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pop</span>
         <span class="k">if</span> <span class="n">cntGenSave</span> <span class="o">==</span> <span class="n">nGenSave</span><span class="p">:</span>
-            <span class="n">db</span><span class="p">[</span><span class="nb">repr</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;Pop&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pop</span>    
+            <span class="n">db</span><span class="p">[</span><span class="nb">repr</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;Pop&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pop</span>
             <span class="n">cntGenSave</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-        
+
         <span class="c1"># Write a color map illustrating the genes of all the best population members</span>
         <span class="c1"># throughout the generations</span>
         <span class="n">calWin</span><span class="o">.</span><span class="n">gens</span> <span class="o">=</span> <span class="n">logbook</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;gen&#39;</span><span class="p">)</span>
         <span class="n">calWin</span><span class="o">.</span><span class="n">mins</span> <span class="o">=</span> <span class="n">logbook</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">)</span>
-        
+
         <span class="n">avg</span> <span class="o">=</span> <span class="n">logbook</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;avg&#39;</span><span class="p">)</span>
         <span class="n">std</span> <span class="o">=</span> <span class="n">logbook</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;std&#39;</span><span class="p">)</span>
-        <span class="n">calWin</span><span class="o">.</span><span class="n">updateOptProgress</span><span class="p">(</span><span class="n">calWin</span><span class="o">.</span><span class="n">gens</span><span class="p">,</span> <span class="n">calWin</span><span class="o">.</span><span class="n">mins</span><span class="p">,</span> <span class="n">avg</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span>
+        <span class="n">calWin</span><span class="o">.</span><span class="n">update_opt_progress</span><span class="p">(</span>
+            <span class="n">calWin</span><span class="o">.</span><span class="n">gens</span><span class="p">,</span>
+            <span class="n">calWin</span><span class="o">.</span><span class="n">mins</span><span class="p">,</span>
+            <span class="n">avg</span><span class="p">,</span>
+            <span class="n">std</span>
+            <span class="p">)</span>
         <span class="c1">#print(pop[0])</span>
-        <span class="n">calWin</span><span class="o">.</span><span class="n">updateDVVals</span><span class="p">(</span><span class="n">pop</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;DV_flags&#39;</span><span class="p">])</span>
+        <span class="n">calWin</span><span class="o">.</span><span class="n">update_design_variable_vals</span><span class="p">(</span>
+            <span class="n">pop</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;DV_flags&#39;</span><span class="p">]</span>
+            <span class="p">)</span>
 
 
         <span class="c1">#pop[0] is the best current individual</span>
@@ -611,52 +625,71 @@
         <span class="n">cntGenSave</span> <span class="o">+=</span><span class="mi">1</span>
         <span class="n">gen</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">totGen</span> <span class="o">+=</span> <span class="mi">1</span>
-        
+
     <span class="k">return</span> <span class="n">pop</span><span class="p">,</span> <span class="n">logbook</span><span class="p">,</span><span class="n">d</span></div>
 
-        
-    
+
+
 
 <span class="c1">#if __name__ == &#39;__main__&#39;:</span>
 <div class="viewcode-block" id="main">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.test_optimizer_v2.main">[docs]</a>
+<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.main">[docs]</a>
 <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span><span class="n">calibration_class</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">calWin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Initialize and run the optimization.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    bounds : list of lists</span>
+<span class="sd">        bounds for each active design variable.</span>
+<span class="sd">        the structure is [[lower_bound_1, upper_bound_1], [...], ...]</span>
+<span class="sd">    calibration_class : class</span>
+<span class="sd">        calibration parameters widget, contains all flags and values.</span>
+<span class="sd">    data : dict</span>
+<span class="sd">        dictionary containing experimental data/calibration specifics/etc.</span>
+<span class="sd">    calWin : class</span>
+<span class="sd">        calibration progress widget, dynamically updates plots.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    error : float</span>
+<span class="sd">        final error for the optimization.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">util_funcs</span><span class="o">.</span><span class="n">plot_settings</span><span class="p">(</span><span class="n">format_flag</span><span class="o">=</span><span class="s2">&quot;presentation&quot;</span><span class="p">)</span>
 
-    <span class="n">modulus_flag</span> <span class="o">=</span> <span class="n">calibration_class</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s1">&#39;modulus_flag&#39;</span><span class="p">]</span> <span class="c1">#flag to set both moduli (E_M and E_A) equal to each other</span>
-    <span class="n">slope_flag</span> <span class="o">=</span> <span class="n">calibration_class</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s1">&#39;slope_flag&#39;</span><span class="p">]</span> <span class="c1">#flag to set both stress-influence coefficients (C_M and C_A) equal to each other</span>
-    <span class="n">smooth_hardening_flag</span> <span class="o">=</span> <span class="n">calibration_class</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s1">&#39;smooth_hardening_flag&#39;</span><span class="p">]</span> <span class="c1">#flag to set all smooth hardening coefficients (n_1 -- n_4) equal</span>
-    <span class="n">DV_flags</span> <span class="o">=</span> <span class="n">calibration_class</span><span class="o">.</span><span class="n">DV_flags</span> 
+    <span class="c1">#set both moduli (E_M and E_A) equal to each other</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;modulus_flag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calibration_class</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s1">&#39;modulus_flag&#39;</span><span class="p">]</span>
+    <span class="c1">#set both stress-influence coefficients (C_M and C_A) equal to each other</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;slope_flag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calibration_class</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s1">&#39;slope_flag&#39;</span><span class="p">]</span>
+    <span class="c1">#flag to set all smooth hardening coefficients (n_1 -- n_4) equal</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;smooth_hardening_flag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calibration_class</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s1">&#39;smooth_hardening_flag&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;DV_flags&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calibration_class</span><span class="o">.</span><span class="n">DV_flags</span>
     <span class="n">known_values</span> <span class="o">=</span> <span class="n">calibration_class</span><span class="o">.</span><span class="n">known_values</span>
-    
-    
-    
-    <span class="k">if</span> <span class="n">modulus_flag</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">DV_flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1">#If we want both moduli to be the same, just make the E_M - E_A DV inactive</span>
-        
-    <span class="c1"># Add in similar code for slope and hardening flags</span>
-        
-    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;modulus_flag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">modulus_flag</span>
-    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;slope_flag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">slope_flag</span>
-    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;smooth_hardening_flag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">smooth_hardening_flag</span>
-    
+
+
+    <span class="c1">#If we want both moduli to be the same, just make the E_M - E_A DV inactive</span>
+    <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;modulus_flag&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;DV_flags&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
     <span class="n">data</span><span class="p">[</span><span class="s1">&#39;delta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calibration_class</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">value</span>
     <span class="n">data</span><span class="p">[</span><span class="s1">&#39;sigma_cal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calibration_class</span><span class="o">.</span><span class="n">sigma_cal</span><span class="o">.</span><span class="n">value</span>
     <span class="n">data</span><span class="p">[</span><span class="s1">&#39;MVF_tol&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calibration_class</span><span class="o">.</span><span class="n">MVF_tol</span><span class="o">.</span><span class="n">value</span>
-    
-    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;DV_flags&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DV_flags</span> 
-    
-    <span class="n">num_DVs</span> <span class="o">=</span> <span class="n">DV_flags</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    
-    <span class="c1">## Initialize bounds based on the DV_flags</span>
 
-    
-    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;bounds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bounds</span> 
+
+    <span class="n">num_DVs</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;DV_flags&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="c1">## Initialize bounds based on the DV_flags</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;bounds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bounds</span>
     <span class="n">data</span><span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">known_values</span>
 
-    <span class="n">popSize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">calibration_class</span><span class="o">.</span><span class="n">pop_size</span><span class="p">)</span>  <span class="c1"># Population size for GA (must be divisible by 4)</span>
-    <span class="n">genSize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">calibration_class</span><span class="o">.</span><span class="n">num_gens</span><span class="p">)</span> <span class="c1"># Number of generations for GA</span>
-    <span class="n">maxIterGradient</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">calibration_class</span><span class="o">.</span><span class="n">num_iters</span><span class="p">)</span>  <span class="c1"># Maximum iterations for the gradient-based optimizer</span>
+    <span class="c1"># Population size for GA (must be divisible by 4)</span>
+    <span class="n">popSize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">calibration_class</span><span class="o">.</span><span class="n">pop_size</span><span class="p">)</span>
+    <span class="c1"># Number of generations for GA</span>
+    <span class="n">genSize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">calibration_class</span><span class="o">.</span><span class="n">num_gens</span><span class="p">)</span>
+    <span class="c1"># Maximum iterations for the gradient-based optimizer</span>
+    <span class="n">maxIterGradient</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">calibration_class</span><span class="o">.</span><span class="n">num_iters</span><span class="p">)</span>
+
     <span class="c1"># DEAP</span>
     <span class="n">creator</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
         <span class="s2">&quot;FitnessMin&quot;</span><span class="p">,</span> <span class="n">base</span><span class="o">.</span><span class="n">Fitness</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,)</span>
@@ -677,8 +710,8 @@
     <span class="n">toolbox</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;mutate&quot;</span><span class="p">,</span> <span class="n">tools</span><span class="o">.</span><span class="n">mutFlipBit</span><span class="p">,</span> <span class="n">indpb</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
     <span class="n">toolbox</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;select&quot;</span><span class="p">,</span> <span class="n">tools</span><span class="o">.</span><span class="n">selTournament</span><span class="p">,</span> <span class="n">tournsize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
     <span class="c1"># startTime = time.perf_counter()</span>
-    <span class="n">pop</span><span class="p">,</span> <span class="n">stats</span><span class="p">,</span><span class="n">d</span>  <span class="o">=</span> <span class="n">optimizer</span><span class="p">(</span><span class="n">toolbox</span><span class="p">,</span><span class="n">popSize</span><span class="p">,</span><span class="n">genSize</span><span class="p">,</span><span class="n">data</span><span class="p">,</span> <span class="n">calWin</span><span class="p">)</span>
-    
+    <span class="n">pop</span><span class="p">,</span> <span class="n">stats</span> <span class="o">=</span> <span class="n">optimizer</span><span class="p">(</span><span class="n">toolbox</span><span class="p">,</span><span class="n">popSize</span><span class="p">,</span><span class="n">genSize</span><span class="p">,</span><span class="n">data</span><span class="p">,</span> <span class="n">calWin</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Entering gradient-based optimizer&#39;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -698,23 +731,15 @@
         <span class="p">),</span>
         <span class="c1">#callback=calWin.updateDVVals,</span>
     <span class="p">)</span>
-    
-    <span class="n">error</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">res2</span><span class="o">.</span><span class="n">x</span><span class="p">,</span><span class="n">data</span><span class="p">,</span> <span class="n">calWin</span><span class="p">,</span> 
+
+    <span class="n">error</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">res2</span><span class="o">.</span><span class="n">x</span><span class="p">,</span><span class="n">data</span><span class="p">,</span> <span class="n">calWin</span><span class="p">,</span>
                      <span class="n">GA_data</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
                      <span class="n">plot_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                      <span class="n">gradient_flag</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                      <span class="n">final_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">error</span></div>
 
-    
-
-    
-    
-    
-    
-    
-    
 </pre></div>
 
            </div>

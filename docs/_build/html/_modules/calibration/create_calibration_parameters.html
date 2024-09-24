@@ -41,8 +41,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">SMAREACTcleaned</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -1537,6 +1540,29 @@
             <span class="n">parameter_label_width</span><span class="p">,</span>
             <span class="n">parameter_label_height</span><span class="p">,</span>
             <span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Utility function to create the a qlabel. </span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        label_object : qlabel object</span>
+<span class="sd">            empty label</span>
+<span class="sd">        label_text : str</span>
+<span class="sd">            string to display in the label</span>
+<span class="sd">        font_size : float</span>
+<span class="sd">            size of the font to be displayed.</span>
+<span class="sd">        font_weight : float</span>
+<span class="sd">            weight of the font (0-100).</span>
+<span class="sd">        parameter_label_width : int</span>
+<span class="sd">            width of the label (pixels).</span>
+<span class="sd">        parameter_label_height : int</span>
+<span class="sd">            height of the label (pixels).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
 
 
         <span class="c1"># label_object.setMinimumSize(</span>
@@ -1580,6 +1606,37 @@
             <span class="n">line_edit_height</span><span class="p">,</span>
             <span class="n">small_spacer</span><span class="p">,</span>
             <span class="n">regular_spacer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Utility function to create all the necessary components</span>
+<span class="sd">        of a material property (label, upper and lower bounds, </span>
+<span class="sd">        specified value, and checkbox). </span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        property_object : class</span>
+<span class="sd">            class to contain all objects under a material property</span>
+<span class="sd">        name : str</span>
+<span class="sd">            name of the property.</span>
+<span class="sd">        units : str</span>
+<span class="sd">            units (SI) of the property.</span>
+<span class="sd">        parameter_label_width : int</span>
+<span class="sd">            label width (pixels)</span>
+<span class="sd">        parameter_label_height : int</span>
+<span class="sd">            label height (pixels)</span>
+<span class="sd">        line_edit_width : int</span>
+<span class="sd">            line edit width (pixels).</span>
+<span class="sd">        line_edit_height : int</span>
+<span class="sd">            line edit height (pixels).</span>
+<span class="sd">        small_spacer : class</span>
+<span class="sd">            spacer class to give everything room to breathe.</span>
+<span class="sd">        regular_spacer : class</span>
+<span class="sd">            spacer class to give everything room to breathe.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
 
 
         <span class="n">property_object</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">textToLatex</span><span class="p">(</span>
@@ -1658,6 +1715,34 @@
             <span class="n">font_weight</span><span class="p">,</span>
             <span class="n">font_size</span><span class="p">,</span>
             <span class="n">latex_flag</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Utility function to create a constraint box. </span>
+<span class="sd">        A constraint box is something like &quot;E_A = E_M&quot;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        constraint_object : TYPE</span>
+<span class="sd">            class to contain all objects under a material property</span>
+<span class="sd">        name : str</span>
+<span class="sd">            constraint name.</span>
+<span class="sd">        text : str</span>
+<span class="sd">            text to display. May require latex if latex_flag = True.</span>
+<span class="sd">        text_width : int</span>
+<span class="sd">            bounding box width of the text (pixels).</span>
+<span class="sd">        text_height : int</span>
+<span class="sd">            bounding box height of the text (pixels).</span>
+<span class="sd">        font_weight : int</span>
+<span class="sd">            font weight (0-100)</span>
+<span class="sd">        font_size : int</span>
+<span class="sd">            font size (pts).</span>
+<span class="sd">        latex_flag : bool, optional</span>
+<span class="sd">            flag to use latex to render the text. The default is False.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="n">constraint_object</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
@@ -1704,6 +1789,40 @@
             <span class="n">latex_flag</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
             <span class="n">bold_flag</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
             <span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Utility function to create a label, line edit, bounds, </span>
+<span class="sd">        and a checkbox. </span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parameter_object : class</span>
+<span class="sd">            class to contain all objects that fall in this one parameter</span>
+<span class="sd">        name : str</span>
+<span class="sd">            property name.</span>
+<span class="sd">        text : str</span>
+<span class="sd">            text to display with the property (needs Latex if latex_flag=True).</span>
+<span class="sd">        text_width : int</span>
+<span class="sd">            text width (pixels)</span>
+<span class="sd">        text_height : int</span>
+<span class="sd">            text height (pixels)</span>
+<span class="sd">        text_size : int</span>
+<span class="sd">            text size (pts).</span>
+<span class="sd">        text_weight : int</span>
+<span class="sd">            text weight (0-100).</span>
+<span class="sd">        line_edit_width : int</span>
+<span class="sd">            line edit width (pixels).</span>
+<span class="sd">        line_edit_height : int</span>
+<span class="sd">            line edit height (pixels).</span>
+<span class="sd">        latex_flag : bool, optional</span>
+<span class="sd">            flag to use latex to render the text. The default is False.</span>
+<span class="sd">        bold_flag : bool, optional</span>
+<span class="sd">            flag to make text bold. The default is True.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="n">parameter_object</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
@@ -1773,6 +1892,20 @@
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">lineEdit</span><span class="p">,</span>
             <span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Creates a generic sign policy to keep line count down in code.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        lineEdit : class</span>
+<span class="sd">            line edit class to which the size policy will be applied.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        sizePolicy : QtWidgets.QSizePolicy</span>
+<span class="sd">            generic size policy.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">sizePolicy</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSizePolicy</span><span class="p">(</span>
             <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Fixed</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Fixed</span>
             <span class="p">)</span>
@@ -1792,6 +1925,25 @@
             <span class="n">font_weight</span><span class="p">,</span>
             <span class="n">bold_flag</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
             <span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        </span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        font_size : int</span>
+<span class="sd">            font size (pts).</span>
+<span class="sd">        font_weight : int</span>
+<span class="sd">            font weight (0-100)</span>
+<span class="sd">        bold_flag : bool, optional</span>
+<span class="sd">            flag to make the font bold. The default is False.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        font : QFont object</span>
+<span class="sd">            font with size, weight, and bold.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        
         <span class="n">font</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QFont</span><span class="p">()</span>
         <span class="n">font</span><span class="o">.</span><span class="n">setPointSize</span><span class="p">(</span><span class="n">font_size</span><span class="p">)</span>
         <span class="n">font</span><span class="o">.</span><span class="n">setBold</span><span class="p">(</span><span class="n">bold_flag</span><span class="p">)</span>
@@ -1803,6 +1955,24 @@
 <div class="viewcode-block" id="CalibrationParametersWidget.textToLatex">
 <a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.textToLatex">[docs]</a>
     <span class="k">def</span> <span class="nf">textToLatex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Creates a png from text to render latex </span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        text : str</span>
+<span class="sd">            text to render.</span>
+<span class="sd">        width : int</span>
+<span class="sd">            size of the text box (pixels).</span>
+<span class="sd">        height : int</span>
+<span class="sd">            size of the text box (pixels).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        label : QLabel object</span>
+<span class="sd">            png with latex rendered font .</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">rc</span><span class="p">[</span><span class="s2">&quot;font.serif&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Palatino Linotype&quot;</span>
         <span class="n">rc</span><span class="p">[</span><span class="s2">&quot;font.family&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;serif&quot;</span>
         <span class="n">rc</span><span class="p">[</span><span class="s2">&quot;text.usetex&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>

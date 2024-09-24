@@ -41,8 +41,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">SMAREACTcleaned</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -158,6 +161,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">temp_col</span> <span class="o">=</span> <span class="n">QSpinBox</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">temp_col</span><span class="o">.</span><span class="n">setMinimum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">temp_col</span><span class="o">.</span><span class="n">setMaximum</span><span class="p">(</span><span class="mi">999</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temp_col</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">temp_units</span> <span class="o">=</span> <span class="n">QComboBox</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">temp_units</span><span class="o">.</span><span class="n">addItems</span><span class="p">([</span><span class="s1">&#39;[°C]&#39;</span><span class="p">,</span> <span class="s1">&#39;[°F]&#39;</span><span class="p">,</span> <span class="s1">&#39;[K]&#39;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">strain_data_col</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -165,13 +169,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">strain_col</span> <span class="o">=</span> <span class="n">QSpinBox</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">strain_col</span><span class="o">.</span><span class="n">setMinimum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">strain_col</span><span class="o">.</span><span class="n">setMaximum</span><span class="p">(</span><span class="mi">999</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">strain_col</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">strain_units</span> <span class="o">=</span> <span class="n">QComboBox</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">strain_units</span><span class="o">.</span><span class="n">addItems</span><span class="p">([</span><span class="s1">&#39;[mm/mm]&#39;</span><span class="p">,</span> <span class="s1">&#39;[%]&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">strain_units</span><span class="o">.</span><span class="n">addItems</span><span class="p">([</span><span class="s1">&#39;[%]&#39;</span><span class="p">,</span> <span class="s1">&#39;[mm/mm]&#39;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stress_data_col</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stress_data_col</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;Column for Stress data:&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stress_col</span> <span class="o">=</span> <span class="n">QSpinBox</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stress_col</span><span class="o">.</span><span class="n">setMinimum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stress_col</span><span class="o">.</span><span class="n">setMaximum</span><span class="p">(</span><span class="mi">999</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stress_col</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stress_units</span> <span class="o">=</span> <span class="n">QComboBox</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stress_units</span><span class="o">.</span><span class="n">addItems</span><span class="p">([</span><span class="s1">&#39;[MPa]&#39;</span><span class="p">,</span> <span class="s1">&#39;[Pa]&#39;</span><span class="p">,</span> <span class="s1">&#39;[psi]&#39;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">preview</span> <span class="o">=</span> <span class="n">QTableWidget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>

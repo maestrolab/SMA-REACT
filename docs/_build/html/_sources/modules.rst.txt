@@ -2,12 +2,15 @@ SMAREACTcleaned
 ===============
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
+   :caption: Code index:
 
+   preprocessor
+   launch_GUI
+   data_input
    calibration
    calibration_progress
-   data_input
-   launch_GUI
-   preprocessor
-   test_GUI
-   test_tab
+
+   
+   
+   

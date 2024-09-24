@@ -41,8 +41,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">SMAREACTcleaned</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -89,12 +92,33 @@
 <div class="viewcode-block" id="DynamicUpdate">
 <a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.DynamicUpdate">[docs]</a>
 <span class="k">class</span> <span class="nc">DynamicUpdate</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Class to define dynamically updating plots in pyqt5</span>
+<span class="sd">    </span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="c1">#Suppose we know the x range</span>
 
 
 <div class="viewcode-block" id="DynamicUpdate.on_launch">
 <a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.DynamicUpdate.on_launch">[docs]</a>
     <span class="k">def</span> <span class="nf">on_launch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x_data</span><span class="p">,</span><span class="n">y_data</span><span class="p">,</span><span class="n">numExps</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Launching function</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x_data : np array</span>
+<span class="sd">            x data series</span>
+<span class="sd">        y_data : np array</span>
+<span class="sd">            y data series</span>
+<span class="sd">        numExps : int</span>
+<span class="sd">            number of experiments being analyzed</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="c1">#Set up plot</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
         
@@ -113,6 +137,23 @@
 <div class="viewcode-block" id="DynamicUpdate.on_running">
 <a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.DynamicUpdate.on_running">[docs]</a>
     <span class="k">def</span> <span class="nf">on_running</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span><span class="n">numExps</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Updating function</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x_data : np array</span>
+<span class="sd">            x data series</span>
+<span class="sd">        y_data : np array</span>
+<span class="sd">            y data series</span>
+<span class="sd">        numExps : int</span>
+<span class="sd">            number of experiments being analyzed</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="c1">#Update data (with the new _and_ the old points)</span>
         <span class="c1"># print(numExps)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numExps</span><span class="p">):</span>
@@ -128,6 +169,17 @@
 
     <span class="c1">#Example</span>
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Calling function (example)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        xdata : np array</span>
+<span class="sd">            example x data</span>
+<span class="sd">        ydata : np array</span>
+<span class="sd">            example y data</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">on_launch</span><span class="p">()</span>
         <span class="n">xdata</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">ydata</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1108,7 +1160,7 @@
             <span class="k">break</span>
         
         <span class="k">if</span> <span class="nb">iter</span> <span class="o">==</span> <span class="n">maxiter</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">exception</span><span class="p">([</span><span class="s1">&#39;ERROR: MAXIMUM NUMBER OF ITERATIONS (&#39;</span><span class="p">,</span> <span class="n">num2str</span><span class="p">(</span><span class="nb">iter</span><span class="p">),</span>  <span class="s1">&#39;) REACHED IN THE RMA&#39;</span><span class="p">])</span>
+            <span class="k">raise</span> <span class="n">exception</span><span class="p">([</span><span class="s1">&#39;ERROR: MAXIMUM NUMBER OF ITERATIONS (&#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">iter</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;) REACHED IN THE RMA&#39;</span><span class="p">])</span>
         
         
     <span class="c1"># Update strain (eps) using known values of sigma, T and updated values</span>
@@ -1243,7 +1295,7 @@
     
         
         <span class="k">if</span> <span class="nb">iter</span> <span class="o">==</span> <span class="n">maxiter</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">exception</span><span class="p">([</span><span class="s1">&#39;ERROR: MAXIMUM NUMBER OF ITERATIONS (&#39;</span><span class="p">,</span> <span class="n">num2str</span><span class="p">(</span><span class="nb">iter</span><span class="p">),</span>  <span class="s1">&#39;) REACHED IN THE RMA&#39;</span><span class="p">])</span>
+            <span class="k">raise</span> <span class="n">exception</span><span class="p">([</span><span class="s1">&#39;ERROR: MAXIMUM NUMBER OF ITERATIONS (&#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">iter</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;) REACHED IN THE RMA&#39;</span><span class="p">])</span>
 
 
     <span class="c1"># Update strain (eps) using known values of sigma, T and updated values </span>

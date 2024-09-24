@@ -12,18 +12,18 @@ calibration.model\_funcs.Full\_Model\_stress module
    :undoc-members:
    :show-inheritance:
 
-calibration.model\_funcs.phase\_diagram module
-----------------------------------------------
+calibration.model\_funcs.optimizer module
+-----------------------------------------
 
-.. automodule:: calibration.model_funcs.phase_diagram
+.. automodule:: calibration.model_funcs.optimizer
    :members:
    :undoc-members:
    :show-inheritance:
 
-calibration.model\_funcs.test\_optimizer\_v2 module
----------------------------------------------------
+calibration.model\_funcs.phase\_diagram module
+----------------------------------------------
 
-.. automodule:: calibration.model_funcs.test_optimizer_v2
+.. automodule:: calibration.model_funcs.phase_diagram
    :members:
    :undoc-members:
    :show-inheritance:

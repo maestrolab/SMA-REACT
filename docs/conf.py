@@ -6,11 +6,10 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-
-import os
+import os 
 import sys
+sys.path.insert(0,os.path.abspath(".."))
 
-sys.path.insert(0, os.path.abspath(".."))
 
 project = 'SMA-REACT'
 copyright = '2024, Patrick Walgren and Jacob Mingear'
@@ -20,8 +19,12 @@ release = '1.0.0'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.todo','sphinx.ext.viewcode',
-              'sphinx.ext.napoleon','sphinx.ext.autodoc']
+extensions = [
+    "sphinx.ext.todo",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.napoleon",
+    "sphinx.ext.autodoc",
+]
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']

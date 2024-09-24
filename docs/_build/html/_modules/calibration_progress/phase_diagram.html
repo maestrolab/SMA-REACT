@@ -41,8 +41,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">SMAREACTcleaned</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -78,6 +81,25 @@
 <div class="viewcode-block" id="plot_phase_diagram">
 <a class="viewcode-back" href="../../calibration_progress.html#calibration_progress.phase_diagram.plot_phase_diagram">[docs]</a>
 <span class="k">def</span> <span class="nf">plot_phase_diagram</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">sigma_inp</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Uses the Lagoudas 1-D model to plot stress-temperature phase </span>
+<span class="sd">    diagrams.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    P : DICT</span>
+<span class="sd">        Material properties for the SMA. See the documentation for </span>
+<span class="sd">        all properties and their meaning.</span>
+<span class="sd">    sigma_inp : list</span>
+<span class="sd">        lower and upper bounds for the stress range to plot</span>
+<span class="sd">    ax : matplotlib axis object</span>
+<span class="sd">        axis on which to plot the phase diagram.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="c1"># Transformation strain at calibration stress (H_cur)</span>
     <span class="n">H_cur_cal</span> <span class="o">=</span> <span class="n">H_cursolver</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_cal&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_crit&#39;</span><span class="p">],</span>
                             <span class="n">P</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_min&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_sat&#39;</span><span class="p">])</span>
@@ -140,8 +162,30 @@
 <div class="viewcode-block" id="forward_transformation">
 <a class="viewcode-back" href="../../calibration_progress.html#calibration_progress.phase_diagram.forward_transformation">[docs]</a>
 <span class="k">def</span> <span class="nf">forward_transformation</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="n">MVF</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">TP</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; Function to return the Temperature (T) value for a stress (sigma)under a</span>
-<span class="sd">     forward transformation at an inputed Martensite Volume Fraction (MVF) &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to return the Temperature (T) value for a stress (sigma)under a</span>
+<span class="sd">    forward transformation at an inputed Martensite Volume Fraction (MVF)   </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sigma : Float</span>
+<span class="sd">        Stress</span>
+<span class="sd">    MVF : Float</span>
+<span class="sd">        Martensitic volume fraction</span>
+<span class="sd">    P : DICT</span>
+<span class="sd">        Material properties for the SMA. See the documentation for </span>
+<span class="sd">        all properties and their meaning.</span>
+<span class="sd">    TP : DICT</span>
+<span class="sd">        Intermediate transformation parameters, calculated at each</span>
+<span class="sd">        increment</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    T : Float</span>
+<span class="sd">        Temperature</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; &#39;&#39;&#39;</span>
     
     <span class="c1"># Calculate the hardening function</span>
     <span class="n">f_fwd</span> <span class="o">=</span> <span class="mf">.5</span><span class="o">*</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">MVF</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">MVF</span><span class="p">)</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_2&#39;</span><span class="p">])</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">]</span>
@@ -163,8 +207,32 @@
 <div class="viewcode-block" id="reverse_transformation">
 <a class="viewcode-back" href="../../calibration_progress.html#calibration_progress.phase_diagram.reverse_transformation">[docs]</a>
 <span class="k">def</span> <span class="nf">reverse_transformation</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="n">MVF</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">TP</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; Function to return the Temperature (T) value for a stress (sigma)under a</span>
-<span class="sd">    reverse transformation at an inputed Martensite Volume Fraction (MVF)&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">    Function to return the Temperature (T) value for a stress (sigma)under a</span>
+<span class="sd">    reverse transformation at an inputed Martensite Volume Fraction (MVF)</span>
+
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sigma : Float</span>
+<span class="sd">        Stress</span>
+<span class="sd">    MVF : Float</span>
+<span class="sd">        Martensitic volume fraction</span>
+<span class="sd">    P : DICT</span>
+<span class="sd">        Material properties for the SMA. See the documentation for </span>
+<span class="sd">        all properties and their meaning.</span>
+<span class="sd">    TP : DICT</span>
+<span class="sd">        Intermediate transformation parameters, calculated at each</span>
+<span class="sd">        increment</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    T : Float</span>
+<span class="sd">        Temperature</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
 
     <span class="c1"># Calculate the hardening function</span>
     <span class="n">f_rev</span> <span class="o">=</span> <span class="mf">.5</span><span class="o">*</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">MVF</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_3&#39;</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">MVF</span><span class="p">)</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_4&#39;</span><span class="p">])</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">]</span>

@@ -41,8 +41,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">SMAREACTcleaned</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -242,8 +245,8 @@
             <span class="c1"># Explicit integration scheme selected</span>
             <span class="c1"># Display error if n1,n2,n3, or n4 are not equal to 1</span>
             <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_2&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_3&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_4&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">h</span> <span class="o">=</span> <span class="nb">print</span><span class="p">(</span>
-                    <span class="s1">&#39;Smoothness parameters must be changed to 1 for explicit integration scheme.&#39;</span><span class="p">,</span> <span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s1">&#39;Smoothness parameters must be changed to 1 for explicit integration scheme.&#39;</span><span class="p">)</span>
                 <span class="k">break</span>
 
             <span class="c1"># Call function to return output variables for explicit correction</span>

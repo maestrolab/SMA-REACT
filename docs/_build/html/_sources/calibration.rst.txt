@@ -21,14 +21,6 @@ calibration.create\_calibration\_parameters module
    :undoc-members:
    :show-inheritance:
 
-calibration.test\_GUI\_2 module
--------------------------------
-
-.. automodule:: calibration.test_GUI_2
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Module contents
 ---------------
 

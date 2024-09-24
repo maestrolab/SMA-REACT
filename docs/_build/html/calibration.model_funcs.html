@@ -20,7 +20,9 @@
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="calibration.utility package" href="calibration.utility.html" />
+    <link rel="prev" title="calibration package" href="calibration.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,61 +44,28 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">calibration.model_funcs package</a><ul>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-calibration.model_funcs.Full_Model_stress">calibration.model_funcs.Full_Model_stress module</a><ul>
-<li><a class="reference internal" href="#calibration.model_funcs.Full_Model_stress.Full_Model_stress"><code class="docutils literal notranslate"><span class="pre">Full_Model_stress()</span></code></a></li>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">SMAREACTcleaned</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="calibration.html">calibration package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="calibration.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">calibration.model_funcs package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="calibration.utility.html">calibration.utility package</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-calibration.model_funcs.phase_diagram">calibration.model_funcs.phase_diagram module</a><ul>
-<li><a class="reference internal" href="#calibration.model_funcs.phase_diagram.forward_transformation"><code class="docutils literal notranslate"><span class="pre">forward_transformation()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.phase_diagram.plot_phase_diagram"><code class="docutils literal notranslate"><span class="pre">plot_phase_diagram()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.phase_diagram.reverse_transformation"><code class="docutils literal notranslate"><span class="pre">reverse_transformation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="calibration.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calibration.html#module-calibration.create_calibration_parameters">calibration.create_calibration_parameters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calibration.html#module-calibration">Module contents</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-calibration.model_funcs.test_optimizer_v2">calibration.model_funcs.test_optimizer_v2 module</a><ul>
-<li><a class="reference internal" href="#calibration.model_funcs.test_optimizer_v2.cxTwoPointCopy"><code class="docutils literal notranslate"><span class="pre">cxTwoPointCopy()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.test_optimizer_v2.data_input"><code class="docutils literal notranslate"><span class="pre">data_input()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.test_optimizer_v2.evaluate"><code class="docutils literal notranslate"><span class="pre">evaluate()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.test_optimizer_v2.exponentialBounds"><code class="docutils literal notranslate"><span class="pre">exponentialBounds()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.test_optimizer_v2.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.test_optimizer_v2.material_data"><code class="docutils literal notranslate"><span class="pre">material_data()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.test_optimizer_v2.optimizer"><code class="docutils literal notranslate"><span class="pre">optimizer()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.test_optimizer_v2.psh"><code class="docutils literal notranslate"><span class="pre">psh()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.test_optimizer_v2.resizeBounds"><code class="docutils literal notranslate"><span class="pre">resizeBounds()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-calibration.model_funcs.util_funcs">calibration.model_funcs.util_funcs module</a><ul>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.DynamicUpdate"><code class="docutils literal notranslate"><span class="pre">DynamicUpdate</span></code></a><ul>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.DynamicUpdate.on_launch"><code class="docutils literal notranslate"><span class="pre">DynamicUpdate.on_launch()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.DynamicUpdate.on_running"><code class="docutils literal notranslate"><span class="pre">DynamicUpdate.on_running()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.Elastic_Transformation_check_RI_stress"><code class="docutils literal notranslate"><span class="pre">Elastic_Transformation_check_RI_stress()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.Elastic_Transformation_check_stress"><code class="docutils literal notranslate"><span class="pre">Elastic_Transformation_check_stress()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.Explicit_Transformation_Correction_stress"><code class="docutils literal notranslate"><span class="pre">Explicit_Transformation_Correction_stress()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.Explicit_fwd_transformation_correction_stress"><code class="docutils literal notranslate"><span class="pre">Explicit_fwd_transformation_correction_stress()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.Explicit_rev_transformation_correction_stress"><code class="docutils literal notranslate"><span class="pre">Explicit_rev_transformation_correction_stress()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.H_cursolver"><code class="docutils literal notranslate"><span class="pre">H_cursolver()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.Implicit_Transformation_Correction_stress"><code class="docutils literal notranslate"><span class="pre">Implicit_Transformation_Correction_stress()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.Implicit_fwd_transformation_correction_stress"><code class="docutils literal notranslate"><span class="pre">Implicit_fwd_transformation_correction_stress()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.Implicit_rev_transformation_correction_stress"><code class="docutils literal notranslate"><span class="pre">Implicit_rev_transformation_correction_stress()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.minkowski_error"><code class="docutils literal notranslate"><span class="pre">minkowski_error()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.partial_Hcur_sigma"><code class="docutils literal notranslate"><span class="pre">partial_Hcur_sigma()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.partial_Phi_fwd_MVF"><code class="docutils literal notranslate"><span class="pre">partial_Phi_fwd_MVF()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.partial_Phi_fwd_sigma"><code class="docutils literal notranslate"><span class="pre">partial_Phi_fwd_sigma()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.partial_Phi_rev_MVF"><code class="docutils literal notranslate"><span class="pre">partial_Phi_rev_MVF()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.plot_settings"><code class="docutils literal notranslate"><span class="pre">plot_settings()</span></code></a></li>
-<li><a class="reference internal" href="#calibration.model_funcs.util_funcs.symmetric_hausdorff"><code class="docutils literal notranslate"><span class="pre">symmetric_hausdorff()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-calibration.model_funcs">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration_progress.html">calibration_progress package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_input.html">data_input package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="launch_GUI.html">launch_GUI module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">preprocessor package</a></li>
 </ul>
 </li>
 </ul>
-</div>
+
         </div>
       </div>
     </nav>
@@ -111,6 +80,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">SMAREACTcleaned</a></li>
+          <li class="breadcrumb-item"><a href="calibration.html">calibration package</a></li>
       <li class="breadcrumb-item active">calibration.model_funcs package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/calibration.model_funcs.rst.txt" rel="nofollow"> View page source</a>
@@ -164,6 +135,196 @@ the return mapping algorithm integration scheme).</p></li>
 </dd></dl>
 
 </section>
+<section id="module-calibration.model_funcs.optimizer">
+<span id="calibration-model-funcs-optimizer-module"></span><h2>calibration.model_funcs.optimizer module<a class="headerlink" href="#module-calibration.model_funcs.optimizer" title="Link to this heading"></a></h2>
+<p>optimizer.py</p>
+<p>This script contains all the optimization-specific routines.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="calibration.model_funcs.optimizer.cxTwoPointCopy">
+<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.optimizer.</span></span><span class="sig-name descname"><span class="pre">cxTwoPointCopy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ind1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/optimizer.html#cxTwoPointCopy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.optimizer.cxTwoPointCopy" title="Link to this definition"></a></dt>
+<dd><p>Execute a two points crossover with copy on the input individuals. The
+copy is required because the slicing in numpy returns a view of the data,
+which leads to a self overwritting in the swap operation. It prevents:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mf">5.6.7.8</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">[1 6 7 4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">[5 6 7 8]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="calibration.model_funcs.optimizer.evaluate">
+<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.optimizer.</span></span><span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calWin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GA_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/optimizer.html#evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.optimizer.evaluate" title="Link to this definition"></a></dt>
+<dd><p>Evaluates the current design vector, measures the error between
+the model prediction and experimental data, re-plots the
+GUI outputs (strain-temperature history, design vector, etc.),
+and returns the error to the optimizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>TYPE</em>) – DESCRIPTION.</p></li>
+<li><p><strong>data</strong> (<em>dict</em>) – dictionary to contain problem-specific data,
+including (but not limited to) variable bounds and flags and
+experimental stress-strain-temperature histories.</p></li>
+<li><p><strong>calWin</strong> (<em>class</em>) – class that describes the calibration progress window
+(animated plots).</p></li>
+<li><p><strong>GA_data</strong> (<em>list</em><em> of </em><em>lists</em><em>, </em><em>optional</em>) – data passed from the genetic algorithm
+for aggregate stats. the two fields are the
+minimum objective value and the average objective
+value for each generation.
+The default is False.</p></li>
+<li><p><strong>plot_flag</strong> (<em>bool</em><em>, </em><em>optional</em>) – flag to update plots. The default is False.</p></li>
+<li><p><strong>gradient_flag</strong> (<em>bool</em><em>, </em><em>optional</em>) – flag to specify whether the optimization
+is a genetic algorithm or gradient-based.
+The only thing it changes here is the frequency
+of plotting.
+The default is False.</p></li>
+<li><p><strong>final_flag</strong> (<em>bool</em><em>, </em><em>optional</em>) – flag to specify the last (optimal) functional evaluation.
+plots the best result in the calibration progress window.
+The default is False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>error of the evaluation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>flt</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="calibration.model_funcs.optimizer.exponentialBounds">
+<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.optimizer.</span></span><span class="sig-name descname"><span class="pre">exponentialBounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1000.0,</span> <span class="pre">100000000.0]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/optimizer.html#exponentialBounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.optimizer.exponentialBounds" title="Link to this definition"></a></dt>
+<dd><p>Creates a bounded function based on an exponential distribution.
+Very convenient for values that span many orders of magnitude
+(i.e., the rise time k).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<em>flt</em>) – Entry in the design vector</p></li>
+<li><p><strong>bounds</strong> (<em>list</em><em>, </em><em>optional</em>) – bounds for the specific entry in the design vector.
+By default [1e3, 1e8].</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="calibration.model_funcs.optimizer.main">
+<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.optimizer.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_class</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calWin</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/optimizer.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.optimizer.main" title="Link to this definition"></a></dt>
+<dd><p>Initialize and run the optimization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bounds</strong> (<em>list</em><em> of </em><em>lists</em>) – bounds for each active design variable.
+the structure is [[lower_bound_1, upper_bound_1], […], …]</p></li>
+<li><p><strong>calibration_class</strong> (<em>class</em>) – calibration parameters widget, contains all flags and values.</p></li>
+<li><p><strong>data</strong> (<em>dict</em>) – dictionary containing experimental data/calibration specifics/etc.</p></li>
+<li><p><strong>calWin</strong> (<em>class</em>) – calibration progress widget, dynamically updates plots.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>error</strong> – final error for the optimization.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="calibration.model_funcs.optimizer.optimizer">
+<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.optimizer.</span></span><span class="sig-name descname"><span class="pre">optimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">toolbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">popSize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genSize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calWin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/optimizer.html#optimizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.optimizer.optimizer" title="Link to this definition"></a></dt>
+<dd><p>Runs the hybrid optimization to find optimal
+material properties.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>toolbox</strong> (<em>class</em>) – <p>deap-specific class that contains evolutionary operators.
+for more information, see:</p>
+<blockquote>
+<div><p><a class="reference external" href="https://deap.readthedocs.io/en/master/api/base.html#toolbox">https://deap.readthedocs.io/en/master/api/base.html#toolbox</a></p>
+</div></blockquote>
+</p></li>
+<li><p><strong>popSize</strong> (<em>int</em>) – population size for each generation.</p></li>
+<li><p><strong>genSize</strong> (<em>int</em>) – number of generations.</p></li>
+<li><p><strong>data</strong> (<em>dict</em>) – dictionary that contains number of experiments, experimental data, etc.</p></li>
+<li><p><strong>calWin</strong> (<em>class</em>) – pyqt class that defines the calibration progress window
+(animated plots).</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – seed for random reproducibility. The default is None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>pop</strong> (<em>list of lists</em>) – the current population of design variables</p></li>
+<li><p><strong>logbook</strong> (<em>class</em>) – deap-specific class that contains <a href="#id1"><span class="problematic" id="id2">``</span></a>Evolution records
+as a chronological list of dictionaries.’’ for more information, see:
+<a class="reference external" href="https://deap.readthedocs.io/en/master/api/tools.html?highlight=logbook#logbook">https://deap.readthedocs.io/en/master/api/tools.html?highlight=logbook#logbook</a></p></li>
+<li><p><strong>d</strong> (<em>class</em>) – class to dynamically update matplotlib plots.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="calibration.model_funcs.optimizer.psh">
+<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.optimizer.</span></span><span class="sig-name descname"><span class="pre">psh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">popSize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genSize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolbox</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/optimizer.html#psh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.optimizer.psh" title="Link to this definition"></a></dt>
+<dd><p>Generates DEAP things.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>popSize</strong> (<em>int</em>) – Population size for GA</p></li>
+<li><p><strong>genSize</strong> (<em>int</em>) – Number of generations for GA</p></li>
+<li><p><strong>toolbox</strong> (<em>deap</em>) – DEAP toolbox.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>pop</strong> (<em>[type]</em>) – Population</p></li>
+<li><p><strong>stats</strong> (<em>[type]</em>) – Statistics</p></li>
+<li><p><strong>hof</strong> (<em>[type]</em>) – Hall of Fame</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="calibration.model_funcs.optimizer.resizeBounds">
+<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.optimizer.</span></span><span class="sig-name descname"><span class="pre">resizeBounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1000.0,</span> <span class="pre">100000000.0]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/optimizer.html#resizeBounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.optimizer.resizeBounds" title="Link to this definition"></a></dt>
+<dd><p>Maps an entry of the design vector (bounds [0,1]) to the isotropic
+hardening modulus.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<em>flt</em>) – Entry in the design vector</p></li>
+<li><p><strong>bounds</strong> (<em>list</em><em>, </em><em>optional</em>) – bounds for the specific entry in the design vector.
+By default [1e3, 1e8].</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>value</strong> – Bounded entry in the design vector.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>flt</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 <section id="module-calibration.model_funcs.phase_diagram">
 <span id="calibration-model-funcs-phase-diagram-module"></span><h2>calibration.model_funcs.phase_diagram module<a class="headerlink" href="#module-calibration.model_funcs.phase_diagram" title="Link to this heading"></a></h2>
 <dl class="py function">
@@ -186,116 +347,6 @@ reverse transformation at an inputed Martensite Volume Fraction (MVF)</p>
 </dd></dl>
 
 </section>
-<section id="module-calibration.model_funcs.test_optimizer_v2">
-<span id="calibration-model-funcs-test-optimizer-v2-module"></span><h2>calibration.model_funcs.test_optimizer_v2 module<a class="headerlink" href="#module-calibration.model_funcs.test_optimizer_v2" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="calibration.model_funcs.test_optimizer_v2.cxTwoPointCopy">
-<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.test_optimizer_v2.</span></span><span class="sig-name descname"><span class="pre">cxTwoPointCopy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ind1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/test_optimizer_v2.html#cxTwoPointCopy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.test_optimizer_v2.cxTwoPointCopy" title="Link to this definition"></a></dt>
-<dd><p>Execute a two points crossover with copy on the input individuals. The
-copy is required because the slicing in numpy returns a view of the data,
-which leads to a self overwritting in the swap operation. It prevents:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mf">5.6.7.8</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="go">[1 6 7 4]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="go">[5 6 7 8]</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="calibration.model_funcs.test_optimizer_v2.data_input">
-<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.test_optimizer_v2.</span></span><span class="sig-name descname"><span class="pre">data_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fileName</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/test_optimizer_v2.html#data_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.test_optimizer_v2.data_input" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="calibration.model_funcs.test_optimizer_v2.evaluate">
-<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.test_optimizer_v2.</span></span><span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calWin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GA_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/test_optimizer_v2.html#evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.test_optimizer_v2.evaluate" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="calibration.model_funcs.test_optimizer_v2.exponentialBounds">
-<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.test_optimizer_v2.</span></span><span class="sig-name descname"><span class="pre">exponentialBounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1000.0,</span> <span class="pre">100000000.0]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/test_optimizer_v2.html#exponentialBounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.test_optimizer_v2.exponentialBounds" title="Link to this definition"></a></dt>
-<dd><p>[summary]</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>value</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
-<li><p><strong>bounds</strong> (<em>list</em><em>, </em><em>optional</em>) – [description], by default [1e3, 1e8]</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>[description]</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>[type]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="calibration.model_funcs.test_optimizer_v2.main">
-<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.test_optimizer_v2.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_class</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calWin</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/test_optimizer_v2.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.test_optimizer_v2.main" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="calibration.model_funcs.test_optimizer_v2.material_data">
-<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.test_optimizer_v2.</span></span><span class="sig-name descname"><span class="pre">material_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/test_optimizer_v2.html#material_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.test_optimizer_v2.material_data" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="calibration.model_funcs.test_optimizer_v2.optimizer">
-<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.test_optimizer_v2.</span></span><span class="sig-name descname"><span class="pre">optimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">toolbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">popSize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genSize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calWin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/test_optimizer_v2.html#optimizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.test_optimizer_v2.optimizer" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="calibration.model_funcs.test_optimizer_v2.psh">
-<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.test_optimizer_v2.</span></span><span class="sig-name descname"><span class="pre">psh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">popSize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genSize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolbox</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/test_optimizer_v2.html#psh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.test_optimizer_v2.psh" title="Link to this definition"></a></dt>
-<dd><p>Generates DEAP things.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>popSize</strong> (<em>int</em>) – Population size for GA</p></li>
-<li><p><strong>genSize</strong> (<em>int</em>) – Number of generations for GA</p></li>
-<li><p><strong>toolbox</strong> (<em>deap</em>) – DEAP toolbox.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>pop</strong> (<em>[type]</em>) – Population</p></li>
-<li><p><strong>stats</strong> (<em>[type]</em>) – Statistics</p></li>
-<li><p><strong>hof</strong> (<em>[type]</em>) – Hall of Fame</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="calibration.model_funcs.test_optimizer_v2.resizeBounds">
-<span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.test_optimizer_v2.</span></span><span class="sig-name descname"><span class="pre">resizeBounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1000.0,</span> <span class="pre">100000000.0]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/test_optimizer_v2.html#resizeBounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.test_optimizer_v2.resizeBounds" title="Link to this definition"></a></dt>
-<dd><p>Maps an entry of the design vector (bounds [0,1]) to the isotropic
-hardening modulus.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>value</strong> (<em>flt</em>) – Entry in the design vector</p></li>
-<li><p><strong>bounds</strong> (<em>list</em><em>, </em><em>optional</em>) – [description], by default [1e3, 1e8]</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>value</strong> – Isotropic hardening modulus</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>flt</p>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
 <section id="module-calibration.model_funcs.util_funcs">
 <span id="calibration-model-funcs-util-funcs-module"></span><h2>calibration.model_funcs.util_funcs module<a class="headerlink" href="#module-calibration.model_funcs.util_funcs" title="Link to this heading"></a></h2>
 <p>UTILITY FUNCTIONS FOR THE SMA-REACT TOOL</p>
@@ -309,15 +360,42 @@ Patrick Walgren</p>
 <dt class="sig sig-object py" id="calibration.model_funcs.util_funcs.DynamicUpdate">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.util_funcs.</span></span><span class="sig-name descname"><span class="pre">DynamicUpdate</span></span><a class="reference internal" href="_modules/calibration/model_funcs/util_funcs.html#DynamicUpdate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.util_funcs.DynamicUpdate" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to define dynamically updating plots in pyqt5</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.model_funcs.util_funcs.DynamicUpdate.on_launch">
 <span class="sig-name descname"><span class="pre">on_launch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numExps</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/util_funcs.html#DynamicUpdate.on_launch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.util_funcs.DynamicUpdate.on_launch" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Launching function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_data</strong> (<em>np array</em>) – x data series</p></li>
+<li><p><strong>y_data</strong> (<em>np array</em>) – y data series</p></li>
+<li><p><strong>numExps</strong> (<em>int</em>) – number of experiments being analyzed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.model_funcs.util_funcs.DynamicUpdate.on_running">
 <span class="sig-name descname"><span class="pre">on_running</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xdata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ydata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numExps</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/util_funcs.html#DynamicUpdate.on_running"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.util_funcs.DynamicUpdate.on_running" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Updating function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_data</strong> (<em>np array</em>) – x data series</p></li>
+<li><p><strong>y_data</strong> (<em>np array</em>) – y data series</p></li>
+<li><p><strong>numExps</strong> (<em>int</em>) – number of experiments being analyzed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -809,7 +887,10 @@ Publication makes figures with times new roman</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="calibration.html" class="btn btn-neutral float-left" title="calibration package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="calibration.utility.html" class="btn btn-neutral float-right" title="calibration.utility package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
