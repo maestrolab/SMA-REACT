@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>preprocessor package &mdash; SMA-REACT 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=8d563738"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -44,76 +44,36 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
-<ul class="current">
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_calibration.html">Learning by doing: an example calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html#possible-extensions">Possible extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source Code</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">preprocessor package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.Geometry_Code_In_Console">preprocessor.Geometry_Code_In_Console module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.Geometry_Code_In_Console.Geometry_input"><code class="docutils literal notranslate"><span class="pre">Geometry_input()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.Geometry_Code_In_Console.Unit_Conversion"><code class="docutils literal notranslate"><span class="pre">Unit_Conversion()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.Geometry_Code_In_Console">preprocessor.Geometry_Code_In_Console module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#preprocessor-analyze-fluke-and-mts-module">preprocessor.analyze_fluke_and_mts module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#preprocessor-analyze-mts-only-module">preprocessor.analyze_mts_only module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#preprocessor-create-preprocessor-module">preprocessor.create_preprocessor module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.data_reader">preprocessor.data_reader module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.data_reader.check_in_row"><code class="docutils literal notranslate"><span class="pre">check_in_row()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.data_reader.isfloat"><code class="docutils literal notranslate"><span class="pre">isfloat()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.data_reader.reader"><code class="docutils literal notranslate"><span class="pre">reader</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.find_cycles">preprocessor.find_cycles module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.find_cycles.find_cycles"><code class="docutils literal notranslate"><span class="pre">find_cycles()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.functions">preprocessor.functions module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.functions.export_all"><code class="docutils literal notranslate"><span class="pre">export_all()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.functions.header_choice"><code class="docutils literal notranslate"><span class="pre">header_choice()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.high_pass_filter">preprocessor.high_pass_filter module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.high_pass_filter.highpassFilter"><code class="docutils literal notranslate"><span class="pre">highpassFilter()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.latex_translation">preprocessor.latex_translation module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.latex_translation.textToLatex"><code class="docutils literal notranslate"><span class="pre">textToLatex()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.loading">preprocessor.loading module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.loading.Ui_Loading"><code class="docutils literal notranslate"><span class="pre">Ui_Loading</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.data_reader">preprocessor.data_reader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.find_cycles">preprocessor.find_cycles module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.functions">preprocessor.functions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.high_pass_filter">preprocessor.high_pass_filter module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.latex_translation">preprocessor.latex_translation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.loading">preprocessor.loading module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.loading_screen">preprocessor.loading_screen module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.low_pass_filter">preprocessor.low_pass_filter module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.low_pass_filter.lowpassFilter"><code class="docutils literal notranslate"><span class="pre">lowpassFilter()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.moving_average_filter">preprocessor.moving_average_filter module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.moving_average_filter.movavg_filter"><code class="docutils literal notranslate"><span class="pre">movavg_filter()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.moving_average_filter.plotSubplot"><code class="docutils literal notranslate"><span class="pre">plotSubplot()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.plot_3d">preprocessor.plot_3d module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.plot_3d.plotColorbars"><code class="docutils literal notranslate"><span class="pre">plotColorbars()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.plot_3d.plotSST"><code class="docutils literal notranslate"><span class="pre">plotSST()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.low_pass_filter">preprocessor.low_pass_filter module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.moving_average_filter">preprocessor.moving_average_filter module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.plot_3d">preprocessor.plot_3d module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#preprocessor-plot-dsc-module">preprocessor.plot_dsc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.plot_temp_vs_strain">preprocessor.plot_temp_vs_strain module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.plot_temp_vs_strain.firstAndLastNonNAN"><code class="docutils literal notranslate"><span class="pre">firstAndLastNonNAN()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.plot_temp_vs_strain.plotColorbars"><code class="docutils literal notranslate"><span class="pre">plotColorbars()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.plot_temp_vs_strain.plot_temp_vs_strain"><code class="docutils literal notranslate"><span class="pre">plot_temp_vs_strain()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.plot_temp_vs_strain">preprocessor.plot_temp_vs_strain module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#preprocessor-smaeat-gui-module">preprocessor.smaeat_gui module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.sync_window">preprocessor.sync_window module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor.sync_window.SyncWindow"><code class="docutils literal notranslate"><span class="pre">SyncWindow</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-preprocessor.sync_window">preprocessor.sync_window module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#preprocessor-testing-module">preprocessor.testing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#preprocessor-troubleshoot-window-module">preprocessor.troubleshoot_window module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-preprocessor">Module contents</a></li>
@@ -153,309 +113,309 @@
            <div itemprop="articleBody">
              
   <section id="preprocessor-package">
-<h1>preprocessor package<a class="headerlink" href="#preprocessor-package" title="Link to this heading"></a></h1>
+<h1>preprocessor package<a class="headerlink" href="#preprocessor-package" title="Permalink to this heading"></a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-preprocessor.Geometry_Code_In_Console">
-<span id="preprocessor-geometry-code-in-console-module"></span><h2>preprocessor.Geometry_Code_In_Console module<a class="headerlink" href="#module-preprocessor.Geometry_Code_In_Console" title="Link to this heading"></a></h2>
+<span id="preprocessor-geometry-code-in-console-module"></span><h2>preprocessor.Geometry_Code_In_Console module<a class="headerlink" href="#module-preprocessor.Geometry_Code_In_Console" title="Permalink to this heading"></a></h2>
 <p>Created on Mon Sep 27 13:06:07 2021
 &#64;author: Tiago</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.Geometry_Code_In_Console.Geometry_input">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.Geometry_Code_In_Console.</span></span><span class="sig-name descname"><span class="pre">Geometry_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meas1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meas2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/Geometry_Code_In_Console.html#Geometry_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.Geometry_Code_In_Console.Geometry_input" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.Geometry_Code_In_Console.</span></span><span class="sig-name descname"><span class="pre">Geometry_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meas1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meas2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/Geometry_Code_In_Console.html#Geometry_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.Geometry_Code_In_Console.Geometry_input" title="Permalink to this definition"></a></dt>
 <dd><p>Calculates area of cross section given dimensions and performs unit conversion</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.Geometry_Code_In_Console.Unit_Conversion">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.Geometry_Code_In_Console.</span></span><span class="sig-name descname"><span class="pre">Unit_Conversion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/Geometry_Code_In_Console.html#Unit_Conversion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.Geometry_Code_In_Console.Unit_Conversion" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.Geometry_Code_In_Console.</span></span><span class="sig-name descname"><span class="pre">Unit_Conversion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/Geometry_Code_In_Console.html#Unit_Conversion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.Geometry_Code_In_Console.Unit_Conversion" title="Permalink to this definition"></a></dt>
 <dd><p>This function performs unit conversion calculations</p>
 </dd></dl>
 
 </section>
 <section id="preprocessor-analyze-fluke-and-mts-module">
-<h2>preprocessor.analyze_fluke_and_mts module<a class="headerlink" href="#preprocessor-analyze-fluke-and-mts-module" title="Link to this heading"></a></h2>
+<h2>preprocessor.analyze_fluke_and_mts module<a class="headerlink" href="#preprocessor-analyze-fluke-and-mts-module" title="Permalink to this heading"></a></h2>
 </section>
 <section id="preprocessor-analyze-mts-only-module">
-<h2>preprocessor.analyze_mts_only module<a class="headerlink" href="#preprocessor-analyze-mts-only-module" title="Link to this heading"></a></h2>
+<h2>preprocessor.analyze_mts_only module<a class="headerlink" href="#preprocessor-analyze-mts-only-module" title="Permalink to this heading"></a></h2>
 </section>
 <section id="preprocessor-create-preprocessor-module">
-<h2>preprocessor.create_preprocessor module<a class="headerlink" href="#preprocessor-create-preprocessor-module" title="Link to this heading"></a></h2>
+<h2>preprocessor.create_preprocessor module<a class="headerlink" href="#preprocessor-create-preprocessor-module" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-preprocessor.data_reader">
-<span id="preprocessor-data-reader-module"></span><h2>preprocessor.data_reader module<a class="headerlink" href="#module-preprocessor.data_reader" title="Link to this heading"></a></h2>
+<span id="preprocessor-data-reader-module"></span><h2>preprocessor.data_reader module<a class="headerlink" href="#module-preprocessor.data_reader" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.data_reader.check_in_row">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.data_reader.</span></span><span class="sig-name descname"><span class="pre">check_in_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/data_reader.html#check_in_row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.data_reader.check_in_row" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.data_reader.</span></span><span class="sig-name descname"><span class="pre">check_in_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/data_reader.html#check_in_row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.data_reader.check_in_row" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.data_reader.isfloat">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.data_reader.</span></span><span class="sig-name descname"><span class="pre">isfloat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/data_reader.html#isfloat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.data_reader.isfloat" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.data_reader.</span></span><span class="sig-name descname"><span class="pre">isfloat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/data_reader.html#isfloat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.data_reader.isfloat" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="preprocessor.data_reader.reader">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">preprocessor.data_reader.</span></span><span class="sig-name descname"><span class="pre">reader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/data_reader.html#reader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.data_reader.reader" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">preprocessor.data_reader.</span></span><span class="sig-name descname"><span class="pre">reader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/data_reader.html#reader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.data_reader.reader" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.data_reader.reader.extract">
-<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/data_reader.html#reader.extract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.data_reader.reader.extract" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/data_reader.html#reader.extract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.data_reader.reader.extract" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.data_reader.reader.extract_DSC">
-<span class="sig-name descname"><span class="pre">extract_DSC</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/data_reader.html#reader.extract_DSC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.data_reader.reader.extract_DSC" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">extract_DSC</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/data_reader.html#reader.extract_DSC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.data_reader.reader.extract_DSC" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.data_reader.reader.extract_fluke">
-<span class="sig-name descname"><span class="pre">extract_fluke</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/data_reader.html#reader.extract_fluke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.data_reader.reader.extract_fluke" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">extract_fluke</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/data_reader.html#reader.extract_fluke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.data_reader.reader.extract_fluke" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.data_reader.reader.extract_txt">
-<span class="sig-name descname"><span class="pre">extract_txt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/data_reader.html#reader.extract_txt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.data_reader.reader.extract_txt" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">extract_txt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/data_reader.html#reader.extract_txt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.data_reader.reader.extract_txt" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-preprocessor.find_cycles">
-<span id="preprocessor-find-cycles-module"></span><h2>preprocessor.find_cycles module<a class="headerlink" href="#module-preprocessor.find_cycles" title="Link to this heading"></a></h2>
+<span id="preprocessor-find-cycles-module"></span><h2>preprocessor.find_cycles module<a class="headerlink" href="#module-preprocessor.find_cycles" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.find_cycles.find_cycles">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.find_cycles.</span></span><span class="sig-name descname"><span class="pre">find_cycles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/find_cycles.html#find_cycles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.find_cycles.find_cycles" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.find_cycles.</span></span><span class="sig-name descname"><span class="pre">find_cycles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/find_cycles.html#find_cycles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.find_cycles.find_cycles" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
 <section id="module-preprocessor.functions">
-<span id="preprocessor-functions-module"></span><h2>preprocessor.functions module<a class="headerlink" href="#module-preprocessor.functions" title="Link to this heading"></a></h2>
+<span id="preprocessor-functions-module"></span><h2>preprocessor.functions module<a class="headerlink" href="#module-preprocessor.functions" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.functions.export_all">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.functions.</span></span><span class="sig-name descname"><span class="pre">export_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startTime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossShape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossArea</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unitOut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origLength</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dispUnits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/functions.html#export_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.functions.export_all" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.functions.</span></span><span class="sig-name descname"><span class="pre">export_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startTime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossShape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossArea</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unitOut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origLength</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dispUnits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/functions.html#export_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.functions.export_all" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.functions.header_choice">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.functions.</span></span><span class="sig-name descname"><span class="pre">header_choice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str_calc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/functions.html#header_choice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.functions.header_choice" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.functions.</span></span><span class="sig-name descname"><span class="pre">header_choice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str_calc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/functions.html#header_choice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.functions.header_choice" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
 <section id="module-preprocessor.high_pass_filter">
-<span id="preprocessor-high-pass-filter-module"></span><h2>preprocessor.high_pass_filter module<a class="headerlink" href="#module-preprocessor.high_pass_filter" title="Link to this heading"></a></h2>
+<span id="preprocessor-high-pass-filter-module"></span><h2>preprocessor.high_pass_filter module<a class="headerlink" href="#module-preprocessor.high_pass_filter" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.high_pass_filter.highpassFilter">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.high_pass_filter.</span></span><span class="sig-name descname"><span class="pre">highpassFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/high_pass_filter.html#highpassFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.high_pass_filter.highpassFilter" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.high_pass_filter.</span></span><span class="sig-name descname"><span class="pre">highpassFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/high_pass_filter.html#highpassFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.high_pass_filter.highpassFilter" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
 <section id="module-preprocessor.latex_translation">
-<span id="preprocessor-latex-translation-module"></span><h2>preprocessor.latex_translation module<a class="headerlink" href="#module-preprocessor.latex_translation" title="Link to this heading"></a></h2>
+<span id="preprocessor-latex-translation-module"></span><h2>preprocessor.latex_translation module<a class="headerlink" href="#module-preprocessor.latex_translation" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.latex_translation.textToLatex">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.latex_translation.</span></span><span class="sig-name descname"><span class="pre">textToLatex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widget</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_offset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/latex_translation.html#textToLatex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.latex_translation.textToLatex" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.latex_translation.</span></span><span class="sig-name descname"><span class="pre">textToLatex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widget</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_offset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/latex_translation.html#textToLatex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.latex_translation.textToLatex" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
 <section id="module-preprocessor.loading">
-<span id="preprocessor-loading-module"></span><h2>preprocessor.loading module<a class="headerlink" href="#module-preprocessor.loading" title="Link to this heading"></a></h2>
+<span id="preprocessor-loading-module"></span><h2>preprocessor.loading module<a class="headerlink" href="#module-preprocessor.loading" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="preprocessor.loading.Ui_Loading">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">preprocessor.loading.</span></span><span class="sig-name descname"><span class="pre">Ui_Loading</span></span><a class="reference internal" href="_modules/preprocessor/loading.html#Ui_Loading"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.loading.Ui_Loading" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">preprocessor.loading.</span></span><span class="sig-name descname"><span class="pre">Ui_Loading</span></span><a class="reference internal" href="_modules/preprocessor/loading.html#Ui_Loading"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.loading.Ui_Loading" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.loading.Ui_Loading.retranslateUi">
-<span class="sig-name descname"><span class="pre">retranslateUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Loading</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/loading.html#Ui_Loading.retranslateUi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.loading.Ui_Loading.retranslateUi" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">retranslateUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Loading</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/loading.html#Ui_Loading.retranslateUi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.loading.Ui_Loading.retranslateUi" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.loading.Ui_Loading.setupUi">
-<span class="sig-name descname"><span class="pre">setupUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Loading</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/loading.html#Ui_Loading.setupUi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.loading.Ui_Loading.setupUi" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setupUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Loading</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/loading.html#Ui_Loading.setupUi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.loading.Ui_Loading.setupUi" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-preprocessor.loading_screen">
-<span id="preprocessor-loading-screen-module"></span><h2>preprocessor.loading_screen module<a class="headerlink" href="#module-preprocessor.loading_screen" title="Link to this heading"></a></h2>
+<span id="preprocessor-loading-screen-module"></span><h2>preprocessor.loading_screen module<a class="headerlink" href="#module-preprocessor.loading_screen" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-preprocessor.low_pass_filter">
-<span id="preprocessor-low-pass-filter-module"></span><h2>preprocessor.low_pass_filter module<a class="headerlink" href="#module-preprocessor.low_pass_filter" title="Link to this heading"></a></h2>
+<span id="preprocessor-low-pass-filter-module"></span><h2>preprocessor.low_pass_filter module<a class="headerlink" href="#module-preprocessor.low_pass_filter" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.low_pass_filter.lowpassFilter">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.low_pass_filter.</span></span><span class="sig-name descname"><span class="pre">lowpassFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/low_pass_filter.html#lowpassFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.low_pass_filter.lowpassFilter" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.low_pass_filter.</span></span><span class="sig-name descname"><span class="pre">lowpassFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/low_pass_filter.html#lowpassFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.low_pass_filter.lowpassFilter" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
 <section id="module-preprocessor.moving_average_filter">
-<span id="preprocessor-moving-average-filter-module"></span><h2>preprocessor.moving_average_filter module<a class="headerlink" href="#module-preprocessor.moving_average_filter" title="Link to this heading"></a></h2>
+<span id="preprocessor-moving-average-filter-module"></span><h2>preprocessor.moving_average_filter module<a class="headerlink" href="#module-preprocessor.moving_average_filter" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.moving_average_filter.movavg_filter">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.moving_average_filter.</span></span><span class="sig-name descname"><span class="pre">movavg_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disp_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mov_avg_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datapoints</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_temp_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/moving_average_filter.html#movavg_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.moving_average_filter.movavg_filter" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.moving_average_filter.</span></span><span class="sig-name descname"><span class="pre">movavg_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disp_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mov_avg_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datapoints</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_temp_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/moving_average_filter.html#movavg_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.moving_average_filter.movavg_filter" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.moving_average_filter.plotSubplot">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.moving_average_filter.</span></span><span class="sig-name descname"><span class="pre">plotSubplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_axis_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_axis_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subplot_title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/moving_average_filter.html#plotSubplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.moving_average_filter.plotSubplot" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.moving_average_filter.</span></span><span class="sig-name descname"><span class="pre">plotSubplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_axis_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_axis_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subplot_title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/moving_average_filter.html#plotSubplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.moving_average_filter.plotSubplot" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
 <section id="module-preprocessor.plot_3d">
-<span id="preprocessor-plot-3d-module"></span><h2>preprocessor.plot_3d module<a class="headerlink" href="#module-preprocessor.plot_3d" title="Link to this heading"></a></h2>
+<span id="preprocessor-plot-3d-module"></span><h2>preprocessor.plot_3d module<a class="headerlink" href="#module-preprocessor.plot_3d" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.plot_3d.plotColorbars">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.plot_3d.</span></span><span class="sig-name descname"><span class="pre">plotColorbars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle_count</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/plot_3d.html#plotColorbars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.plot_3d.plotColorbars" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.plot_3d.</span></span><span class="sig-name descname"><span class="pre">plotColorbars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle_count</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/plot_3d.html#plotColorbars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.plot_3d.plotColorbars" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.plot_3d.plotSST">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.plot_3d.</span></span><span class="sig-name descname"><span class="pre">plotSST</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stress_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandpass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_cycles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_temp_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/plot_3d.html#plotSST"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.plot_3d.plotSST" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.plot_3d.</span></span><span class="sig-name descname"><span class="pre">plotSST</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stress_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandpass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_cycles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_temp_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/plot_3d.html#plotSST"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.plot_3d.plotSST" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
 <section id="preprocessor-plot-dsc-module">
-<h2>preprocessor.plot_dsc module<a class="headerlink" href="#preprocessor-plot-dsc-module" title="Link to this heading"></a></h2>
+<h2>preprocessor.plot_dsc module<a class="headerlink" href="#preprocessor-plot-dsc-module" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-preprocessor.plot_temp_vs_strain">
-<span id="preprocessor-plot-temp-vs-strain-module"></span><h2>preprocessor.plot_temp_vs_strain module<a class="headerlink" href="#module-preprocessor.plot_temp_vs_strain" title="Link to this heading"></a></h2>
+<span id="preprocessor-plot-temp-vs-strain-module"></span><h2>preprocessor.plot_temp_vs_strain module<a class="headerlink" href="#module-preprocessor.plot_temp_vs_strain" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.plot_temp_vs_strain.firstAndLastNonNAN">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.plot_temp_vs_strain.</span></span><span class="sig-name descname"><span class="pre">firstAndLastNonNAN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_series</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/plot_temp_vs_strain.html#firstAndLastNonNAN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.plot_temp_vs_strain.firstAndLastNonNAN" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.plot_temp_vs_strain.</span></span><span class="sig-name descname"><span class="pre">firstAndLastNonNAN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_series</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/plot_temp_vs_strain.html#firstAndLastNonNAN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.plot_temp_vs_strain.firstAndLastNonNAN" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.plot_temp_vs_strain.plotColorbars">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.plot_temp_vs_strain.</span></span><span class="sig-name descname"><span class="pre">plotColorbars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figure</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle_count</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/plot_temp_vs_strain.html#plotColorbars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.plot_temp_vs_strain.plotColorbars" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.plot_temp_vs_strain.</span></span><span class="sig-name descname"><span class="pre">plotColorbars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figure</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle_count</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/plot_temp_vs_strain.html#plotColorbars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.plot_temp_vs_strain.plotColorbars" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="preprocessor.plot_temp_vs_strain.plot_temp_vs_strain">
-<span class="sig-prename descclassname"><span class="pre">preprocessor.plot_temp_vs_strain.</span></span><span class="sig-name descname"><span class="pre">plot_temp_vs_strain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandpass_choice</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_cycles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_temp_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/plot_temp_vs_strain.html#plot_temp_vs_strain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.plot_temp_vs_strain.plot_temp_vs_strain" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">preprocessor.plot_temp_vs_strain.</span></span><span class="sig-name descname"><span class="pre">plot_temp_vs_strain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandpass_choice</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_cycles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_temp_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/plot_temp_vs_strain.html#plot_temp_vs_strain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.plot_temp_vs_strain.plot_temp_vs_strain" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
 <section id="preprocessor-smaeat-gui-module">
-<h2>preprocessor.smaeat_gui module<a class="headerlink" href="#preprocessor-smaeat-gui-module" title="Link to this heading"></a></h2>
+<h2>preprocessor.smaeat_gui module<a class="headerlink" href="#preprocessor-smaeat-gui-module" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-preprocessor.sync_window">
-<span id="preprocessor-sync-window-module"></span><h2>preprocessor.sync_window module<a class="headerlink" href="#module-preprocessor.sync_window" title="Link to this heading"></a></h2>
+<span id="preprocessor-sync-window-module"></span><h2>preprocessor.sync_window module<a class="headerlink" href="#module-preprocessor.sync_window" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">preprocessor.sync_window.</span></span><span class="sig-name descname"><span class="pre">SyncWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mts_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mts_temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">synced_absolute</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disp_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_temp_title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">preprocessor.sync_window.</span></span><span class="sig-name descname"><span class="pre">SyncWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mts_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mts_temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">synced_absolute</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disp_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluke_temp_title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.areaTester">
-<span class="sig-name descname"><span class="pre">areaTester</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_sep_tol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.areaTester"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.areaTester" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">areaTester</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_sep_tol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.areaTester"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.areaTester" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.calcArea">
-<span class="sig-name descname"><span class="pre">calcArea</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.calcArea"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.calcArea" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">calcArea</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.calcArea"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.calcArea" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.calcArea2">
-<span class="sig-name descname"><span class="pre">calcArea2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.calcArea2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.calcArea2" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">calcArea2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.calcArea2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.calcArea2" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.changeGraph">
-<span class="sig-name descname"><span class="pre">changeGraph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.changeGraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.changeGraph" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">changeGraph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.changeGraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.changeGraph" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.changeGraph2">
-<span class="sig-name descname"><span class="pre">changeGraph2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.changeGraph2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.changeGraph2" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">changeGraph2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.changeGraph2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.changeGraph2" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.delayChange">
-<span class="sig-name descname"><span class="pre">delayChange</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.delayChange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.delayChange" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">delayChange</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.delayChange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.delayChange" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.delayChange2">
-<span class="sig-name descname"><span class="pre">delayChange2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.delayChange2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.delayChange2" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">delayChange2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.delayChange2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.delayChange2" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.delay_changed">
-<span class="sig-name descname"><span class="pre">delay_changed</span></span><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.delay_changed" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">delay_changed</span></span><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.delay_changed" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.end_time_changed">
-<span class="sig-name descname"><span class="pre">end_time_changed</span></span><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.end_time_changed" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">end_time_changed</span></span><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.end_time_changed" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.getDelay">
-<span class="sig-name descname"><span class="pre">getDelay</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.getDelay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.getDelay" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getDelay</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.getDelay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.getDelay" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.getEndTime">
-<span class="sig-name descname"><span class="pre">getEndTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.getEndTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.getEndTime" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getEndTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.getEndTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.getEndTime" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.getIntersectDistanceTolerance">
-<span class="sig-name descname"><span class="pre">getIntersectDistanceTolerance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.getIntersectDistanceTolerance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.getIntersectDistanceTolerance" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getIntersectDistanceTolerance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.getIntersectDistanceTolerance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.getIntersectDistanceTolerance" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.getStartTime">
-<span class="sig-name descname"><span class="pre">getStartTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.getStartTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.getStartTime" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getStartTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.getStartTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.getStartTime" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.graphToAbsolute">
-<span class="sig-name descname"><span class="pre">graphToAbsolute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.graphToAbsolute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.graphToAbsolute" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">graphToAbsolute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.graphToAbsolute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.graphToAbsolute" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.plotDelayArea">
-<span class="sig-name descname"><span class="pre">plotDelayArea</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.plotDelayArea"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.plotDelayArea" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plotDelayArea</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.plotDelayArea"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.plotDelayArea" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.plotTimes">
-<span class="sig-name descname"><span class="pre">plotTimes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.plotTimes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.plotTimes" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plotTimes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.plotTimes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.plotTimes" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.returnEndTime">
-<span class="sig-name descname"><span class="pre">returnEndTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.returnEndTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.returnEndTime" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">returnEndTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.returnEndTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.returnEndTime" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.returnStartTime">
-<span class="sig-name descname"><span class="pre">returnStartTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.returnStartTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.returnStartTime" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">returnStartTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.returnStartTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.returnStartTime" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.sliderMove">
-<span class="sig-name descname"><span class="pre">sliderMove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.sliderMove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.sliderMove" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sliderMove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/preprocessor/sync_window.html#SyncWindow.sliderMove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.sliderMove" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="preprocessor.sync_window.SyncWindow.start_time_changed">
-<span class="sig-name descname"><span class="pre">start_time_changed</span></span><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.start_time_changed" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">start_time_changed</span></span><a class="headerlink" href="#preprocessor.sync_window.SyncWindow.start_time_changed" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="preprocessor-testing-module">
-<h2>preprocessor.testing module<a class="headerlink" href="#preprocessor-testing-module" title="Link to this heading"></a></h2>
+<h2>preprocessor.testing module<a class="headerlink" href="#preprocessor-testing-module" title="Permalink to this heading"></a></h2>
 </section>
 <section id="preprocessor-troubleshoot-window-module">
-<h2>preprocessor.troubleshoot_window module<a class="headerlink" href="#preprocessor-troubleshoot-window-module" title="Link to this heading"></a></h2>
+<h2>preprocessor.troubleshoot_window module<a class="headerlink" href="#preprocessor-troubleshoot-window-module" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-preprocessor">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-preprocessor" title="Link to this heading"></a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-preprocessor" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 

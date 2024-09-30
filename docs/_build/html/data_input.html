@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>data_input package &mdash; SMA-REACT 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=8d563738"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="launch_GUI module" href="launch_GUI.html" />
-    <link rel="prev" title="calibration_progress package" href="calibration_progress.html" /> 
+    <link rel="next" title="calibration package" href="calibration.html" />
+    <link rel="prev" title="launch_GUI module" href="launch_GUI.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,22 +44,26 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">SMAREACTcleaned</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="calibration.html">calibration package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="calibration_progress.html">calibration_progress package</a></li>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_calibration.html">Learning by doing: an example calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html#possible-extensions">Possible extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">preprocessor package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="launch_GUI.html">launch_GUI module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">data_input package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-data_input.create_data_input">data_input.create_data_input module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#data_input.create_data_input.DataInputWidget"><code class="docutils literal notranslate"><span class="pre">DataInputWidget</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-data_input.create_data_input">data_input.create_data_input module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-data_input">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="launch_GUI.html">launch_GUI module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">preprocessor package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration.html">calibration package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration_progress.html">calibration_progress package</a></li>
 </ul>
 </li>
 </ul>
@@ -90,12 +94,12 @@
            <div itemprop="articleBody">
              
   <section id="data-input-package">
-<h1>data_input package<a class="headerlink" href="#data-input-package" title="Link to this heading"></a></h1>
+<h1>data_input package<a class="headerlink" href="#data-input-package" title="Permalink to this heading"></a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-data_input.create_data_input">
-<span id="data-input-create-data-input-module"></span><h2>data_input.create_data_input module<a class="headerlink" href="#module-data_input.create_data_input" title="Link to this heading"></a></h2>
+<span id="data-input-create-data-input-module"></span><h2>data_input.create_data_input module<a class="headerlink" href="#module-data_input.create_data_input" title="Permalink to this heading"></a></h2>
 <p>Shape Memory Alloy Rendering of Experimental Analysis and Calibration Tool
 (SMA-REACT)
 ————————————
@@ -110,19 +114,19 @@ thermal cycling data under constant stress,”
 Smart Mater. Struct., vol. 30, no. 12, p. 125003, 2021.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="data_input.create_data_input.DataInputWidget">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_input.create_data_input.</span></span><span class="sig-name descname"><span class="pre">DataInputWidget</span></span><a class="reference internal" href="_modules/data_input/create_data_input.html#DataInputWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#data_input.create_data_input.DataInputWidget" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_input.create_data_input.</span></span><span class="sig-name descname"><span class="pre">DataInputWidget</span></span><a class="reference internal" href="_modules/data_input/create_data_input.html#DataInputWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#data_input.create_data_input.DataInputWidget" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code></p>
 <p>Tab for all of the data input functionality.
 Inherits the QtWidgets.QWidget class.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="data_input.create_data_input.DataInputWidget.downsample_data">
-<span class="sig-name descname"><span class="pre">downsample_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_input/create_data_input.html#DataInputWidget.downsample_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#data_input.create_data_input.DataInputWidget.downsample_data" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">downsample_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_input/create_data_input.html#DataInputWidget.downsample_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#data_input.create_data_input.DataInputWidget.downsample_data" title="Permalink to this definition"></a></dt>
 <dd><p>Skeleton function to start to downsample all experimental data,
 in case a need arises where the data is too dense for
 efficient calibration.</p>
 <p>Add a call to load_files to downsample this dataseries.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>None.</p>
 </dd>
 </dl>
@@ -130,20 +134,20 @@ efficient calibration.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="data_input.create_data_input.DataInputWidget.load_files">
-<span class="sig-name descname"><span class="pre">load_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_input/create_data_input.html#DataInputWidget.load_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#data_input.create_data_input.DataInputWidget.load_files" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">load_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_input/create_data_input.html#DataInputWidget.load_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#data_input.create_data_input.DataInputWidget.load_files" title="Permalink to this definition"></a></dt>
 <dd><p>Loads all the text files. Currently only accepts
 comma-delimited text files or .csv files.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="data_input.create_data_input.DataInputWidget.open_files">
-<span class="sig-name descname"><span class="pre">open_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_input/create_data_input.html#DataInputWidget.open_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#data_input.create_data_input.DataInputWidget.open_files" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">open_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_input/create_data_input.html#DataInputWidget.open_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#data_input.create_data_input.DataInputWidget.open_files" title="Permalink to this definition"></a></dt>
 <dd><p>Opens all text files with experimental data.
 Currently, only accepts .csv files or comma-separated
 text files. All text files must have the same format,
 and each experiment must be contained within its own file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>None.</p>
 </dd>
 </dl>
@@ -151,11 +155,11 @@ and each experiment must be contained within its own file.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="data_input.create_data_input.DataInputWidget.update_preview">
-<span class="sig-name descname"><span class="pre">update_preview</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_input/create_data_input.html#DataInputWidget.update_preview"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#data_input.create_data_input.DataInputWidget.update_preview" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update_preview</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_input/create_data_input.html#DataInputWidget.update_preview"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#data_input.create_data_input.DataInputWidget.update_preview" title="Permalink to this definition"></a></dt>
 <dd><p>Previews the experimental data by coloring each column
 with its respective variable.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>None.</p>
 </dd>
 </dl>
@@ -165,7 +169,7 @@ with its respective variable.</p>
 
 </section>
 <section id="module-data_input">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-data_input" title="Link to this heading"></a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-data_input" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -173,8 +177,8 @@ with its respective variable.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="calibration_progress.html" class="btn btn-neutral float-left" title="calibration_progress package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="launch_GUI.html" class="btn btn-neutral float-right" title="launch_GUI module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="launch_GUI.html" class="btn btn-neutral float-left" title="launch_GUI module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="calibration.html" class="btn btn-neutral float-right" title="calibration package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

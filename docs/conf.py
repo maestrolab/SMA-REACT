@@ -24,7 +24,14 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx.ext.napoleon",
     "sphinx.ext.autodoc",
-]
+    'sphinxcontrib.bibtex',
+    "sphinx.ext.autosectionlabel",
+    ]
+
+# Make sure the target is unique for the labels
+autosectionlabel_prefix_document = True
+
+bibtex_bibfiles = ['SMA-REACT.bib']
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']

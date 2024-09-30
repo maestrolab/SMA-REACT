@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>launch_GUI module &mdash; SMA-REACT 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=8d563738"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="preprocessor package" href="preprocessor.html" />
-    <link rel="prev" title="data_input package" href="data_input.html" /> 
+    <link rel="next" title="data_input package" href="data_input.html" />
+    <link rel="prev" title="preprocessor package" href="preprocessor.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,22 +44,21 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">SMAREACTcleaned</a><ul class="current">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_calibration.html">Learning by doing: an example calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html#possible-extensions">Possible extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">preprocessor package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">launch_GUI module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_input.html">data_input package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="calibration.html">calibration package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="calibration_progress.html">calibration_progress package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_input.html">data_input package</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">launch_GUI module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#launch_GUI.App"><code class="docutils literal notranslate"><span class="pre">App</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#launch_GUI.App.change_tabs"><code class="docutils literal notranslate"><span class="pre">App.change_tabs()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#launch_GUI.App.export_solution"><code class="docutils literal notranslate"><span class="pre">App.export_solution()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#launch_GUI.App.run_calibration"><code class="docutils literal notranslate"><span class="pre">App.run_calibration()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">preprocessor package</a></li>
 </ul>
 </li>
 </ul>
@@ -90,21 +89,21 @@
            <div itemprop="articleBody">
              
   <section id="module-launch_GUI">
-<span id="launch-gui-module"></span><h1>launch_GUI module<a class="headerlink" href="#module-launch_GUI" title="Link to this heading"></a></h1>
+<span id="launch-gui-module"></span><h1>launch_GUI module<a class="headerlink" href="#module-launch_GUI" title="Permalink to this heading"></a></h1>
 <p>Shape Memory Alloy Rendering of Experimental Analysis and Calibration Tool
 (SMA-REACT)</p>
 <p>Main launch script</p>
 <p>Last updated: August 30th, 2024 (see GitHub for updates)</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="launch_GUI.App">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">launch_GUI.</span></span><span class="sig-name descname"><span class="pre">App</span></span><a class="reference internal" href="_modules/launch_GUI.html#App"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#launch_GUI.App" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">launch_GUI.</span></span><span class="sig-name descname"><span class="pre">App</span></span><a class="reference internal" href="_modules/launch_GUI.html#App"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#launch_GUI.App" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QMainWindow</span></code></p>
 <p>Master GUI with all required tabs
 (implemented as different classes). Inherits the
 QtWidgets.QMainWindow class.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="launch_GUI.App.change_tabs">
-<span class="sig-name descname"><span class="pre">change_tabs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/launch_GUI.html#App.change_tabs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#launch_GUI.App.change_tabs" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">change_tabs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/launch_GUI.html#App.change_tabs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#launch_GUI.App.change_tabs" title="Permalink to this definition"></a></dt>
 <dd><p>Enables the specified tab and changes to that tab.
 To connect this to a pushButton or another widget,
 you must use a lambda function, like so:</p>
@@ -120,10 +119,10 @@ you must use a lambda function, like so:</p>
 </dl>
 </div></blockquote>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>index</strong> (<em>INT</em>) – Tab index that you would like to change to.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>None.</p>
 </dd>
 </dl>
@@ -131,11 +130,11 @@ you must use a lambda function, like so:</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="launch_GUI.App.export_solution">
-<span class="sig-name descname"><span class="pre">export_solution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/launch_GUI.html#App.export_solution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#launch_GUI.App.export_solution" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">export_solution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/launch_GUI.html#App.export_solution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#launch_GUI.App.export_solution" title="Permalink to this definition"></a></dt>
 <dd><p>Prints and exports the calibrated solution,
 with all of the important intermediary data.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>None.</p>
 </dd>
 </dl>
@@ -143,14 +142,14 @@ with all of the important intermediary data.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="launch_GUI.App.run_calibration">
-<span class="sig-name descname"><span class="pre">run_calibration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/launch_GUI.html#App.run_calibration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#launch_GUI.App.run_calibration" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run_calibration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/launch_GUI.html#App.run_calibration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#launch_GUI.App.run_calibration" title="Permalink to this definition"></a></dt>
 <dd><p>Runs the calibration optimization and changes to the progress
 plotting tab.</p>
 <p>#FIXME To-do: Include an export function here to make an
 Abaqus material model or export all required properties as a
 JSON or something similar.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>None.</p>
 </dd>
 </dl>
@@ -164,8 +163,8 @@ JSON or something similar.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="data_input.html" class="btn btn-neutral float-left" title="data_input package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="preprocessor.html" class="btn btn-neutral float-right" title="preprocessor package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="preprocessor.html" class="btn btn-neutral float-left" title="preprocessor package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_input.html" class="btn btn-neutral float-right" title="data_input package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

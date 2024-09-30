@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>calibration_progress package &mdash; SMA-REACT 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=8d563738"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="data_input package" href="data_input.html" />
     <link rel="prev" title="calibration.utility package" href="calibration.utility.html" /> 
 </head>
 
@@ -44,28 +43,27 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">SMAREACTcleaned</a><ul class="current">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_calibration.html">Learning by doing: an example calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html#possible-extensions">Possible extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">preprocessor package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="launch_GUI.html">launch_GUI module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_input.html">data_input package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="calibration.html">calibration package</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">calibration_progress package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-calibration_progress.create_calibration_progress_widget">calibration_progress.create_calibration_progress_widget module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget"><code class="docutils literal notranslate"><span class="pre">CalibrationProgressWidget</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-calibration_progress.phase_diagram">calibration_progress.phase_diagram module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#calibration_progress.phase_diagram.forward_transformation"><code class="docutils literal notranslate"><span class="pre">forward_transformation()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#calibration_progress.phase_diagram.plot_phase_diagram"><code class="docutils literal notranslate"><span class="pre">plot_phase_diagram()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#calibration_progress.phase_diagram.reverse_transformation"><code class="docutils literal notranslate"><span class="pre">reverse_transformation()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-calibration_progress.create_calibration_progress_widget">calibration_progress.create_calibration_progress_widget module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-calibration_progress.phase_diagram">calibration_progress.phase_diagram module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-calibration_progress">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="data_input.html">data_input package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="launch_GUI.html">launch_GUI module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">preprocessor package</a></li>
 </ul>
 </li>
 </ul>
@@ -96,32 +94,32 @@
            <div itemprop="articleBody">
              
   <section id="calibration-progress-package">
-<h1>calibration_progress package<a class="headerlink" href="#calibration-progress-package" title="Link to this heading"></a></h1>
+<h1>calibration_progress package<a class="headerlink" href="#calibration-progress-package" title="Permalink to this heading"></a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-calibration_progress.create_calibration_progress_widget">
-<span id="calibration-progress-create-calibration-progress-widget-module"></span><h2>calibration_progress.create_calibration_progress_widget module<a class="headerlink" href="#module-calibration_progress.create_calibration_progress_widget" title="Link to this heading"></a></h2>
+<span id="calibration-progress-create-calibration-progress-widget-module"></span><h2>calibration_progress.create_calibration_progress_widget module<a class="headerlink" href="#module-calibration_progress.create_calibration_progress_widget" title="Permalink to this heading"></a></h2>
 <p>calibration progress widget</p>
 <p>updates all the dynamic plots on the calibration progress tab.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">calibration_progress.create_calibration_progress_widget.</span></span><span class="sig-name descname"><span class="pre">CalibrationProgressWidget</span></span><a class="reference internal" href="_modules/calibration_progress/create_calibration_progress_widget.html#CalibrationProgressWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">calibration_progress.create_calibration_progress_widget.</span></span><span class="sig-name descname"><span class="pre">CalibrationProgressWidget</span></span><a class="reference internal" href="_modules/calibration_progress/create_calibration_progress_widget.html#CalibrationProgressWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code></p>
 <p>All of the plotting functions should remain in this class.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget.plot_experimental">
-<span class="sig-name descname"><span class="pre">plot_experimental</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_exps</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/create_calibration_progress_widget.html#CalibrationProgressWidget.plot_experimental"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget.plot_experimental" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot_experimental</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_exps</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/create_calibration_progress_widget.html#CalibrationProgressWidget.plot_experimental"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget.plot_experimental" title="Permalink to this definition"></a></dt>
 <dd><p>Plots the experimental data</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>np array</em>) – x-data (temperature)</p></li>
 <li><p><strong>y</strong> (<em>np array</em>) – y-data (strain)</p></li>
 <li><p><strong>num_exps</strong> (<em>int</em>) – number of total experiments being analyzed</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>None.</p>
 </dd>
 </dl>
@@ -129,16 +127,16 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget.update_design_variable_vals">
-<span class="sig-name descname"><span class="pre">update_design_variable_vals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">design_variables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">design_variable_flags</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/create_calibration_progress_widget.html#CalibrationProgressWidget.update_design_variable_vals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget.update_design_variable_vals" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update_design_variable_vals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">design_variables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">design_variable_flags</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/create_calibration_progress_widget.html#CalibrationProgressWidget.update_design_variable_vals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget.update_design_variable_vals" title="Permalink to this definition"></a></dt>
 <dd><p>Update normalized values for the design variables on a bar chart.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>design_variables</strong> (<em>list</em>) – list of all normalized [0,1] design variable values.</p></li>
-<li><p><strong>design_variable_flags</strong> (<em>list</em><em> of </em><em>bool</em>) – list to signify if a design variable is active.</p></li>
+<li><p><strong>design_variable_flags</strong> (<em>list of bool</em>) – list to signify if a design variable is active.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>None.</p>
 </dd>
 </dl>
@@ -146,11 +144,11 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget.update_opt_progress">
-<span class="sig-name descname"><span class="pre">update_opt_progress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_func_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/create_calibration_progress_widget.html#CalibrationProgressWidget.update_opt_progress"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget.update_opt_progress" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update_opt_progress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_func_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/create_calibration_progress_widget.html#CalibrationProgressWidget.update_opt_progress"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget.update_opt_progress" title="Permalink to this definition"></a></dt>
 <dd><p>Plot the current best solution and average solution (per
 generation).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>gen</strong> (<em>list</em>) – list of all generation numbers.</p></li>
 <li><p><strong>min_func_val</strong> (<em>list</em>) – list of all current bests as a function of generation.</p></li>
@@ -160,7 +158,7 @@ Currently not implemented, but could be re-implemented by
 using the fill_between plotting command in matplotlib.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>None.</p>
 </dd>
 </dl>
@@ -168,16 +166,16 @@ using the fill_between plotting command in matplotlib.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget.update_phase_diagram">
-<span class="sig-name descname"><span class="pre">update_phase_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_inp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/create_calibration_progress_widget.html#CalibrationProgressWidget.update_phase_diagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget.update_phase_diagram" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update_phase_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_inp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/create_calibration_progress_widget.html#CalibrationProgressWidget.update_phase_diagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget.update_phase_diagram" title="Permalink to this definition"></a></dt>
 <dd><p>updates the dynamic plot for the phase diagram.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>P</strong> (<em>dict</em>) – material properties dictionary</p></li>
 <li><p><strong>sigma_inp</strong> (<em>list</em>) – [lower_stress, upper_stress] to plot</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>None.</p>
 </dd>
 </dl>
@@ -185,17 +183,17 @@ using the fill_between plotting command in matplotlib.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget.update_temp_strain">
-<span class="sig-name descname"><span class="pre">update_temp_strain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_exps</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/create_calibration_progress_widget.html#CalibrationProgressWidget.update_temp_strain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget.update_temp_strain" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update_temp_strain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_exps</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/create_calibration_progress_widget.html#CalibrationProgressWidget.update_temp_strain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.create_calibration_progress_widget.CalibrationProgressWidget.update_temp_strain" title="Permalink to this definition"></a></dt>
 <dd><p>Update the model prediction of the temperature strain plot.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>temp</strong> (<em>numpy array</em>) – temperature array (num_experiments, number of sample points)</p></li>
 <li><p><strong>strain</strong> (<em>numpy array</em>) – strain array (num_experiments, number of sample points)</p></li>
 <li><p><strong>num_exps</strong> (<em>int</em>) – number of total experiments being analyzed</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>None.</p>
 </dd>
 </dl>
@@ -205,14 +203,14 @@ using the fill_between plotting command in matplotlib.</p></li>
 
 </section>
 <section id="module-calibration_progress.phase_diagram">
-<span id="calibration-progress-phase-diagram-module"></span><h2>calibration_progress.phase_diagram module<a class="headerlink" href="#module-calibration_progress.phase_diagram" title="Link to this heading"></a></h2>
+<span id="calibration-progress-phase-diagram-module"></span><h2>calibration_progress.phase_diagram module<a class="headerlink" href="#module-calibration_progress.phase_diagram" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="calibration_progress.phase_diagram.forward_transformation">
-<span class="sig-prename descclassname"><span class="pre">calibration_progress.phase_diagram.</span></span><span class="sig-name descname"><span class="pre">forward_transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MVF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TP</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/phase_diagram.html#forward_transformation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.phase_diagram.forward_transformation" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">calibration_progress.phase_diagram.</span></span><span class="sig-name descname"><span class="pre">forward_transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MVF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TP</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/phase_diagram.html#forward_transformation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.phase_diagram.forward_transformation" title="Permalink to this definition"></a></dt>
 <dd><p>Function to return the Temperature (T) value for a stress (sigma)under a
 forward transformation at an inputed Martensite Volume Fraction (MVF)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sigma</strong> (<em>Float</em>) – Stress</p></li>
 <li><p><strong>MVF</strong> (<em>Float</em>) – Martensitic volume fraction</p></li>
@@ -222,10 +220,10 @@ all properties and their meaning.</p></li>
 increment</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>T</strong> – Temperature</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>Float</p>
 </dd>
 </dl>
@@ -233,11 +231,11 @@ increment</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="calibration_progress.phase_diagram.plot_phase_diagram">
-<span class="sig-prename descclassname"><span class="pre">calibration_progress.phase_diagram.</span></span><span class="sig-name descname"><span class="pre">plot_phase_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/phase_diagram.html#plot_phase_diagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.phase_diagram.plot_phase_diagram" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">calibration_progress.phase_diagram.</span></span><span class="sig-name descname"><span class="pre">plot_phase_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/phase_diagram.html#plot_phase_diagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.phase_diagram.plot_phase_diagram" title="Permalink to this definition"></a></dt>
 <dd><p>Uses the Lagoudas 1-D model to plot stress-temperature phase
 diagrams.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>P</strong> (<em>DICT</em>) – Material properties for the SMA. See the documentation for
 all properties and their meaning.</p></li>
@@ -245,7 +243,7 @@ all properties and their meaning.</p></li>
 <li><p><strong>ax</strong> (<em>matplotlib axis object</em>) – axis on which to plot the phase diagram.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>None.</p>
 </dd>
 </dl>
@@ -253,11 +251,11 @@ all properties and their meaning.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="calibration_progress.phase_diagram.reverse_transformation">
-<span class="sig-prename descclassname"><span class="pre">calibration_progress.phase_diagram.</span></span><span class="sig-name descname"><span class="pre">reverse_transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MVF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TP</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/phase_diagram.html#reverse_transformation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.phase_diagram.reverse_transformation" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">calibration_progress.phase_diagram.</span></span><span class="sig-name descname"><span class="pre">reverse_transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MVF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TP</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration_progress/phase_diagram.html#reverse_transformation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration_progress.phase_diagram.reverse_transformation" title="Permalink to this definition"></a></dt>
 <dd><p>Function to return the Temperature (T) value for a stress (sigma)under a
 reverse transformation at an inputed Martensite Volume Fraction (MVF)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sigma</strong> (<em>Float</em>) – Stress</p></li>
 <li><p><strong>MVF</strong> (<em>Float</em>) – Martensitic volume fraction</p></li>
@@ -267,10 +265,10 @@ all properties and their meaning.</p></li>
 increment</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>T</strong> – Temperature</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>Float</p>
 </dd>
 </dl>
@@ -278,7 +276,7 @@ increment</p></li>
 
 </section>
 <section id="module-calibration_progress">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-calibration_progress" title="Link to this heading"></a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-calibration_progress" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -287,7 +285,6 @@ increment</p></li>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="calibration.utility.html" class="btn btn-neutral float-left" title="calibration.utility package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="data_input.html" class="btn btn-neutral float-right" title="data_input package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contributing to or extending SMA-REACT &mdash; SMA-REACT 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="Further reading and other resources" href="further_reading.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SMA-REACT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_calibration.html">Learning by doing: an example calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing to or extending SMA-REACT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preliminaries">Preliminaries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#possible-extensions">Possible extensions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#accepting-different-input-file-types">Accepting different input file types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reformulating-for-different-loading-conditions-i-e-superelasticity">Reformulating for different loading conditions (i.e., superelasticity)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-another-model-formulation">Adding another model formulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#including-other-optimization-schemes">Including other optimization schemes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-more-result-export-options">Adding more result export options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Source Code</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SMA-REACT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Contributing to or extending SMA-REACT</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/contributing_extending.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="contributing-to-or-extending-sma-react">
+<h1>Contributing to or extending SMA-REACT<a class="headerlink" href="#contributing-to-or-extending-sma-react" title="Permalink to this heading"></a></h1>
+<p>The current version of SMA-REACT begs for many more enhancements.
+Different loading conditions (i.e., superelasticity), different model formulations (i.e., the Brinson or extended Lagoudas models), and alternative optimization routines all could provide benefits for the SMA community.
+If you are interested in contributing to SMA-REACT, please raise an issue on GitHub, and the developers will coordinate the best way to incorporate your feature.
+This section will describe the skeleton of how to add functionality to the GUI and the sections of code for the possible enhancements listed above.</p>
+<section id="preliminaries">
+<h2>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this heading"></a></h2>
+<p>SMA-REACT is built on the <a class="reference external" href="https://www.riverbankcomputing.com/static/Docs/PyQt5/">pyqt5</a> graphical user interface package.
+PyQt functions as the software front-end (i.e., all interactive elements), while the Lagoudas model and optimization codes form the back-end.
+Any new feature must be reflected in both the front- and back-ends, and hence requires knowledge of both.
+Thankfully, PyQt is an intuitive object-oriented package, so adding front-end elements is not too arduous.
+Here are a few helpful tutorials and articles on various components:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> boxes, or combo boxes, are good to allow the user to pick between multiple discrete options.</p></li>
+<li><p><a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qlineedit_widget.htm">lineEdits</a> enable the user to input a value or string.</p></li>
+<li><p><a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qlabel_widget.htm">Labels</a> are, as the name suggest, non-editable labels for various entities.</p></li>
+<li><p><a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_layout_management.htm">Layouts</a> are important to properly organize all of your GUI entities.</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="possible-extensions">
+<h1>Possible extensions<a class="headerlink" href="#possible-extensions" title="Permalink to this heading"></a></h1>
+<p>We will cover the most likely possible extensions, and hopefully these skeletons will give you a good idea of how you can modify SMA-REACT to your liking (and hopefully share your hard work with the world!).</p>
+<section id="accepting-different-input-file-types">
+<h2>Accepting different input file types<a class="headerlink" href="#accepting-different-input-file-types" title="Permalink to this heading"></a></h2>
+<p>Currently, SMA-REACT uses the <code class="docutils literal notranslate"><span class="pre">pandas.read_csv()</span></code> function with <code class="docutils literal notranslate"><span class="pre">sep=None</span></code> to load experimental data.
+As such, the tool can only load tab-delimited text files robustly.
+To accomodate other file formats, the following modifications could be performed:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Add a <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> on the <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">Input</span></code> tab (<code class="docutils literal notranslate"><span class="pre">create_data_input</span></code>) to add an input option.</p></li>
+<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">open_files</span></code> and <code class="docutils literal notranslate"><span class="pre">load_files</span></code> functions to accept different inputs (via if-else or otherwise).</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="reformulating-for-different-loading-conditions-i-e-superelasticity">
+<h2>Reformulating for different loading conditions (i.e., superelasticity)<a class="headerlink" href="#reformulating-for-different-loading-conditions-i-e-superelasticity" title="Permalink to this heading"></a></h2>
+<p>The current model formulation calibrates isobaric experimental cycles by predicting strain as a function of applied temperature and stress.
+It also assumes the material starts in Martensite; <code class="docutils literal notranslate"><span class="pre">create_data_input.load_files</span></code> performs the reorganization of experimental data to arrange the thermal cycles to run from cold to hot.
+For superelastic characterization cycles, the material stress should be predicted as a function of temperature and strain.
+This requires a few distinct modifications:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Add a <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> on the <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">Input</span></code> tab to delineate between isobaric and isothermal experimental data.</p></li>
+<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">load_files</span></code> function to re-organize the experimental data with respect to strain, or to pass the raw data to the model.</p></li>
+<li><p>Add a new model function to calculate the material stress as a function of temperature and strain. This may seem involved, but the model formulation is much simpler.</p></li>
+<li><p>Change the <code class="docutils literal notranslate"><span class="pre">calibration_progress</span></code> figures to reflect superelastic behavior (i.e., change the temperature-strain plot to a temperature-stress plot).</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="adding-another-model-formulation">
+<h2>Adding another model formulation<a class="headerlink" href="#adding-another-model-formulation" title="Permalink to this heading"></a></h2>
+<p>The Lagoudas one-dimensional constitutive model is one of many different options popular in the SMA community.
+Alternative modeling approaches include the Brinson model <span id="id1">[<a class="reference internal" href="further_reading.html#id31" title="L.C. Brinson. One-Dimensional Constitutive Behavior of Shape Memory Alloys: Thermomechanical Derivation with Non-Constant Material Functions and Redefined Martensite Internal Variable. Journal of Intelligent Material Systems and Structures, 4(2):229–242, April 1993. URL: http://journals.sagepub.com/doi/10.1177/1045389X9300400213 (visited on 2024-04-24), doi:10.1177/1045389X9300400213.">Bri93</a>]</span>, the Aurrichio model <span id="id2">[<a class="reference internal" href="further_reading.html#id18" title="Ferdinando Auricchio, Alberto Coda, Alessandro Reali, and Marco Urbano. SMA Numerical Modeling Versus Experimental Results: Parameter Identification and Model Prediction Capabilities. Journal of Materials Engineering and Performance, 18(5):649–654, August 2009. URL: https://doi.org/10.1007/s11665-009-9409-7 (visited on 2023-09-20), doi:10.1007/s11665-009-9409-7.">ACRU09</a>]</span>, and various extensions for plasticity <span id="id3">[<a class="reference internal" href="further_reading.html#id43" title="Giulia Scalet, Fabrizio Niccoli, Cedric Garion, Paolo Chiggiato, Carmine Maletta, and Ferdinando Auricchio. A three-dimensional phenomenological model for shape memory alloys including two-way shape memory effect and plasticity. Mechanics of Materials, 136:103085, September 2019. URL: https://www.sciencedirect.com/science/article/pii/S0167663619301346 (visited on 2024-06-11), doi:10.1016/j.mechmat.2019.103085.">SNG+19</a>]</span>, finite deformation <span id="id4">[<a class="reference internal" href="further_reading.html#id42" title="Lei Xu, Alexandros Solomou, Theocharis Baxevanis, and Dimitris Lagoudas. Finite strain constitutive modeling for shape memory alloys considering transformation-induced plasticity and two-way shape memory effect. International Journal of Solids and Structures, 221:42–59, June 2021. URL: https://www.sciencedirect.com/science/article/pii/S0020768320300974 (visited on 2024-06-11), doi:10.1016/j.ijsolstr.2020.03.009.">XSBL21</a>]</span>, and other phenomena.
+No matter the particular model you wish to include, the process we will detail below will be the same (if you have access to the model source code in python).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Add a <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> on the <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">Input</span></code> tab to allow the user pick between different model formulations.</p></li>
+<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">create_calibration_parameters</span></code> function (associated with the calibration parameters tab) to include the model parameters required for your chosen formulation. This would probably be best implemented in an if-else format.</p></li>
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">optimizer.main</span></code> to accomodate these different model parameters.</p></li>
+<li><p>Include another if-else statement in <code class="docutils literal notranslate"><span class="pre">optimizer.evaluate</span></code> to call your chosen model formulation. If your model formulation returns a strain history given temperature and stress histories, this involves adding an if-else statement at the location where the current source code calls <code class="docutils literal notranslate"><span class="pre">Full_Model_Stress</span></code>.</p></li>
+<li><p>Be sure to modify the <code class="docutils literal notranslate"><span class="pre">calibration_progress</span></code> figures to include any unique model parameters.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="including-other-optimization-schemes">
+<h2>Including other optimization schemes<a class="headerlink" href="#including-other-optimization-schemes" title="Permalink to this heading"></a></h2>
+<p>The current tool uses the Non-Sorting Genetic Algorithm (II) and Sequential-Least-Squares Quadratic Programming Algorithms to optimize the calibration.
+However, these algorithms are not “optimal” in any sense; rather, they were selected out of developer laziness for being “good enough.”
+If you are interested in implementing alternative optimization schemes that you feel would be better for calibration, follow these steps:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Add a <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> on the <code class="docutils literal notranslate"><span class="pre">Calibration</span> <span class="pre">Parameters</span></code> tab to allow the user to select algorithms.</p></li>
+<li><p>Add extra <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qlineedit_widget.htm">lineEdits</a> on the <code class="docutils literal notranslate"><span class="pre">calibration</span> <span class="pre">parameters</span></code> tab if there are other optimization parameters that need specified.</p></li>
+<li><p>Add the necessary code to <code class="docutils literal notranslate"><span class="pre">optimizer.main</span></code> to call your optimization of choice.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="adding-more-result-export-options">
+<h2>Adding more result export options<a class="headerlink" href="#adding-more-result-export-options" title="Permalink to this heading"></a></h2>
+<p>SMA-REACT currently can export all relevant optimization results to a JSON.
+See the <code class="docutils literal notranslate"><span class="pre">launch_GUI.export_solution</span></code> for more information about the particular export quantities.
+If you would like to tailor the GUI to export a particular file format, follow these steps:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Add a <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> on the <code class="docutils literal notranslate"><span class="pre">Calibration</span> <span class="pre">Progress</span></code> tab to accomodate different export options.</p></li>
+<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">export_solution</span></code> function to export different quantities depending on the aforementioned dropdown.</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="further_reading.html" class="btn btn-neutral float-left" title="Further reading and other resources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="license.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Patrick Walgren and Jacob Mingear.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

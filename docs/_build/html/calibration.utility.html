@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>calibration.utility package &mdash; SMA-REACT 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=8d563738"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -44,9 +44,19 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">SMAREACTcleaned</a><ul class="current">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_calibration.html">Learning by doing: an example calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html#possible-extensions">Possible extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">preprocessor package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="launch_GUI.html">launch_GUI module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_input.html">data_input package</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="calibration.html">calibration package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="calibration.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="calibration.model_funcs.html">calibration.model_funcs package</a></li>
@@ -59,9 +69,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="calibration_progress.html">calibration_progress package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_input.html">data_input package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="launch_GUI.html">launch_GUI module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">preprocessor package</a></li>
 </ul>
 </li>
 </ul>
@@ -93,36 +100,36 @@
            <div itemprop="articleBody">
              
   <section id="calibration-utility-package">
-<h1>calibration.utility package<a class="headerlink" href="#calibration-utility-package" title="Link to this heading"></a></h1>
+<h1>calibration.utility package<a class="headerlink" href="#calibration-utility-package" title="Permalink to this heading"></a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-calibration.utility.export">
-<span id="calibration-utility-export-module"></span><h2>calibration.utility.export module<a class="headerlink" href="#module-calibration.utility.export" title="Link to this heading"></a></h2>
+<span id="calibration-utility-export-module"></span><h2>calibration.utility.export module<a class="headerlink" href="#module-calibration.utility.export" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="calibration.utility.export.exportData">
-<span class="sig-prename descclassname"><span class="pre">calibration.utility.export.</span></span><span class="sig-name descname"><span class="pre">exportData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/utility/export.html#exportData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.utility.export.exportData" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">calibration.utility.export.</span></span><span class="sig-name descname"><span class="pre">exportData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/utility/export.html#exportData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.utility.export.exportData" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
 <section id="module-calibration.utility.import_vals">
-<span id="calibration-utility-import-vals-module"></span><h2>calibration.utility.import_vals module<a class="headerlink" href="#module-calibration.utility.import_vals" title="Link to this heading"></a></h2>
+<span id="calibration-utility-import-vals-module"></span><h2>calibration.utility.import_vals module<a class="headerlink" href="#module-calibration.utility.import_vals" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="calibration.utility.import_vals.importData">
-<span class="sig-prename descclassname"><span class="pre">calibration.utility.import_vals.</span></span><span class="sig-name descname"><span class="pre">importData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/utility/import_vals.html#importData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.utility.import_vals.importData" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">calibration.utility.import_vals.</span></span><span class="sig-name descname"><span class="pre">importData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/utility/import_vals.html#importData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.utility.import_vals.importData" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
 <section id="module-calibration.utility.latex_translation">
-<span id="calibration-utility-latex-translation-module"></span><h2>calibration.utility.latex_translation module<a class="headerlink" href="#module-calibration.utility.latex_translation" title="Link to this heading"></a></h2>
+<span id="calibration-utility-latex-translation-module"></span><h2>calibration.utility.latex_translation module<a class="headerlink" href="#module-calibration.utility.latex_translation" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="calibration.utility.latex_translation.textToLatex">
-<span class="sig-prename descclassname"><span class="pre">calibration.utility.latex_translation.</span></span><span class="sig-name descname"><span class="pre">textToLatex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/utility/latex_translation.html#textToLatex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.utility.latex_translation.textToLatex" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">calibration.utility.latex_translation.</span></span><span class="sig-name descname"><span class="pre">textToLatex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/utility/latex_translation.html#textToLatex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.utility.latex_translation.textToLatex" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
 <section id="module-calibration.utility">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-calibration.utility" title="Link to this heading"></a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-calibration.utility" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 

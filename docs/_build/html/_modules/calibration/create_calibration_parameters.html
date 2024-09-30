@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>calibration.create_calibration_parameters &mdash; SMA-REACT 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=8d563738"></script>
-        <script src="../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -41,9 +41,16 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">SMAREACTcleaned</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../example_calibration.html">Learning by doing: an example calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing_extending.html#possible-extensions">Possible extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Source Code</a></li>
 </ul>
 
         </div>
@@ -93,9 +100,7 @@
 <span class="kn">from</span> <span class="nn">matplotlib.backends.backend_agg</span> <span class="kn">import</span> <span class="n">FigureCanvasAgg</span> <span class="k">as</span> <span class="n">FigureCanvas</span>
 
 
-<div class="viewcode-block" id="CalibrationParametersWidget">
-<a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget">[docs]</a>
-<span class="k">class</span> <span class="nc">CalibrationParametersWidget</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
+<div class="viewcode-block" id="CalibrationParametersWidget"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget">[docs]</a><span class="k">class</span> <span class="nc">CalibrationParametersWidget</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Widget to define the tab where all the calibration parameters</span>
 <span class="sd">    can be tweaked.</span>
@@ -904,9 +909,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">loadDefaults</span><span class="p">()</span>
 
     <span class="c1"># %% Functions </span>
-<div class="viewcode-block" id="CalibrationParametersWidget.uncheck">
-<a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.uncheck">[docs]</a>
-    <span class="k">def</span> <span class="nf">uncheck</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+<div class="viewcode-block" id="CalibrationParametersWidget.uncheck"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.uncheck">[docs]</a>    <span class="k">def</span> <span class="nf">uncheck</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Translates all of the checkboxes for each</span>
 <span class="sd">        material parameter to different DV flags.</span>
@@ -1212,10 +1215,7 @@
 
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">DV_flags</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="CalibrationParametersWidget.loadDefaults">
-<a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.loadDefaults">[docs]</a>
-    <span class="k">def</span> <span class="nf">loadDefaults</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CalibrationParametersWidget.loadDefaults"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.loadDefaults">[docs]</a>    <span class="k">def</span> <span class="nf">loadDefaults</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Imports default values for lower and upper bounds</span>
 <span class="sd">        of all DVs.</span>
@@ -1299,10 +1299,7 @@
 
 
 
-
-<div class="viewcode-block" id="CalibrationParametersWidget.updateVal">
-<a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.updateVal">[docs]</a>
-    <span class="k">def</span> <span class="nf">updateVal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CalibrationParametersWidget.updateVal"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.updateVal">[docs]</a>    <span class="k">def</span> <span class="nf">updateVal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Updates the values of upper and lower DV bounds, both in the</span>
 <span class="sd">        sliders and in the optimization limits.</span>
@@ -1324,10 +1321,7 @@
                 <span class="n">guess</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">slider_val</span> <span class="o">*</span> <span class="n">step</span> <span class="o">+</span> <span class="n">lower_bound</span><span class="p">))</span></div>
 
 
-
-<div class="viewcode-block" id="CalibrationParametersWidget.updateSlider">
-<a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.updateSlider">[docs]</a>
-    <span class="k">def</span> <span class="nf">updateSlider</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CalibrationParametersWidget.updateSlider"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.updateSlider">[docs]</a>    <span class="k">def</span> <span class="nf">updateSlider</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Update slider values based on upper and lower bounds.</span>
 
@@ -1375,10 +1369,7 @@
                         <span class="p">)</span><span class="o">.</span><span class="n">itemAt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">widget</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">normalized_value</span><span class="p">)</span></div>
 
 
-
-<div class="viewcode-block" id="CalibrationParametersWidget.getBounds">
-<a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.getBounds">[docs]</a>
-    <span class="k">def</span> <span class="nf">getBounds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CalibrationParametersWidget.getBounds"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.getBounds">[docs]</a>    <span class="k">def</span> <span class="nf">getBounds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Creates the bounds list of lists, that is used in the optimizer.</span>
 
@@ -1468,10 +1459,7 @@
 
         <span class="k">return</span> <span class="n">bounds</span></div>
 
-
-<div class="viewcode-block" id="CalibrationParametersWidget.getSpecifiedValues">
-<a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.getSpecifiedValues">[docs]</a>
-    <span class="k">def</span> <span class="nf">getSpecifiedValues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CalibrationParametersWidget.getSpecifiedValues"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.getSpecifiedValues">[docs]</a>    <span class="k">def</span> <span class="nf">getSpecifiedValues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Get the values that were specified to be constrained.</span>
 
@@ -1528,10 +1516,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">pop_size</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pop_line</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num_iters</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iter_line</span><span class="o">.</span><span class="n">text</span><span class="p">())</span></div>
 
-
-<div class="viewcode-block" id="CalibrationParametersWidget.create_label">
-<a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.create_label">[docs]</a>
-    <span class="k">def</span> <span class="nf">create_label</span><span class="p">(</span>
+<div class="viewcode-block" id="CalibrationParametersWidget.create_label"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.create_label">[docs]</a>    <span class="k">def</span> <span class="nf">create_label</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">label_object</span><span class="p">,</span>
             <span class="n">label_text</span><span class="p">,</span>
@@ -1592,10 +1577,7 @@
 
 
 
-
-<div class="viewcode-block" id="CalibrationParametersWidget.create_material_property">
-<a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.create_material_property">[docs]</a>
-    <span class="k">def</span> <span class="nf">create_material_property</span><span class="p">(</span>
+<div class="viewcode-block" id="CalibrationParametersWidget.create_material_property"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.create_material_property">[docs]</a>    <span class="k">def</span> <span class="nf">create_material_property</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">property_object</span><span class="p">,</span>
             <span class="n">name</span><span class="p">,</span>
@@ -1702,10 +1684,7 @@
             <span class="n">property_object</span><span class="o">.</span><span class="n">minimum_bound</span><span class="o">.</span><span class="n">setDisabled</span>
             <span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="CalibrationParametersWidget.create_constraint">
-<a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.create_constraint">[docs]</a>
-    <span class="k">def</span> <span class="nf">create_constraint</span><span class="p">(</span>
+<div class="viewcode-block" id="CalibrationParametersWidget.create_constraint"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.create_constraint">[docs]</a>    <span class="k">def</span> <span class="nf">create_constraint</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">constraint_object</span><span class="p">,</span>
             <span class="n">name</span><span class="p">,</span>
@@ -1772,10 +1751,7 @@
         <span class="n">constraint_object</span><span class="o">.</span><span class="n">checkbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="n">constraint_object</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">constraint_object</span><span class="o">.</span><span class="n">checkbox</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="CalibrationParametersWidget.create_parameter">
-<a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.create_parameter">[docs]</a>
-    <span class="k">def</span> <span class="nf">create_parameter</span><span class="p">(</span>
+<div class="viewcode-block" id="CalibrationParametersWidget.create_parameter"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.create_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">create_parameter</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">parameter_object</span><span class="p">,</span>
             <span class="n">name</span><span class="p">,</span>
@@ -1885,10 +1861,7 @@
 
 
 
-
-<div class="viewcode-block" id="CalibrationParametersWidget.set_size_policy">
-<a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.set_size_policy">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_size_policy</span><span class="p">(</span>
+<div class="viewcode-block" id="CalibrationParametersWidget.set_size_policy"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.set_size_policy">[docs]</a>    <span class="k">def</span> <span class="nf">set_size_policy</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">lineEdit</span><span class="p">,</span>
             <span class="p">):</span>
@@ -1916,10 +1889,7 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">sizePolicy</span></div>
 
-
-<div class="viewcode-block" id="CalibrationParametersWidget.create_font">
-<a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.create_font">[docs]</a>
-    <span class="k">def</span> <span class="nf">create_font</span><span class="p">(</span>
+<div class="viewcode-block" id="CalibrationParametersWidget.create_font"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.create_font">[docs]</a>    <span class="k">def</span> <span class="nf">create_font</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">font_size</span><span class="p">,</span>
             <span class="n">font_weight</span><span class="p">,</span>
@@ -1951,10 +1921,7 @@
 
         <span class="k">return</span> <span class="n">font</span></div>
 
-
-<div class="viewcode-block" id="CalibrationParametersWidget.textToLatex">
-<a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.textToLatex">[docs]</a>
-    <span class="k">def</span> <span class="nf">textToLatex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<div class="viewcode-block" id="CalibrationParametersWidget.textToLatex"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.textToLatex">[docs]</a>    <span class="k">def</span> <span class="nf">textToLatex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Creates a png from text to render latex </span>
 
@@ -1975,53 +1942,33 @@
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">rc</span><span class="p">[</span><span class="s2">&quot;font.serif&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Palatino Linotype&quot;</span>
         <span class="n">rc</span><span class="p">[</span><span class="s2">&quot;font.family&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;serif&quot;</span>
-        <span class="n">rc</span><span class="p">[</span><span class="s2">&quot;text.usetex&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">rc</span><span class="p">[</span><span class="s2">&quot;text.usetex&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rending mathematical symbols without LaTeX&#39;</span><span class="p">)</span>
 
         <span class="n">dpi</span> <span class="o">=</span> <span class="mi">125</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">width</span><span class="o">/</span><span class="n">dpi</span><span class="p">,</span> <span class="n">height</span><span class="o">/</span><span class="n">dpi</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
-        <span class="c1"># fig = Figure(dpi=dpi)</span>
         <span class="n">canvas</span> <span class="o">=</span> <span class="n">FigureCanvas</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-
-
         <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span><span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
-        <span class="c1">#ax.text(0.05, -0.02, r&#39;{}&#39;.format(text), ha=&quot;right&quot;)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
-
-        <span class="c1">#fig.patch.set_facecolor(&quot;black&quot;)</span>
         <span class="n">fig</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
-        <span class="c1"># fig.tight_layout(pad=0.0)</span>
-
 
         <span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
-
         <span class="n">canvas</span><span class="o">.</span><span class="n">print_figure</span><span class="p">(</span><span class="s2">&quot;latex.png&quot;</span><span class="p">,</span><span class="n">facecolor</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">get_facecolor</span><span class="p">())</span>
-
         <span class="n">pixmap</span> <span class="o">=</span> <span class="n">QPixmap</span><span class="p">(</span><span class="s1">&#39;latex.png&#39;</span><span class="p">)</span>
-        <span class="c1"># size= pixmap.size()</span>
-        <span class="c1"># pixmap = pixmap.scaled(size * 2)</span>
+
         <span class="n">label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">label</span><span class="o">.</span><span class="n">setPixmap</span><span class="p">(</span><span class="n">pixmap</span><span class="p">)</span>
-        <span class="c1"># label.setScaledContents(True)</span>
         <span class="kn">import</span> <span class="nn">os</span>
         <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;latex.png&#39;</span><span class="p">)</span>
-        <span class="c1">#sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)</span>
-        <span class="c1">#sizePolicy.setHorizontalStretch(0)</span>
-        <span class="c1">#sizePolicy.setVerticalStretch(0)</span>
-
-        <span class="c1">#label.setSizePolicy(sizePolicy)</span>
-        <span class="c1">#label.setMaximumSize(QSize(width, height))</span>
         <span class="n">label</span><span class="o">.</span><span class="n">setMinimumSize</span><span class="p">(</span><span class="n">QSize</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
-        <span class="c1">#label.setAlignment(QtCore.Qt.AlignLeft)</span>
-        <span class="c1">#label.setAlignment(QtCore.Qt.AlignVCenter)</span>
 
-
-        <span class="k">return</span> <span class="n">label</span></div>
-</div>
-
+        <span class="k">return</span> <span class="n">label</span></div></div>
 </pre></div>
 
            </div>

@@ -1,5 +1,6 @@
 .. SMA-REACT documentation getting started file, created by
    sphinx-quickstart on Wed Sep  4 13:23:33 2024.
+
 Overview
 ========
 SMA-REACT is an open-source, (hopefully) easy-to-use
@@ -27,21 +28,22 @@ on GitHub_
 
 Currently, we do not support pip installation.
 Please download or clone the repository and type::
-   python setup.py install
+
+``python setup.py install``
 
 Requirements
 ------------
 SMA-REACT is compatible with Python 3.9 and is built
 with pyqt5, version 5.15.10. 
 Here is a complete list of dependencies:
-   * deap_ (requires pip install)
+
+   * deap_
    * matplotlib_
    * numpy_
    * pandas_
    * pyqt5_
    * scikit-learn_
    * scipy_
-   * Spyder_
 
 .. _deap: https://deap.readthedocs.io/en/master/
 .. _numpy: https://numpy.org/
@@ -50,7 +52,6 @@ Here is a complete list of dependencies:
 .. _pyqt5: https://www.riverbankcomputing.com/static/Docs/PyQt5/
 .. _scikit-learn: https://scikit-learn.org/stable/
 .. _scipy: https://scipy.org/
-.. _spyder: https://www.spyder-ide.org/
 
 
 We recommend creating an anaconda virtual environment with the aforementioned

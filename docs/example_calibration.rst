@@ -1,13 +1,12 @@
 .. SMA-REACT documentation example calibration file
+
 Learning by doing: an example calibration
-========
+==========================================
+
 In this tutorial, you will learn how to calibrate
 an SMA constitutive model to best fit experimental data.
-A full explanation is provided in the reference paper
-paper_, but here we will focus on the actual implementation
+A full explanation is provided in the reference paper (see :doc:`citation_information`), but here we will focus on the actual implementation
 of the tool. 
-
-.. _paper: https://add_paper_citation_here.com
 
 Open and launch SMA-REACT
 -------------------------
@@ -19,14 +18,14 @@ to activate the GUI. You will be greeted by the data input screen.
 
 .. image:: _static/data_input.png
    :width: 600 px
-   :align: right
+   :align: center
+
 
 Load experimental data
 ----------------------
 
-
 For this example, we will use experimental data from Bigelow et al.
-(link_). It is distributed with the SMA-REACT package. 
+(link_, :cite:p:`bigelow_development_2022`). It is distributed with the SMA-REACT package. 
 Click ``Open Files``, then navigate to ``SMAREACT/input/sample_2``, and select all experimental text files.
 The data records strain in %, so change the dropdown
 menu accordingly. You should see the loaded text files displayed by 
@@ -83,9 +82,15 @@ Population size            Number of individuals per generation for the GA. Incr
 Gradient-based iterations  Number of iterations in the gradient-based optimization. Increase if the solution is improving but not converged before exiting.
 ========================== ==========   
 
-When you are satisfied with your bounds, specified parameters, and algorithmic and optimization parameters, click the ``Calibrate`` button in the lower-right corner of the screen.
+When you are satisfied with your bounds, specified parameters, and algorithmic and optimization parameters, we can calibrate.
+
+Calibrating the Lagoudas constitutive model
+-------------------------------------------
+
+Click the ``Calibrate`` button in the lower-right corner of the screen.
 This will initiate a calibration routine and automatically open the calibration progress tab.
 The calibration progress tab contains four dynamically updated plots (numbered clockwise, starting in the upper left):
+
    1. The optimization history, which shows the calibration error as a function of generation/gradient-based iteration.
    2. The strain-temperature history of the model (red) vs. experiment (blue) for the current best solution.
    3. The stress-temperature phase diagram for the current best model solution.

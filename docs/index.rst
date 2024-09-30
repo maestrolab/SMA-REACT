@@ -6,14 +6,16 @@
 Shape Memory Alloy Rendering and Calibration Tool (SMA-REACT) Documentation
 ===========================================================================
 
+(Add example figures here)
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Getting Started
+   :maxdepth: 1
    
    getting_started
    example_calibration
    citation_information
+   further_reading
+   contributing_extending
    license
    Source Code <modules>
 

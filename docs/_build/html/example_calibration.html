@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Learning by doing: an example calibration &mdash; SMA-REACT 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=8d563738"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="SMAREACTcleaned" href="modules.html" />
+    <link rel="next" title="Citation information" href="citation_information.html" />
     <link rel="prev" title="Overview" href="getting_started.html" /> 
 </head>
 
@@ -45,16 +45,21 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
-<ul class="current">
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Learning by doing: an example calibration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#open-and-launch-sma-react">Open and launch SMA-REACT</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#load-experimental-data">Load experimental data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#setting-design-variables-and-bounds">Setting design variables and bounds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#calibrating-the-lagoudas-constitutive-model">Calibrating the Lagoudas constitutive model</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html#possible-extensions">Possible extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Source Code</a></li>
 </ul>
 
@@ -83,23 +88,22 @@
            <div itemprop="articleBody">
              
   <section id="learning-by-doing-an-example-calibration">
-<h1>Learning by doing: an example calibration<a class="headerlink" href="#learning-by-doing-an-example-calibration" title="Link to this heading"></a></h1>
+<h1>Learning by doing: an example calibration<a class="headerlink" href="#learning-by-doing-an-example-calibration" title="Permalink to this heading"></a></h1>
 <p>In this tutorial, you will learn how to calibrate
 an SMA constitutive model to best fit experimental data.
-A full explanation is provided in the reference paper
-<a class="reference external" href="https://add_paper_citation_here.com">paper</a>, but here we will focus on the actual implementation
+A full explanation is provided in the reference paper (see <a class="reference internal" href="citation_information.html"><span class="doc">Citation information</span></a>), but here we will focus on the actual implementation
 of the tool.</p>
 <section id="open-and-launch-sma-react">
-<h2>Open and launch SMA-REACT<a class="headerlink" href="#open-and-launch-sma-react" title="Link to this heading"></a></h2>
+<h2>Open and launch SMA-REACT<a class="headerlink" href="#open-and-launch-sma-react" title="Permalink to this heading"></a></h2>
 <p>In your Python IDE of choice (Spyder is recommended), using the correct environment
 (see <a class="reference internal" href="getting_started.html"><span class="doc">Overview</span></a>), open <code class="docutils literal notranslate"><span class="pre">launch_GUI.py</span></code>. Run the file
 to activate the GUI. You will be greeted by the data input screen.</p>
-<a class="reference internal image-reference" href="_images/data_input.png"><img alt="_images/data_input.png" class="align-right" src="_images/data_input.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="_images/data_input.png"><img alt="_images/data_input.png" class="align-center" src="_images/data_input.png" style="width: 600px;" /></a>
 </section>
 <section id="load-experimental-data">
-<h2>Load experimental data<a class="headerlink" href="#load-experimental-data" title="Link to this heading"></a></h2>
+<h2>Load experimental data<a class="headerlink" href="#load-experimental-data" title="Permalink to this heading"></a></h2>
 <p>For this example, we will use experimental data from Bigelow et al.
-(<a class="reference external" href="https://www-sciencedirect-com.wrs.idm.oclc.org/science/article/pii/S2589152921002994">link</a>). It is distributed with the SMA-REACT package.
+(<a class="reference external" href="https://www-sciencedirect-com.wrs.idm.oclc.org/science/article/pii/S2589152921002994">link</a>, <span id="id1">[<a class="reference internal" href="further_reading.html#id24" title="G. S. Bigelow, A. Garg, O. Benafan, R. D. Noebe, S. A. Padula, and D. J. Gaydosh. Development and testing of a Ni50.5Ti27.2Hf22.3 high temperature shape memory alloy. Materialia, 21:101297, March 2022. URL: https://www.sciencedirect.com/science/article/pii/S2589152921002994 (visited on 2023-09-22), doi:10.1016/j.mtla.2021.101297.">BGB+22</a>]</span>). It is distributed with the SMA-REACT package.
 Click <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Files</span></code>, then navigate to <code class="docutils literal notranslate"><span class="pre">SMAREACT/input/sample_2</span></code>, and select all experimental text files.
 The data records strain in %, so change the dropdown
 menu accordingly. You should see the loaded text files displayed by
@@ -110,7 +114,7 @@ If you are satisfied with your data input and unit selection, advance to the
 next stage by clicking <code class="docutils literal notranslate"><span class="pre">Continue</span> <span class="pre">to</span> <span class="pre">calibration</span></code>.</p>
 </section>
 <section id="setting-design-variables-and-bounds">
-<h2>Setting design variables and bounds<a class="headerlink" href="#setting-design-variables-and-bounds" title="Link to this heading"></a></h2>
+<h2>Setting design variables and bounds<a class="headerlink" href="#setting-design-variables-and-bounds" title="Permalink to this heading"></a></h2>
 <p>The material property calibration tab shows model and optimization parameters to define a calibration routine.
 For this tutorial, we will change the default model parameter bounds
 to better match the experimental data.
@@ -128,6 +132,10 @@ To get familiar with the interface, play with activating single parameter constr
 <p>We will leave the algorithmic and optimization parameters at their default values.
 Here is a table that explains these parameters:</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 83%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -154,7 +162,11 @@ Here is a table that explains these parameters:</p>
 </tr>
 </tbody>
 </table>
-<p>When you are satisfied with your bounds, specified parameters, and algorithmic and optimization parameters, click the <code class="docutils literal notranslate"><span class="pre">Calibrate</span></code> button in the lower-right corner of the screen.
+<p>When you are satisfied with your bounds, specified parameters, and algorithmic and optimization parameters, we can calibrate.</p>
+</section>
+<section id="calibrating-the-lagoudas-constitutive-model">
+<h2>Calibrating the Lagoudas constitutive model<a class="headerlink" href="#calibrating-the-lagoudas-constitutive-model" title="Permalink to this heading"></a></h2>
+<p>Click the <code class="docutils literal notranslate"><span class="pre">Calibrate</span></code> button in the lower-right corner of the screen.
 This will initiate a calibration routine and automatically open the calibration progress tab.
 The calibration progress tab contains four dynamically updated plots (numbered clockwise, starting in the upper left):</p>
 <blockquote>
@@ -190,7 +202,7 @@ When you are happy with your calibration, you can export a JSON with all of the 
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="getting_started.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="modules.html" class="btn btn-neutral float-right" title="SMAREACTcleaned" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="citation_information.html" class="btn btn-neutral float-right" title="Citation information" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

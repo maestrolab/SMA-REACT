@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>calibration package &mdash; SMA-REACT 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=8d563738"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="calibration.model_funcs package" href="calibration.model_funcs.html" />
-    <link rel="prev" title="SMAREACTcleaned" href="modules.html" /> 
+    <link rel="prev" title="data_input package" href="data_input.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,9 +44,19 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">SMAREACTcleaned</a><ul class="current">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_calibration.html">Learning by doing: an example calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html#possible-extensions">Possible extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">preprocessor package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="launch_GUI.html">launch_GUI module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_input.html">data_input package</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">calibration package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="calibration.model_funcs.html">calibration.model_funcs package</a></li>
@@ -54,17 +64,11 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-calibration.create_calibration_parameters">calibration.create_calibration_parameters module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#calibration.create_calibration_parameters.CalibrationParametersWidget"><code class="docutils literal notranslate"><span class="pre">CalibrationParametersWidget</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-calibration.create_calibration_parameters">calibration.create_calibration_parameters module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-calibration">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="calibration_progress.html">calibration_progress package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_input.html">data_input package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="launch_GUI.html">launch_GUI module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">preprocessor package</a></li>
 </ul>
 </li>
 </ul>
@@ -95,74 +99,25 @@
            <div itemprop="articleBody">
              
   <section id="calibration-package">
-<h1>calibration package<a class="headerlink" href="#calibration-package" title="Link to this heading"></a></h1>
+<h1>calibration package<a class="headerlink" href="#calibration-package" title="Permalink to this heading"></a></h1>
 <section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="calibration.model_funcs.html">calibration.model_funcs package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="calibration.model_funcs.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="calibration.model_funcs.html#module-calibration.model_funcs.Full_Model_stress">calibration.model_funcs.Full_Model_stress module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.Full_Model_stress.Full_Model_stress"><code class="docutils literal notranslate"><span class="pre">Full_Model_stress()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="calibration.model_funcs.html#module-calibration.model_funcs.optimizer">calibration.model_funcs.optimizer module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.optimizer.cxTwoPointCopy"><code class="docutils literal notranslate"><span class="pre">cxTwoPointCopy()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.optimizer.evaluate"><code class="docutils literal notranslate"><span class="pre">evaluate()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.optimizer.exponentialBounds"><code class="docutils literal notranslate"><span class="pre">exponentialBounds()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.optimizer.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.optimizer.optimizer"><code class="docutils literal notranslate"><span class="pre">optimizer()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.optimizer.psh"><code class="docutils literal notranslate"><span class="pre">psh()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.optimizer.resizeBounds"><code class="docutils literal notranslate"><span class="pre">resizeBounds()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="calibration.model_funcs.html#module-calibration.model_funcs.phase_diagram">calibration.model_funcs.phase_diagram module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.phase_diagram.forward_transformation"><code class="docutils literal notranslate"><span class="pre">forward_transformation()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.phase_diagram.plot_phase_diagram"><code class="docutils literal notranslate"><span class="pre">plot_phase_diagram()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.phase_diagram.reverse_transformation"><code class="docutils literal notranslate"><span class="pre">reverse_transformation()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="calibration.model_funcs.html#module-calibration.model_funcs.util_funcs">calibration.model_funcs.util_funcs module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.DynamicUpdate"><code class="docutils literal notranslate"><span class="pre">DynamicUpdate</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.DynamicUpdate.on_launch"><code class="docutils literal notranslate"><span class="pre">DynamicUpdate.on_launch()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.DynamicUpdate.on_running"><code class="docutils literal notranslate"><span class="pre">DynamicUpdate.on_running()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.Elastic_Transformation_check_RI_stress"><code class="docutils literal notranslate"><span class="pre">Elastic_Transformation_check_RI_stress()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.Elastic_Transformation_check_stress"><code class="docutils literal notranslate"><span class="pre">Elastic_Transformation_check_stress()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.Explicit_Transformation_Correction_stress"><code class="docutils literal notranslate"><span class="pre">Explicit_Transformation_Correction_stress()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.Explicit_fwd_transformation_correction_stress"><code class="docutils literal notranslate"><span class="pre">Explicit_fwd_transformation_correction_stress()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.Explicit_rev_transformation_correction_stress"><code class="docutils literal notranslate"><span class="pre">Explicit_rev_transformation_correction_stress()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.H_cursolver"><code class="docutils literal notranslate"><span class="pre">H_cursolver()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.Implicit_Transformation_Correction_stress"><code class="docutils literal notranslate"><span class="pre">Implicit_Transformation_Correction_stress()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.Implicit_fwd_transformation_correction_stress"><code class="docutils literal notranslate"><span class="pre">Implicit_fwd_transformation_correction_stress()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.Implicit_rev_transformation_correction_stress"><code class="docutils literal notranslate"><span class="pre">Implicit_rev_transformation_correction_stress()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.minkowski_error"><code class="docutils literal notranslate"><span class="pre">minkowski_error()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Hcur_sigma"><code class="docutils literal notranslate"><span class="pre">partial_Hcur_sigma()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Phi_fwd_MVF"><code class="docutils literal notranslate"><span class="pre">partial_Phi_fwd_MVF()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Phi_fwd_sigma"><code class="docutils literal notranslate"><span class="pre">partial_Phi_fwd_sigma()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Phi_rev_MVF"><code class="docutils literal notranslate"><span class="pre">partial_Phi_rev_MVF()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.plot_settings"><code class="docutils literal notranslate"><span class="pre">plot_settings()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.util_funcs.symmetric_hausdorff"><code class="docutils literal notranslate"><span class="pre">symmetric_hausdorff()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="calibration.model_funcs.html#module-calibration.model_funcs.Full_Model_stress">calibration.model_funcs.Full_Model_stress module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration.model_funcs.html#module-calibration.model_funcs.optimizer">calibration.model_funcs.optimizer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration.model_funcs.html#module-calibration.model_funcs.phase_diagram">calibration.model_funcs.phase_diagram module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration.model_funcs.html#module-calibration.model_funcs.util_funcs">calibration.model_funcs.util_funcs module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="calibration.model_funcs.html#module-calibration.model_funcs">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="calibration.utility.html">calibration.utility package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="calibration.utility.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="calibration.utility.html#module-calibration.utility.export">calibration.utility.export module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="calibration.utility.html#calibration.utility.export.exportData"><code class="docutils literal notranslate"><span class="pre">exportData()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="calibration.utility.html#module-calibration.utility.import_vals">calibration.utility.import_vals module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="calibration.utility.html#calibration.utility.import_vals.importData"><code class="docutils literal notranslate"><span class="pre">importData()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="calibration.utility.html#module-calibration.utility.latex_translation">calibration.utility.latex_translation module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="calibration.utility.html#calibration.utility.latex_translation.textToLatex"><code class="docutils literal notranslate"><span class="pre">textToLatex()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="calibration.utility.html#module-calibration.utility.export">calibration.utility.export module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration.utility.html#module-calibration.utility.import_vals">calibration.utility.import_vals module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration.utility.html#module-calibration.utility.latex_translation">calibration.utility.latex_translation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="calibration.utility.html#module-calibration.utility">Module contents</a></li>
 </ul>
 </li>
@@ -170,27 +125,27 @@
 </div>
 </section>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-calibration.create_calibration_parameters">
-<span id="calibration-create-calibration-parameters-module"></span><h2>calibration.create_calibration_parameters module<a class="headerlink" href="#module-calibration.create_calibration_parameters" title="Link to this heading"></a></h2>
+<span id="calibration-create-calibration-parameters-module"></span><h2>calibration.create_calibration_parameters module<a class="headerlink" href="#module-calibration.create_calibration_parameters" title="Permalink to this heading"></a></h2>
 <p>create_calibration_parameters.py</p>
 <p>Script to define all model, algorithmic, and optimization parameters
 for calibration of the Lagoudas 1-D SMA model with smooth hardening</p>
 <p># FIXME Add the citation of Lagoudas 2012 IJP.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">calibration.create_calibration_parameters.</span></span><span class="sig-name descname"><span class="pre">CalibrationParametersWidget</span></span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">calibration.create_calibration_parameters.</span></span><span class="sig-name descname"><span class="pre">CalibrationParametersWidget</span></span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code></p>
 <p>Widget to define the tab where all the calibration parameters
 can be tweaked.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.create_constraint">
-<span class="sig-name descname"><span class="pre">create_constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraint_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latex_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.create_constraint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.create_constraint" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraint_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latex_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.create_constraint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.create_constraint" title="Permalink to this definition"></a></dt>
 <dd><p>Utility function to create a constraint box.
 A constraint box is something like “E_A = E_M”</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>constraint_object</strong> (<em>TYPE</em>) – class to contain all objects under a material property</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – constraint name.</p></li>
@@ -202,7 +157,7 @@ A constraint box is something like “E_A = E_M”</p>
 <li><p><strong>latex_flag</strong> (<em>bool</em><em>, </em><em>optional</em>) – flag to use latex to render the text. The default is False.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>None.</p>
 </dd>
 </dl>
@@ -210,19 +165,19 @@ A constraint box is something like “E_A = E_M”</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.create_font">
-<span class="sig-name descname"><span class="pre">create_font</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">font_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bold_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.create_font"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.create_font" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_font</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">font_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bold_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.create_font"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.create_font" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>font_size</strong> (<em>int</em>) – font size (pts).</p></li>
 <li><p><strong>font_weight</strong> (<em>int</em>) – font weight (0-100)</p></li>
 <li><p><strong>bold_flag</strong> (<em>bool</em><em>, </em><em>optional</em>) – flag to make the font bold. The default is False.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>font</strong> – font with size, weight, and bold.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>QFont object</p>
 </dd>
 </dl>
@@ -230,10 +185,10 @@ A constraint box is something like “E_A = E_M”</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.create_label">
-<span class="sig-name descname"><span class="pre">create_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label_height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.create_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.create_label" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label_height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.create_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.create_label" title="Permalink to this definition"></a></dt>
 <dd><p>Utility function to create the a qlabel.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>label_object</strong> (<em>qlabel object</em>) – empty label</p></li>
 <li><p><strong>label_text</strong> (<em>str</em>) – string to display in the label</p></li>
@@ -243,7 +198,7 @@ A constraint box is something like “E_A = E_M”</p>
 <li><p><strong>parameter_label_height</strong> (<em>int</em>) – height of the label (pixels).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>None.</p>
 </dd>
 </dl>
@@ -251,12 +206,12 @@ A constraint box is something like “E_A = E_M”</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.create_material_property">
-<span class="sig-name descname"><span class="pre">create_material_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">property_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_edit_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_edit_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">small_spacer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regular_spacer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.create_material_property"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.create_material_property" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_material_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">property_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_edit_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_edit_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">small_spacer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regular_spacer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.create_material_property"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.create_material_property" title="Permalink to this definition"></a></dt>
 <dd><p>Utility function to create all the necessary components
 of a material property (label, upper and lower bounds,
 specified value, and checkbox).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>property_object</strong> (<em>class</em>) – class to contain all objects under a material property</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – name of the property.</p></li>
@@ -269,7 +224,7 @@ specified value, and checkbox).</p>
 <li><p><strong>regular_spacer</strong> (<em>class</em>) – spacer class to give everything room to breathe.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>None.</p>
 </dd>
 </dl>
@@ -277,11 +232,11 @@ specified value, and checkbox).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.create_parameter">
-<span class="sig-name descname"><span class="pre">create_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineEdit_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineEdit_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latex_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bold_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.create_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.create_parameter" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineEdit_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineEdit_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latex_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bold_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.create_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.create_parameter" title="Permalink to this definition"></a></dt>
 <dd><p>Utility function to create a label, line edit, bounds,
 and a checkbox.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>parameter_object</strong> (<em>class</em>) – class to contain all objects that fall in this one parameter</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – property name.</p></li>
@@ -296,7 +251,7 @@ and a checkbox.</p>
 <li><p><strong>bold_flag</strong> (<em>bool</em><em>, </em><em>optional</em>) – flag to make text bold. The default is True.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>None.</p>
 </dd>
 </dl>
@@ -304,13 +259,13 @@ and a checkbox.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.getBounds">
-<span class="sig-name descname"><span class="pre">getBounds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.getBounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.getBounds" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getBounds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.getBounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.getBounds" title="Permalink to this definition"></a></dt>
 <dd><p>Creates the bounds list of lists, that is used in the optimizer.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><strong>bounds</strong> – List of lists containing all DV bounds.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>LIST</p>
 </dd>
 </dl>
@@ -318,10 +273,10 @@ and a checkbox.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.getSpecifiedValues">
-<span class="sig-name descname"><span class="pre">getSpecifiedValues</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.getSpecifiedValues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.getSpecifiedValues" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getSpecifiedValues</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.getSpecifiedValues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.getSpecifiedValues" title="Permalink to this definition"></a></dt>
 <dd><p>Get the values that were specified to be constrained.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>None.</p>
 </dd>
 </dl>
@@ -329,11 +284,11 @@ and a checkbox.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.loadDefaults">
-<span class="sig-name descname"><span class="pre">loadDefaults</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.loadDefaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.loadDefaults" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">loadDefaults</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.loadDefaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.loadDefaults" title="Permalink to this definition"></a></dt>
 <dd><p>Imports default values for lower and upper bounds
 of all DVs.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>None.</p>
 </dd>
 </dl>
@@ -341,16 +296,16 @@ of all DVs.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.set_size_policy">
-<span class="sig-name descname"><span class="pre">set_size_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lineEdit</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.set_size_policy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.set_size_policy" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_size_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lineEdit</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.set_size_policy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.set_size_policy" title="Permalink to this definition"></a></dt>
 <dd><p>Creates a generic sign policy to keep line count down in code.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>lineEdit</strong> (<em>class</em>) – line edit class to which the size policy will be applied.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>sizePolicy</strong> – generic size policy.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>QtWidgets.QSizePolicy</p>
 </dd>
 </dl>
@@ -358,20 +313,20 @@ of all DVs.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.textToLatex">
-<span class="sig-name descname"><span class="pre">textToLatex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.textToLatex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.textToLatex" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">textToLatex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.textToLatex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.textToLatex" title="Permalink to this definition"></a></dt>
 <dd><p>Creates a png from text to render latex</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>text</strong> (<em>str</em>) – text to render.</p></li>
 <li><p><strong>width</strong> (<em>int</em>) – size of the text box (pixels).</p></li>
 <li><p><strong>height</strong> (<em>int</em>) – size of the text box (pixels).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>label</strong> – png with latex rendered font .</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>QLabel object</p>
 </dd>
 </dl>
@@ -379,15 +334,15 @@ of all DVs.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.uncheck">
-<span class="sig-name descname"><span class="pre">uncheck</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.uncheck"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.uncheck" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">uncheck</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.uncheck"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.uncheck" title="Permalink to this definition"></a></dt>
 <dd><p>Translates all of the checkboxes for each
 material parameter to different DV flags.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>state</strong> (<em>QtCore.Qt.Checked</em>) – state, either unchecked or checked, for each DV and
 the other flags.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>None.</p>
 </dd>
 </dl>
@@ -395,10 +350,10 @@ the other flags.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.updateSlider">
-<span class="sig-name descname"><span class="pre">updateSlider</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.updateSlider"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.updateSlider" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">updateSlider</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.updateSlider"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.updateSlider" title="Permalink to this definition"></a></dt>
 <dd><p>Update slider values based on upper and lower bounds.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>None.</p>
 </dd>
 </dl>
@@ -406,11 +361,11 @@ the other flags.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.updateVal">
-<span class="sig-name descname"><span class="pre">updateVal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.updateVal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.updateVal" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">updateVal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.updateVal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.updateVal" title="Permalink to this definition"></a></dt>
 <dd><p>Updates the values of upper and lower DV bounds, both in the
 sliders and in the optimization limits.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>None.</p>
 </dd>
 </dl>
@@ -420,7 +375,7 @@ sliders and in the optimization limits.</p>
 
 </section>
 <section id="module-calibration">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-calibration" title="Link to this heading"></a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-calibration" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -428,7 +383,7 @@ sliders and in the optimization limits.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-left" title="SMAREACTcleaned" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_input.html" class="btn btn-neutral float-left" title="data_input package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="calibration.model_funcs.html" class="btn btn-neutral float-right" title="calibration.model_funcs package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
