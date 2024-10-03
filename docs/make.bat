@@ -9,6 +9,8 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=.
 set BUILDDIR=_build
+REM This is a line for debug mode during the build process
+REM set SPHINXOPTS=-vvv
 
 %SPHINXBUILD% >NUL 2>NUL
 if errorlevel 9009 (

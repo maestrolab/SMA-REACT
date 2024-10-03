@@ -129,13 +129,11 @@ class App(QtWidgets.QMainWindow):
         '''Enables the specified tab and changes to that tab.
         To connect this to a pushButton or another widget,
         you must use a lambda function, like so:
-
             widget.clicked.connect(
                 lambda : self.changeTabs(
                     index = some_index
                     )
                 )
-
 
         Parameters
         ----------

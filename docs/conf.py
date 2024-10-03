@@ -30,6 +30,8 @@ extensions = [
 
 # Make sure the target is unique for the labels
 autosectionlabel_prefix_document = True
+#Make sure the section labels are created
+autosectionlabel_maxdepth = 2
 
 bibtex_bibfiles = ['SMA-REACT.bib']
 

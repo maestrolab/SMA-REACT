@@ -379,7 +379,7 @@ def optimizer(toolbox,popSize,genSize,data, calWin, seed=None):
     '''
     Runs the hybrid optimization to find optimal
     material properties.
-
+    
     Parameters
     ----------
     toolbox : class
