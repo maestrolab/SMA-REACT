@@ -123,23 +123,23 @@ As such, the tool can only load tab-delimited text files robustly.
 To accomodate other file formats, the following modifications could be performed:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Add a <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> on the <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">Input</span></code> tab (<code class="docutils literal notranslate"><span class="pre">create_data_input</span></code>) to add an input option.</p></li>
-<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">open_files</span></code> and <code class="docutils literal notranslate"><span class="pre">load_files</span></code> functions to accept different inputs (via if-else or otherwise).</p></li>
+<li><p>Add a <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> on the  <a class="reference internal" href="data_input.html#module-data_input.create_data_input" title="data_input.create_data_input"><code class="xref py py-mod docutils literal notranslate"><span class="pre">create_data_input</span></code></a>  tab to add an input option.</p></li>
+<li><p>Modify the <a class="reference internal" href="data_input.html#data_input.create_data_input.DataInputWidget.open_files" title="data_input.create_data_input.DataInputWidget.open_files"><code class="xref py py-func docutils literal notranslate"><span class="pre">open_files()</span></code></a> and <a class="reference internal" href="data_input.html#data_input.create_data_input.DataInputWidget.load_files" title="data_input.create_data_input.DataInputWidget.load_files"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_files()</span></code></a> functions to accept different inputs (via if-else or otherwise).</p></li>
 </ul>
 </div></blockquote>
 </section>
 <section id="reformulating-for-different-loading-conditions-i-e-superelasticity">
 <h2>Reformulating for different loading conditions (i.e., superelasticity)<a class="headerlink" href="#reformulating-for-different-loading-conditions-i-e-superelasticity" title="Permalink to this heading"></a></h2>
 <p>The current model formulation calibrates isobaric experimental cycles by predicting strain as a function of applied temperature and stress.
-It also assumes the material starts in Martensite; <code class="docutils literal notranslate"><span class="pre">create_data_input.load_files</span></code> performs the reorganization of experimental data to arrange the thermal cycles to run from cold to hot.
+It also assumes the material starts in Martensite; <a class="reference internal" href="data_input.html#data_input.create_data_input.DataInputWidget.load_files" title="data_input.create_data_input.DataInputWidget.load_files"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_files()</span></code></a> performs the reorganization of experimental data to arrange the thermal cycles to run from cold to hot.
 For superelastic characterization cycles, the material stress should be predicted as a function of temperature and strain.
 This requires a few distinct modifications:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Add a <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> on the <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">Input</span></code> tab to delineate between isobaric and isothermal experimental data.</p></li>
-<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">load_files</span></code> function to re-organize the experimental data with respect to strain, or to pass the raw data to the model.</p></li>
+<li><p>Add a <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> on the <a class="reference internal" href="data_input.html#module-data_input.create_data_input" title="data_input.create_data_input"><code class="xref py py-mod docutils literal notranslate"><span class="pre">create_data_input</span></code></a> tab to delineate between isobaric and isothermal experimental data.</p></li>
+<li><p>Modify the <a class="reference internal" href="data_input.html#data_input.create_data_input.DataInputWidget.load_files" title="data_input.create_data_input.DataInputWidget.load_files"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_files()</span></code></a> function to re-organize the experimental data with respect to strain, or to pass the raw data to the model.</p></li>
 <li><p>Add a new model function to calculate the material stress as a function of temperature and strain. This may seem involved, but the model formulation is much simpler.</p></li>
-<li><p>Change the <code class="docutils literal notranslate"><span class="pre">calibration_progress</span></code> figures to reflect superelastic behavior (i.e., change the temperature-strain plot to a temperature-stress plot).</p></li>
+<li><p>Change the <a class="reference internal" href="calibration_progress.html#module-calibration_progress.create_calibration_progress_widget" title="calibration_progress.create_calibration_progress_widget"><code class="xref py py-mod docutils literal notranslate"><span class="pre">create_calibration_progress_widget</span></code></a> figures to reflect superelastic behavior (i.e., change the temperature-strain plot to a temperature-stress plot).</p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -150,11 +150,11 @@ Alternative modeling approaches include the Brinson model <span id="id1">[<a cla
 No matter the particular model you wish to include, the process we will detail below will be the same (if you have access to the model source code in python).</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Add a <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> on the <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">Input</span></code> tab to allow the user pick between different model formulations.</p></li>
-<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">create_calibration_parameters</span></code> function (associated with the calibration parameters tab) to include the model parameters required for your chosen formulation. This would probably be best implemented in an if-else format.</p></li>
-<li><p>Change <code class="docutils literal notranslate"><span class="pre">optimizer.main</span></code> to accomodate these different model parameters.</p></li>
-<li><p>Include another if-else statement in <code class="docutils literal notranslate"><span class="pre">optimizer.evaluate</span></code> to call your chosen model formulation. If your model formulation returns a strain history given temperature and stress histories, this involves adding an if-else statement at the location where the current source code calls <code class="docutils literal notranslate"><span class="pre">Full_Model_Stress</span></code>.</p></li>
-<li><p>Be sure to modify the <code class="docutils literal notranslate"><span class="pre">calibration_progress</span></code> figures to include any unique model parameters.</p></li>
+<li><p>Add a <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> on the <a class="reference internal" href="data_input.html#module-data_input.create_data_input" title="data_input.create_data_input"><code class="xref py py-mod docutils literal notranslate"><span class="pre">create_data_input</span></code></a> tab to allow the user pick between different model formulations.</p></li>
+<li><p>Modify the <a class="reference internal" href="calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget" title="calibration.create_calibration_parameters.CalibrationParametersWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalibrationParametersWidget</span></code></a> function (associated with the calibration parameters tab) to include the model parameters required for your chosen formulation. This would probably be best implemented in an if-else format.</p></li>
+<li><p>Change <a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.optimizer.main" title="calibration.model_funcs.optimizer.main"><code class="xref py py-func docutils literal notranslate"><span class="pre">main()</span></code></a> to accomodate these different model parameters.</p></li>
+<li><p>Include another if-else statement in <a class="reference internal" href="calibration.model_funcs.html#calibration.model_funcs.optimizer.evaluate" title="calibration.model_funcs.optimizer.evaluate"><code class="xref py py-func docutils literal notranslate"><span class="pre">evaluate()</span></code></a> to call your chosen model formulation. If your model formulation returns a strain history given temperature and stress histories, this involves adding an if-else statement at the location where the current source code calls <a class="reference internal" href="calibration.model_funcs.html#module-calibration.model_funcs.Full_Model_stress" title="calibration.model_funcs.Full_Model_stress"><code class="xref py py-func docutils literal notranslate"><span class="pre">Full_Model_stress()</span></code></a>.</p></li>
+<li><p>Be sure to modify the <a class="reference internal" href="calibration_progress.html#module-calibration_progress.create_calibration_progress_widget" title="calibration_progress.create_calibration_progress_widget"><code class="xref py py-mod docutils literal notranslate"><span class="pre">create_calibration_progress_widget</span></code></a> figures to include any unique model parameters.</p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -165,21 +165,21 @@ However, these algorithms are not “optimal” in any sense; rather, they were 
 If you are interested in implementing alternative optimization schemes that you feel would be better for calibration, follow these steps:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Add a <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> on the <code class="docutils literal notranslate"><span class="pre">Calibration</span> <span class="pre">Parameters</span></code> tab to allow the user to select algorithms.</p></li>
-<li><p>Add extra <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qlineedit_widget.htm">lineEdits</a> on the <code class="docutils literal notranslate"><span class="pre">calibration</span> <span class="pre">parameters</span></code> tab if there are other optimization parameters that need specified.</p></li>
-<li><p>Add the necessary code to <code class="docutils literal notranslate"><span class="pre">optimizer.main</span></code> to call your optimization of choice.</p></li>
+<li><p>Add a <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> on the <a class="reference internal" href="calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget" title="calibration.create_calibration_parameters.CalibrationParametersWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalibrationParametersWidget</span></code></a> tab to allow the user to select algorithms.</p></li>
+<li><p>Add extra <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qlineedit_widget.htm">lineEdits</a> on the <a class="reference internal" href="calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget" title="calibration.create_calibration_parameters.CalibrationParametersWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalibrationParametersWidget</span></code></a> tab if there are other optimization parameters that need specified.</p></li>
+<li><p>Add the necessary code to <a class="reference internal" href="calibration.model_funcs.html#module-calibration.model_funcs.optimizer" title="calibration.model_funcs.optimizer"><code class="xref py py-mod docutils literal notranslate"><span class="pre">optimizer</span></code></a> to call your optimization of choice.</p></li>
 </ul>
 </div></blockquote>
 </section>
 <section id="adding-more-result-export-options">
 <h2>Adding more result export options<a class="headerlink" href="#adding-more-result-export-options" title="Permalink to this heading"></a></h2>
 <p>SMA-REACT currently can export all relevant optimization results to a JSON.
-See the <code class="docutils literal notranslate"><span class="pre">launch_GUI.export_solution</span></code> for more information about the particular export quantities.
+See the <a class="reference internal" href="launch_GUI.html#launch_GUI.App.export_solution" title="launch_GUI.App.export_solution"><code class="xref py py-func docutils literal notranslate"><span class="pre">export_solution()</span></code></a> for more information about the particular export quantities.
 If you would like to tailor the GUI to export a particular file format, follow these steps:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Add a <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> on the <code class="docutils literal notranslate"><span class="pre">Calibration</span> <span class="pre">Progress</span></code> tab to accomodate different export options.</p></li>
-<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">export_solution</span></code> function to export different quantities depending on the aforementioned dropdown.</p></li>
+<li><p>Add a <a class="reference external" href="https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm">Dropdown</a> on the <a class="reference internal" href="calibration_progress.html#module-calibration_progress.create_calibration_progress_widget" title="calibration_progress.create_calibration_progress_widget"><code class="xref py py-mod docutils literal notranslate"><span class="pre">create_calibration_progress_widget</span></code></a> tab to accomodate different export options.</p></li>
+<li><p>Modify the <a class="reference internal" href="launch_GUI.html#launch_GUI.App.export_solution" title="launch_GUI.App.export_solution"><code class="xref py py-func docutils literal notranslate"><span class="pre">export_solution()</span></code></a> function to export different quantities depending on the aforementioned dropdown.</p></li>
 </ul>
 </div></blockquote>
 </section>

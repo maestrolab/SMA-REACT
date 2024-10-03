@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>calibration.model_funcs.optimizer &mdash; SMA-REACT 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
-        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -41,9 +41,16 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">SMAREACTcleaned</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_calibration.html">Learning by doing: an example calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing_extending.html#possible-extensions">Possible extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Source Code</a></li>
 </ul>
 
         </div>
@@ -96,9 +103,7 @@
 <span class="c1">#Numpy presets</span>
 <span class="n">np</span><span class="o">.</span><span class="n">seterr</span><span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="s1">&#39;raise&#39;</span><span class="p">)</span> <span class="c1">#tell numpy to raise floating point errors.</span>
 
-<div class="viewcode-block" id="cxTwoPointCopy">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.cxTwoPointCopy">[docs]</a>
-<span class="k">def</span> <span class="nf">cxTwoPointCopy</span><span class="p">(</span><span class="n">ind1</span><span class="p">,</span> <span class="n">ind2</span><span class="p">):</span>
+<div class="viewcode-block" id="cxTwoPointCopy"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.cxTwoPointCopy">[docs]</a><span class="k">def</span> <span class="nf">cxTwoPointCopy</span><span class="p">(</span><span class="n">ind1</span><span class="p">,</span> <span class="n">ind2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute a two points crossover with copy on the input individuals. The</span>
 <span class="sd">    copy is required because the slicing in numpy returns a view of the data,</span>
 <span class="sd">    which leads to a self overwritting in the swap operation. It prevents:</span>
@@ -127,10 +132,7 @@
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">ind1</span><span class="p">,</span> <span class="n">ind2</span></div>
 
-
-<div class="viewcode-block" id="psh">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.psh">[docs]</a>
-<span class="k">def</span> <span class="nf">psh</span><span class="p">(</span><span class="n">popSize</span><span class="p">,</span> <span class="n">genSize</span><span class="p">,</span> <span class="n">toolbox</span><span class="p">):</span>
+<div class="viewcode-block" id="psh"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.psh">[docs]</a><span class="k">def</span> <span class="nf">psh</span><span class="p">(</span><span class="n">popSize</span><span class="p">,</span> <span class="n">genSize</span><span class="p">,</span> <span class="n">toolbox</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates DEAP things.</span>
 
 <span class="sd">    Parameters</span>
@@ -169,10 +171,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">hof</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">pop</span><span class="p">,</span> <span class="n">stats</span><span class="p">,</span> <span class="n">hof</span></div>
 
-
-<div class="viewcode-block" id="exponentialBounds">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.exponentialBounds">[docs]</a>
-<span class="k">def</span> <span class="nf">exponentialBounds</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">[</span><span class="mf">1e3</span><span class="p">,</span> <span class="mf">1e8</span><span class="p">]):</span>
+<div class="viewcode-block" id="exponentialBounds"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.exponentialBounds">[docs]</a><span class="k">def</span> <span class="nf">exponentialBounds</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">[</span><span class="mf">1e3</span><span class="p">,</span> <span class="mf">1e8</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a bounded function based on an exponential distribution.</span>
 <span class="sd">    Very convenient for values that span many orders of magnitude</span>
 <span class="sd">    (i.e., the rise time k).</span>
@@ -197,10 +196,7 @@
 
 
 
-
-<div class="viewcode-block" id="resizeBounds">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.resizeBounds">[docs]</a>
-<span class="k">def</span> <span class="nf">resizeBounds</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">[</span><span class="mf">1e3</span><span class="p">,</span> <span class="mf">1e8</span><span class="p">]):</span>
+<div class="viewcode-block" id="resizeBounds"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.resizeBounds">[docs]</a><span class="k">def</span> <span class="nf">resizeBounds</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">[</span><span class="mf">1e3</span><span class="p">,</span> <span class="mf">1e8</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Maps an entry of the design vector (bounds [0,1]) to the isotropic</span>
 <span class="sd">    hardening modulus.</span>
 
@@ -220,10 +216,7 @@
     <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">value</span> <span class="o">+</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">value</span></div>
 
-
-<div class="viewcode-block" id="evaluate">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.evaluate">[docs]</a>
-<span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span>
+<div class="viewcode-block" id="evaluate"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.evaluate">[docs]</a><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span>
         <span class="n">x</span><span class="p">,</span>
         <span class="n">data</span><span class="p">,</span>
         <span class="n">calWin</span><span class="p">,</span>
@@ -462,14 +455,11 @@
 
 
 
-
-<div class="viewcode-block" id="optimizer">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.optimizer">[docs]</a>
-<span class="k">def</span> <span class="nf">optimizer</span><span class="p">(</span><span class="n">toolbox</span><span class="p">,</span><span class="n">popSize</span><span class="p">,</span><span class="n">genSize</span><span class="p">,</span><span class="n">data</span><span class="p">,</span> <span class="n">calWin</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="optimizer"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.optimizer">[docs]</a><span class="k">def</span> <span class="nf">optimizer</span><span class="p">(</span><span class="n">toolbox</span><span class="p">,</span><span class="n">popSize</span><span class="p">,</span><span class="n">genSize</span><span class="p">,</span><span class="n">data</span><span class="p">,</span> <span class="n">calWin</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Runs the hybrid optimization to find optimal</span>
 <span class="sd">    material properties.</span>
-
+<span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    toolbox : class</span>
@@ -630,11 +620,8 @@
 
 
 
-
 <span class="c1">#if __name__ == &#39;__main__&#39;:</span>
-<div class="viewcode-block" id="main">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.main">[docs]</a>
-<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span><span class="n">calibration_class</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">calWin</span><span class="p">):</span>
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.optimizer.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span><span class="n">calibration_class</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">calWin</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Initialize and run the optimization.</span>
 
@@ -739,7 +726,6 @@
                      <span class="n">final_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">error</span></div>
-
 </pre></div>
 
            </div>

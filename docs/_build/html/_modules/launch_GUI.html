@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>launch_GUI &mdash; SMA-REACT 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=8d563738"></script>
-        <script src="../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -41,9 +41,16 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">SMAREACTcleaned</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example_calibration.html">Learning by doing: an example calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing_extending.html#possible-extensions">Possible extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Source Code</a></li>
 </ul>
 
         </div>
@@ -101,9 +108,7 @@
     <span class="p">)</span>
 
 
-<div class="viewcode-block" id="App">
-<a class="viewcode-back" href="../launch_GUI.html#launch_GUI.App">[docs]</a>
-<span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">):</span>
+<div class="viewcode-block" id="App"><a class="viewcode-back" href="../launch_GUI.html#launch_GUI.App">[docs]</a><span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Master GUI with all required tabs</span>
 <span class="sd">    (implemented as different classes). Inherits the</span>
@@ -197,22 +202,18 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<div class="viewcode-block" id="App.change_tabs">
-<a class="viewcode-back" href="../launch_GUI.html#launch_GUI.App.change_tabs">[docs]</a>
-    <span class="k">def</span> <span class="nf">change_tabs</span><span class="p">(</span>
+<div class="viewcode-block" id="App.change_tabs"><a class="viewcode-back" href="../launch_GUI.html#launch_GUI.App.change_tabs">[docs]</a>    <span class="k">def</span> <span class="nf">change_tabs</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">index</span><span class="p">,</span>
             <span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Enables the specified tab and changes to that tab.</span>
 <span class="sd">        To connect this to a pushButton or another widget,</span>
 <span class="sd">        you must use a lambda function, like so:</span>
-
 <span class="sd">            widget.clicked.connect(</span>
 <span class="sd">                lambda : self.changeTabs(</span>
 <span class="sd">                    index = some_index</span>
 <span class="sd">                    )</span>
 <span class="sd">                )</span>
-
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -227,10 +228,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">tabs</span><span class="o">.</span><span class="n">setTabEnabled</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tabs</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span><span class="n">index</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="App.run_calibration">
-<a class="viewcode-back" href="../launch_GUI.html#launch_GUI.App.run_calibration">[docs]</a>
-    <span class="k">def</span> <span class="nf">run_calibration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="App.run_calibration"><a class="viewcode-back" href="../launch_GUI.html#launch_GUI.App.run_calibration">[docs]</a>    <span class="k">def</span> <span class="nf">run_calibration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Runs the calibration optimization and changes to the progress</span>
 <span class="sd">        plotting tab.</span>
@@ -261,10 +259,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">calibration_plotting_widget</span><span class="o">.</span><span class="n">export_button</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="App.export_solution">
-<a class="viewcode-back" href="../launch_GUI.html#launch_GUI.App.export_solution">[docs]</a>
-    <span class="k">def</span> <span class="nf">export_solution</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="App.export_solution"><a class="viewcode-back" href="../launch_GUI.html#launch_GUI.App.export_solution">[docs]</a>    <span class="k">def</span> <span class="nf">export_solution</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Prints and exports the calibrated solution,</span>
 <span class="sd">        with all of the important intermediary data.</span>
@@ -335,9 +330,7 @@
                 <span class="n">file</span><span class="p">,</span>
                 <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                 <span class="n">indent</span><span class="o">=</span><span class="mi">4</span>
-                <span class="p">)</span></div>
-</div>
-
+                <span class="p">)</span></div></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>

@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>preprocessor.functions &mdash; SMA-REACT 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=8d563738"></script>
-        <script src="../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -41,9 +41,16 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">SMAREACTcleaned</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../example_calibration.html">Learning by doing: an example calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing_extending.html#possible-extensions">Possible extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Source Code</a></li>
 </ul>
 
         </div>
@@ -78,9 +85,7 @@
 <span class="kn">import</span> <span class="nn">csv</span>
 
 
-<div class="viewcode-block" id="export_all">
-<a class="viewcode-back" href="../../preprocessor.html#preprocessor.functions.export_all">[docs]</a>
-<span class="k">def</span> <span class="nf">export_all</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">startTime</span><span class="p">,</span> <span class="n">crossShape</span><span class="p">,</span> <span class="n">crossArea</span><span class="p">,</span> <span class="n">unitOut</span><span class="p">,</span> <span class="n">origLength</span><span class="p">,</span> <span class="n">dispUnits</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="export_all"><a class="viewcode-back" href="../../preprocessor.html#preprocessor.functions.export_all">[docs]</a><span class="k">def</span> <span class="nf">export_all</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">startTime</span><span class="p">,</span> <span class="n">crossShape</span><span class="p">,</span> <span class="n">crossArea</span><span class="p">,</span> <span class="n">unitOut</span><span class="p">,</span> <span class="n">origLength</span><span class="p">,</span> <span class="n">dispUnits</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
     <span class="c1"># CREATING METADATA</span>
     <span class="n">metadata_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
     <span class="n">metadata_dict</span><span class="p">[</span><span class="s2">&quot;Date Run&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
@@ -115,11 +120,8 @@
     <span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
-
 <span class="c1"># function that prints headers and asks user to pick one</span>
-<div class="viewcode-block" id="header_choice">
-<a class="viewcode-back" href="../../preprocessor.html#preprocessor.functions.header_choice">[docs]</a>
-<span class="k">def</span> <span class="nf">header_choice</span><span class="p">(</span><span class="n">list1</span><span class="p">,</span> <span class="n">str_calc</span><span class="p">):</span>
+<div class="viewcode-block" id="header_choice"><a class="viewcode-back" href="../../preprocessor.html#preprocessor.functions.header_choice">[docs]</a><span class="k">def</span> <span class="nf">header_choice</span><span class="p">(</span><span class="n">list1</span><span class="p">,</span> <span class="n">str_calc</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">col_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list1</span><span class="p">)):</span>
         <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list1</span><span class="p">[</span><span class="n">col_index</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">list1</span><span class="p">[</span><span class="n">col_index</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot; &quot;</span><span class="p">:</span>
@@ -138,7 +140,6 @@
             <span class="n">title</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the column from above you would like to use for </span><span class="si">{}</span><span class="s2">: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">str_calc</span><span class="p">))</span>
     <span class="n">list2</span> <span class="o">=</span> <span class="n">list1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">title</span><span class="p">,</span> <span class="n">list2</span></div>
-
 </pre></div>
 
            </div>

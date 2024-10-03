@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>preprocessor.moving_average_filter &mdash; SMA-REACT 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=8d563738"></script>
-        <script src="../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -41,9 +41,16 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">SMAREACTcleaned</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../example_calibration.html">Learning by doing: an example calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing_extending.html#possible-extensions">Possible extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Source Code</a></li>
 </ul>
 
         </div>
@@ -77,9 +84,7 @@
 <span class="c1"># matplotlib.use(&quot;GTKAgg&quot;)</span>
 
 
-<div class="viewcode-block" id="plotSubplot">
-<a class="viewcode-back" href="../../preprocessor.html#preprocessor.moving_average_filter.plotSubplot">[docs]</a>
-<span class="k">def</span> <span class="nf">plotSubplot</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">x_axis_title</span><span class="p">,</span> <span class="n">y_axis_title</span><span class="p">,</span> <span class="n">subplot_title</span><span class="p">):</span>
+<div class="viewcode-block" id="plotSubplot"><a class="viewcode-back" href="../../preprocessor.html#preprocessor.moving_average_filter.plotSubplot">[docs]</a><span class="k">def</span> <span class="nf">plotSubplot</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">x_axis_title</span><span class="p">,</span> <span class="n">y_axis_title</span><span class="p">,</span> <span class="n">subplot_title</span><span class="p">):</span>
     <span class="n">axis</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span>
     <span class="n">axis</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
     <span class="n">axis</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">subplot_title</span><span class="p">)</span>
@@ -88,10 +93,7 @@
     <span class="n">axis</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">y_axis_title</span><span class="p">)</span></div>
 
 
-
-<div class="viewcode-block" id="movavg_filter">
-<a class="viewcode-back" href="../../preprocessor.html#preprocessor.moving_average_filter.movavg_filter">[docs]</a>
-<span class="k">def</span> <span class="nf">movavg_filter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">temp_title</span><span class="p">,</span> <span class="n">disp_title</span><span class="p">,</span> <span class="n">load_title</span><span class="p">,</span> <span class="n">mov_avg_set</span><span class="p">,</span> <span class="n">datapoints</span><span class="p">,</span> <span class="n">fluke_check</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fluke_temp_title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="movavg_filter"><a class="viewcode-back" href="../../preprocessor.html#preprocessor.moving_average_filter.movavg_filter">[docs]</a><span class="k">def</span> <span class="nf">movavg_filter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">temp_title</span><span class="p">,</span> <span class="n">disp_title</span><span class="p">,</span> <span class="n">load_title</span><span class="p">,</span> <span class="n">mov_avg_set</span><span class="p">,</span> <span class="n">datapoints</span><span class="p">,</span> <span class="n">fluke_check</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fluke_temp_title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
     <span class="c1">################################################# SATISFACTION LOOP ###########################################</span>
     <span class="c1"># Checking user satisfaction with filter</span>
     <span class="k">for</span> <span class="n">measurement</span> <span class="ow">in</span> <span class="n">mov_avg_set</span><span class="p">:</span>
@@ -327,7 +329,6 @@
         <span class="k">return</span> <span class="n">mts_figure</span><span class="p">,</span> <span class="n">both_figure</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">mts_figure</span></div>
-
 </pre></div>
 
            </div>

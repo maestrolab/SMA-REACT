@@ -14,6 +14,7 @@ PyQt functions as the software front-end (i.e., all interactive elements), while
 Any new feature must be reflected in both the front- and back-ends, and hence requires knowledge of both. 
 Thankfully, PyQt is an intuitive object-oriented package, so adding front-end elements is not too arduous.
 Here are a few helpful tutorials and articles on various components:
+
     * Dropdown_ boxes, or combo boxes, are good to allow the user to pick between multiple discrete options.
     * lineEdits_ enable the user to input a value or string.
     * Labels_ are, as the name suggest, non-editable labels for various entities.
@@ -25,9 +26,6 @@ Here are a few helpful tutorials and articles on various components:
 .. _Labels: https://www.tutorialspoint.com/pyqt/pyqt_qlabel_widget.htm
 .. _Layouts: https://www.tutorialspoint.com/pyqt/pyqt_layout_management.htm
 
-Possible extensions
-===================
-We will cover the most likely possible extensions, and hopefully these skeletons will give you a good idea of how you can modify SMA-REACT to your liking (and hopefully share your hard work with the world!).
 
 Accepting different input file types
 ------------------------------------
@@ -36,22 +34,22 @@ Currently, SMA-REACT uses the ``pandas.read_csv()`` function with ``sep=None`` t
 As such, the tool can only load tab-delimited text files robustly. 
 To accomodate other file formats, the following modifications could be performed:
 
-    * Add a Dropdown_ on the ``File Input`` tab (``create_data_input``) to add an input option.
-    * Modify the ``open_files`` and ``load_files`` functions to accept different inputs (via if-else or otherwise).
+    * Add a Dropdown_ on the  :mod:`~data_input.create_data_input`  tab to add an input option.
+    * Modify the :func:`~data_input.create_data_input.DataInputWidget.open_files` and :func:`~data_input.create_data_input.DataInputWidget.load_files` functions to accept different inputs (via if-else or otherwise).
   
 
 Reformulating for different loading conditions (i.e., superelasticity)
 ----------------------------------------------------------------------
 
 The current model formulation calibrates isobaric experimental cycles by predicting strain as a function of applied temperature and stress.
-It also assumes the material starts in Martensite; ``create_data_input.load_files`` performs the reorganization of experimental data to arrange the thermal cycles to run from cold to hot.
+It also assumes the material starts in Martensite; :func:`~data_input.create_data_input.DataInputWidget.load_files` performs the reorganization of experimental data to arrange the thermal cycles to run from cold to hot.
 For superelastic characterization cycles, the material stress should be predicted as a function of temperature and strain. 
 This requires a few distinct modifications:
 
-    * Add a Dropdown_ on the ``File Input`` tab to delineate between isobaric and isothermal experimental data.
-    * Modify the ``load_files`` function to re-organize the experimental data with respect to strain, or to pass the raw data to the model.
+    * Add a Dropdown_ on the :mod:`~data_input.create_data_input` tab to delineate between isobaric and isothermal experimental data.
+    * Modify the :func:`~data_input.create_data_input.DataInputWidget.load_files` function to re-organize the experimental data with respect to strain, or to pass the raw data to the model.
     * Add a new model function to calculate the material stress as a function of temperature and strain. This may seem involved, but the model formulation is much simpler.
-    * Change the ``calibration_progress`` figures to reflect superelastic behavior (i.e., change the temperature-strain plot to a temperature-stress plot).
+    * Change the :mod:`~calibration_progress.create_calibration_progress_widget` figures to reflect superelastic behavior (i.e., change the temperature-strain plot to a temperature-stress plot).
 
 Adding another model formulation
 --------------------------------
@@ -60,11 +58,11 @@ The Lagoudas one-dimensional constitutive model is one of many different options
 Alternative modeling approaches include the Brinson model :cite:p:`brinson_one-dimensional_1993`, the Aurrichio model :cite:p:`auricchio_sma_2009`, and various extensions for plasticity :cite:p:`scalet_three-dimensional_2019`, finite deformation :cite:p:`xu_finite_2021`, and other phenomena.
 No matter the particular model you wish to include, the process we will detail below will be the same (if you have access to the model source code in python).
 
-    * Add a Dropdown_ on the ``File Input`` tab to allow the user pick between different model formulations.
-    * Modify the ``create_calibration_parameters`` function (associated with the calibration parameters tab) to include the model parameters required for your chosen formulation. This would probably be best implemented in an if-else format.
-    * Change ``optimizer.main`` to accomodate these different model parameters.
-    * Include another if-else statement in ``optimizer.evaluate`` to call your chosen model formulation. If your model formulation returns a strain history given temperature and stress histories, this involves adding an if-else statement at the location where the current source code calls ``Full_Model_Stress``.
-    * Be sure to modify the ``calibration_progress`` figures to include any unique model parameters.
+    * Add a Dropdown_ on the :mod:`~data_input.create_data_input` tab to allow the user pick between different model formulations.
+    * Modify the :class:`~calibration.create_calibration_parameters.CalibrationParametersWidget` function (associated with the calibration parameters tab) to include the model parameters required for your chosen formulation. This would probably be best implemented in an if-else format.
+    * Change :func:`~calibration.model_funcs.optimizer.main` to accomodate these different model parameters.
+    * Include another if-else statement in :func:`~calibration.model_funcs.optimizer.evaluate` to call your chosen model formulation. If your model formulation returns a strain history given temperature and stress histories, this involves adding an if-else statement at the location where the current source code calls :func:`~calibration.model_funcs.Full_Model_stress`.
+    * Be sure to modify the :mod:`~calibration_progress.create_calibration_progress_widget` figures to include any unique model parameters.
 
 Including other optimization schemes
 ------------------------------------
@@ -73,19 +71,19 @@ The current tool uses the Non-Sorting Genetic Algorithm (II) and Sequential-Leas
 However, these algorithms are not "optimal" in any sense; rather, they were selected out of developer laziness for being "good enough."
 If you are interested in implementing alternative optimization schemes that you feel would be better for calibration, follow these steps:
 
-    * Add a Dropdown_ on the ``Calibration Parameters`` tab to allow the user to select algorithms.
-    * Add extra lineEdits_ on the ``calibration parameters`` tab if there are other optimization parameters that need specified.
-    * Add the necessary code to ``optimizer.main`` to call your optimization of choice.
+    * Add a Dropdown_ on the :class:`~calibration.create_calibration_parameters.CalibrationParametersWidget` tab to allow the user to select algorithms.
+    * Add extra lineEdits_ on the :class:`~calibration.create_calibration_parameters.CalibrationParametersWidget` tab if there are other optimization parameters that need specified.
+    * Add the necessary code to :mod:`~calibration.model_funcs.optimizer` to call your optimization of choice.
 
 Adding more result export options
 ---------------------------------
 
 SMA-REACT currently can export all relevant optimization results to a JSON. 
-See the ``launch_GUI.export_solution`` for more information about the particular export quantities. 
+See the :func:`~launch_GUI.App.export_solution` for more information about the particular export quantities. 
 If you would like to tailor the GUI to export a particular file format, follow these steps:
 
-    * Add a Dropdown_ on the ``Calibration Progress`` tab to accomodate different export options.
-    * Modify the ``export_solution`` function to export different quantities depending on the aforementioned dropdown.
+    * Add a Dropdown_ on the :mod:`~calibration_progress.create_calibration_progress_widget` tab to accomodate different export options.
+    * Modify the :func:`~launch_GUI.App.export_solution` function to export different quantities depending on the aforementioned dropdown.
 
 
 

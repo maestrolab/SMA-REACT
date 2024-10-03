@@ -12,7 +12,7 @@ Open and launch SMA-REACT
 -------------------------
 
 
-In your Python IDE of choice (Spyder is recommended), using the correct environment 
+In your Python IDE of choice (Spyder is recommended, but the tool has been tested in VS Code), using the correct environment 
 (see :doc:`getting_started`), open ``launch_GUI.py``. Run the file
 to activate the GUI. You will be greeted by the data input screen.
 
@@ -27,6 +27,8 @@ Load experimental data
 For this example, we will use experimental data from Bigelow et al.
 (link_, :cite:p:`bigelow_development_2022`). It is distributed with the SMA-REACT package. 
 Click ``Open Files``, then navigate to ``SMAREACT/input/sample_2``, and select all experimental text files.
+SMA-REACT currently only accepts tab-delimited text files via the ``pandas.read_csv()`` function.
+
 The data records strain in %, so change the dropdown
 menu accordingly. You should see the loaded text files displayed by 
 file names, and the columns should be colored according to their field. 
@@ -47,7 +49,7 @@ Setting design variables and bounds
 The material property calibration tab shows model and optimization parameters to define a calibration routine.
 For this tutorial, we will change the default model parameter bounds 
 to better match the experimental data. 
-One can also specify certain model parameters by clicking the corresponding toggle button in the ``Specify`` column and inputting the desired value, 
+One can also specify certain model parameters by clicking the corresponding toggle button in the ``Specify?`` column and inputting the desired value, 
 but we will not do that here. 
 
 .. image:: _static/calibration_parameters.PNG
@@ -74,9 +76,9 @@ Here is a table that explains these parameters:
 ========================== ==========
 Parameter                  Meaning    
 ========================== ==========  
-:math:`\delta`             Algorithmic smoothing for smooth hardening to prevent numerical singularities (see Lagoudas).
+:math:`\delta`             Algorithmic smoothing for smooth hardening to prevent numerical singularities (see :cite:p:`lagoudas_constitutive_2012`).
 :math:`\sigma_{cal}`       Calibration stress; choose a value close to the SMA design working stress.  
-MVF Tolerance              Algorithmic tolerance for the convex cutting plane integration routine within the model (see Lagoudas).   
+MVF Tolerance              Algorithmic tolerance for the convex cutting plane integration routine within the model (see :cite:p:`lagoudas_constitutive_2012`).   
 Number of generations      Number of generations for the genetic algorithm (GA). Increase if your GA solution is improving but not converged before exiting.  
 Population size            Number of individuals per generation for the GA. Increase if the GA solution is not improving consistently.
 Gradient-based iterations  Number of iterations in the gradient-based optimization. Increase if the solution is improving but not converged before exiting.
