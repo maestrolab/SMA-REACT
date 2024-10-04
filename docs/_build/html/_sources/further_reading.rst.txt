@@ -21,8 +21,10 @@ Link                                  Description
 ===================================== ===========
 SMA_database_                         A NASA-maintained database of shape memory alloy test data, with material property extraction and plotting routines :cite:p:`bigelow_smanalytics_2024`
 Xu_github_                            Github with UMATs for the newer shape memory alloy model :cite:p:`xu_finite_2021`. 
+ASMADA_                               A tool to automatically extract properties defined in SMA ASTM standards :cite:p:`kuner_asmadatool_2021`.
 ===================================== ===========
 
+.. _ASMADA: https://github.com/matthewkuner/ASMADA 
 .. _SMA_database: https://software.nasa.gov/software/LEW-20278-1
 .. _Xu_github: https://github.com/Aero-tomato/SMA-UMAT
 

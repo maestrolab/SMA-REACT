@@ -1,17 +1,7 @@
 '''
-Shape Memory Alloy Rendering of Experimental Analysis and Calibration Tool
-(SMA-REACT)
-------------------------------------
-Data Input Script
-------------------------------------
 This file contains all relevant functions for data input to
 the calibration GUI. This framework heavily borrows from
-ASMADA (citation given below).
-
-M. C. Kuner, A. A. Karakalas, and D. C. Lagoudas,
-“ASMADA—A tool for automatic analysis of shape memory alloy
-thermal cycling data under constant stress,”
-Smart Mater. Struct., vol. 30, no. 12, p. 125003, 2021.
+ASMADA :cite:p:`kuner_asmadatool_2021`.
 '''
 import pandas as pd
 import numpy as np
@@ -413,7 +403,7 @@ class DataInputWidget(QtWidgets.QWidget):
         in case a need arises where the data is too dense for
         efficient calibration.
 
-        Add a call to load_files to downsample this dataseries.
+        This is not currently implemented, but to use, add a call to load_files to downsample this dataseries.
 
         Returns
         -------

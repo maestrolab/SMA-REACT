@@ -42,13 +42,11 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../example_calibration.html">Learning by doing: an example calibration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../citation_information.html">Citation information</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../further_reading.html">Further reading and other resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../contributing_extending.html#possible-extensions">Possible extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modules.html">Source Code</a></li>
 </ul>
@@ -79,13 +77,8 @@
              
   <h1>Source code for calibration.create_calibration_parameters</h1><div class="highlight"><pre>
 <span></span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">create_calibration_parameters.py</span>
-
-<span class="sd">Script to define all model, algorithmic, and optimization parameters</span>
-<span class="sd">for calibration of the Lagoudas 1-D SMA model with smooth hardening</span>
-
-<span class="sd"># FIXME Add the citation of Lagoudas 2012 IJP.</span>
-
+<span class="sd">Defines all model, algorithmic, and optimization parameters</span>
+<span class="sd">for calibration of the Lagoudas 1-D SMA model with smooth hardening :cite:p:`lagoudas_constitutive_2012`</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -103,7 +96,8 @@
 <div class="viewcode-block" id="CalibrationParametersWidget"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget">[docs]</a><span class="k">class</span> <span class="nc">CalibrationParametersWidget</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Widget to define the tab where all the calibration parameters</span>
-<span class="sd">    can be tweaked.</span>
+<span class="sd">    can be defined (active design variables, bounds, specified values,</span>
+<span class="sd">    optimization parameters).</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
@@ -913,6 +907,11 @@
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Translates all of the checkboxes for each</span>
 <span class="sd">        material parameter to different DV flags.</span>
+<span class="sd">        Toggle function to refresh every time a specified value</span>
+<span class="sd">        box is unchecked. </span>
+<span class="sd">        The current implementation is brute-force (i.e., each</span>
+<span class="sd">        sender is a different if-else loop), so this could be </span>
+<span class="sd">        refactored.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1219,6 +1218,8 @@
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Imports default values for lower and upper bounds</span>
 <span class="sd">        of all DVs.</span>
+<span class="sd">        Default values are hard-coded below, but should</span>
+<span class="sd">        be moved to a more transparent data source.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1297,8 +1298,6 @@
         <span class="c1">#number of iterations</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">iter_line</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;100&#39;</span><span class="p">)</span></div>
 
-
-
 <div class="viewcode-block" id="CalibrationParametersWidget.updateVal"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.updateVal">[docs]</a>    <span class="k">def</span> <span class="nf">updateVal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Updates the values of upper and lower DV bounds, both in the</span>
@@ -1319,7 +1318,6 @@
                 <span class="n">guess</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_layout</span><span class="o">.</span><span class="n">itemAtPosition</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span><span class="o">.</span><span class="n">itemAt</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">widget</span><span class="p">()</span>
                 <span class="n">step</span> <span class="o">=</span> <span class="p">(</span><span class="n">upper_bound</span> <span class="o">-</span> <span class="n">lower_bound</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span>
                 <span class="n">guess</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">slider_val</span> <span class="o">*</span> <span class="n">step</span> <span class="o">+</span> <span class="n">lower_bound</span><span class="p">))</span></div>
-
 
 <div class="viewcode-block" id="CalibrationParametersWidget.updateSlider"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.updateSlider">[docs]</a>    <span class="k">def</span> <span class="nf">updateSlider</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
@@ -1368,10 +1366,11 @@
                         <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
                         <span class="p">)</span><span class="o">.</span><span class="n">itemAt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">widget</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">normalized_value</span><span class="p">)</span></div>
 
-
 <div class="viewcode-block" id="CalibrationParametersWidget.getBounds"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.getBounds">[docs]</a>    <span class="k">def</span> <span class="nf">getBounds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Creates the bounds list of lists, that is used in the optimizer.</span>
+<span class="sd">        This could be refactored to be more agile by refactoring the bounds</span>
+<span class="sd">        object to something other than a list of lists. </span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1462,6 +1461,7 @@
 <div class="viewcode-block" id="CalibrationParametersWidget.getSpecifiedValues"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.getSpecifiedValues">[docs]</a>    <span class="k">def</span> <span class="nf">getSpecifiedValues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Get the values that were specified to be constrained.</span>
+<span class="sd">        Once again, this could be refactored to be more flexible with different models.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1526,8 +1526,9 @@
             <span class="n">parameter_label_height</span><span class="p">,</span>
             <span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Utility function to create the a qlabel. </span>
-
+<span class="sd">        Utility function to create a QLabel object. </span>
+<span class="sd">        Sets the font and alignment of the label.</span>
+<span class="sd">        </span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        label_object : qlabel object</span>
@@ -1549,20 +1550,6 @@
 
 <span class="sd">        &#39;&#39;&#39;</span>
 
-
-        <span class="c1"># label_object.setMinimumSize(</span>
-        <span class="c1">#     QtCore.QSize(</span>
-        <span class="c1">#         parameter_label_width,</span>
-        <span class="c1">#         parameter_label_height</span>
-        <span class="c1">#         )</span>
-        <span class="c1">#     )</span>
-        <span class="c1"># label_object.setMaximumSize(</span>
-        <span class="c1">#     QtCore.QSize(</span>
-        <span class="c1">#         parameter_label_width,</span>
-        <span class="c1">#         parameter_label_height</span>
-        <span class="c1">#         )</span>
-        <span class="c1">#     )</span>
-
         <span class="n">label_object</span><span class="o">.</span><span class="n">setWordWrap</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">label_object</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">label_text</span><span class="p">)</span>
 
@@ -1574,8 +1561,6 @@
 
         <span class="n">label_object</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
         <span class="n">label_object</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignCenter</span><span class="p">)</span></div>
-
-
 
 <div class="viewcode-block" id="CalibrationParametersWidget.create_material_property"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.create_material_property">[docs]</a>    <span class="k">def</span> <span class="nf">create_material_property</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -1700,7 +1685,7 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        constraint_object : TYPE</span>
+<span class="sd">        constraint_object : class</span>
 <span class="sd">            class to contain all objects under a material property</span>
 <span class="sd">        name : str</span>
 <span class="sd">            constraint name.</span>
@@ -1858,15 +1843,12 @@
             <span class="p">)</span>
         <span class="n">parameter_object</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">parameter_object</span><span class="o">.</span><span class="n">lineEdit</span><span class="p">)</span></div>
 
-
-
-
 <div class="viewcode-block" id="CalibrationParametersWidget.set_size_policy"><a class="viewcode-back" href="../../calibration.html#calibration.create_calibration_parameters.CalibrationParametersWidget.set_size_policy">[docs]</a>    <span class="k">def</span> <span class="nf">set_size_policy</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">lineEdit</span><span class="p">,</span>
             <span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Creates a generic sign policy to keep line count down in code.</span>
+<span class="sd">        Creates a generic size policy to keep line count down in code.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1896,7 +1878,8 @@
             <span class="n">bold_flag</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
             <span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        </span>
+<span class="sd">        Creates a QFont object with size, weight, and</span>
+<span class="sd">        a flag to determine if it&#39;s bold.         </span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>

@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>calibration.model_funcs.phase_diagram &mdash; SMA-REACT 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
-        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -41,9 +41,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">SMAREACTcleaned</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_calibration.html">Learning by doing: an example calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Source Code</a></li>
 </ul>
 
         </div>
@@ -78,9 +83,24 @@
     <span class="n">partial_Hcur_sigma</span><span class="p">,</span>
     <span class="p">)</span>
 
-<div class="viewcode-block" id="plot_phase_diagram">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.phase_diagram.plot_phase_diagram">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_phase_diagram</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">sigma_inp</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_phase_diagram"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.phase_diagram.plot_phase_diagram">[docs]</a><span class="k">def</span> <span class="nf">plot_phase_diagram</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">sigma_inp</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Plots the stress-temperature phase diagram based on the current model parameters.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        P : DICT</span>
+<span class="sd">            material dictionary with all SMA model parameters.</span>
+<span class="sd">        sigma_inp : LIST</span>
+<span class="sd">            list with lower and upper bounds of the stress range</span>
+<span class="sd">            you wish to plot.</span>
+<span class="sd">        ax : AXIS object</span>
+<span class="sd">            matplotlib axis on which you are plotting </span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="c1"># Transformation strain at calibration stress (H_cur)</span>
     <span class="n">H_cur_cal</span> <span class="o">=</span> <span class="n">H_cursolver</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_cal&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_crit&#39;</span><span class="p">],</span>
                             <span class="n">P</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_min&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_sat&#39;</span><span class="p">])</span>
@@ -138,12 +158,28 @@
   
     <span class="k">return</span></div>
 
+<div class="viewcode-block" id="forward_transformation"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.phase_diagram.forward_transformation">[docs]</a><span class="k">def</span> <span class="nf">forward_transformation</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="n">MVF</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">TP</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to return the Temperature (T) value for a stress (sigma)under a</span>
+<span class="sd">     forward transformation at an inputed Martensite Volume Fraction (MVF)</span>
+<span class="sd">     </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sigma : FLT</span>
+<span class="sd">        current stress</span>
+<span class="sd">    MVF: FLT</span>
+<span class="sd">        current martensite volume fraction</span>
+<span class="sd">        bounded between 0 and 1</span>
+<span class="sd">    P : DICT</span>
+<span class="sd">        all material properties for the current model formulation</span>
+<span class="sd">    TP : DICT</span>
+<span class="sd">        all intermediary parameters that make life easier.</span>
 
-<div class="viewcode-block" id="forward_transformation">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.phase_diagram.forward_transformation">[docs]</a>
-<span class="k">def</span> <span class="nf">forward_transformation</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="n">MVF</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">TP</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; Function to return the Temperature (T) value for a stress (sigma)under a</span>
-<span class="sd">     forward transformation at an inputed Martensite Volume Fraction (MVF) &#39;&#39;&#39;</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    T : FLT</span>
+<span class="sd">        The temperature for a certain stress and martensite volume fraction.</span>
+<span class="sd">     &#39;&#39;&#39;</span>
     
     <span class="c1"># Calculate the hardening function</span>
     <span class="n">f_fwd</span> <span class="o">=</span> <span class="mf">.5</span><span class="o">*</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">MVF</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_1&#39;</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">MVF</span><span class="p">)</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_2&#39;</span><span class="p">])</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">]</span>
@@ -158,15 +194,33 @@
     
     <span class="k">return</span> <span class="n">T</span></div>
 
-
     
 
 
-<div class="viewcode-block" id="reverse_transformation">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.phase_diagram.reverse_transformation">[docs]</a>
-<span class="k">def</span> <span class="nf">reverse_transformation</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="n">MVF</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">TP</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; Function to return the Temperature (T) value for a stress (sigma)under a</span>
-<span class="sd">    reverse transformation at an inputed Martensite Volume Fraction (MVF)&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="reverse_transformation"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.phase_diagram.reverse_transformation">[docs]</a><span class="k">def</span> <span class="nf">reverse_transformation</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="n">MVF</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">TP</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to return the Temperature (T) value for a stress (sigma)under a</span>
+<span class="sd">    reverse transformation at an inputed Martensite Volume Fraction (MVF)</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sigma : FLT</span>
+<span class="sd">        current stress</span>
+<span class="sd">    MVF: FLT</span>
+<span class="sd">        current martensite volume fraction</span>
+<span class="sd">        bounded between 0 and 1</span>
+<span class="sd">    P : DICT</span>
+<span class="sd">        all material properties for the current model formulation</span>
+<span class="sd">    TP : DICT</span>
+<span class="sd">        all intermediary parameters that make life easier.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    T : FLT</span>
+<span class="sd">        The temperature for a certain stress and martensite volume fraction.</span>
+
+
+<span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="c1"># Calculate the hardening function</span>
     <span class="n">f_rev</span> <span class="o">=</span> <span class="mf">.5</span><span class="o">*</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a2&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">MVF</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_3&#39;</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">MVF</span><span class="p">)</span><span class="o">**</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;n_4&#39;</span><span class="p">])</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;a3&#39;</span><span class="p">]</span>
@@ -177,13 +231,12 @@
     <span class="c1"># Output the temperature using the Transformation Surface equation (set</span>
     <span class="c1"># equal to 0 during transformation)</span>
     <span class="c1"># Note: assumed MVF_r=1 for Phase Diagram</span>
-    <span class="n">MVF_r</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
+    <span class="n">MVF_r</span><span class="o">=</span><span class="mf">1.0</span>
     <span class="n">eps_t_r</span><span class="o">=</span> <span class="n">H_cursolver</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;sig_crit&#39;</span><span class="p">],</span>
                             <span class="n">P</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_min&#39;</span><span class="p">],</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H_sat&#39;</span><span class="p">])</span>
     <span class="n">T</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">eps_t_r</span><span class="o">/</span><span class="n">MVF_r</span><span class="o">-</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">2.0</span><span class="o">*</span><span class="n">delta_S</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mf">2.0</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">f_rev</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span>
     
     <span class="k">return</span> <span class="n">T</span></div>
-
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">P</span> <span class="o">=</span> <span class="p">{}</span>

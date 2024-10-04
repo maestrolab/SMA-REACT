@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>calibration.model_funcs.util_funcs &mdash; SMA-REACT 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
-        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -41,9 +41,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">SMAREACTcleaned</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_calibration.html">Learning by doing: an example calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Source Code</a></li>
 </ul>
 
         </div>
@@ -75,10 +80,6 @@
 <span class="sd">UTILITY FUNCTIONS FOR THE SMA-REACT TOOL</span>
 
 <span class="sd">All functions are presented in semi-chronological order. </span>
-
-<span class="sd">Last updated:</span>
-<span class="sd">    6/28/2022</span>
-<span class="sd">    Patrick Walgren</span>
 <span class="sd">&#39;&#39;&#39;</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">exp</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sign</span>
@@ -89,9 +90,7 @@
 <span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<div class="viewcode-block" id="DynamicUpdate">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.DynamicUpdate">[docs]</a>
-<span class="k">class</span> <span class="nc">DynamicUpdate</span><span class="p">():</span>
+<div class="viewcode-block" id="DynamicUpdate"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.DynamicUpdate">[docs]</a><span class="k">class</span> <span class="nc">DynamicUpdate</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Class to define dynamically updating plots in pyqt5</span>
 <span class="sd">    </span>
@@ -99,9 +98,7 @@
     <span class="c1">#Suppose we know the x range</span>
 
 
-<div class="viewcode-block" id="DynamicUpdate.on_launch">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.DynamicUpdate.on_launch">[docs]</a>
-    <span class="k">def</span> <span class="nf">on_launch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x_data</span><span class="p">,</span><span class="n">y_data</span><span class="p">,</span><span class="n">numExps</span><span class="p">):</span>
+<div class="viewcode-block" id="DynamicUpdate.on_launch"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.DynamicUpdate.on_launch">[docs]</a>    <span class="k">def</span> <span class="nf">on_launch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x_data</span><span class="p">,</span><span class="n">y_data</span><span class="p">,</span><span class="n">numExps</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Launching function</span>
 
@@ -133,10 +130,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
         <span class="o">...</span></div>
 
-
-<div class="viewcode-block" id="DynamicUpdate.on_running">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.DynamicUpdate.on_running">[docs]</a>
-    <span class="k">def</span> <span class="nf">on_running</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span><span class="n">numExps</span><span class="p">):</span>
+<div class="viewcode-block" id="DynamicUpdate.on_running"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.DynamicUpdate.on_running">[docs]</a>    <span class="k">def</span> <span class="nf">on_running</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span><span class="n">numExps</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Updating function</span>
 
@@ -166,7 +160,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">flush_events</span><span class="p">()</span></div>
 
-
     <span class="c1">#Example</span>
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
@@ -191,10 +184,7 @@
         <span class="k">return</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span></div>
 
 
-
-<div class="viewcode-block" id="plot_settings">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.plot_settings">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_settings</span><span class="p">(</span><span class="n">format_flag</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_settings"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.plot_settings">[docs]</a><span class="k">def</span> <span class="nf">plot_settings</span><span class="p">(</span><span class="n">format_flag</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Settings for easy generation of pretty plots. </span>
 <span class="sd">    </span>
@@ -232,10 +222,7 @@
     <span class="k">return</span> </div>
 
 
-
-<div class="viewcode-block" id="minkowski_error">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.minkowski_error">[docs]</a>
-<span class="k">def</span> <span class="nf">minkowski_error</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<div class="viewcode-block" id="minkowski_error"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.minkowski_error">[docs]</a><span class="k">def</span> <span class="nf">minkowski_error</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Calculate the raw minkowski error between training and testing data.</span>
 <span class="sd">    </span>
@@ -257,10 +244,7 @@
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="n">minkowski_distance</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="n">order</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="symmetric_hausdorff">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.symmetric_hausdorff">[docs]</a>
-<span class="k">def</span> <span class="nf">symmetric_hausdorff</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span><span class="n">model</span><span class="p">):</span>
+<div class="viewcode-block" id="symmetric_hausdorff"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.symmetric_hausdorff">[docs]</a><span class="k">def</span> <span class="nf">symmetric_hausdorff</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span><span class="n">model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Calculate the general (symmetric) Hausdorff distance between two</span>
 <span class="sd">    2-D arrays of coordinates</span>
@@ -278,14 +262,11 @@
 
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">directed_hausdorff</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span> <span class="n">model</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">directed_hausdorff</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">experiment</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span></div>
-
     
 
 
 
-<div class="viewcode-block" id="H_cursolver">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.H_cursolver">[docs]</a>
-<span class="k">def</span> <span class="nf">H_cursolver</span><span class="p">(</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">sigma_crit</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">H_min</span><span class="p">,</span> <span class="n">H_sat</span><span class="p">):</span>
+<div class="viewcode-block" id="H_cursolver"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.H_cursolver">[docs]</a><span class="k">def</span> <span class="nf">H_cursolver</span><span class="p">(</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">sigma_crit</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">H_min</span><span class="p">,</span> <span class="n">H_sat</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Function to determine the current transformation strain H^cur using</span>
 <span class="sd">    inputs for stress, critical stress, k, Hsat and Hmin.</span>
@@ -299,7 +280,7 @@
 <span class="sd">    k : FLT</span>
 <span class="sd">        coefficient that governs the evolution of transformation </span>
 <span class="sd">        strain with respect to applied stress. For more information, </span>
-<span class="sd">        see IJP, 2012, eq. 3.7 (DOI: https://doi.org/10.1016/j.ijplas.2011.10.009)</span>
+<span class="sd">        see :cite:p:`lagoudas_constitutive_2012`, eq. 3.7 (DOI: https://doi.org/10.1016/j.ijplas.2011.10.009)</span>
 <span class="sd">    H_min : FLT</span>
 <span class="sd">        minimium transformation strain</span>
 <span class="sd">    H_sat : FLT</span>
@@ -320,10 +301,7 @@
     <span class="k">return</span> <span class="n">H_cur</span></div>
 
 
-
-<div class="viewcode-block" id="partial_Hcur_sigma">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Hcur_sigma">[docs]</a>
-<span class="k">def</span> <span class="nf">partial_Hcur_sigma</span><span class="p">(</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">sigma_crit</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">Hsat</span><span class="p">,</span> <span class="n">Hmin</span> <span class="p">):</span>
+<div class="viewcode-block" id="partial_Hcur_sigma"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Hcur_sigma">[docs]</a><span class="k">def</span> <span class="nf">partial_Hcur_sigma</span><span class="p">(</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">sigma_crit</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">Hsat</span><span class="p">,</span> <span class="n">Hmin</span> <span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Function to solve for the partial derivative of the current</span>
 <span class="sd">    transformation strain (Hcur) with respect to sigma (stress)    </span>
@@ -337,7 +315,7 @@
 <span class="sd">    k : FLT</span>
 <span class="sd">        coefficient that governs the evolution of transformation </span>
 <span class="sd">        strain with respect to applied stress. For more information, </span>
-<span class="sd">        see IJP, 2012, eq. 3.7 (DOI: https://doi.org/10.1016/j.ijplas.2011.10.009)</span>
+<span class="sd">        see :cite:p:`lagoudas_constitutive_2012`, eq. 3.7 (DOI: https://doi.org/10.1016/j.ijplas.2011.10.009)</span>
 <span class="sd">    H_min : FLT</span>
 <span class="sd">        minimium transformation strain</span>
 <span class="sd">    H_sat : FLT</span>
@@ -367,10 +345,7 @@
     <span class="k">return</span> <span class="n">partial_Hcur_sigma</span></div>
 
 
-
-<div class="viewcode-block" id="Elastic_Transformation_check_stress">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Elastic_Transformation_check_stress">[docs]</a>
-<span class="k">def</span> <span class="nf">Elastic_Transformation_check_stress</span><span class="p">(</span> <span class="n">P</span><span class="p">,</span><span class="n">TP</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">eps_prev</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_prev</span><span class="p">,</span> <span class="n">T0</span><span class="p">,</span> \
+<div class="viewcode-block" id="Elastic_Transformation_check_stress"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Elastic_Transformation_check_stress">[docs]</a><span class="k">def</span> <span class="nf">Elastic_Transformation_check_stress</span><span class="p">(</span> <span class="n">P</span><span class="p">,</span><span class="n">TP</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">eps_prev</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_prev</span><span class="p">,</span> <span class="n">T0</span><span class="p">,</span> \
                                         <span class="n">sigma_prev</span><span class="p">,</span> <span class="n">Phi_fwd_prev</span><span class="p">,</span> <span class="n">Phi_rev_prev</span><span class="p">,</span>\
                                         <span class="n">E</span><span class="p">,</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">MVF_r</span> <span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
@@ -477,10 +452,7 @@
 
 
 
-
-<div class="viewcode-block" id="Elastic_Transformation_check_RI_stress">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Elastic_Transformation_check_RI_stress">[docs]</a>
-<span class="k">def</span> <span class="nf">Elastic_Transformation_check_RI_stress</span><span class="p">(</span> <span class="n">P</span><span class="p">,</span> <span class="n">TP</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">eps_prev</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_prev</span><span class="p">,</span> <span class="n">T0</span><span class="p">,</span> \
+<div class="viewcode-block" id="Elastic_Transformation_check_RI_stress"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Elastic_Transformation_check_RI_stress">[docs]</a><span class="k">def</span> <span class="nf">Elastic_Transformation_check_RI_stress</span><span class="p">(</span> <span class="n">P</span><span class="p">,</span> <span class="n">TP</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">eps_prev</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_prev</span><span class="p">,</span> <span class="n">T0</span><span class="p">,</span> \
                                            <span class="n">sigma_prev</span><span class="p">,</span> <span class="n">Phi_fwd_prev</span><span class="p">,</span> <span class="n">Phi_rev_prev</span><span class="p">,</span> \
                                                <span class="n">E</span><span class="p">,</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">MVF_r</span> <span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
@@ -562,7 +534,7 @@
     <span class="n">Phi_fwd</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span><span class="o">*</span><span class="n">H_cur</span><span class="o">+</span><span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">T</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">f_fwd</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">]</span>
     
     <span class="c1"># Solve for the reverse transformation surface</span>
-    <span class="n">Phi_rev</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">Phi_rev</span><span class="o">=</span><span class="mi">0</span>
     <span class="k">if</span> <span class="n">MVF_r</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">MVR_r</span> <span class="o">=</span><span class="mi">0</span>
         <span class="c1"># Reverse transformation strain remains zero if Martensitic Strain at</span>
@@ -574,14 +546,14 @@
     <span class="c1"># (delta) in these values</span>
     <span class="c1"># s: scaling factor</span>
     <span class="n">s</span> <span class="o">=</span> <span class="mf">0.001</span>
-    <span class="n">scaled_d_eps</span> <span class="o">=</span> <span class="n">s</span><span class="o">*</span><span class="p">(</span><span class="n">eps</span> <span class="o">-</span> <span class="n">eps_prev</span><span class="p">);</span>
-    <span class="n">scaled_d_T</span> <span class="o">=</span> <span class="n">s</span><span class="o">*</span><span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">T_prev</span><span class="p">);</span>
-    <span class="n">scaled_T</span> <span class="o">=</span> <span class="n">scaled_d_T</span> <span class="o">+</span> <span class="n">T_prev</span><span class="p">;</span>
+    <span class="n">scaled_d_eps</span> <span class="o">=</span> <span class="n">s</span><span class="o">*</span><span class="p">(</span><span class="n">eps</span> <span class="o">-</span> <span class="n">eps_prev</span><span class="p">)</span>
+    <span class="n">scaled_d_T</span> <span class="o">=</span> <span class="n">s</span><span class="o">*</span><span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">T_prev</span><span class="p">)</span>
+    <span class="n">scaled_T</span> <span class="o">=</span> <span class="n">scaled_d_T</span> <span class="o">+</span> <span class="n">T_prev</span>
     
     <span class="c1"># Find the scaled projection of stress using scaled projections for strain</span>
     <span class="c1"># and temperature</span>
     <span class="n">scaled_d_sigma</span><span class="o">=</span> <span class="n">E</span><span class="o">*</span><span class="p">((</span><span class="n">eps_prev</span><span class="o">+</span><span class="n">scaled_d_eps</span><span class="p">)</span> <span class="o">-</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">scaled_T</span> <span class="o">-</span> <span class="n">T0</span><span class="p">)</span> <span class="o">-</span> <span class="n">eps_t</span><span class="p">)</span> <span class="o">-</span> <span class="n">sigma_prev</span>
-    <span class="n">scaled_sigma</span><span class="o">=</span> <span class="n">scaled_d_sigma</span> <span class="o">+</span> <span class="n">sigma_prev</span><span class="p">;</span>
+    <span class="n">scaled_sigma</span><span class="o">=</span> <span class="n">scaled_d_sigma</span> <span class="o">+</span> <span class="n">sigma_prev</span>
     
     <span class="c1"># Calculate the scaled projections for forward and reverse transformation</span>
     <span class="c1"># surface</span>
@@ -591,7 +563,7 @@
     <span class="c1"># Forward transformation surface for scaled values</span>
     <span class="n">scaled_Phi_fwd</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">scaled_sigma</span><span class="p">)</span><span class="o">*</span><span class="n">scaled_H_cur</span><span class="o">+</span><span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_M&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">P</span><span class="p">[</span><span class="s1">&#39;E_A&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">scaled_sigma</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_s0&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">scaled_T</span> <span class="o">-</span> <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;rho_delta_u0&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">f_fwd</span> <span class="o">-</span> <span class="n">TP</span><span class="p">[</span><span class="s1">&#39;Y_0_t&#39;</span><span class="p">]</span>
     <span class="c1"># Reverse transformation surface for scaled values</span>
-    <span class="n">scaled_Phi_rev</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">scaled_Phi_rev</span><span class="o">=</span><span class="mi">0</span>
     <span class="k">if</span> <span class="n">MVF_r</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">MVR_r</span> <span class="o">=</span><span class="mi">0</span>
     <span class="k">else</span><span class="p">:</span>
@@ -671,10 +643,7 @@
     <span class="k">return</span> <span class="n">eps</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">H_cur</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span> <span class="n">Phi_rev</span><span class="p">,</span> <span class="n">chck</span></div>
 
 
-
-<div class="viewcode-block" id="Explicit_Transformation_Correction_stress">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Explicit_Transformation_Correction_stress">[docs]</a>
-<span class="k">def</span> <span class="nf">Explicit_Transformation_Correction_stress</span><span class="p">(</span> <span class="n">P</span><span class="p">,</span> <span class="n">TP</span><span class="p">,</span> <span class="n">chck</span><span class="p">,</span><span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span>\
+<div class="viewcode-block" id="Explicit_Transformation_Correction_stress"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Explicit_Transformation_Correction_stress">[docs]</a><span class="k">def</span> <span class="nf">Explicit_Transformation_Correction_stress</span><span class="p">(</span> <span class="n">P</span><span class="p">,</span> <span class="n">TP</span><span class="p">,</span> <span class="n">chck</span><span class="p">,</span><span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span>\
                                               <span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">H_cur</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span>\
                                                   <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span> <span class="n">Phi_rev</span> <span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
@@ -761,10 +730,7 @@
                 <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span><span class="n">P</span><span class="p">,</span> <span class="n">TP</span> <span class="p">)</span>
     <span class="k">return</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span> <span class="n">Phi_rev</span></div>
 
-
-<div class="viewcode-block" id="Explicit_fwd_transformation_correction_stress">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Explicit_fwd_transformation_correction_stress">[docs]</a>
-<span class="k">def</span> <span class="nf">Explicit_fwd_transformation_correction_stress</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">H_cur</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span><span class="n">P</span><span class="p">,</span> <span class="n">TP</span> <span class="p">):</span>
+<div class="viewcode-block" id="Explicit_fwd_transformation_correction_stress"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Explicit_fwd_transformation_correction_stress">[docs]</a><span class="k">def</span> <span class="nf">Explicit_fwd_transformation_correction_stress</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">H_cur</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span><span class="n">P</span><span class="p">,</span> <span class="n">TP</span> <span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Function to correct for forward transformation using explicit integration scheme</span>
 <span class="sd">    Input variables are from elastic prediction</span>
@@ -845,10 +811,7 @@
 
     <span class="k">return</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_fwd</span></div>
 
-
-<div class="viewcode-block" id="Explicit_rev_transformation_correction_stress">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Explicit_rev_transformation_correction_stress">[docs]</a>
-<span class="k">def</span> <span class="nf">Explicit_rev_transformation_correction_stress</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span><span class="n">P</span><span class="p">,</span> <span class="n">TP</span> <span class="p">):</span>
+<div class="viewcode-block" id="Explicit_rev_transformation_correction_stress"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Explicit_rev_transformation_correction_stress">[docs]</a><span class="k">def</span> <span class="nf">Explicit_rev_transformation_correction_stress</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span><span class="n">P</span><span class="p">,</span> <span class="n">TP</span> <span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Function to correct for reverse transformation using implicit integration scheme</span>
 <span class="sd">    Input variables are from elastic prediction</span>
@@ -937,10 +900,7 @@
 
     <span class="k">return</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_rev</span></div>
 
-
-<div class="viewcode-block" id="Implicit_Transformation_Correction_stress">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Implicit_Transformation_Correction_stress">[docs]</a>
-<span class="k">def</span> <span class="nf">Implicit_Transformation_Correction_stress</span><span class="p">(</span> <span class="n">P</span><span class="p">,</span> <span class="n">TP</span><span class="p">,</span> <span class="n">chck</span><span class="p">,</span><span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span>\
+<div class="viewcode-block" id="Implicit_Transformation_Correction_stress"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Implicit_Transformation_Correction_stress">[docs]</a><span class="k">def</span> <span class="nf">Implicit_Transformation_Correction_stress</span><span class="p">(</span> <span class="n">P</span><span class="p">,</span> <span class="n">TP</span><span class="p">,</span> <span class="n">chck</span><span class="p">,</span><span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span>\
                                               <span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">H_cur</span><span class="p">,</span>\
                                                   <span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span> <span class="n">Phi_rev</span> <span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
@@ -1031,10 +991,7 @@
             
     <span class="k">return</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span> <span class="n">Phi_rev</span></div>
 
-
-<div class="viewcode-block" id="Implicit_fwd_transformation_correction_stress">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Implicit_fwd_transformation_correction_stress">[docs]</a>
-<span class="k">def</span> <span class="nf">Implicit_fwd_transformation_correction_stress</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span><span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">H_cur</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span><span class="n">P</span><span class="p">,</span> <span class="n">TP</span> <span class="p">):</span>
+<div class="viewcode-block" id="Implicit_fwd_transformation_correction_stress"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Implicit_fwd_transformation_correction_stress">[docs]</a><span class="k">def</span> <span class="nf">Implicit_fwd_transformation_correction_stress</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span><span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">H_cur</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">Phi_fwd</span><span class="p">,</span><span class="n">P</span><span class="p">,</span> <span class="n">TP</span> <span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Function to correct for forward transformation using implicit integration scheme.</span>
 <span class="sd">    Input variables are from elastic prediction</span>
@@ -1168,10 +1125,7 @@
     <span class="n">eps</span><span class="o">=</span> <span class="n">sigma</span><span class="o">/</span><span class="n">E</span> <span class="o">+</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T_0</span><span class="p">)</span><span class="o">+</span><span class="n">eps_t</span>
     <span class="k">return</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_fwd</span></div>
 
-
-<div class="viewcode-block" id="Implicit_rev_transformation_correction_stress">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Implicit_rev_transformation_correction_stress">[docs]</a>
-<span class="k">def</span> <span class="nf">Implicit_rev_transformation_correction_stress</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span><span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">Phi_rev</span><span class="p">,</span><span class="n">P</span><span class="p">,</span> <span class="n">TP</span><span class="p">):</span>
+<div class="viewcode-block" id="Implicit_rev_transformation_correction_stress"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.Implicit_rev_transformation_correction_stress">[docs]</a><span class="k">def</span> <span class="nf">Implicit_rev_transformation_correction_stress</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span><span class="n">MVF_r</span><span class="p">,</span><span class="n">eps_t_r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">Phi_rev</span><span class="p">,</span><span class="n">P</span><span class="p">,</span> <span class="n">TP</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Function to correct for reverse transformation using implicit integration scheme</span>
 <span class="sd">    Input variables are from elastic prediction/ transformation check</span>
@@ -1303,20 +1257,14 @@
     <span class="n">eps</span><span class="o">=</span> <span class="n">sigma</span><span class="o">/</span><span class="n">E</span> <span class="o">+</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T_0</span><span class="p">)</span><span class="o">+</span><span class="n">eps_t</span>
     <span class="k">return</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">Phi_rev</span></div>
 
-
-<div class="viewcode-block" id="partial_Phi_fwd_MVF">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Phi_fwd_MVF">[docs]</a>
-<span class="k">def</span> <span class="nf">partial_Phi_fwd_MVF</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">a3</span> <span class="p">):</span>
+<div class="viewcode-block" id="partial_Phi_fwd_MVF"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Phi_fwd_MVF">[docs]</a><span class="k">def</span> <span class="nf">partial_Phi_fwd_MVF</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">a3</span> <span class="p">):</span>
     <span class="c1"># Solve for the partial derivative of transformation surfade Phi with</span>
     <span class="c1"># respect to the martensitic volume fraction MVF.</span>
     <span class="n">partial_Phi_fwd_MVF</span><span class="o">=-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n2</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n2</span><span class="o">*</span><span class="n">MVF</span><span class="o">+</span><span class="n">MVF</span><span class="o">*</span><span class="p">(</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n1</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n1</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n2</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">delta</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n2</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n2</span><span class="o">+</span><span class="p">(</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n1</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">delta</span><span class="p">)</span><span class="o">*</span><span class="n">a1</span>
     
     <span class="k">return</span> <span class="n">partial_Phi_fwd_MVF</span></div>
 
-
-<div class="viewcode-block" id="partial_Phi_fwd_sigma">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Phi_fwd_sigma">[docs]</a>
-<span class="k">def</span> <span class="nf">partial_Phi_fwd_sigma</span><span class="p">(</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">Hcur</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">partial_H_cur_sigma</span><span class="p">,</span> <span class="n">E_M</span><span class="p">,</span> <span class="n">E_A</span> <span class="p">):</span>
+<div class="viewcode-block" id="partial_Phi_fwd_sigma"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Phi_fwd_sigma">[docs]</a><span class="k">def</span> <span class="nf">partial_Phi_fwd_sigma</span><span class="p">(</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">Hcur</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">partial_H_cur_sigma</span><span class="p">,</span> <span class="n">E_M</span><span class="p">,</span> <span class="n">E_A</span> <span class="p">):</span>
     <span class="c1"># Solve the partial derivative of forward Transformation Surface (Phi_t) </span>
     <span class="c1"># with respect to stress (sigma)</span>
 
@@ -1328,16 +1276,12 @@
         <span class="n">partial_Phi_fwd_t_sigma</span><span class="o">=</span><span class="mi">0</span>
     <span class="k">return</span> <span class="n">partial_Phi_fwd_t_sigma</span></div>
 
-
-<div class="viewcode-block" id="partial_Phi_rev_MVF">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Phi_rev_MVF">[docs]</a>
-<span class="k">def</span> <span class="nf">partial_Phi_rev_MVF</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">n3</span><span class="p">,</span> <span class="n">n4</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">a3</span> <span class="p">):</span>
+<div class="viewcode-block" id="partial_Phi_rev_MVF"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.util_funcs.partial_Phi_rev_MVF">[docs]</a><span class="k">def</span> <span class="nf">partial_Phi_rev_MVF</span><span class="p">(</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">n3</span><span class="p">,</span> <span class="n">n4</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">a3</span> <span class="p">):</span>
     <span class="c1"># Solve for the partial derivative of transformation surfade Phi with</span>
     <span class="c1"># respect to the martensitic volume fraction MVF.</span>
     
     <span class="n">partial_Phi_rev_MVF</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n4</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n4</span><span class="o">*</span><span class="n">MVF</span><span class="o">+</span><span class="n">MVF</span><span class="o">*</span><span class="p">(</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n3</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n3</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n4</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">delta</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n4</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n4</span><span class="o">+</span><span class="p">(</span><span class="n">MVF</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n3</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">delta</span><span class="p">)</span><span class="o">*</span><span class="n">a2</span>
     <span class="k">return</span> <span class="n">partial_Phi_rev_MVF</span></div>
-
 </pre></div>
 
            </div>

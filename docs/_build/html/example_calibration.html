@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Citation information" href="citation_information.html" />
-    <link rel="prev" title="Overview" href="getting_started.html" /> 
+    <link rel="prev" title="Installation" href="getting_started.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,8 +46,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Learning by doing: an example calibration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#open-and-launch-sma-react">Open and launch SMA-REACT</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#load-experimental-data">Load experimental data</a></li>
@@ -58,7 +57,6 @@
 <li class="toctree-l1"><a class="reference internal" href="citation_information.html">Citation information</a></li>
 <li class="toctree-l1"><a class="reference internal" href="further_reading.html">Further reading and other resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html#possible-extensions">Possible extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Source Code</a></li>
 </ul>
@@ -95,17 +93,18 @@ A full explanation is provided in the reference paper (see <a class="reference i
 of the tool.</p>
 <section id="open-and-launch-sma-react">
 <h2>Open and launch SMA-REACT<a class="headerlink" href="#open-and-launch-sma-react" title="Permalink to this heading"></a></h2>
-<p>In your Python IDE of choice (Spyder is recommended), using the correct environment
-(see <a class="reference internal" href="getting_started.html"><span class="doc">Overview</span></a>), open <code class="docutils literal notranslate"><span class="pre">launch_GUI.py</span></code>. Run the file
+<p>In your Python IDE of choice (Spyder is recommended, but the tool has been tested in VS Code), using the correct environment
+(see <a class="reference internal" href="getting_started.html"><span class="doc">Installation</span></a>), open <code class="docutils literal notranslate"><span class="pre">launch_GUI.py</span></code>. Run the file
 to activate the GUI. You will be greeted by the data input screen.</p>
 <a class="reference internal image-reference" href="_images/data_input.png"><img alt="_images/data_input.png" class="align-center" src="_images/data_input.png" style="width: 600px;" /></a>
 </section>
 <section id="load-experimental-data">
 <h2>Load experimental data<a class="headerlink" href="#load-experimental-data" title="Permalink to this heading"></a></h2>
 <p>For this example, we will use experimental data from Bigelow et al.
-(<a class="reference external" href="https://www-sciencedirect-com.wrs.idm.oclc.org/science/article/pii/S2589152921002994">link</a>, <span id="id1">[<a class="reference internal" href="further_reading.html#id24" title="G. S. Bigelow, A. Garg, O. Benafan, R. D. Noebe, S. A. Padula, and D. J. Gaydosh. Development and testing of a Ni50.5Ti27.2Hf22.3 high temperature shape memory alloy. Materialia, 21:101297, March 2022. URL: https://www.sciencedirect.com/science/article/pii/S2589152921002994 (visited on 2023-09-22), doi:10.1016/j.mtla.2021.101297.">BGB+22</a>]</span>). It is distributed with the SMA-REACT package.
+(<a class="reference external" href="https://www-sciencedirect-com.wrs.idm.oclc.org/science/article/pii/S2589152921002994">link</a>, <span id="id1">[<a class="reference internal" href="further_reading.html#id25" title="G. S. Bigelow, A. Garg, O. Benafan, R. D. Noebe, S. A. Padula, and D. J. Gaydosh. Development and testing of a Ni50.5Ti27.2Hf22.3 high temperature shape memory alloy. Materialia, 21:101297, March 2022. URL: https://www.sciencedirect.com/science/article/pii/S2589152921002994 (visited on 2023-09-22), doi:10.1016/j.mtla.2021.101297.">BGB+22</a>]</span>). It is distributed with the SMA-REACT package.
 Click <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Files</span></code>, then navigate to <code class="docutils literal notranslate"><span class="pre">SMAREACT/input/sample_2</span></code>, and select all experimental text files.
-The data records strain in %, so change the dropdown
+SMA-REACT currently only accepts tab-delimited text files via the <code class="docutils literal notranslate"><span class="pre">pandas.read_csv()</span></code> function.</p>
+<p>The data records strain in %, so change the dropdown
 menu accordingly. You should see the loaded text files displayed by
 file names, and the columns should be colored according to their field.</p>
 <a class="reference internal image-reference" href="_images/loaded_data.png"><img alt="_images/loaded_data.png" class="align-right" src="_images/loaded_data.png" style="width: 600px;" /></a>
@@ -118,7 +117,7 @@ next stage by clicking <code class="docutils literal notranslate"><span class="p
 <p>The material property calibration tab shows model and optimization parameters to define a calibration routine.
 For this tutorial, we will change the default model parameter bounds
 to better match the experimental data.
-One can also specify certain model parameters by clicking the corresponding toggle button in the <code class="docutils literal notranslate"><span class="pre">Specify</span></code> column and inputting the desired value,
+One can also specify certain model parameters by clicking the corresponding toggle button in the <code class="docutils literal notranslate"><span class="pre">Specify?</span></code> column and inputting the desired value,
 but we will not do that here.</p>
 <a class="reference internal image-reference" href="_images/calibration_parameters.PNG"><img alt="_images/calibration_parameters.PNG" class="align-center" src="_images/calibration_parameters.PNG" style="width: 600px;" /></a>
 <p>Based on the experimental data, the zero-stress Martensite start and finish temperatures appear to be
@@ -143,13 +142,13 @@ Here is a table that explains these parameters:</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\delta\)</span></p></td>
-<td><p>Algorithmic smoothing for smooth hardening to prevent numerical singularities (see Lagoudas).</p></td>
+<td><p>Algorithmic smoothing for smooth hardening to prevent numerical singularities (see <span id="id2">[<a class="reference internal" href="further_reading.html#id9" title="D. Lagoudas, D. Hartl, Y. Chemisky, L. Machado, and P. Popov. Constitutive Model for the Numerical Analysis of Phase Transformation in Polycrystalline Shape Memory Alloys. International Journal of Plasticity, 32–33:155–183, 2012.">LHC+12</a>]</span>).</p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\sigma_{cal}\)</span></p></td>
 <td><p>Calibration stress; choose a value close to the SMA design working stress.</p></td>
 </tr>
 <tr class="row-even"><td><p>MVF Tolerance</p></td>
-<td><p>Algorithmic tolerance for the convex cutting plane integration routine within the model (see Lagoudas).</p></td>
+<td><p>Algorithmic tolerance for the convex cutting plane integration routine within the model (see <span id="id3">[<a class="reference internal" href="further_reading.html#id9" title="D. Lagoudas, D. Hartl, Y. Chemisky, L. Machado, and P. Popov. Constitutive Model for the Numerical Analysis of Phase Transformation in Polycrystalline Shape Memory Alloys. International Journal of Plasticity, 32–33:155–183, 2012.">LHC+12</a>]</span>).</p></td>
 </tr>
 <tr class="row-odd"><td><p>Number of generations</p></td>
 <td><p>Number of generations for the genetic algorithm (GA). Increase if your GA solution is improving but not converged before exiting.</p></td>
@@ -201,7 +200,7 @@ When you are happy with your calibration, you can export a JSON with all of the 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="getting_started.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="citation_information.html" class="btn btn-neutral float-right" title="Citation information" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

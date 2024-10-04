@@ -45,15 +45,14 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_calibration.html">Learning by doing: an example calibration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citation_information.html">Citation information</a></li>
 <li class="toctree-l1"><a class="reference internal" href="further_reading.html">Further reading and other resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html#possible-extensions">Possible extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">preprocessor package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="launch_GUI.html">launch_GUI module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_input.html">data_input package</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="calibration.html">calibration package</a><ul class="current">
@@ -119,7 +118,7 @@ starts in martensite (cold to hot).</p>
 <li><p><strong>P</strong> (<em>DICT</em>) – Material properties for the SMA. See the documentation for
 all properties and their meaning.</p></li>
 <li><p><strong>elastic_check</strong> (<em>STR</em>) – Possible values: ‘Yes’, ‘Y’, ‘No’, ‘N’
-Yes or No binary that determines whether the transformation surface
+Binary that determines whether the transformation surface
 is rate-informed. Default value is ‘N’</p></li>
 <li><p><strong>integration_scheme</strong> (<em>STR</em>) – Possible values: ‘I’, ‘E’
 Flag to perform implicit or explicit material integration (i.e.,
@@ -161,6 +160,21 @@ which leads to a self overwritting in the swap operation. It prevents:</p>
 <span class="go">[5 6 7 8]</span>
 </pre></div>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ind1</strong> (<em>LIST</em>) – vector that defines individual one</p></li>
+<li><p><strong>ind2</strong> (<em>LIST</em>) – vector that defines individual two</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>ind1</strong> (<em>LIST</em>) – New individual with crossover applied</p></li>
+<li><p><strong>ind2</strong> (<em>LIST</em>) – New individual with crossover applied</p></li>
+</ul>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -219,10 +233,10 @@ By default [1e3, 1e8].</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>[description]</p>
+<dd class="field-even"><p><strong>boundedValue</strong> – Un-normalized value for the entry in the design vector.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>[type]</p>
+<dd class="field-odd"><p>flt</p>
 </dd>
 </dl>
 </dd></dl>
@@ -336,20 +350,70 @@ By default [1e3, 1e8].</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="calibration.model_funcs.phase_diagram.forward_transformation">
 <span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.phase_diagram.</span></span><span class="sig-name descname"><span class="pre">forward_transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MVF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TP</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/phase_diagram.html#forward_transformation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.phase_diagram.forward_transformation" title="Permalink to this definition"></a></dt>
-<dd><p>Function to return the Temperature (T) value for a stress (sigma)under a
-forward transformation at an inputed Martensite Volume Fraction (MVF)</p>
+<dd><dl class="simple">
+<dt>Function to return the Temperature (T) value for a stress (sigma)under a</dt><dd><p>forward transformation at an inputed Martensite Volume Fraction (MVF)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sigma</strong> (<em>FLT</em>) – current stress</p></li>
+<li><p><strong>MVF</strong> (<em>FLT</em>) – current martensite volume fraction
+bounded between 0 and 1</p></li>
+<li><p><strong>P</strong> (<em>DICT</em>) – all material properties for the current model formulation</p></li>
+<li><p><strong>TP</strong> (<em>DICT</em>) – all intermediary parameters that make life easier.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>T</strong> – The temperature for a certain stress and martensite volume fraction.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>FLT</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="calibration.model_funcs.phase_diagram.plot_phase_diagram">
 <span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.phase_diagram.</span></span><span class="sig-name descname"><span class="pre">plot_phase_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/phase_diagram.html#plot_phase_diagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.phase_diagram.plot_phase_diagram" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Plots the stress-temperature phase diagram based on the current model parameters.</p>
+<dl>
+<dt>Parameters</dt><dd><dl class="simple">
+<dt>P<span class="classifier">DICT</span></dt><dd><p>material dictionary with all SMA model parameters.</p>
+</dd>
+<dt>sigma_inp<span class="classifier">LIST</span></dt><dd><p>list with lower and upper bounds of the stress range
+you wish to plot.</p>
+</dd>
+<dt>ax<span class="classifier">AXIS object</span></dt><dd><p>matplotlib axis on which you are plotting</p>
+</dd>
+</dl>
+<p>None.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="calibration.model_funcs.phase_diagram.reverse_transformation">
 <span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.phase_diagram.</span></span><span class="sig-name descname"><span class="pre">reverse_transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MVF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TP</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/model_funcs/phase_diagram.html#reverse_transformation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.phase_diagram.reverse_transformation" title="Permalink to this definition"></a></dt>
 <dd><p>Function to return the Temperature (T) value for a stress (sigma)under a
 reverse transformation at an inputed Martensite Volume Fraction (MVF)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sigma</strong> (<em>FLT</em>) – current stress</p></li>
+<li><p><strong>MVF</strong> (<em>FLT</em>) – current martensite volume fraction
+bounded between 0 and 1</p></li>
+<li><p><strong>P</strong> (<em>DICT</em>) – all material properties for the current model formulation</p></li>
+<li><p><strong>TP</strong> (<em>DICT</em>) – all intermediary parameters that make life easier.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>T</strong> – The temperature for a certain stress and martensite volume fraction.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>FLT</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -357,11 +421,6 @@ reverse transformation at an inputed Martensite Volume Fraction (MVF)</p>
 <span id="calibration-model-funcs-util-funcs-module"></span><h2>calibration.model_funcs.util_funcs module<a class="headerlink" href="#module-calibration.model_funcs.util_funcs" title="Permalink to this heading"></a></h2>
 <p>UTILITY FUNCTIONS FOR THE SMA-REACT TOOL</p>
 <p>All functions are presented in semi-chronological order.</p>
-<dl class="simple">
-<dt>Last updated:</dt><dd><p>6/28/2022
-Patrick Walgren</p>
-</dd>
-</dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="calibration.model_funcs.util_funcs.DynamicUpdate">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">calibration.model_funcs.util_funcs.</span></span><span class="sig-name descname"><span class="pre">DynamicUpdate</span></span><a class="reference internal" href="_modules/calibration/model_funcs/util_funcs.html#DynamicUpdate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.model_funcs.util_funcs.DynamicUpdate" title="Permalink to this definition"></a></dt>
@@ -640,7 +699,7 @@ inputs for stress, critical stress, k, Hsat and Hmin.</p>
 <li><p><strong>sigma_crit</strong> (<em>FLT</em>) – critical stress at which transformation strain initiates.</p></li>
 <li><p><strong>k</strong> (<em>FLT</em>) – coefficient that governs the evolution of transformation
 strain with respect to applied stress. For more information,
-see IJP, 2012, eq. 3.7 (DOI: <a class="reference external" href="https://doi.org/10.1016/j.ijplas.2011.10.009">https://doi.org/10.1016/j.ijplas.2011.10.009</a>)</p></li>
+see <span id="id3">[<a class="reference internal" href="further_reading.html#id9" title="D. Lagoudas, D. Hartl, Y. Chemisky, L. Machado, and P. Popov. Constitutive Model for the Numerical Analysis of Phase Transformation in Polycrystalline Shape Memory Alloys. International Journal of Plasticity, 32–33:155–183, 2012.">LHC+12</a>]</span>, eq. 3.7 (DOI: <a class="reference external" href="https://doi.org/10.1016/j.ijplas.2011.10.009">https://doi.org/10.1016/j.ijplas.2011.10.009</a>)</p></li>
 <li><p><strong>H_min</strong> (<em>FLT</em>) – minimium transformation strain</p></li>
 <li><p><strong>H_sat</strong> (<em>FLT</em>) – maximum, or saturated transformation strain</p></li>
 </ul>
@@ -820,7 +879,7 @@ transformation strain (Hcur) with respect to sigma (stress)</p>
 <li><p><strong>sigma_crit</strong> (<em>FLT</em>) – critical stress at which transformation strain initiates.</p></li>
 <li><p><strong>k</strong> (<em>FLT</em>) – coefficient that governs the evolution of transformation
 strain with respect to applied stress. For more information,
-see IJP, 2012, eq. 3.7 (DOI: <a class="reference external" href="https://doi.org/10.1016/j.ijplas.2011.10.009">https://doi.org/10.1016/j.ijplas.2011.10.009</a>)</p></li>
+see <span id="id4">[<a class="reference internal" href="further_reading.html#id9" title="D. Lagoudas, D. Hartl, Y. Chemisky, L. Machado, and P. Popov. Constitutive Model for the Numerical Analysis of Phase Transformation in Polycrystalline Shape Memory Alloys. International Journal of Plasticity, 32–33:155–183, 2012.">LHC+12</a>]</span>, eq. 3.7 (DOI: <a class="reference external" href="https://doi.org/10.1016/j.ijplas.2011.10.009">https://doi.org/10.1016/j.ijplas.2011.10.009</a>)</p></li>
 <li><p><strong>H_min</strong> (<em>FLT</em>) – minimium transformation strain</p></li>
 <li><p><strong>H_sat</strong> (<em>FLT</em>) – maximum, or saturated transformation strain</p></li>
 </ul>

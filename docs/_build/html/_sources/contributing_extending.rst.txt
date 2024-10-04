@@ -26,9 +26,6 @@ Here are a few helpful tutorials and articles on various components:
 .. _Labels: https://www.tutorialspoint.com/pyqt/pyqt_qlabel_widget.htm
 .. _Layouts: https://www.tutorialspoint.com/pyqt/pyqt_layout_management.htm
 
-Possible extensions
-===================
-We will cover the most likely possible extensions, and hopefully these skeletons will give you a good idea of how you can modify SMA-REACT to your liking (and hopefully share your hard work with the world!).
 
 Accepting different input file types
 ------------------------------------

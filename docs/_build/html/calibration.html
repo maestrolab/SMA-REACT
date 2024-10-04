@@ -45,15 +45,14 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_calibration.html">Learning by doing: an example calibration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citation_information.html">Citation information</a></li>
 <li class="toctree-l1"><a class="reference internal" href="further_reading.html">Further reading and other resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html#possible-extensions">Possible extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">preprocessor package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="launch_GUI.html">launch_GUI module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_input.html">data_input package</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">calibration package</a><ul>
@@ -128,16 +127,15 @@
 </section>
 <section id="module-calibration.create_calibration_parameters">
 <span id="calibration-create-calibration-parameters-module"></span><h2>calibration.create_calibration_parameters module<a class="headerlink" href="#module-calibration.create_calibration_parameters" title="Permalink to this heading"></a></h2>
-<p>create_calibration_parameters.py</p>
-<p>Script to define all model, algorithmic, and optimization parameters
-for calibration of the Lagoudas 1-D SMA model with smooth hardening</p>
-<p># FIXME Add the citation of Lagoudas 2012 IJP.</p>
+<p>Defines all model, algorithmic, and optimization parameters
+for calibration of the Lagoudas 1-D SMA model with smooth hardening <span id="id1">[<a class="reference internal" href="further_reading.html#id9" title="D. Lagoudas, D. Hartl, Y. Chemisky, L. Machado, and P. Popov. Constitutive Model for the Numerical Analysis of Phase Transformation in Polycrystalline Shape Memory Alloys. International Journal of Plasticity, 32–33:155–183, 2012.">LHC+12</a>]</span></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">calibration.create_calibration_parameters.</span></span><span class="sig-name descname"><span class="pre">CalibrationParametersWidget</span></span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code></p>
 <p>Widget to define the tab where all the calibration parameters
-can be tweaked.</p>
+can be defined (active design variables, bounds, specified values,
+optimization parameters).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.create_constraint">
 <span class="sig-name descname"><span class="pre">create_constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraint_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latex_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.create_constraint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.create_constraint" title="Permalink to this definition"></a></dt>
@@ -146,7 +144,7 @@ A constraint box is something like “E_A = E_M”</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>constraint_object</strong> (<em>TYPE</em>) – class to contain all objects under a material property</p></li>
+<li><p><strong>constraint_object</strong> (<em>class</em>) – class to contain all objects under a material property</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – constraint name.</p></li>
 <li><p><strong>text</strong> (<em>str</em>) – text to display. May require latex if latex_flag = True.</p></li>
 <li><p><strong>text_width</strong> (<em>int</em>) – bounding box width of the text (pixels).</p></li>
@@ -165,7 +163,9 @@ A constraint box is something like “E_A = E_M”</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.create_font">
 <span class="sig-name descname"><span class="pre">create_font</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">font_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bold_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.create_font"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.create_font" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Creates a QFont object with size, weight, and
+a flag to determine if it’s bold.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>font_size</strong> (<em>int</em>) – font size (pts).</p></li>
@@ -185,7 +185,8 @@ A constraint box is something like “E_A = E_M”</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.create_label">
 <span class="sig-name descname"><span class="pre">create_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_label_height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.create_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.create_label" title="Permalink to this definition"></a></dt>
-<dd><p>Utility function to create the a qlabel.</p>
+<dd><p>Utility function to create a QLabel object.
+Sets the font and alignment of the label.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -259,7 +260,9 @@ and a checkbox.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.getBounds">
 <span class="sig-name descname"><span class="pre">getBounds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.getBounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.getBounds" title="Permalink to this definition"></a></dt>
-<dd><p>Creates the bounds list of lists, that is used in the optimizer.</p>
+<dd><p>Creates the bounds list of lists, that is used in the optimizer.
+This could be refactored to be more agile by refactoring the bounds
+object to something other than a list of lists.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><strong>bounds</strong> – List of lists containing all DV bounds.</p>
@@ -273,7 +276,8 @@ and a checkbox.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.getSpecifiedValues">
 <span class="sig-name descname"><span class="pre">getSpecifiedValues</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.getSpecifiedValues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.getSpecifiedValues" title="Permalink to this definition"></a></dt>
-<dd><p>Get the values that were specified to be constrained.</p>
+<dd><p>Get the values that were specified to be constrained.
+Once again, this could be refactored to be more flexible with different models.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>None.</p>
@@ -285,7 +289,9 @@ and a checkbox.</p>
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.loadDefaults">
 <span class="sig-name descname"><span class="pre">loadDefaults</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.loadDefaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.loadDefaults" title="Permalink to this definition"></a></dt>
 <dd><p>Imports default values for lower and upper bounds
-of all DVs.</p>
+of all DVs.
+Default values are hard-coded below, but should
+be moved to a more transparent data source.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>None.</p>
@@ -296,7 +302,7 @@ of all DVs.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.set_size_policy">
 <span class="sig-name descname"><span class="pre">set_size_policy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lineEdit</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.set_size_policy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.set_size_policy" title="Permalink to this definition"></a></dt>
-<dd><p>Creates a generic sign policy to keep line count down in code.</p>
+<dd><p>Creates a generic size policy to keep line count down in code.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>lineEdit</strong> (<em>class</em>) – line edit class to which the size policy will be applied.</p>
@@ -335,7 +341,12 @@ of all DVs.</p>
 <dt class="sig sig-object py" id="calibration.create_calibration_parameters.CalibrationParametersWidget.uncheck">
 <span class="sig-name descname"><span class="pre">uncheck</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/calibration/create_calibration_parameters.html#CalibrationParametersWidget.uncheck"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#calibration.create_calibration_parameters.CalibrationParametersWidget.uncheck" title="Permalink to this definition"></a></dt>
 <dd><p>Translates all of the checkboxes for each
-material parameter to different DV flags.</p>
+material parameter to different DV flags.
+Toggle function to refresh every time a specified value
+box is unchecked.
+The current implementation is brute-force (i.e., each
+sender is a different if-else loop), so this could be
+refactored.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>state</strong> (<em>QtCore.Qt.Checked</em>) – state, either unchecked or checked, for each DV and

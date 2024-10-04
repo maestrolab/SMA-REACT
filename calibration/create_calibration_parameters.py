@@ -1,11 +1,6 @@
 '''
-create_calibration_parameters.py
-
-Script to define all model, algorithmic, and optimization parameters
-for calibration of the Lagoudas 1-D SMA model with smooth hardening
-
-# FIXME Add the citation of Lagoudas 2012 IJP.
-
+Defines all model, algorithmic, and optimization parameters
+for calibration of the Lagoudas 1-D SMA model with smooth hardening :cite:p:`lagoudas_constitutive_2012`
 '''
 
 import numpy as np
@@ -23,7 +18,8 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 class CalibrationParametersWidget(QtWidgets.QWidget):
     '''
     Widget to define the tab where all the calibration parameters
-    can be tweaked.
+    can be defined (active design variables, bounds, specified values,
+    optimization parameters).
     '''
     def __init__(self):
         '''
@@ -833,6 +829,11 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         '''
         Translates all of the checkboxes for each
         material parameter to different DV flags.
+        Toggle function to refresh every time a specified value
+        box is unchecked. 
+        The current implementation is brute-force (i.e., each
+        sender is a different if-else loop), so this could be 
+        refactored.
 
         Parameters
         ----------
@@ -1139,6 +1140,8 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         '''
         Imports default values for lower and upper bounds
         of all DVs.
+        Default values are hard-coded below, but should
+        be moved to a more transparent data source.
 
         Returns
         -------
@@ -1217,8 +1220,6 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         #number of iterations
         self.iter_line.setText('100')
 
-
-
     def updateVal(self):
         '''
         Updates the values of upper and lower DV bounds, both in the
@@ -1239,7 +1240,6 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
                 guess = self.grid_layout.itemAtPosition(i, j).itemAt(6).widget()
                 step = (upper_bound - lower_bound)/100
                 guess.setText(str(slider_val * step + lower_bound))
-
 
     def updateSlider(self):
         '''
@@ -1288,10 +1288,11 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
                         i, j
                         ).itemAt(3).widget().setValue(normalized_value)
 
-
     def getBounds(self):
         '''
         Creates the bounds list of lists, that is used in the optimizer.
+        This could be refactored to be more agile by refactoring the bounds
+        object to something other than a list of lists. 
 
         Returns
         -------
@@ -1382,6 +1383,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
     def getSpecifiedValues(self):
         '''
         Get the values that were specified to be constrained.
+        Once again, this could be refactored to be more flexible with different models.
 
         Returns
         -------
@@ -1446,8 +1448,9 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             parameter_label_height,
             ):
         '''
-        Utility function to create the a qlabel. 
-
+        Utility function to create a QLabel object. 
+        Sets the font and alignment of the label.
+        
         Parameters
         ----------
         label_object : qlabel object
@@ -1469,20 +1472,6 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         '''
 
-
-        # label_object.setMinimumSize(
-        #     QtCore.QSize(
-        #         parameter_label_width,
-        #         parameter_label_height
-        #         )
-        #     )
-        # label_object.setMaximumSize(
-        #     QtCore.QSize(
-        #         parameter_label_width,
-        #         parameter_label_height
-        #         )
-        #     )
-
         label_object.setWordWrap(True)
         label_object.setText(label_text)
 
@@ -1494,8 +1483,6 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         label_object.setFont(font)
         label_object.setAlignment(QtCore.Qt.AlignCenter)
-
-
 
     def create_material_property(
             self,
@@ -1620,7 +1607,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
         Parameters
         ----------
-        constraint_object : TYPE
+        constraint_object : class
             class to contain all objects under a material property
         name : str
             constraint name.
@@ -1778,15 +1765,12 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             )
         parameter_object.addWidget(parameter_object.lineEdit)
 
-
-
-
     def set_size_policy(
             self,
             lineEdit,
             ):
         '''
-        Creates a generic sign policy to keep line count down in code.
+        Creates a generic size policy to keep line count down in code.
 
         Parameters
         ----------
@@ -1816,7 +1800,8 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
             bold_flag = False,
             ):
         '''
-        
+        Creates a QFont object with size, weight, and
+        a flag to determine if it's bold.         
 
         Parameters
         ----------

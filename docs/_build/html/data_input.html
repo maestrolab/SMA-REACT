@@ -45,15 +45,14 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_calibration.html">Learning by doing: an example calibration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citation_information.html">Citation information</a></li>
 <li class="toctree-l1"><a class="reference internal" href="further_reading.html">Further reading and other resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing_extending.html#possible-extensions">Possible extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">preprocessor package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="launch_GUI.html">launch_GUI module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">data_input package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
@@ -99,18 +98,9 @@
 </section>
 <section id="module-data_input.create_data_input">
 <span id="data-input-create-data-input-module"></span><h2>data_input.create_data_input module<a class="headerlink" href="#module-data_input.create_data_input" title="Permalink to this heading"></a></h2>
-<p>Shape Memory Alloy Rendering of Experimental Analysis and Calibration Tool
-(SMA-REACT)
-————————————
-Data Input Script
-————————————
-This file contains all relevant functions for data input to
+<p>This file contains all relevant functions for data input to
 the calibration GUI. This framework heavily borrows from
-ASMADA (citation given below).</p>
-<p>M. C. Kuner, A. A. Karakalas, and D. C. Lagoudas,
-“ASMADA—A tool for automatic analysis of shape memory alloy
-thermal cycling data under constant stress,”
-Smart Mater. Struct., vol. 30, no. 12, p. 125003, 2021.</p>
+ASMADA <span id="id1">[<a class="reference internal" href="further_reading.html#id28" title="Matthew C. Kuner, Anargyros A. Karakalas, and Dimitris C. Lagoudas. ASMADA—A tool for automatic analysis of shape memory alloy thermal cycling data under constant stress. Smart Materials and Structures, 30(12):125003, 2021. Publisher: IOP Publishing. URL: https://iopscience.iop.org/article/10.1088/1361-665X/ac2de2/meta (visited on 2023-09-23).">KKL21</a>]</span>.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="data_input.create_data_input.DataInputWidget">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_input.create_data_input.</span></span><span class="sig-name descname"><span class="pre">DataInputWidget</span></span><a class="reference internal" href="_modules/data_input/create_data_input.html#DataInputWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#data_input.create_data_input.DataInputWidget" title="Permalink to this definition"></a></dt>
@@ -123,7 +113,7 @@ Inherits the QtWidgets.QWidget class.</p>
 <dd><p>Skeleton function to start to downsample all experimental data,
 in case a need arises where the data is too dense for
 efficient calibration.</p>
-<p>Add a call to load_files to downsample this dataseries.</p>
+<p>This is not currently implemented, but to use, add a call to load_files to downsample this dataseries.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>None.</p>

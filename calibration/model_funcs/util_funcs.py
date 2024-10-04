@@ -2,10 +2,6 @@
 UTILITY FUNCTIONS FOR THE SMA-REACT TOOL
 
 All functions are presented in semi-chronological order. 
-
-Last updated:
-    6/28/2022
-    Patrick Walgren
 '''
 from math import exp
 from numpy import sign
@@ -206,7 +202,7 @@ def H_cursolver( sigma, sigma_crit, k, H_min, H_sat):
     k : FLT
         coefficient that governs the evolution of transformation 
         strain with respect to applied stress. For more information, 
-        see IJP, 2012, eq. 3.7 (DOI: https://doi.org/10.1016/j.ijplas.2011.10.009)
+        see :cite:p:`lagoudas_constitutive_2012`, eq. 3.7 (DOI: https://doi.org/10.1016/j.ijplas.2011.10.009)
     H_min : FLT
         minimium transformation strain
     H_sat : FLT
@@ -241,7 +237,7 @@ def partial_Hcur_sigma( sigma, sigma_crit, k, Hsat, Hmin ):
     k : FLT
         coefficient that governs the evolution of transformation 
         strain with respect to applied stress. For more information, 
-        see IJP, 2012, eq. 3.7 (DOI: https://doi.org/10.1016/j.ijplas.2011.10.009)
+        see :cite:p:`lagoudas_constitutive_2012`, eq. 3.7 (DOI: https://doi.org/10.1016/j.ijplas.2011.10.009)
     H_min : FLT
         minimium transformation strain
     H_sat : FLT
@@ -460,7 +456,7 @@ def Elastic_Transformation_check_RI_stress( P, TP, sigma, eps_prev, T, T_prev, T
     Phi_fwd = (1-TP['D'])*abs(sigma)*H_cur+.5*(1/P['E_M']-1/P['E_A'])*sigma**2+TP['rho_delta_s0']*T-TP['rho_delta_u0']-f_fwd-TP['Y_0_t']
     
     # Solve for the reverse transformation surface
-    Phi_rev=0;
+    Phi_rev=0
     if MVF_r == 0:
         MVR_r =0
         # Reverse transformation strain remains zero if Martensitic Strain at
@@ -472,14 +468,14 @@ def Elastic_Transformation_check_RI_stress( P, TP, sigma, eps_prev, T, T_prev, T
     # (delta) in these values
     # s: scaling factor
     s = 0.001
-    scaled_d_eps = s*(eps - eps_prev);
-    scaled_d_T = s*(T - T_prev);
-    scaled_T = scaled_d_T + T_prev;
+    scaled_d_eps = s*(eps - eps_prev)
+    scaled_d_T = s*(T - T_prev)
+    scaled_T = scaled_d_T + T_prev
     
     # Find the scaled projection of stress using scaled projections for strain
     # and temperature
     scaled_d_sigma= E*((eps_prev+scaled_d_eps) - P['alpha']*(scaled_T - T0) - eps_t) - sigma_prev
-    scaled_sigma= scaled_d_sigma + sigma_prev;
+    scaled_sigma= scaled_d_sigma + sigma_prev
     
     # Calculate the scaled projections for forward and reverse transformation
     # surface
@@ -489,7 +485,7 @@ def Elastic_Transformation_check_RI_stress( P, TP, sigma, eps_prev, T, T_prev, T
     # Forward transformation surface for scaled values
     scaled_Phi_fwd = (1-TP['D'])*abs(scaled_sigma)*scaled_H_cur+.5*(1/P['E_M']-1/P['E_A'])*scaled_sigma**2+TP['rho_delta_s0']*scaled_T - TP['rho_delta_u0'] - f_fwd - TP['Y_0_t']
     # Reverse transformation surface for scaled values
-    scaled_Phi_rev=0;
+    scaled_Phi_rev=0
     if MVF_r == 0:
         MVR_r =0
     else:

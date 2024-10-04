@@ -4,7 +4,7 @@ Shape Memory Alloy Rendering of Experimental Analysis and Calibration Tool
 
 Main launch script
 
-Last updated: August 30th, 2024 (see GitHub for updates)
+Last updated: 10/3/2024 (see GitHub for updates)
 """
 
 import cgitb
@@ -129,11 +129,7 @@ class App(QtWidgets.QMainWindow):
         '''Enables the specified tab and changes to that tab.
         To connect this to a pushButton or another widget,
         you must use a lambda function, like so:
-            widget.clicked.connect(
-                lambda : self.changeTabs(
-                    index = some_index
-                    )
-                )
+        widget.clicked.connect(lambda : self.changeTabs(index = some_index))
 
         Parameters
         ----------
@@ -152,10 +148,6 @@ class App(QtWidgets.QMainWindow):
         '''
         Runs the calibration optimization and changes to the progress
         plotting tab.
-
-        #FIXME To-do: Include an export function here to make an
-        Abaqus material model or export all required properties as a
-        JSON or something similar.
 
         Returns
         -------
@@ -181,8 +173,10 @@ class App(QtWidgets.QMainWindow):
 
     def export_solution(self):
         '''
-        Prints and exports the calibrated solution,
+        Prints and exports the calibrated solution
         with all of the important intermediary data.
+        Exports to a .JSON file in ``output`` with the
+        naming convention of ``date_calibration.JSON``
 
         Returns
         -------

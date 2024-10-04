@@ -26,7 +26,7 @@ def Full_Model_stress(T, sigma, P, elastic_check, integration_scheme):
         all properties and their meaning.
     elastic_check : STR
         Possible values: 'Yes', 'Y', 'No', 'N'
-        Yes or No binary that determines whether the transformation surface
+        Binary that determines whether the transformation surface
         is rate-informed. Default value is 'N'
     integration_scheme : STR
         Possible values: 'I', 'E'

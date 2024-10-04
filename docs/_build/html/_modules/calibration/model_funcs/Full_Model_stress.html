@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>calibration.model_funcs.Full_Model_stress &mdash; SMA-REACT 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
-        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -41,9 +41,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">SMAREACTcleaned</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_calibration.html">Learning by doing: an example calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citation_information.html">Citation information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../further_reading.html">Further reading and other resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Source Code</a></li>
 </ul>
 
         </div>
@@ -82,9 +87,7 @@
     <span class="p">)</span>
 
 
-<div class="viewcode-block" id="Full_Model_stress">
-<a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.Full_Model_stress.Full_Model_stress">[docs]</a>
-<span class="k">def</span> <span class="nf">Full_Model_stress</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">elastic_check</span><span class="p">,</span> <span class="n">integration_scheme</span><span class="p">):</span>
+<div class="viewcode-block" id="Full_Model_stress"><a class="viewcode-back" href="../../../calibration.model_funcs.html#calibration.model_funcs.Full_Model_stress.Full_Model_stress">[docs]</a><span class="k">def</span> <span class="nf">Full_Model_stress</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">elastic_check</span><span class="p">,</span> <span class="n">integration_scheme</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Calculate strain history as a function of stress and temperature </span>
 <span class="sd">    in a one-dimensional SMA bar. This function assumes the material </span>
@@ -101,7 +104,7 @@
 <span class="sd">        all properties and their meaning.</span>
 <span class="sd">    elastic_check : STR</span>
 <span class="sd">        Possible values: &#39;Yes&#39;, &#39;Y&#39;, &#39;No&#39;, &#39;N&#39;</span>
-<span class="sd">        Yes or No binary that determines whether the transformation surface</span>
+<span class="sd">        Binary that determines whether the transformation surface</span>
 <span class="sd">        is rate-informed. Default value is &#39;N&#39;</span>
 <span class="sd">    integration_scheme : STR</span>
 <span class="sd">        Possible values: &#39;I&#39;, &#39;E&#39;</span>
@@ -290,7 +293,6 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Please input &quot;Implicit&quot; or &quot;Explicit&quot; for integration scheme&#39;</span><span class="p">)</span>
         
     <span class="k">return</span> <span class="n">eps</span><span class="p">,</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">eps_t</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">MVF_r</span><span class="p">,</span> <span class="n">eps_t_r</span></div>
-
        
 
 

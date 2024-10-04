@@ -6,6 +6,23 @@ from .util_funcs import (
     )
 
 def plot_phase_diagram(P,sigma_inp, ax):
+    '''
+    Plots the stress-temperature phase diagram based on the current model parameters.
+
+    Parameters
+        ----------
+        P : DICT
+            material dictionary with all SMA model parameters.
+        sigma_inp : LIST
+            list with lower and upper bounds of the stress range
+            you wish to plot.
+        ax : AXIS object
+            matplotlib axis on which you are plotting 
+
+        Returns
+        -------
+        None.
+    '''
     # Transformation strain at calibration stress (H_cur)
     H_cur_cal = H_cursolver(P['sig_cal'], P['sig_crit'],
                             P['k'], P['H_min'], P['H_sat'])
@@ -64,8 +81,27 @@ def plot_phase_diagram(P,sigma_inp, ax):
     return
 
 def forward_transformation(sigma,MVF,P,TP):
-    ''' Function to return the Temperature (T) value for a stress (sigma)under a
-     forward transformation at an inputed Martensite Volume Fraction (MVF) '''
+    '''
+    Function to return the Temperature (T) value for a stress (sigma)under a
+     forward transformation at an inputed Martensite Volume Fraction (MVF)
+     
+    Parameters
+    ----------
+    sigma : FLT
+        current stress
+    MVF: FLT
+        current martensite volume fraction
+        bounded between 0 and 1
+    P : DICT
+        all material properties for the current model formulation
+    TP : DICT
+        all intermediary parameters that make life easier.
+
+    Returns
+    -------
+    T : FLT
+        The temperature for a certain stress and martensite volume fraction.
+     '''
     
     # Calculate the hardening function
     f_fwd = .5*TP['a1']*(1.0+MVF**P['n_1']-(1.0-MVF)**P['n_2'])+TP['a3']
@@ -84,8 +120,29 @@ def forward_transformation(sigma,MVF,P,TP):
 
 
 def reverse_transformation(sigma,MVF,P,TP):
-    ''' Function to return the Temperature (T) value for a stress (sigma)under a
-    reverse transformation at an inputed Martensite Volume Fraction (MVF)'''
+    '''
+    Function to return the Temperature (T) value for a stress (sigma)under a
+    reverse transformation at an inputed Martensite Volume Fraction (MVF)
+    
+    Parameters
+    ----------
+    sigma : FLT
+        current stress
+    MVF: FLT
+        current martensite volume fraction
+        bounded between 0 and 1
+    P : DICT
+        all material properties for the current model formulation
+    TP : DICT
+        all intermediary parameters that make life easier.
+
+    Returns
+    -------
+    T : FLT
+        The temperature for a certain stress and martensite volume fraction.
+
+
+    '''
 
     # Calculate the hardening function
     f_rev = .5*TP['a2']*(1.0+MVF**P['n_3']-(1.0-MVF)**P['n_4'])-TP['a3']
@@ -96,7 +153,7 @@ def reverse_transformation(sigma,MVF,P,TP):
     # Output the temperature using the Transformation Surface equation (set
     # equal to 0 during transformation)
     # Note: assumed MVF_r=1 for Phase Diagram
-    MVF_r=1.0;
+    MVF_r=1.0
     eps_t_r= H_cursolver(sigma, P['sig_crit'],
                             P['k'], P['H_min'], P['H_sat'])
     T = (-(1.0+TP['D'])*sigma*eps_t_r/MVF_r-1.0/2.0*delta_S*sigma**2.0+TP['rho_delta_u0']+f_rev-TP['Y_0_t'])/TP['rho_delta_s0']

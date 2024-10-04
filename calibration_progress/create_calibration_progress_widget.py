@@ -21,6 +21,7 @@ cgitb.enable(format="text")
 #%% Calibration window widget
 class CalibrationProgressWidget(QtWidgets.QWidget):
     '''
+    This widget defines all of the dynamic plots to track calibration progress.
     All of the plotting functions should remain in this class.
     '''
     def __init__(self):

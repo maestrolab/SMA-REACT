@@ -42,13 +42,11 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../example_calibration.html">Learning by doing: an example calibration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../citation_information.html">Citation information</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../further_reading.html">Further reading and other resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing_extending.html">Contributing to or extending SMA-REACT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../contributing_extending.html#possible-extensions">Possible extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Source Code</a></li>
 </ul>
@@ -117,6 +115,20 @@
 <span class="sd">        [1 6 7 4]</span>
 <span class="sd">        &gt;&gt;&gt; print(b)</span>
 <span class="sd">        [5 6 7 8]</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ind1 : LIST</span>
+<span class="sd">        vector that defines individual one</span>
+<span class="sd">    ind2 : LIST</span>
+<span class="sd">        vector that defines individual two</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ind1 : LIST</span>
+<span class="sd">        New individual with crossover applied</span>
+<span class="sd">    ind2 : LIST</span>
+<span class="sd">        New individual with crossover applied</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ind1</span><span class="p">)</span>
     <span class="n">cxpoint1</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
@@ -186,8 +198,8 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    [type]</span>
-<span class="sd">        [description]</span>
+<span class="sd">    boundedValue : flt</span>
+<span class="sd">        Un-normalized value for the entry in the design vector.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># lower bound</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">a</span>  <span class="c1"># upper bound</span>

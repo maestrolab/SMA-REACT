@@ -37,6 +37,20 @@ def cxTwoPointCopy(ind1, ind2):
         [1 6 7 4]
         >>> print(b)
         [5 6 7 8]
+
+    Parameters
+    ----------
+    ind1 : LIST
+        vector that defines individual one
+    ind2 : LIST
+        vector that defines individual two
+
+    Returns
+    -------
+    ind1 : LIST
+        New individual with crossover applied
+    ind2 : LIST
+        New individual with crossover applied
     """
     size = len(ind1)
     cxpoint1 = random.randint(1, size)
@@ -106,8 +120,8 @@ def exponentialBounds(value, bounds=[1e3, 1e8]):
 
     Returns
     -------
-    [type]
-        [description]
+    boundedValue : flt
+        Un-normalized value for the entry in the design vector.
     """
     a = bounds[0]  # lower bound
     b = bounds[1] / a  # upper bound
