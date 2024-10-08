@@ -29,7 +29,7 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1"
-     inkscape:cx="304"
+     inkscape:cx="287"
      inkscape:cy="304.5"
      inkscape:window-width="1368"
      inkscape:window-height="850"
@@ -647,10 +647,10 @@
     <path
        id="path287"
        style="fill:#500000;fill-opacity:1;stroke:none;stroke-width:0.218776;stroke-linecap:square;stroke-dasharray:none;stroke-dashoffset:0"
-       d="m 74.098741,238.89431 -6.17e-4,2.48515 H 68.16018 v 7.44306 h 5.936085 l -6.16e-4,2.42584 3.182138,-3.08635 3.182137,-3.08634 -3.180894,-3.09068 z" />
+       d="m 74.098741,241.6756 -6.17e-4,2.48515 H 68.16018 v 7.44306 h 5.936085 l -6.16e-4,2.42584 3.182138,-3.08635 3.182137,-3.08634 -3.180894,-3.09068 z" />
     <g
        id="g341"
-       transform="matrix(1.7380542,0,0,1.7380542,-0.11530955,-99.796367)">
+       transform="matrix(1.7380542,0,0,1.7380542,-0.11530955,-99.80087)">
       <rect
          style="fill:#e6e6e6;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
          id="rect289"
@@ -1371,7 +1371,7 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.67815px;line-height:0.9;font-family:Arial;-inkscape-font-specification:Arial;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#e6e6e6;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.317799;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-       x="-248.2894"
+       x="-247.89076"
        y="-2.0239289"
        id="text374"
        inkscape:export-filename="fig2.pdf"
@@ -1380,12 +1380,12 @@
        transform="rotate(-90)"><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.67815px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.317799"
-         x="-248.2894"
+         x="-247.89076"
          y="-2.0239289"
-         id="tspan373">Preprocessing</tspan><tspan
+         id="tspan373">Processing</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.67815px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.317799"
-         x="-248.2894"
+         x="-247.89076"
          y="5.786406"
          id="tspan374" /></text>
     <circle
