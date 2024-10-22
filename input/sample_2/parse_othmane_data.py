@@ -181,7 +181,10 @@ for i in range(int(len(temperature[0,:])/2)):
     
 for i in range(len(stress_levels)):
     file_name = 'optimal_model_'+str(i)+'.csv'
-    file_path = os.path.join(os.getcwd(),'analytical calibration',file_name)
+    file_path = os.path.join(
+        "C:\\Users\\pwal5\\Documents\\GitHub\\SMAREACTcleaned\\output\\sample_2_estimate",
+        file_name
+        )
     data = np.loadtxt(file_path,delimiter=',')
     
     max_temperature_index = np.argmax(data[:,0])
