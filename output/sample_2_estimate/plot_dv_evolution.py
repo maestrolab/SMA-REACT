@@ -29,14 +29,14 @@ plt.rcParams['svg.fonttype'] = 'none'
 
 dv_order = ['E^M, GPa',
             'E^A, GPa',
+            "C^M, MPa",
+            "C^A, MPa",
+            "H_{max}-H_{min}, mm/mm",
             "M_s, ^\circ\!C",
             "M_s-M_f, ^\circ\!C",
             "A_s, ^\circ\!C",
             "A_f-A_s, ^\circ\!C",
-            "C^M, MPa",
-            "C^A, MPa",
             "H_{min}, mm/mm",
-            "H_{max}-H_{min}, mm/mm",
             "\sigma_{crit}, MPa",
             "k, 1/MPa",
             r"\alpha, 1/^\circ\!C",
@@ -48,7 +48,7 @@ dv_order = ['E^M, GPa',
 
 
 dim_x = 5
-dim_y = 3
+dim_y = 2
 
 marker_size = 60
 
@@ -82,7 +82,15 @@ for sheet_name in ["1","2","3"]:
     
 
     for dv in dv_order:
-        if dv in ["H_{min}, mm/mm","\sigma_{crit}, MPa"]:
+        if dv in [
+                "H_{min}, mm/mm",
+                "\sigma_{crit}, MPa",
+                "k, 1/MPa",
+                r"\alpha, 1/^\circ\!C",
+                "n_2, -",
+                "n_3, -",
+                "n_4, -"
+                ]:
             counter +=1
             pass
         else:
@@ -144,8 +152,8 @@ handles, labels = ax[0,2].get_legend_handles_labels()
 fig.legend(handles, labels, loc='lower center',ncol=len(labels))
 
 # Set the y-axis to log scale for k
-ax[1,4].set_yscale('log')
-ax[1,4].set_ylim([5E-4,2E0])
+# ax[1,4].set_yscale('log')
+# ax[1,4].set_ylim([5E-4,2E0])
 # with open(file_name) as json_file:
 #     data = json.load(json_file)
     
