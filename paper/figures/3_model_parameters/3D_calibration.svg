@@ -29,15 +29,15 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="pt"
      showgrid="false"
-     inkscape:zoom="0.86915208"
-     inkscape:cx="194.44238"
-     inkscape:cy="155.89907"
+     inkscape:zoom="2.4583333"
+     inkscape:cx="346.16949"
+     inkscape:cy="158.84746"
      inkscape:window-width="1368"
      inkscape:window-height="850"
      inkscape:window-x="-6"
      inkscape:window-y="-6"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="layer1"
      showguides="true">
     <sodipodi:guide
        position="94.406789,121.56327"
@@ -391,40 +391,40 @@
        id="rect6622"
        width="205.37259"
        height="62.992432"
-       x="221.7518"
-       y="71.887184"
+       x="220.51166"
+       y="71.536644"
        rx="7.1999998"
        ry="7.1999998" />
     <g
-       id="g6667">
+       id="g686">
       <text
          xml:space="preserve"
          style="font-style:italic;font-size:9.96px;line-height:1.25;font-family:'Times New Roman', serif;-inkscape-font-specification:'Times New Roman, serif Italic';stroke-width:0.6225"
          x="225.77477"
-         y="88.147812"
+         y="127.63564"
          id="text6416"><tspan
            sodipodi:role="line"
            id="tspan6414"
            style="stroke-width:0.6225"
            x="225.77477"
-           y="88.147812"><tspan
+           y="127.63564"><tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman', serif;-inkscape-font-specification:'Times New Roman, serif';stroke-width:0.6225"
-   id="tspan6426">1. </tspan>E<tspan
+   id="tspan6426">3. </tspan>E<tspan
    style="font-size:6.474px;baseline-shift:super;stroke-width:0.6225"
    id="tspan6424">A</tspan> = σ/ε</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:italic;font-size:9.96px;line-height:1.25;font-family:'Times New Roman', serif;-inkscape-font-specification:'Times New Roman, serif Italic';stroke-width:0.6225"
-         x="226.72797"
-         y="104.14718"
+         x="225.01123"
+         y="85.194908"
          id="text6434"><tspan
            sodipodi:role="line"
            id="tspan6432"
            style="stroke-width:0.6225"
-           x="226.72797"
-           y="104.14718"><tspan
+           x="225.01123"
+           y="85.194908"><tspan
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman', serif;-inkscape-font-specification:'Times New Roman, serif';stroke-width:0.6225"
-             id="tspan6428">2. <tspan
+             id="tspan6428">1. <tspan
    style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman', serif;-inkscape-font-specification:'Times New Roman, serif Italic';stroke-width:0.6225"
    id="tspan6450">M<tspan
    style="font-size:6.474px;baseline-shift:sub;stroke-width:0.6225"
@@ -448,16 +448,16 @@
       <text
          xml:space="preserve"
          style="font-style:italic;font-size:9.96px;line-height:1.25;font-family:'Times New Roman', serif;-inkscape-font-specification:'Times New Roman, serif Italic';stroke-width:0.6225"
-         x="226.5383"
-         y="124.83791"
+         x="225.96443"
+         y="107.0351"
          id="text6498"><tspan
            sodipodi:role="line"
            id="tspan6496"
            style="stroke-width:0.6225"
-           x="226.5383"
-           y="124.83791"><tspan
+           x="225.96443"
+           y="107.0351"><tspan
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman', serif;-inkscape-font-specification:'Times New Roman, serif';stroke-width:0.6225"
-             id="tspan6490">3. <tspan
+             id="tspan6490">2. <tspan
    style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman', serif;-inkscape-font-specification:'Times New Roman, serif Italic'"
    id="tspan6522">C<tspan
    style="font-size:65%;baseline-shift:super"
@@ -484,13 +484,13 @@
     <text
        xml:space="preserve"
        style="font-style:italic;font-size:9.96px;line-height:1.25;font-family:'Times New Roman', serif;-inkscape-font-specification:'Times New Roman, serif Italic';stroke-width:0.6225"
-       x="255.44516"
+       x="254.20502"
        y="68.716179"
        id="text6614"><tspan
          sodipodi:role="line"
          id="tspan6612"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Times New Roman', serif;-inkscape-font-specification:'Times New Roman, serif Bold';stroke-width:0.6225"
-         x="255.44516"
+         x="254.20502"
          y="68.716179">Essential parameters to estimate</tspan></text>
   </g>
   <g
