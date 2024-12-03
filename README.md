@@ -2,6 +2,7 @@
 SMA-REACT is an open-source, (hopefully) easy-to-use
 tool for processing shape memory alloy experimental data and calibrating a constitutive model for use in other analyses(e.g., Abaqus).
 Data processing and model calibration are presented in the form of a python GUI, allowing those unfamiliar with the intricate details of SMA constitutive modeling to easily calibrate appropriate models without writing their own custom subroutines. 
+SMA-REACT is distributed under the BSD 3-Clause License, which [``allows unlimited redistribution for any purpose as long as its copyright notices and the license's disclaimers of warranty are maintained.''](https://en.wikipedia.org/wiki/BSD_licenses)
 
 ## Downloads
 
