@@ -24,11 +24,11 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="3270.3689"
-     inkscape:cy="677.76185"
-     inkscape:window-width="1920"
-     inkscape:window-height="1111"
+     inkscape:zoom="0.7071068"
+     inkscape:cx="2909.7443"
+     inkscape:cy="1523.8151"
+     inkscape:window-width="3840"
+     inkscape:window-height="1511"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
@@ -2613,6 +2613,492 @@
        patternTransform="matrix(0.02429052,-0.01926059,0.06834404,0.08619218,0,0)"
        x="0"
        y="0" />
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect826" />
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect827" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern104-6-6-0-3-2"
+       preserveAspectRatio="none"
+       id="pattern103-49-1-8-3-4"
+       patternTransform="matrix(0.04819303,-0.07836729,1.6780822,1.0319594,0,0)"
+       x="99"
+       y="0" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#Cubes-3-5-1-74-3"
+       preserveAspectRatio="none"
+       id="pattern104-6-6-0-3-2"
+       patternTransform="matrix(0.02429052,-0.01926059,0.06834404,0.08619218,0,0)"
+       x="0"
+       y="0" />
+    <pattern
+       patternUnits="userSpaceOnUse"
+       width="142"
+       height="123"
+       patternTransform="scale(0.4)"
+       id="Cubes-3-5-1-74-3"
+       preserveAspectRatio="none"
+       style="fill:#000000"
+       x="0"
+       y="0"
+       inkscape:label="Cubes"
+       inkscape:collect="always"
+       inkscape:isstock="true">
+      <path
+         id="path104-7-7-2-3-2"
+         style="fill-opacity:0.6;stroke-width:2;stroke-miterlimit:10"
+         d="M 0.00195313,0.001953 V 0.0039061 L 35.509766,20.503906 71.009766,0.0078124 106.50977,20.503906 142,0.0136718 V 0.001953 Z" />
+      <path
+         id="path16-8-5-5-8-2"
+         style="fill-opacity:0.3;stroke-width:2;stroke-miterlimit:10"
+         d="m 35.503902,61.5 0.0039,0.002 v 41 L 0,123.00195 V 81.998047 Z M 142.01171,0 l 0.004,0.002 v 41 l -35.5079,20.499953 V 20.498047 Z m -71.000002,0 0.0039,0.002 v 41 L 35.507806,61.501953 V 20.498047 Z m 35.492192,61.5 0.004,0.002 v 41 L 71,123.00195 V 81.998047 Z" />
+      <path
+         id="path18-8-4-0-0-1"
+         style="fill-opacity:1;stroke-width:2;stroke-miterlimit:10"
+         d="m 106.49609,61.5 -0.004,0.002 v 41 L 142,123.00195 V 81.998047 Z M 71.0039,0 71,0.002 v 41 l 35.50781,20.499953 V 20.498047 Z m -71,0 L 0,0.002 v 41 L 35.507806,61.501953 V 20.498047 Z m 35.492194,61.5 -0.0039,0.002 v 41 L 71,123.00195 V 81.998047 Z" />
+      <path
+         id="path20-2-1-9-8-6"
+         style="fill-opacity:0.6;stroke-width:2;stroke-miterlimit:10"
+         d="m 70.998047,41.001953 -35.5,20.496094 L 0,41.003906 v 40.998047 l 0.00195313,0.002 35.49999987,-20.496094 35.5,20.496094 L 106.50195,61.507812 142,82.001953 V 41.003906 l -0.002,-0.002 -35.5,20.496094 z" />
+      <path
+         id="path26-9-2-4-8-8"
+         style="fill-opacity:0.6;stroke-width:2;stroke-miterlimit:10"
+         d="M 35.505859,102.50195 0.00195313,123 v 0.002 H 142 v -0.008 l -35.49414,-20.49219 -35.500001,20.49609 z" />
+    </pattern>
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect828" />
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Greyscale"
+       id="filter33-9-1-6-3-0-8-6-5"
+       x="-0.0014024332"
+       y="-0.0067614622"
+       width="1.0028049"
+       height="1.0135229">
+      <feColorMatrix
+         values="0.473186 -0.283912 -4.57413 10 0 0.473186 -0.283912 -4.57413 10 0 0.473186 -0.283912 -4.57413 10 0 0 0 0 1 0 "
+         id="feColorMatrix33-5-2-1-5-1-3-8-7" />
+    </filter>
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern104-6-6-0-3-2"
+       preserveAspectRatio="none"
+       id="pattern1-61"
+       patternTransform="matrix(0.04819303,-0.07836729,1.6780822,1.0319594,0,0)"
+       x="99"
+       y="0" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#Cubes-3-5-1-74-3"
+       preserveAspectRatio="none"
+       id="pattern2-89"
+       patternTransform="matrix(0.02429052,-0.01926059,0.06834404,0.08619218,0,0)"
+       x="0"
+       y="0" />
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect826-4" />
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect827-1" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern104-6-6-0-3-2-3"
+       preserveAspectRatio="none"
+       id="pattern103-49-1-8-3-4-1"
+       patternTransform="matrix(0.04819303,-0.07836729,1.6780822,1.0319594,0,0)"
+       x="109"
+       y="67" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#Cubes-3-5-1-74-3-8"
+       preserveAspectRatio="none"
+       id="pattern104-6-6-0-3-2-3"
+       patternTransform="matrix(0.02429052,-0.01926059,0.06834404,0.08619218,0,0)"
+       x="0"
+       y="0" />
+    <pattern
+       patternUnits="userSpaceOnUse"
+       width="142"
+       height="123"
+       patternTransform="scale(0.4)"
+       id="Cubes-3-5-1-74-3-8"
+       preserveAspectRatio="none"
+       style="fill:#000000"
+       x="0"
+       y="0"
+       inkscape:label="Cubes"
+       inkscape:collect="always"
+       inkscape:isstock="true">
+      <path
+         id="path104-7-7-2-3-2-7"
+         style="fill-opacity:0.6;stroke-width:2;stroke-miterlimit:10"
+         d="M 0.00195313,0.001953 V 0.0039061 L 35.509766,20.503906 71.009766,0.0078124 106.50977,20.503906 142,0.0136718 V 0.001953 Z" />
+      <path
+         id="path16-8-5-5-8-2-4"
+         style="fill-opacity:0.3;stroke-width:2;stroke-miterlimit:10"
+         d="m 35.503902,61.5 0.0039,0.002 v 41 L 0,123.00195 V 81.998047 Z M 142.01171,0 l 0.004,0.002 v 41 l -35.5079,20.499953 V 20.498047 Z m -71.000002,0 0.0039,0.002 v 41 L 35.507806,61.501953 V 20.498047 Z m 35.492192,61.5 0.004,0.002 v 41 L 71,123.00195 V 81.998047 Z" />
+      <path
+         id="path18-8-4-0-0-1-2"
+         style="fill-opacity:1;stroke-width:2;stroke-miterlimit:10"
+         d="m 106.49609,61.5 -0.004,0.002 v 41 L 142,123.00195 V 81.998047 Z M 71.0039,0 71,0.002 v 41 l 35.50781,20.499953 V 20.498047 Z m -71,0 L 0,0.002 v 41 L 35.507806,61.501953 V 20.498047 Z m 35.492194,61.5 -0.0039,0.002 v 41 L 71,123.00195 V 81.998047 Z" />
+      <path
+         id="path20-2-1-9-8-6-7"
+         style="fill-opacity:0.6;stroke-width:2;stroke-miterlimit:10"
+         d="m 70.998047,41.001953 -35.5,20.496094 L 0,41.003906 v 40.998047 l 0.00195313,0.002 35.49999987,-20.496094 35.5,20.496094 L 106.50195,61.507812 142,82.001953 V 41.003906 l -0.002,-0.002 -35.5,20.496094 z" />
+      <path
+         id="path26-9-2-4-8-8-7"
+         style="fill-opacity:0.6;stroke-width:2;stroke-miterlimit:10"
+         d="M 35.505859,102.50195 0.00195313,123 v 0.002 H 142 v -0.008 l -35.49414,-20.49219 -35.500001,20.49609 z" />
+    </pattern>
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect828-9" />
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Greyscale"
+       id="filter33-9-1-6-3-0-8-6-5-3"
+       x="-0.0014024332"
+       y="-0.0067614622"
+       width="1.0028049"
+       height="1.0135229">
+      <feColorMatrix
+         values="0.473186 -0.283912 -4.57413 10 0 0.473186 -0.283912 -4.57413 10 0 0.473186 -0.283912 -4.57413 10 0 0 0 0 1 0 "
+         id="feColorMatrix33-5-2-1-5-1-3-8-7-1" />
+    </filter>
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern104-6-6-0-3-2-3"
+       preserveAspectRatio="none"
+       id="pattern1-986"
+       patternTransform="matrix(0.04819303,-0.07836729,1.6780822,1.0319594,0,0)"
+       x="99"
+       y="0" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#Cubes-3-5-1-74-3-8"
+       preserveAspectRatio="none"
+       id="pattern2-5"
+       patternTransform="matrix(0.02429052,-0.01926059,0.06834404,0.08619218,0,0)"
+       x="0"
+       y="0" />
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect826-4-1" />
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect827-1-3" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern104-6-6-0-3-2-3-9"
+       preserveAspectRatio="none"
+       id="pattern103-49-1-8-3-4-1-8"
+       patternTransform="scale(0.092,2.17)"
+       x="107"
+       y="58" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#Cubes-3-5-1-74-3-8-3"
+       preserveAspectRatio="none"
+       id="pattern104-6-6-0-3-2-3-9"
+       patternTransform="matrix(0.02429052,-0.01926059,0.06834404,0.08619218,0,0)"
+       x="0"
+       y="0" />
+    <pattern
+       patternUnits="userSpaceOnUse"
+       width="142"
+       height="123"
+       patternTransform="scale(0.4)"
+       id="Cubes-3-5-1-74-3-8-3"
+       preserveAspectRatio="none"
+       style="fill:#000000"
+       x="0"
+       y="0"
+       inkscape:label="Cubes"
+       inkscape:collect="always"
+       inkscape:isstock="true">
+      <path
+         id="path104-7-7-2-3-2-7-4"
+         style="fill-opacity:0.6;stroke-width:2;stroke-miterlimit:10"
+         d="M 0.00195313,0.001953 V 0.0039061 L 35.509766,20.503906 71.009766,0.0078124 106.50977,20.503906 142,0.0136718 V 0.001953 Z" />
+      <path
+         id="path16-8-5-5-8-2-4-4"
+         style="fill-opacity:0.3;stroke-width:2;stroke-miterlimit:10"
+         d="m 35.503902,61.5 0.0039,0.002 v 41 L 0,123.00195 V 81.998047 Z M 142.01171,0 l 0.004,0.002 v 41 l -35.5079,20.499953 V 20.498047 Z m -71.000002,0 0.0039,0.002 v 41 L 35.507806,61.501953 V 20.498047 Z m 35.492192,61.5 0.004,0.002 v 41 L 71,123.00195 V 81.998047 Z" />
+      <path
+         id="path18-8-4-0-0-1-2-6"
+         style="fill-opacity:1;stroke-width:2;stroke-miterlimit:10"
+         d="m 106.49609,61.5 -0.004,0.002 v 41 L 142,123.00195 V 81.998047 Z M 71.0039,0 71,0.002 v 41 l 35.50781,20.499953 V 20.498047 Z m -71,0 L 0,0.002 v 41 L 35.507806,61.501953 V 20.498047 Z m 35.492194,61.5 -0.0039,0.002 v 41 L 71,123.00195 V 81.998047 Z" />
+      <path
+         id="path20-2-1-9-8-6-7-0"
+         style="fill-opacity:0.6;stroke-width:2;stroke-miterlimit:10"
+         d="m 70.998047,41.001953 -35.5,20.496094 L 0,41.003906 v 40.998047 l 0.00195313,0.002 35.49999987,-20.496094 35.5,20.496094 L 106.50195,61.507812 142,82.001953 V 41.003906 l -0.002,-0.002 -35.5,20.496094 z" />
+      <path
+         id="path26-9-2-4-8-8-7-6"
+         style="fill-opacity:0.6;stroke-width:2;stroke-miterlimit:10"
+         d="M 35.505859,102.50195 0.00195313,123 v 0.002 H 142 v -0.008 l -35.49414,-20.49219 -35.500001,20.49609 z" />
+    </pattern>
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect828-9-6" />
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Greyscale"
+       id="filter33-9-1-6-3-0-8-6-5-3-1"
+       x="-0.0014024332"
+       y="-0.0067614622"
+       width="1.0028049"
+       height="1.0135229">
+      <feColorMatrix
+         values="0.473186 -0.283912 -4.57413 10 0 0.473186 -0.283912 -4.57413 10 0 0.473186 -0.283912 -4.57413 10 0 0 0 0 1 0 "
+         id="feColorMatrix33-5-2-1-5-1-3-8-7-1-8" />
+    </filter>
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern104-6-6-0-3-2-3-9"
+       preserveAspectRatio="none"
+       id="pattern1-49"
+       patternTransform="matrix(0.04819303,-0.07836729,1.6780822,1.0319594,0,0)"
+       x="109"
+       y="67" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#Cubes-3-5-1-74-3-8-3"
+       preserveAspectRatio="none"
+       id="pattern2-63"
+       patternTransform="matrix(0.02429052,-0.01926059,0.06834404,0.08619218,0,0)"
+       x="0"
+       y="0" />
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect826-4-1-1" />
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect827-1-3-5" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern104-6-6-0-3-2-3-9-2"
+       preserveAspectRatio="none"
+       id="pattern103-49-1-8-3-4-1-8-4"
+       patternTransform="matrix(-0.396,0.68589212,-5.3433767,-3.085,0,0)"
+       x="112"
+       y="85" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#Cubes-3-5-1-74-3-8-3-0"
+       preserveAspectRatio="none"
+       id="pattern104-6-6-0-3-2-3-9-2"
+       patternTransform="matrix(0.02429052,-0.01926059,0.06834404,0.08619218,0,0)"
+       x="0"
+       y="0" />
+    <pattern
+       patternUnits="userSpaceOnUse"
+       width="142"
+       height="123"
+       patternTransform="scale(0.4)"
+       id="Cubes-3-5-1-74-3-8-3-0"
+       preserveAspectRatio="none"
+       style="fill:#000000"
+       x="0"
+       y="0"
+       inkscape:label="Cubes"
+       inkscape:collect="always"
+       inkscape:isstock="true">
+      <path
+         id="path104-7-7-2-3-2-7-4-9"
+         style="fill-opacity:0.6;stroke-width:2;stroke-miterlimit:10"
+         d="M 0.00195313,0.001953 V 0.0039061 L 35.509766,20.503906 71.009766,0.0078124 106.50977,20.503906 142,0.0136718 V 0.001953 Z" />
+      <path
+         id="path16-8-5-5-8-2-4-4-7"
+         style="fill-opacity:0.3;stroke-width:2;stroke-miterlimit:10"
+         d="m 35.503902,61.5 0.0039,0.002 v 41 L 0,123.00195 V 81.998047 Z M 142.01171,0 l 0.004,0.002 v 41 l -35.5079,20.499953 V 20.498047 Z m -71.000002,0 0.0039,0.002 v 41 L 35.507806,61.501953 V 20.498047 Z m 35.492192,61.5 0.004,0.002 v 41 L 71,123.00195 V 81.998047 Z" />
+      <path
+         id="path18-8-4-0-0-1-2-6-3"
+         style="fill-opacity:1;stroke-width:2;stroke-miterlimit:10"
+         d="m 106.49609,61.5 -0.004,0.002 v 41 L 142,123.00195 V 81.998047 Z M 71.0039,0 71,0.002 v 41 l 35.50781,20.499953 V 20.498047 Z m -71,0 L 0,0.002 v 41 L 35.507806,61.501953 V 20.498047 Z m 35.492194,61.5 -0.0039,0.002 v 41 L 71,123.00195 V 81.998047 Z" />
+      <path
+         id="path20-2-1-9-8-6-7-0-7"
+         style="fill-opacity:0.6;stroke-width:2;stroke-miterlimit:10"
+         d="m 70.998047,41.001953 -35.5,20.496094 L 0,41.003906 v 40.998047 l 0.00195313,0.002 35.49999987,-20.496094 35.5,20.496094 L 106.50195,61.507812 142,82.001953 V 41.003906 l -0.002,-0.002 -35.5,20.496094 z" />
+      <path
+         id="path26-9-2-4-8-8-7-6-2"
+         style="fill-opacity:0.6;stroke-width:2;stroke-miterlimit:10"
+         d="M 35.505859,102.50195 0.00195313,123 v 0.002 H 142 v -0.008 l -35.49414,-20.49219 -35.500001,20.49609 z" />
+    </pattern>
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect828-9-6-6" />
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Greyscale"
+       id="filter33-9-1-6-3-0-8-6-5-3-1-0"
+       x="-0.0014024332"
+       y="-0.0067614622"
+       width="1.0028049"
+       height="1.0135229">
+      <feColorMatrix
+         values="0.473186 -0.283912 -4.57413 10 0 0.473186 -0.283912 -4.57413 10 0 0.473186 -0.283912 -4.57413 10 0 0 0 0 1 0 "
+         id="feColorMatrix33-5-2-1-5-1-3-8-7-1-8-1" />
+    </filter>
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern104-6-6-0-3-2-3-9-2"
+       preserveAspectRatio="none"
+       id="pattern1-65"
+       patternTransform="scale(0.092,2.17)"
+       x="107"
+       y="58" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#Cubes-3-5-1-74-3-8-3-0"
+       preserveAspectRatio="none"
+       id="pattern2-7"
+       patternTransform="matrix(0.02429052,-0.01926059,0.06834404,0.08619218,0,0)"
+       x="0"
+       y="0" />
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect826-4-1-1-3" />
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect827-1-3-5-3" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern104-6-6-0-3-2-3-9-2-9"
+       preserveAspectRatio="none"
+       id="pattern103-49-1-8-3-4-1-8-4-5"
+       patternTransform="matrix(-0.005,0.00866025,-5.3433768,-3.0849997,0,0)"
+       x="112"
+       y="85" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#Cubes-3-5-1-74-3-8-3-0-9"
+       preserveAspectRatio="none"
+       id="pattern104-6-6-0-3-2-3-9-2-9"
+       patternTransform="matrix(0.02429052,-0.01926059,0.06834404,0.08619218,0,0)"
+       x="0"
+       y="0" />
+    <pattern
+       patternUnits="userSpaceOnUse"
+       width="142"
+       height="123"
+       patternTransform="scale(0.4)"
+       id="Cubes-3-5-1-74-3-8-3-0-9"
+       preserveAspectRatio="none"
+       style="fill:#000000"
+       x="0"
+       y="0"
+       inkscape:label="Cubes"
+       inkscape:collect="always"
+       inkscape:isstock="true">
+      <path
+         id="path104-7-7-2-3-2-7-4-9-8"
+         style="fill-opacity:0.6;stroke-width:2;stroke-miterlimit:10"
+         d="M 0.00195313,0.001953 V 0.0039061 L 35.509766,20.503906 71.009766,0.0078124 106.50977,20.503906 142,0.0136718 V 0.001953 Z" />
+      <path
+         id="path16-8-5-5-8-2-4-4-7-1"
+         style="fill-opacity:0.3;stroke-width:2;stroke-miterlimit:10"
+         d="m 35.503902,61.5 0.0039,0.002 v 41 L 0,123.00195 V 81.998047 Z M 142.01171,0 l 0.004,0.002 v 41 l -35.5079,20.499953 V 20.498047 Z m -71.000002,0 0.0039,0.002 v 41 L 35.507806,61.501953 V 20.498047 Z m 35.492192,61.5 0.004,0.002 v 41 L 71,123.00195 V 81.998047 Z" />
+      <path
+         id="path18-8-4-0-0-1-2-6-3-8"
+         style="fill-opacity:1;stroke-width:2;stroke-miterlimit:10"
+         d="m 106.49609,61.5 -0.004,0.002 v 41 L 142,123.00195 V 81.998047 Z M 71.0039,0 71,0.002 v 41 l 35.50781,20.499953 V 20.498047 Z m -71,0 L 0,0.002 v 41 L 35.507806,61.501953 V 20.498047 Z m 35.492194,61.5 -0.0039,0.002 v 41 L 71,123.00195 V 81.998047 Z" />
+      <path
+         id="path20-2-1-9-8-6-7-0-7-2"
+         style="fill-opacity:0.6;stroke-width:2;stroke-miterlimit:10"
+         d="m 70.998047,41.001953 -35.5,20.496094 L 0,41.003906 v 40.998047 l 0.00195313,0.002 35.49999987,-20.496094 35.5,20.496094 L 106.50195,61.507812 142,82.001953 V 41.003906 l -0.002,-0.002 -35.5,20.496094 z" />
+      <path
+         id="path26-9-2-4-8-8-7-6-2-6"
+         style="fill-opacity:0.6;stroke-width:2;stroke-miterlimit:10"
+         d="M 35.505859,102.50195 0.00195313,123 v 0.002 H 142 v -0.008 l -35.49414,-20.49219 -35.500001,20.49609 z" />
+    </pattern>
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect828-9-6-6-6" />
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Greyscale"
+       id="filter33-9-1-6-3-0-8-6-5-3-1-0-0"
+       x="-0.0014024332"
+       y="-0.0067614622"
+       width="1.0028049"
+       height="1.0135229">
+      <feColorMatrix
+         values="0.473186 -0.283912 -4.57413 10 0 0.473186 -0.283912 -4.57413 10 0 0.473186 -0.283912 -4.57413 10 0 0 0 0 1 0 "
+         id="feColorMatrix33-5-2-1-5-1-3-8-7-1-8-1-3" />
+    </filter>
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern104-6-6-0-3-2-3-9-2-9"
+       preserveAspectRatio="none"
+       id="pattern1-80"
+       patternTransform="matrix(-0.396,0.68589212,-5.3433767,-3.085,0,0)"
+       x="112"
+       y="85" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#Cubes-3-5-1-74-3-8-3-0-9"
+       preserveAspectRatio="none"
+       id="pattern2-1"
+       patternTransform="matrix(0.02429052,-0.01926059,0.06834404,0.08619218,0,0)"
+       x="0"
+       y="0" />
+    <rect
+       x="150.39308"
+       y="126.25592"
+       width="545.87122"
+       height="258.08197"
+       id="rect16" />
   </defs>
   <g
      inkscape:label="Layer 1"
@@ -2620,12 +3106,20 @@
      id="layer1">
     <text
        xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,468.47113,281.62447)"
+       id="text15"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect16);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan10">REACT</tspan></text>
+    <text
+       xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,484.58431,-115.01944)"
        id="text14"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect15);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan5">REACT</tspan></text>
+         id="tspan79">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-183.80247,-1.5596775)"
@@ -2633,7 +3127,7 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect12);display:inline;fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="359.03391"
          y="153.35067"
-         id="tspan6">REACT</tspan></text>
+         id="tspan80">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-181.78921,-45.735969)"
@@ -2641,7 +3135,7 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect11);display:inline;fill:#ffe680;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="359.03391"
          y="153.35067"
-         id="tspan7">REACT</tspan></text>
+         id="tspan81">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-384.17352,-138.5265)"
@@ -2649,7 +3143,7 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect1);display:inline;fill:url(#pattern5);fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="359.03391"
          y="153.35067"
-         id="tspan8">REACT</tspan></text>
+         id="tspan82">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-384.17352,-54.870864)"
@@ -2657,7 +3151,7 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect5-2);display:inline;fill:url(#pattern5-0);fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="359.03391"
          y="153.35067"
-         id="tspan11">REACT</tspan></text>
+         id="tspan83">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-384.17352,-54.870864)"
@@ -2665,7 +3159,7 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect5-2-1);display:inline;fill:url(#pattern5-0-3);fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="359.03391"
          y="153.35067"
-         id="tspan12">REACT</tspan></text>
+         id="tspan84">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-384.17352,-2.3290874)"
@@ -2673,7 +3167,7 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect1-8);display:inline;fill:url(#pattern5-8);fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="359.03391"
          y="153.35067"
-         id="tspan13">REACT</tspan></text>
+         id="tspan85">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-387.40191,44.554131)"
@@ -2681,7 +3175,7 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect6-1);display:inline;fill:url(#pattern5-8-2);fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="359.03391"
          y="153.35067"
-         id="tspan14">REACT</tspan></text>
+         id="tspan86">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-387.40191,44.554131)"
@@ -2689,7 +3183,7 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect6-15);display:inline;fill:url(#pattern5-8-0);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="359.03391"
          y="153.35067"
-         id="tspan15">REACT</tspan></text>
+         id="tspan87">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-180.05784,-140.98277)"
@@ -2697,7 +3191,7 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect7);display:inline;fill:url(#pattern11);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"><tspan
          x="359.03391"
          y="153.35067"
-         id="tspan16">REACT</tspan></text>
+         id="tspan88">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-180.05784,-92.264507)"
@@ -2705,7 +3199,7 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect7-0);display:inline;fill:url(#pattern11-8);fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="359.03391"
          y="153.35067"
-         id="tspan17">REACT</tspan></text>
+         id="tspan89">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-181.78921,-45.735969)"
@@ -2713,7 +3207,7 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect7-0-5);display:inline;fill:url(#pattern11-8-0);fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="359.03391"
          y="153.35067"
-         id="tspan18">REACT</tspan></text>
+         id="tspan90">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-183.80247,-1.5596775)"
@@ -2721,7 +3215,7 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect7-0-9);display:inline;fill:url(#pattern11-8-08);fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square;filter:url(#filter11)"><tspan
          x="359.03391"
          y="153.35067"
-         id="tspan19">REACT</tspan></text>
+         id="tspan91">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-183.80247,49.335304)"
@@ -2729,7 +3223,7 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect12-9);display:inline;fill:#800000;fill-opacity:1;stroke:#800000;stroke-width:1.41732;stroke-linecap:square;stroke-opacity:1"><tspan
          x="359.03391"
          y="153.35067"
-         id="tspan20">REACT</tspan></text>
+         id="tspan92">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-183.80247,49.335304)"
@@ -2737,7 +3231,7 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect7-0-9-4);display:inline;fill:url(#pattern11-8-08-4);fill-opacity:1;stroke:none;stroke-width:1.41734;stroke-linecap:square;stroke-dasharray:none;filter:url(#filter11-2)"><tspan
          x="359.03391"
          y="153.35067"
-         id="tspan21">REACT</tspan></text>
+         id="tspan93">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-183.80247,-182.96934)"
@@ -2745,7 +3239,7 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect13);display:inline;fill:#ffe680;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="359.03391"
          y="153.35067"
-         id="tspan22">REACT</tspan></text>
+         id="tspan94">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-183.80247,79.518077)"
@@ -2753,7 +3247,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect32);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan23">REACT</tspan></text>
+         id="tspan95">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-186.12865,79.30858)"
@@ -2761,7 +3255,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect7-5);display:inline;fill:url(#pattern11-9);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan24">REACT</tspan></text>
+         id="tspan96">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-186.25175,146.53302)"
@@ -2769,7 +3263,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect32-0);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan25">REACT</tspan></text>
+         id="tspan97">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-186.46125,146.32352)"
@@ -2777,7 +3271,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect7-5-6);display:inline;fill:url(#pattern11-9-5);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-2)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan26">REACT</tspan></text>
+         id="tspan98">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-186.25175,197.70949)"
@@ -2785,7 +3279,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:SWItalc;-inkscape-font-specification:SWItalc;text-align:center;white-space:pre;shape-inside:url(#rect32-0-6);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="352.22927"
          y="151.74855"
-         id="tspan27">REACT</tspan></text>
+         id="tspan99">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-186.46125,197.49999)"
@@ -2793,7 +3287,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:SWItalc;-inkscape-font-specification:SWItalc;text-align:center;white-space:pre;shape-inside:url(#rect7-5-6-6);display:inline;fill:url(#pattern11-9-5-1);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-2-8)"><tspan
          x="352.22927"
          y="151.74855"
-         id="tspan28">REACT</tspan></text>
+         id="tspan100">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-375.69342,93.680941)"
@@ -2801,7 +3295,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect34);display:inline;fill:#800000;fill-opacity:1;stroke:#1a1a1a;stroke-width:3.25576;stroke-linecap:square;stroke-miterlimit:0.1;stroke-dasharray:none"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan29">REACT</tspan></text>
+         id="tspan101">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,0,1.1422835,-375.69342,93.680942)"
@@ -2809,7 +3303,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect35);display:inline;fill:url(#pattern11-9-5);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-2)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan30">REACT</tspan></text>
+         id="tspan102">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38496347,1.1422835,-129.47013,240.4601)"
@@ -2817,7 +3311,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect36);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan31">REACT</tspan></text>
+         id="tspan103">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38496347,1.1422835,-129.60903,240.2506)"
@@ -2825,7 +3319,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect37);display:inline;fill:url(#pattern11-9-5);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-2)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan32">REACT</tspan></text>
+         id="tspan104">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,-127.01318,113.02361)"
@@ -2833,7 +3327,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect40);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan33">REACT</tspan></text>
+         id="tspan105">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,-129.26875,112.81412)"
@@ -2841,7 +3335,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect41);display:inline;fill:url(#pattern11-9);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan34">REACT</tspan></text>
+         id="tspan106">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,69.479317,-134.26282)"
@@ -2849,7 +3343,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect40-0);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan35">REACT</tspan></text>
+         id="tspan107">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,67.223747,-134.47231)"
@@ -2857,7 +3351,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect41-8);display:inline;fill:url(#pattern11-9-3);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan36">REACT</tspan></text>
+         id="tspan108">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,69.479317,-78.171154)"
@@ -2865,7 +3359,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect45);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan37">REACT</tspan></text>
+         id="tspan109">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,67.223747,-79.438978)"
@@ -2873,7 +3367,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect46);display:inline;fill:url(#pattern11-9-3);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan38">REACT</tspan></text>
+         id="tspan110">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,69.479317,-31.869071)"
@@ -2881,7 +3375,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect47);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan39">REACT</tspan></text>
+         id="tspan111">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,67.223747,-33.136895)"
@@ -2889,7 +3383,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect48);display:inline;fill:url(#pattern48);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan40">REACT</tspan></text>
+         id="tspan112">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,63.65848,16.968662)"
@@ -2897,7 +3391,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect47-9);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan41">REACT</tspan></text>
+         id="tspan113">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,61.932077,15.171671)"
@@ -2905,7 +3399,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect48-3);display:inline;fill:url(#pattern48-7);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan42">REACT</tspan></text>
+         id="tspan114">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,280.61926,-20.19486)"
@@ -2913,7 +3407,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect47-9-9);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan43">REACT</tspan></text>
+         id="tspan115">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,278.89286,-21.991851)"
@@ -2921,7 +3415,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect48-3-8);display:inline;fill:url(#pattern48-7-8);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-2)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan44">REACT</tspan></text>
+         id="tspan116">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,63.65848,76.610088)"
@@ -2929,7 +3423,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect47-9-0);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan45">REACT</tspan></text>
+         id="tspan117">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,61.40291,75.342264)"
@@ -2937,7 +3431,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect48-3-2);display:inline;fill:url(#pattern58);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan46">REACT</tspan></text>
+         id="tspan118">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,63.65848,128.51582)"
@@ -2945,7 +3439,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect59);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan47">REACT</tspan></text>
+         id="tspan119">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,61.40291,127.24799)"
@@ -2953,7 +3447,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect60);display:inline;fill:url(#pattern63);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan48">REACT</tspan></text>
+         id="tspan120">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,63.65848,171.2137)"
@@ -2961,7 +3455,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect68);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan49">REACT</tspan></text>
+         id="tspan121">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,61.40291,169.94587)"
@@ -2969,7 +3463,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect69);display:inline;fill:url(#pattern95);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan50">REACT</tspan></text>
+         id="tspan122">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,63.65848,224.96789)"
@@ -2977,7 +3471,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect97);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan51">REACT</tspan></text>
+         id="tspan123">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,61.40291,223.70006)"
@@ -2985,7 +3479,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect98);display:inline;fill:url(#pattern102);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan52">REACT</tspan></text>
+         id="tspan124">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,63.65848,278.72208)"
@@ -2993,7 +3487,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect103);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan53">REACT</tspan></text>
+         id="tspan125">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,62.990411,277.45425)"
@@ -3001,7 +3495,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect104);display:inline;fill:url(#pattern104);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan54">REACT</tspan></text>
+         id="tspan126">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,274.6945,36.072983)"
@@ -3009,7 +3503,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect105);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan55">REACT</tspan></text>
+         id="tspan127">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,273.49726,34.805153)"
@@ -3017,7 +3511,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect106);display:inline;fill:url(#pattern104);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan56">REACT</tspan></text>
+         id="tspan128">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,280.61926,-77.080276)"
@@ -3025,7 +3519,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;letter-spacing:0.69488px;white-space:pre;shape-inside:url(#rect3);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="355.42931"
          y="160.49722"
-         id="tspan57">REACT</tspan></text>
+         id="tspan129">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,280.61926,-77.609443)"
@@ -3033,7 +3527,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;letter-spacing:0.69488px;white-space:pre;shape-inside:url(#rect4);display:inline;fill:url(#pattern48-7-8);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-2)"><tspan
          x="355.42931"
          y="160.49722"
-         id="tspan58">REACT</tspan></text>
+         id="tspan130">REACT</tspan></text>
     <g
        id="g69">
       <path
@@ -3279,7 +3773,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect100);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan59">REACT</tspan></text>
+         id="tspan131">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,265.66936,165.46637)"
@@ -3287,7 +3781,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect102);display:inline;fill:url(#pattern103);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan60">REACT</tspan></text>
+         id="tspan132">REACT</tspan></text>
     <g
        id="g88"
        transform="matrix(1,0,-0.28954472,1,-4.8420388,324.06257)">
@@ -3787,7 +4281,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect100-3);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan61">REACT</tspan></text>
+         id="tspan133">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,269.10082,126.67141)"
@@ -3795,7 +4289,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect102-1);display:inline;fill:url(#pattern103-4);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6-2)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan62">REACT</tspan></text>
+         id="tspan134">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,490.57115,-158.23692)"
@@ -3803,7 +4297,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect8);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan63">REACT</tspan></text>
+         id="tspan135">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,489.37391,-159.50475)"
@@ -3811,7 +4305,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect9);display:inline;fill:url(#pattern103);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan64">REACT</tspan></text>
+         id="tspan136">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,483.46178,-116.14197)"
@@ -3819,7 +4313,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect10);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan65">REACT</tspan></text>
+         id="tspan137">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,483.38707,-116.28727)"
@@ -3827,7 +4321,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect14);display:inline;fill:url(#pattern103);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan66">REACT</tspan></text>
+         id="tspan138">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,478.08126,-72.0394)"
@@ -3835,7 +4329,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect15-1);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan67">REACT</tspan></text>
+         id="tspan139">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,476.95873,-73.16193)"
@@ -3843,7 +4337,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect10-8);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan68">REACT</tspan></text>
+         id="tspan140">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,476.88402,-73.30723)"
@@ -3851,7 +4345,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect14-1);display:inline;fill:url(#pattern103-49);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6-3)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan69">REACT</tspan></text>
+         id="tspan141">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,469.52932,10.993426)"
@@ -3859,7 +4353,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect15-1-6-0);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan70">REACT</tspan></text>
+         id="tspan142">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,468.93596,9.870896)"
@@ -3867,7 +4361,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect10-8-0-3);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan71">REACT</tspan></text>
+         id="tspan143">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,468.86125,9.725596)"
@@ -3875,7 +4369,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect14-1-0-7);display:inline;fill:url(#pattern103-49-1-8);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6-3-0-8)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan72">REACT</tspan></text>
+         id="tspan144">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,472.9689,-30.546157)"
@@ -3883,7 +4377,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect15-1-6-0-8);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan73">REACT</tspan></text>
+         id="tspan145">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,472.37554,-31.668687)"
@@ -3891,7 +4385,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect10-8-0-3-0);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan74">REACT</tspan></text>
+         id="tspan146">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,472.30083,-31.813987)"
@@ -3899,7 +4393,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect14-1-0-7-1);display:inline;fill:url(#pattern103-49-1-8-8);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6-3-0-8-0)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan75">REACT</tspan></text>
+         id="tspan147">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,458.06239,50.697057)"
@@ -3907,7 +4401,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect15-1-6-0-5);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan76">REACT</tspan></text>
+         id="tspan148">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,457.46903,49.574527)"
@@ -3915,7 +4409,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect10-8-0-3-3);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan77">REACT</tspan></text>
+         id="tspan149">REACT</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(1.1422835,0,-0.38501103,1.1422835,457.39432,49.429227)"
@@ -3923,6 +4417,126 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect14-1-0-7-0);display:inline;fill:url(#pattern103-49-1-8-3);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6-3-0-8-6)"><tspan
          x="356.81907"
          y="160.49722"
-         id="tspan78">REACT</tspan></text>
+         id="tspan150">REACT</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,473.18407,105.27138)"
+       id="text824"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect826);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan151">REACT</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,472.6278,104.2191)"
+       id="text825"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect827);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan152">REACT</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,472.55777,104.08276)"
+       id="text826"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect828);display:inline;fill:url(#pattern103-49-1-8-3-4);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6-3-0-8-6-5)"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan153">REACT</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,468.58623,147.90635)"
+       id="text824-6"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect826-4);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan154">REACT</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,468.02996,146.85407)"
+       id="text825-5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect827-1);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan155">REACT</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,467.95993,146.71773)"
+       id="text826-9"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect828-9);display:inline;fill:url(#pattern103-49-1-8-3-4-1);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6-3-0-8-6-5-3)"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan156">REACT</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,470.61172,194.4037)"
+       id="text824-6-9"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect826-4-1);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan157">REACT</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,470.05545,193.35142)"
+       id="text825-5-4"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect827-1-3);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan158">REACT</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,469.98542,193.21508)"
+       id="text826-9-7"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect828-9-6);display:inline;fill:url(#pattern103-49-1-8-3-4-1-8);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6-3-0-8-6-5-3-1)"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan159">REACT</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,472.88983,236.51785)"
+       id="text824-6-9-6"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect826-4-1-1);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan160">REACT</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,472.33356,235.46557)"
+       id="text825-5-4-7"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect827-1-3-5);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan161">REACT</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,472.26353,235.32923)"
+       id="text826-9-7-7"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect828-9-6-6);display:inline;fill:url(#pattern103-49-1-8-3-4-1-8-4);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6-3-0-8-6-5-3-1-0)"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan162">REACT</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,469.0003,281.62447)"
+       id="text824-6-9-6-5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect826-4-1-1-3);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan163">REACT</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,467.91486,280.57219)"
+       id="text825-5-4-7-2"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect827-1-3-5-3);display:inline;fill:#800000;fill-opacity:1;stroke:none;stroke-width:1.41732;stroke-linecap:square"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan164">REACT</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(1.0708577,0,-0.36093668,1.0708577,467.84483,280.43585)"
+       id="text826-9-7-7-6"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:0.9;font-family:Broadway;-inkscape-font-specification:Broadway;text-align:center;white-space:pre;shape-inside:url(#rect828-9-6-6-6);display:inline;fill:url(#pattern103-49-1-8-3-4-1-8-4-5);fill-opacity:1;stroke:#f32500;stroke-width:0.366809;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter33-9-1-6-3-0-8-6-5-3-1-0-0)"><tspan
+         x="356.81907"
+         y="160.49722"
+         id="tspan165">REACT</tspan></text>
   </g>
 </svg>
