@@ -39,6 +39,7 @@ file names, and the columns should be colored according to their field.
    :width: 600 px
    :align: right
 
+
 Click ``Load data`` and the ``Continue to calibration`` button will activate. 
 If you are satisfied with your data input and unit selection, advance to the 
 next stage by clicking ``Continue to calibration``.
