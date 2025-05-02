@@ -6,6 +6,7 @@ This script contains all the optimization-specific routines.
 import random
 import shelve
 import pprint
+import os
 
 import numpy as np
 import scipy.optimize as opt
@@ -360,10 +361,11 @@ def evaluate(
         try:
             for i in range(len(eps_model_total)):
                 file_name = 'optimal_model_'+str(i)+'.csv'
+                output_file = os.path.join(os.getcwd(),'output',file_name)
                 model_prediction = np.zeros(shape=(len(eps_model_total[0]),2))
                 model_prediction[:,0] = np.array(T_total[i])
                 model_prediction[:,1] = eps_model_total[i]
-                np.savetxt(file_name,model_prediction,delimiter=',')
+                np.savetxt(output_file,model_prediction,delimiter=',')
 
             # plot_strain_temperature(T_total,eps_model_total,i,d)
             calWin.update_temp_strain(T_total, eps_model_total, len(eps_model_total))
