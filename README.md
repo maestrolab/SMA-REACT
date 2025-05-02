@@ -10,7 +10,7 @@ SMA REACT is released on [PyPi](https://pypi.org/project/SMA-REACT/). You can al
 
 ## Documentation
 
-See the [SMA REACT User's Guide](smareact.readthedocs.io) for the full documentation. You can also build the documentation locally by navigating to the ``docs`` subfolder and running the command ``.\make.bat html``.
+See the [SMA REACT User's Guide](https://sma-react.readthedocs.io/en/latest/) for the full documentation. You can also build the documentation locally by navigating to the ``docs`` subfolder and running the command ``.\make.bat html``.
 The documentation will be located under ``docs\_build\html``.
 
 ## Requirements

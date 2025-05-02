@@ -16,7 +16,7 @@ In your Python IDE of choice (Spyder is recommended, but the tool has been teste
 (see :doc:`getting_started`), open ``launch_GUI.py``. Run the file
 to activate the GUI. You will be greeted by the data input screen.
 
-.. image:: _static/data_input.png
+.. image:: _static/data_input.PNG
    :width: 600 px
    :align: center
 
@@ -35,7 +35,7 @@ file names, and the columns should be colored according to their field.
 
 .. _link: https://www-sciencedirect-com.wrs.idm.oclc.org/science/article/pii/S2589152921002994
 
-.. image:: _static/loaded_data.png
+.. image:: _static/loaded_data.PNG
    :width: 600 px
    :align: right
 
@@ -100,7 +100,7 @@ The calibration progress tab contains four dynamically updated plots (numbered c
 
 Each plot provides essential information for debugging and improving the calibration solution, as we will show here. 
 
-.. image:: _static/poor_calibration.png
+.. image:: _static/poor_calibration.PNG
    :width: 600 px
    :align: center
 
@@ -114,7 +114,7 @@ If your calibration did not replicate this same behavior, that is fine; there is
 If we return to the ``Material Property Calibration`` tab (once the calibration is finished) and tighten the bounds on Martensite start and Austenite start to [425,475] and [475, 525], respectively, 
 we get a calibrated solution with again, an error under 5%, but now the transformation strain properties are not correctly predicted.
 
-.. image:: _static/better_calibration.png
+.. image:: _static/better_calibration.PNG
    :width: 600 px
    :align: center
 
@@ -124,6 +124,6 @@ Of course, we can improve by inspecting the normalized material properties and r
 are converging to the bounds, but that is an exercise left to you. Happy calibrating!
 When you are happy with your calibration, you can export a JSON with all of the relevant information by clicking the ``Export Calibration Data`` button. 
 
-.. image:: _static/final_calibration.png
+.. image:: _static/final_calibration.PNG
    :width: 600 px
    :align: center
