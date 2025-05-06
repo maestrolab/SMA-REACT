@@ -13,7 +13,7 @@ Open and launch SMA-REACT
 
 
 In your Python IDE of choice (Spyder is recommended, but the tool has been tested in VS Code), using the correct environment 
-(see :doc:`getting_started`), open ``launch_GUI.py``. Run the file
+(see :doc:`getting_started`), open ``launch_calibration_GUI.py``. Run the file
 to activate the GUI. You will be greeted by the data input screen.
 
 .. image:: _static/data_input.PNG
