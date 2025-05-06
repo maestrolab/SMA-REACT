@@ -170,6 +170,10 @@ class App(QtWidgets.QMainWindow):
             )
 
         self.calibration_plotting_widget.export_button.setEnabled(True)
+        
+        # Remove DEAP files
+        for file in ["popLog.bak","popLog.dat","popLog.dir"]:
+            os.remove(file)
 
     def export_solution(self):
         '''
@@ -255,7 +259,3 @@ if __name__ == "__main__":
     MainWindow = QtWidgets.QMainWindow()
     ex = App()
     sys.exit(app.exec_())
-    
-    # Remove DEAP files
-    for file in ["popLog.bak","popLog.dat","popLog.dir"]:
-        os.remove(file)
