@@ -4,15 +4,19 @@ from PyQt5.QtGui import QFont
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-from data_reader import reader
-import numpy as np
-from sync_window import SyncWindow
+
 from sklearn.preprocessing import minmax_scale
 from PyQt5.QtCore import pyqtSignal
 import datetime
-import pandas as pd
 from collections import Counter
 import cgitb
+
+import pandas as pd
+import numpy as np
+
+from src.preprocessor.data_reader import reader
+from src.preprocessor.sync_window import SyncWindow
+
 cgitb.enable(format="text")
 
 

@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from calibration.model_funcs.util_funcs import (
+from src.calibration.model_funcs.util_funcs import (
     H_cursolver,
     partial_Hcur_sigma,
     )

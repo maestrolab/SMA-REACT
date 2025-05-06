@@ -14,16 +14,16 @@ from datetime import date
 from PyQt5 import QtGui, QtWidgets
 
 
-from data_input.create_data_input import (
+from src.data_input.create_data_input import (
     DataInputWidget
     )
 
-from calibration.model_funcs.optimizer import main
-from calibration.create_calibration_parameters import (
+from src.calibration.model_funcs.optimizer import main
+from src.calibration.create_calibration_parameters import (
     CalibrationParametersWidget,
     )
 
-from calibration_progress.create_calibration_progress_widget import (
+from src.calibration_progress.create_calibration_progress_widget import (
     CalibrationProgressWidget
     )
 

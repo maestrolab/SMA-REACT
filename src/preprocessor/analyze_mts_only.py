@@ -1,14 +1,16 @@
 # IMPORT STATEMENTS
-from functions import *
-from data_reader import reader
-from find_cycles import find_cycles
-from moving_average_filter import movavg_filter
-from plot_temp_vs_strain import plot_temp_vs_strain
-from plot_3d import plotSST
-from low_pass_filter import lowpassFilter
-from high_pass_filter import highpassFilter
 from collections import Counter
 import numpy as np
+
+from src.preprocessor.functions import *
+from src.preprocessor.data_reader import reader
+from src.preprocessor.find_cycles import find_cycles
+from src.preprocessor.moving_average_filter import movavg_filter
+from src.preprocessor.plot_temp_vs_strain import plot_temp_vs_strain
+from src.preprocessor.plot_3d import plotSST
+from src.preprocessor.low_pass_filter import lowpassFilter
+from src.preprocessor.high_pass_filter import highpassFilter
+
 
 
 def analyze_mts(file, end, start, glitch_check, temp_title, disp_title, shape, unit_out, area, movavg_conditions, datapoints_dict, orig_length, bandpass, no_cycles):

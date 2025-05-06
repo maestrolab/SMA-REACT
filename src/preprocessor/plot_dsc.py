@@ -1,8 +1,9 @@
 # IMPORT STATEMENTS
-from data_reader import reader
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 import pandas as pd
+
+from src.preprocessor.data_reader import reader
 
 
 def plotDSC(file_name, step_initial, step_final, x_axis, y_axis, filter, movavgx=0, movavgy=0):

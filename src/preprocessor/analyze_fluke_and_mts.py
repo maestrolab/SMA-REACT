@@ -207,18 +207,18 @@
 #     return figure1, figure2, temp_strain_plot, figure3d
 
 # IMPORT STATEMENTS
-from data_reader import reader
+
 import datetime
 import pandas as pd
 import numpy as np
-from find_cycles import find_cycles
-from plot_temp_vs_strain import plot_temp_vs_strain
-from moving_average_filter import movavg_filter
-from plot_3d import plotSST
-from low_pass_filter import lowpassFilter
-from high_pass_filter import highpassFilter
-from matplotlib.figure import Figure
-from sklearn.preprocessing import minmax_scale
+from src.preprocessor.data_reader import reader
+from src.preprocessor.find_cycles import find_cycles
+from src.preprocessor.plot_temp_vs_strain import plot_temp_vs_strain
+from src.preprocessor.moving_average_filter import movavg_filter
+from src.preprocessor.plot_3d import plotSST
+from src.preprocessor.low_pass_filter import lowpassFilter
+from src.preprocessor.high_pass_filter import highpassFilter
+
 from collections import Counter
 
 # parameters
