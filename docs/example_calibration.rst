@@ -67,7 +67,15 @@ We can change the bounds for the corresponding parameters (:math:`A_f` and :math
    :height: 300 px
    :align: center
 
-Change the lower and upper bounds of Martensite and Austenite start temperatures. 
+Change the lower and upper bounds of Martensite and Austenite start temperatures to the following:
+
+========================== ============ ============
+Parameter                  Lower Bound  Upper Bound  
+========================== ============ ============ 
+:math:`M_s` [K]                  400          500
+:math:`A_s` [K]                  450          550
+========================== ============ ============  
+
 To get familiar with the interface, play with activating single parameter constraints
 (i.e., the ``Specify?`` toggle buttons) and the Material property constraints (shown on the upper right).
 
