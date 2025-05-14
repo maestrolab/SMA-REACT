@@ -1151,9 +1151,9 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         #Current order:
             #E_M, E_A, M_s, M_s-M_f, A_s, A_f - A_s, C_M, C_A, H_min,
             #H_max - H_min, k, n_1, n_2, n_3, n_4, sigma_crit, alpha
-        lower_bound_defaults = [20E9,20E9,223.0,10.0,273.0,10.0,2E6,2E6,0.0,
+        lower_bound_defaults = [20E9,20E9,425.0,10.0,450.0,10.0,2E6,2E6,0.0,
                                 0.01,1E-8,0.01,0.01,0.01,0.01,0.0,0.0]
-        upper_bound_defaults = [110E9,110E9,273.0,50.0,323.0,50.0,15E6,15E6,0.03,
+        upper_bound_defaults = [110E9,110E9,500.0,50.0,525.0,50.0,15E6,15E6,0.03,
                                 0.05,1E-6,1.0,1.0,1.0,1.0,60E6,1E-6]
 
         objects = [

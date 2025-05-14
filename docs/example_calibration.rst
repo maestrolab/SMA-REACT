@@ -26,7 +26,7 @@ Load experimental data
 
 For this example, we will use experimental data from Bigelow et al.
 (link_, :cite:p:`bigelow_development_2022`). It is distributed with the SMA-REACT package. 
-Click ``Open Files``, then navigate to ``SMAREACT/input/sample_2``, and select all experimental text files.
+Click ``Open Files``, then navigate to ``SMAREACT/input/cal_sample_2``, and select all experimental text files.
 SMA-REACT currently only accepts tab-delimited text files via the ``pandas.read_csv()`` function.
 
 The data records strain in %, so change the dropdown

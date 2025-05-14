@@ -123,7 +123,7 @@ def analyze_mts(file, end, start, glitch_check, temp_title, disp_title, shape, u
 
     # EXPORTING DATA
     # export_all(mts_data, start, shape, area, unit_out, orig_length, disp_units, "MTS_ONLY.xlsx")
-    mts_data.to_csv("Processed MTS Data.csv")
+    mts_data.to_csv("output/Processed MTS Data.csv")
 
     # EXPORTING FOR ASMADA
     asm_cols = [temp_title, stress_col_name, "Strain"]
@@ -132,7 +132,7 @@ def analyze_mts(file, end, start, glitch_check, temp_title, disp_title, shape, u
     if choice:
         asm_cols.append("Filtered Strain")
     asmada_df = mts_data[asm_cols]
-    asmada_df.to_csv("ASMADA Data.csv", index=False)
+    asmada_df.to_csv("output/ASMADA Data.csv", index=False)
 
     plots = [final_plot, figure3d]
     if len(movavg_conditions) != 0 and "none" not in movavg_conditions:
