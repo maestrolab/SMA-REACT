@@ -37,6 +37,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         screen = QtWidgets.QApplication.primaryScreen().availableGeometry()
         MainWindow.resize(int(screen.width() * 1), int(screen.height() * 1))
+        MainWindow.showMaximized()
         bold_font = QtGui.QFont()
         bold_font.setPointSize(15)
         bold_font.setBold(True)
@@ -154,8 +155,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setBold(False)
         font.setWeight(50)
-        self.time_interval_line_edit.setFont(font)
-        self.time_interval_line_edit.setText("")
+        self.time_interval_line_edit.setFont(font) 
+        self.time_interval_line_edit.setText("") # MTS Start time, no idea why they called it interval
         self.time_interval_line_edit.setObjectName("time_interval_line_edit")
         self.time_interval_line_edit.setEnabled(False)
         self.end_time_label = QtWidgets.QLabel(self.centralwidget)
@@ -176,7 +177,7 @@ class Ui_MainWindow(object):
         self.end_time_line_edit.setObjectName("end_time_line_edit")
         self.delay_label = QtWidgets.QLabel(self.centralwidget)
         self.delay_label.setGeometry(QtCore.QRect(int(screen_w * 0.6875), int(screen_h * 0.1187), int(screen_w * 0.0688), int(screen_h * 0.0250)))
-        self.delay_label.setText("Delay (s):")
+        self.delay_label.setText("Estimated Instrument Delay (s):")
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setWeight(50)
@@ -203,7 +204,7 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         font.setKerning(True)
         self.delay_blurb.setFont(font)
-        self.delay_blurb.setText("Delay quantifies the difference in start time between the fluke and MTS. A negative delay indicates that the fluke begins before the MTS.")
+        self.delay_blurb.setText("Delay quantifies the difference in start time between the fluke start and MTS start. A negative delay indicates that the fluke begin recording data before the MTS.")
         self.delay_blurb.setWordWrap(True)
         self.delay_blurb.setGeometry(QtCore.QRect(int(screen_w * 0.6875), int(screen_h * 0.0312), int(screen_w * 0.2000), int(screen_h * 0.0938)))
         self.vertical_separator_time_glitch = QtWidgets.QFrame(self.centralwidget)
@@ -540,7 +541,7 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.start_time_label.setFont(font)
         self.start_time_label.setObjectName("start_time_label")
-        self.start_time_label.setText("Start Time (s):")
+        self.start_time_label.setText("Start Count (s):")
         self.start_time_line_edit = QtWidgets.QLineEdit(self.centralwidget)
         self.start_time_line_edit.setGeometry(QtCore.QRect(int(screen_w * 0.5437), int(screen_h * 0.1187), int(screen_w * 0.0638), int(screen_h * 0.0250)))
         font = QtGui.QFont()
@@ -571,7 +572,7 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         self.length_label.setFont(font)
         self.length_label.setObjectName("length_label")
-        self.length_label.setText("Original Length:")
+        self.length_label.setText("Original Length (units maintained from above):")
         self.length_line_edit = QtWidgets.QLineEdit(self.centralwidget)
         self.length_line_edit.setGeometry(QtCore.QRect(int(screen_w * 0.1375), int(screen_h * 0.6500), int(screen_w * 0.0938), int(screen_h * 0.0250)))
         font = QtGui.QFont()
@@ -599,7 +600,7 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         self.dsc_data_label.setFont(font)
         self.dsc_data_label.setObjectName("dsc_data_label")
-        self.dsc_data_label.setText("Data File:")
+        self.dsc_data_label.setText("Data File (runs independently):")
         self.num_cycle_label = QtWidgets.QLabel(self.centralwidget)
         self.num_cycle_label.setGeometry(QtCore.QRect(int(screen_w * 0.2750), int(screen_h * 0.6625), int(screen_w * 0.1000), int(screen_h * 0.0500)))
         font = QtGui.QFont()
@@ -675,11 +676,11 @@ class Ui_MainWindow(object):
         self.y_axis_movavg_label.hide()
         self.x_movavg_input = QtWidgets.QLineEdit(self.centralwidget)
         self.x_movavg_input.setFont(font)
-        self.x_movavg_input.setGeometry(420, 610, 40, 17)
+        self.x_movavg_input.setGeometry(QtCore.QRect(int(screen_w * 0.35), int(screen_h * 0.7650), int(screen_w * 0.0500), int(screen_h * 0.0200)))
         self.x_movavg_input.hide()
         self.y_movavg_input = QtWidgets.QLineEdit(self.centralwidget)
         self.y_movavg_input.setFont(font)
-        self.y_movavg_input.setGeometry(420, 635, 40, 17)
+        self.y_movavg_input.setGeometry(QtCore.QRect(int(screen_w * 0.35), int(screen_h * 0.790), int(screen_w * 0.05), int(screen_h * 0.0200)))
         self.y_movavg_input.hide()
         self.x_axis_label = QtWidgets.QLabel(self.centralwidget)
         self.x_axis_label.setFont(font)
@@ -721,7 +722,7 @@ class Ui_MainWindow(object):
         self.clear_dsc_button.setObjectName("clear_dsc_button")
         self.clear_dsc_button.setText("Clear Section")
         self.bandpass_blurb = QtWidgets.QLabel(self.centralwidget)
-        self.bandpass_blurb.setText("Would you like to apply a bandpass filter to strain?")
+        self.bandpass_blurb.setText("Would you like to apply a bandpass filter to strain? (future work)")
         self.bandpass_blurb.setWordWrap(True)
         self.bandpass_blurb.setGeometry(QtCore.QRect(int(screen_w * 0.0125), int(screen_h * 0.6875), int(screen_w * 0.1625), int(screen_h * 0.0563)))
         self.bandpass_blurb.setFont(font)
@@ -799,7 +800,7 @@ class Ui_MainWindow(object):
         cycles_title.setGeometry(QtCore.QRect(int(screen_w * 0.6500), int(screen_h * 0.5875), int(screen_w * 0.1875), int(screen_h * 0.0500)))
         cycles_title.setText("Cycles")
         cycles_blurb = QtWidgets.QLabel(self.centralwidget)
-        cycles_blurb.setText("Would you like to determine cycles based off of the fluke or MTS?")
+        cycles_blurb.setText("Would you like to apply thermal cycle recognition from ASMADA based off either Fluke or MTS data? MTS is chosen for single input unless overriden.")
         cycles_blurb.setFont(font)
         cycles_blurb.setGeometry(QtCore.QRect(int(screen_w * 0.7525), int(screen_h * 0.61000), int(screen_w * 0.1500), int(screen_h * 0.0250)))
         cycles_blurb.setWordWrap(True)
@@ -824,7 +825,7 @@ class Ui_MainWindow(object):
         start_cycle_sep.setMidLineWidth(2)
         start_cycle_sep.setFrameShape(QtWidgets.QFrame.HLine)
         version_number = QtWidgets.QLabel(self.centralwidget)
-        version_number.setText("Ver. 0.9.5.0")
+        version_number.setText("Ver. 0.9.6.0")
         version_number.setGeometry(QtCore.QRect(int(screen_w * 0.95), int(screen_h * 0.9000), int(screen_w * 0.1250), int(screen_h * 0.0312)))
 
 
@@ -904,6 +905,7 @@ class Ui_MainWindow(object):
         self.cycles_checkbox.stateChanged.connect(self.checkCycles)
         self.mts_cycle_checkbox.stateChanged.connect(self.getCycleDeterminer)
         self.fluke_cycle_checkbox.stateChanged.connect(self.getCycleDeterminer)
+        
 
 
         # FLUKE DATA
@@ -939,6 +941,7 @@ class Ui_MainWindow(object):
         self.clear_csect_button.clicked.connect(self.clearCrossSection)
         self.clear_movavg_button.clicked.connect(self.clearMovAvg)
         self.clear_dsc_button.clicked.connect(self.clearDSC)
+        
 
 
         # DICTIONARY FOR ALL DATA
@@ -962,9 +965,9 @@ class Ui_MainWindow(object):
         self.fluke_data_file_display_label.setText(_translate("MainWindow", "FLUKE_DATA.csv"))
         self.optional_label_file.setText(_translate("MainWindow", "(Optional)"))
         self.time_sync_label.setText(_translate("MainWindow", "Time Synchronization"))
-        self.time_interval_label.setText(_translate("MainWindow", "MTS Start(HH:MM:SS):"))
-        self.end_time_label.setText(_translate("MainWindow", "End Time (s):"))
-        self.glitch_text_text.setText(_translate("MainWindow", "Sometimes the MTS glitches at 0 degrees. Would you like to account for this glitch and delete all spurious zeroes?"))
+        self.time_interval_label.setText(_translate("MainWindow", "MTS Absolute Start (HH:MM:SS):\nMatch Fluke If Unsure"))
+        self.end_time_label.setText(_translate("MainWindow", "End Count (s):"))
+        self.glitch_text_text.setText(_translate("MainWindow", "Would you like to delete all spurious zeroes? (features to be expanded upon)"))
         self.glitch_check_label.setText(_translate("MainWindow", "Data Spike Remover"))
         self.glitch_check_dropdown.setItemText(0, _translate("MainWindow", "Select..."))
         self.glitch_check_dropdown.setItemText(1, _translate("MainWindow", "Yes"))
@@ -977,7 +980,7 @@ class Ui_MainWindow(object):
         self.fluke_data_select_label.setText(_translate("MainWindow", "Fluke Data Selection"))
         self.fluke_temp_label.setText(_translate("MainWindow", "Temperature:"))
         self.fluke_temp_dropdown.setItemText(0, _translate("MainWindow", "Select..."))
-        self.fluke_temp_blurb.setText(_translate("MainWindow", "(Leave blank if you have no fluke data to analyze)"))
+        self.fluke_temp_blurb.setText(_translate("MainWindow", "(Not needed if there is no fluke data to analyze.)"))
         self.cross_section_label.setText(_translate("MainWindow", "Cross Section Information"))
         self.shape_label.setText(_translate("MainWindow", "Shape:"))
         self.shape_dropdown.setItemText(0, _translate("MainWindow", "Select..."))
@@ -998,7 +1001,7 @@ class Ui_MainWindow(object):
         self.measurement_label.setText(_translate("MainWindow", "Side Length:"))
         self.width_label.setText(_translate("MainWindow", "Width:"))
         self.movavg_label.setText(_translate("MainWindow", "Moving Average Filter"))
-        self.movavg_blurb.setText(_translate("MainWindow", "A moving average filter can be applied to temperature, load, or displaement. Would you like to apply a moving average filter to any or all of these measurements?"))
+        self.movavg_blurb.setText(_translate("MainWindow", "A moving average filter can be applied to temperature, load, or displacement. Would you like to apply a moving average filter to any or all of these measurements?"))
         self.mts_temp_movavg_label.setText(_translate("MainWindow", "Number of datapoints for MTS temperature moving average:"))
         self.load_movavg_label.setText(_translate("MainWindow", "Number of datapoints for load moving average:"))
         self.fluke_temp_movavg_label.setText(_translate("MainWindow", "Number of datapoints for Fluke temperature moving average:"))
@@ -1147,7 +1150,7 @@ class Ui_MainWindow(object):
     # get time interval and end time
     def getTimeInfo(self):
         time_data = {}
-        interval = self.time_interval_line_edit.text()
+        interval = self.time_interval_line_edit.text()# is this is MTS start time in HH:MM:SS??
         time_data["Interval"] = interval
         start_time = self.start_time_line_edit.text()
         end_time = self.end_time_line_edit.text()
@@ -1557,11 +1560,12 @@ class Ui_MainWindow(object):
         self.fluke_data_file_display_label.hide()
 
         # time info
-        self.start_time_line_edit.setText("")
+        self.start_time_line_edit.setText("0")
         self.end_time_line_edit.setText("")
         self.time_interval_line_edit.setText("")
         self.default_end_time_label.hide()
         self.default_start_time_label.hide()
+        self.delay_line_edit.setText("0")
 
         # glitch check
         self.glitch_check_dropdown.setCurrentIndex(0)
@@ -1609,8 +1613,8 @@ class Ui_MainWindow(object):
         self.dsc_data_display_label.hide()
         self.num_cycle_input.setText("")
         self.num_cycle_input2.setText("")
-        self.dsc_movavg_yes_checkbox.setCheckState(False)
         self.dsc_movavg_no_checkbox.setCheckState(False)
+        self.dsc_movavg_yes_checkbox.setCheckState(False)
         self.x_movavg_input.setText("")
         self.x_movavg_input.hide()
         self.x_axis_movavg_label.hide()
@@ -1619,6 +1623,7 @@ class Ui_MainWindow(object):
         self.y_axis_movavg_label.hide()
         self.resetComboBox(self.x_axis_combobox)
         self.resetComboBox(self.y_axis_combobox)
+        
 
 
     def clearCrossSection(self):
@@ -1659,8 +1664,8 @@ class Ui_MainWindow(object):
         self.dsc_data_display_label.hide()
         self.num_cycle_input.setText("")
         self.num_cycle_input2.setText("")
-        self.dsc_movavg_yes_checkbox.setCheckState(False)
         self.dsc_movavg_no_checkbox.setCheckState(False)
+        self.dsc_movavg_yes_checkbox.setCheckState(False)
         self.x_movavg_input.setText("")
         self.x_movavg_input.hide()
         self.x_axis_movavg_label.hide()
@@ -1709,23 +1714,36 @@ class Ui_MainWindow(object):
         delay = self.troubleshooter.getDelay()
         self.delay_line_edit.setEnabled(True)
         self.delay_line_edit.setText(str(delay))
-
-
-    def checkCycles(self):
-        if (self.cycles_checkbox.isChecked()):
-            self.all_data["No Cycles"] = True
-        else:
-            self.all_data["No Cycles"] = False
-
+          
 
     def getCycleDeterminer(self):
         if self.mts_cycle_checkbox.isChecked():
             self.fluke_cycle_checkbox.setDisabled(True)
             self.all_data["Cycle Determiner"] = "mts"
-        elif self.fluke_cycle_checkbox.isChecked():
+        else:
+            self.fluke_cycle_checkbox.setDisabled(False)
+            # If neither is checked, remove the entry
+            if not self.fluke_cycle_checkbox.isChecked():
+                self.all_data.pop("Cycle Determiner", None)
+    
+        if self.fluke_cycle_checkbox.isChecked():
             self.mts_cycle_checkbox.setDisabled(True)
             self.all_data["Cycle Determiner"] = "fluke"
-
+        else:
+            self.mts_cycle_checkbox.setDisabled(False)
+            # If neither is checked, remove the entry
+            if not self.mts_cycle_checkbox.isChecked():
+                self.all_data.pop("Cycle Determiner", None)
+                
+    def checkCycles(self): #mild bad logic going on here with the false case
+        if (self.cycles_checkbox.isChecked()):
+            self.all_data["No Cycles"] = True
+            self.fluke_cycle_checkbox.setDisabled(True)
+            self.mts_cycle_checkbox.setDisabled(True)
+        else:
+            self.all_data["No Cycles"] = False
+            
+         
 
 
 class AnotherWindow(QWidget):
