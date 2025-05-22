@@ -15,6 +15,8 @@ from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtGui import QIcon
 import sys
 
+# Add src/ to the Python path
+sys.path.insert(0, os.path.abspath("src"))
 
 from src.data_input.create_data_input import (
     DataInputWidget
