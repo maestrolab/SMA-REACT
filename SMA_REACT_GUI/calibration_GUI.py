@@ -54,7 +54,7 @@ class App(QtWidgets.QMainWindow):
     (Rendering of Experimental Analysis and Calibration Tool)'
 
         # Change the size of the GUI here.
-        app = QtWidgets.QApplication(sys.argv)
+        app = QtWidgets.QApplication.instance()
         screen = app.primaryScreen()
         rect = screen.availableGeometry()
 
@@ -162,7 +162,7 @@ class App(QtWidgets.QMainWindow):
         bounds = self.calibration_parameters_widget.getBounds()
         print(self.calibration_parameters_widget.known_values)
 
-        app.processEvents()
+        #app.processEvents()
 
         self.change_tabs(index=2)
 
@@ -257,7 +257,6 @@ class App(QtWidgets.QMainWindow):
 def main():
     cgitb.enable(format="text") #for more detailed traceback reports
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
     ex = App()
     sys.exit(app.exec_())
 
