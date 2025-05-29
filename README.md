@@ -6,7 +6,7 @@ SMA-REACT is distributed under the BSD 3-Clause License, which [``allows unlimit
 
 ## Downloads
 
-1. Go to the [Releases](https://github.com/maestrolab/SMA_REACT/releases) page and download the SMA_REACT executable for your operating system. Click **Assets** to expand the list of downloadable files. You can also download the 'input.zip' file which contains sample input files for the SMA_REACT software.
+1. Go to the [Releases](https://github.com/maestrolab/SMA_REACT/releases) page and download the SMA_REACT executable for your operating system. Click **Assets** to expand the list of downloadable files. You can also download the `input.zip` file which contains sample input files for the SMA_REACT software.
 
 2. If you prefer to install the software from source, you can clone the repository and install the dependencies manually. We recommend doing this in a **virtual environment** to avoid package conflicts.
 	
