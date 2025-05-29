@@ -12,12 +12,10 @@ import json
 import os
 from datetime import date
 from PyQt5 import QtGui, QtWidgets
-from PyQt5.QtGui import QIcon
 import sys
 
 # Add src/ to the Python path
-sys.path.insert(0, os.path.abspath("src"))
-
+sys.path.insert(0, os.path.abspath(".."))
 from src.data_input.create_data_input import (
     DataInputWidget
     )
@@ -54,7 +52,7 @@ class App(QtWidgets.QMainWindow):
     (Rendering of Experimental Analysis and Calibration Tool)'
 
         # Change the size of the GUI here.
-        app = QtWidgets.QApplication.instance()
+        app = QtWidgets.QApplication(sys.argv)
         screen = app.primaryScreen()
         rect = screen.availableGeometry()
 
@@ -162,7 +160,7 @@ class App(QtWidgets.QMainWindow):
         bounds = self.calibration_parameters_widget.getBounds()
         print(self.calibration_parameters_widget.known_values)
 
-        #app.processEvents()
+        app.processEvents()
 
         self.change_tabs(index=2)
 
@@ -176,8 +174,9 @@ class App(QtWidgets.QMainWindow):
         self.calibration_plotting_widget.export_button.setEnabled(True)
         
         # Remove DEAP files
-        for file in ["popLog.bak","popLog.dat","popLog.dir"]:
-            os.remove(file)
+        for file in ["popLog.bak","popLog.dat","popLog.dir","popLog.db"]:
+            if os.path.isfile(file):
+                os.remove(file)
 
     def export_solution(self):
         '''
@@ -254,11 +253,12 @@ class App(QtWidgets.QMainWindow):
                 indent=4
                 )
 
-def main():
-    cgitb.enable(format="text") #for more detailed traceback reports
-    app = QtWidgets.QApplication(sys.argv)
-    ex = App()
-    sys.exit(app.exec_())
 
 if __name__ == "__main__":
-    main()
+    import sys
+
+    cgitb.enable(format="text") #for more detailed traceback reports
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ex = App()
+    sys.exit(app.exec_())

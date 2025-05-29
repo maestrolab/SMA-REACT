@@ -17,10 +17,10 @@ from PyQt5.QtWidgets import QFileDialog, QVBoxLayout, QWidget
 from PyQt5.QtWidgets import QMessageBox
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-# Add src/ to the Python path
 import sys
 import os
-sys.path.insert(0, os.path.abspath("src"))
+# Add src/ to the Python path
+sys.path.insert(0, os.path.abspath(".."))
 from src.preprocessor.data_reader import reader
 from src.preprocessor.analyze_mts_only import analyze_mts
 from src.preprocessor.analyze_fluke_and_mts import analyze_fmts
@@ -159,7 +159,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setBold(False)
         font.setWeight(50)
-        self.time_interval_line_edit.setFont(font) 
+        self.time_interval_line_edit.setFont(font)
         self.time_interval_line_edit.setText("") # MTS Start time, no idea why they called it interval
         self.time_interval_line_edit.setObjectName("time_interval_line_edit")
         self.time_interval_line_edit.setEnabled(False)
@@ -1762,14 +1762,12 @@ class AnotherWindow(QWidget):
         layout.addWidget(self.toolbar)
         self.setLayout(layout)
 
-def main():
+
+if __name__ == "__main__":
+    import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-
-if __name__ == "__main__":
-    main()
-

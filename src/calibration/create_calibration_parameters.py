@@ -12,8 +12,9 @@ from PyQt5.QtGui import QPixmap
 
 from matplotlib.figure import Figure
 from matplotlib import rcParams as rc
+from matplotlib import font_manager
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-import io
+import shutil
 
 
 class CalibrationParametersWidget(QtWidgets.QWidget):
@@ -825,7 +826,7 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
         #%% Initial conditions
         self.loadDefaults()
 
-    # %% Functions 
+    # %% Functions
     def uncheck(self,state):
         '''
         Translates all of the checkboxes for each
@@ -1829,46 +1830,63 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
     def textToLatex(self, text, width, height):
         '''
-        Creates a PNG from LaTeX-style text using matplotlib mathtext (no external LaTeX required)
+        Creates a png from text to render latex 
 
         Parameters
         ----------
         text : str
-            Text to render (e.g., r"$E=mc^2$").
+            text to render.
         width : int
-            Width of the text box in pixels.
+            size of the text box (pixels).
         height : int
-            Height of the text box in pixels.
+            size of the text box (pixels).
 
         Returns
         -------
-        label : QLabel
-            QLabel containing the rendered image.
+        label : QLabel object
+            png with latex rendered font .
+
         '''
-        # Use built-in mathtext, not external LaTeX
-        #rc["font.serif"] = "Palatino Linotype"
-        #rc["font.family"] = "serif"
-        rc["text.usetex"] = False  # Turn OFF LaTeX dependency
+        # Check if 'Palatino Linotype' is available
+        available_fonts = set(f.name for f in font_manager.fontManager.ttflist)
+
+        if "Palatino Linotype" in available_fonts:
+            rc["font.serif"] = ["Palatino Linotype"]
+        else:
+            #print("'Palatino Linotype' not found. Falling back to default serif.")
+            # You can list common serif fallbacks if you want
+            rc["font.serif"] = ["DejaVu Serif", "Times New Roman", "Georgia"]
+
+        # Always set the general family to 'serif' to activate the list above
+        rc["font.family"] = "serif"
+        
+        
+        if shutil.which("latex"):
+            #print("LaTeX found, using it for rendering.")
+            rc["text.usetex"] = True
+        else:
+            #print("LaTeX not found, rendering without it.")
+            rc["text.usetex"] = False
 
         dpi = 125
-        fig = Figure(figsize=(width / dpi, height / dpi), dpi=dpi)
+        fig = Figure(figsize=(width/dpi, height/dpi), dpi=dpi)
         canvas = FigureCanvas(fig)
-        ax = fig.add_axes([0, 0, 1, 1])  # Fill full area
+        ax = fig.gca()
+        ax.text(0.0,0.0,text,va='center',ha='center',fontsize=10)
+
         ax.axis('off')
+        ax.margins(0)
+        ax.patch.set_facecolor('none')
+        fig.patch.set_facecolor('none')
 
-        ax.text(0.5, 0.5, text,
-                va='center', ha='center',
-                fontsize=10, transform=ax.transAxes)
+        canvas.draw()
+        canvas.print_figure("latex.png",facecolor=fig.get_facecolor())
+        pixmap = QPixmap('latex.png')
 
-        # Render to memory buffer
-        buf = io.BytesIO()
-        canvas.print_png(buf)
-        pixmap = QPixmap()
-        pixmap.loadFromData(buf.getvalue())
-
-        # Create QLabel with the rendered pixmap
         label = QLabel(self)
         label.setPixmap(pixmap)
+        import os
+        os.remove('latex.png')
         label.setMinimumSize(QSize(width, height))
 
         return label
