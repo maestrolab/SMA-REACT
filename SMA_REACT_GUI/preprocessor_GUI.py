@@ -17,6 +17,10 @@ from PyQt5.QtWidgets import QFileDialog, QVBoxLayout, QWidget
 from PyQt5.QtWidgets import QMessageBox
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
+# Add src/ to the Python path
+import sys
+import os
+sys.path.insert(0, os.path.abspath("src"))
 from src.preprocessor.data_reader import reader
 from src.preprocessor.analyze_mts_only import analyze_mts
 from src.preprocessor.analyze_fluke_and_mts import analyze_fmts
@@ -1758,13 +1762,14 @@ class AnotherWindow(QWidget):
         layout.addWidget(self.toolbar)
         self.setLayout(layout)
 
-
-if __name__ == "__main__":
-    import sys
+def main():
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
+if __name__ == "__main__":
+    main()
 

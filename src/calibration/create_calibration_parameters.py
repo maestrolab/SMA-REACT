@@ -13,6 +13,7 @@ from PyQt5.QtGui import QPixmap
 from matplotlib.figure import Figure
 from matplotlib import rcParams as rc
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+import io
 
 
 class CalibrationParametersWidget(QtWidgets.QWidget):
@@ -1828,49 +1829,46 @@ class CalibrationParametersWidget(QtWidgets.QWidget):
 
     def textToLatex(self, text, width, height):
         '''
-        Creates a png from text to render latex 
+        Creates a PNG from LaTeX-style text using matplotlib mathtext (no external LaTeX required)
 
         Parameters
         ----------
         text : str
-            text to render.
+            Text to render (e.g., r"$E=mc^2$").
         width : int
-            size of the text box (pixels).
+            Width of the text box in pixels.
         height : int
-            size of the text box (pixels).
+            Height of the text box in pixels.
 
         Returns
         -------
-        label : QLabel object
-            png with latex rendered font .
-
+        label : QLabel
+            QLabel containing the rendered image.
         '''
-        rc["font.serif"] = "Palatino Linotype"
-        rc["font.family"] = "serif"
-        try:
-            rc["text.usetex"] = True
-        except:
-            print('Rending mathematical symbols without LaTeX')
+        # Use built-in mathtext, not external LaTeX
+        #rc["font.serif"] = "Palatino Linotype"
+        #rc["font.family"] = "serif"
+        rc["text.usetex"] = False  # Turn OFF LaTeX dependency
 
         dpi = 125
-        fig = Figure(figsize=(width/dpi, height/dpi), dpi=dpi)
+        fig = Figure(figsize=(width / dpi, height / dpi), dpi=dpi)
         canvas = FigureCanvas(fig)
-        ax = fig.gca()
-        ax.text(0.0,0.0,text,va='center',ha='center',fontsize=10)
-
+        ax = fig.add_axes([0, 0, 1, 1])  # Fill full area
         ax.axis('off')
-        ax.margins(0)
-        ax.patch.set_facecolor('none')
-        fig.patch.set_facecolor('none')
 
-        canvas.draw()
-        canvas.print_figure("latex.png",facecolor=fig.get_facecolor())
-        pixmap = QPixmap('latex.png')
+        ax.text(0.5, 0.5, text,
+                va='center', ha='center',
+                fontsize=10, transform=ax.transAxes)
 
+        # Render to memory buffer
+        buf = io.BytesIO()
+        canvas.print_png(buf)
+        pixmap = QPixmap()
+        pixmap.loadFromData(buf.getvalue())
+
+        # Create QLabel with the rendered pixmap
         label = QLabel(self)
         label.setPixmap(pixmap)
-        import os
-        os.remove('latex.png')
         label.setMinimumSize(QSize(width, height))
 
         return label
