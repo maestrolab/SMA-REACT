@@ -10,36 +10,36 @@ SMA-REACT is distributed under the BSD 3-Clause License, which [``allows unlimit
 
 2. If you prefer to install the software from source, you can clone the repository and install the dependencies manually. We recommend doing this in a **virtual environment** to avoid package conflicts.
 	
-	2a. **Clone the repository**:
+	- 2a. Clone the repository:
 	
 	    ```bash
 	    git clone https://github.com/maestrolab/SMA_REACT.git
 	    cd SMA_REACT
 	    ```
 	
-	2b. **(Optional but recommended) Create and activate a virtual environment**:
+   	- 2b. (Optional but recommended) Create and activate a virtual environment:
 	
-	    - **On macOS/Linux**:
+	    - On macOS/Linux:
 	
 	        ```bash
 	        python3 -m venv venv
 	        source venv/bin/activate
 	        ```
 	
-	    - **On Windows**:
+	    - On Windows:
 	
 	        ```cmd
 	        python -m venv venv
 	        venv\Scripts\activate
 	        ```
 	
-	2c. **Install the package and its dependencies** (from the directory containing the `pyproject.toml` file):
+	- 2c. Install the package and its dependencies (from the directory containing the `pyproject.toml` file):
 	
 	    ```bash
 	    pip install .
 	    ```
 	
-	This will install all required packages with the correct versions as defined in the project.
+	    This will install all required packages with the correct versions as defined in the project.
 
 3. If you prefer not to use `pip install .`, you can manually install the required packages individually (ensure you get the correct package versions).
 
