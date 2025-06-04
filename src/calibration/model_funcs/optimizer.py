@@ -24,6 +24,10 @@ from . import Full_Model_stress
 #Numpy presets
 np.seterr(all='raise') #tell numpy to raise floating point errors.
 
+# Create output folder if it doesn't exist
+output_dir = os.path.join(os.getcwd(), 'output')
+os.makedirs(output_dir, exist_ok=True)  # Ensure the output directory exists
+
 def cxTwoPointCopy(ind1, ind2):
     """Execute a two points crossover with copy on the input individuals. The
     copy is required because the slicing in numpy returns a view of the data,
@@ -354,7 +358,6 @@ def evaluate(
         except:
             errors[i] = 1E12
         i +=1
-
 
 
     if plot_flag == True:

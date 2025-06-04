@@ -15,7 +15,10 @@ from PyQt5 import QtGui, QtWidgets
 import sys
 
 # Add src/ to the Python path
-sys.path.insert(0, os.path.abspath(".."))
+script_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.abspath(os.path.join(script_dir, ".."))
+sys.path.insert(0, parent_dir)
+#print("\n".join(sys.path))
 from src.data_input.create_data_input import (
     DataInputWidget
     )
@@ -52,8 +55,7 @@ class App(QtWidgets.QMainWindow):
     (Rendering of Experimental Analysis and Calibration Tool)'
 
         # Change the size of the GUI here.
-        app = QtWidgets.QApplication(sys.argv)
-        screen = app.primaryScreen()
+        screen = QtWidgets.QApplication.instance().primaryScreen()
         rect = screen.availableGeometry()
 
         left = int(rect.width()*0.05)
@@ -160,7 +162,7 @@ class App(QtWidgets.QMainWindow):
         bounds = self.calibration_parameters_widget.getBounds()
         print(self.calibration_parameters_widget.known_values)
 
-        app.processEvents()
+        QtWidgets.QApplication.instance().processEvents()
 
         self.change_tabs(index=2)
 
@@ -252,9 +254,8 @@ class App(QtWidgets.QMainWindow):
                 ensure_ascii=False,
                 indent=4
                 )
-
-
-if __name__ == "__main__":
+                
+def main_cli():
     import sys
 
     cgitb.enable(format="text") #for more detailed traceback reports
@@ -262,3 +263,6 @@ if __name__ == "__main__":
     MainWindow = QtWidgets.QMainWindow()
     ex = App()
     sys.exit(app.exec_())
+
+if __name__ == "__main__":
+    main_cli()

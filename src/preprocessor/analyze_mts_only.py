@@ -1,6 +1,7 @@
 # IMPORT STATEMENTS
 from collections import Counter
 import numpy as np
+import os
 
 from src.preprocessor.functions import *
 from src.preprocessor.data_reader import reader
@@ -123,6 +124,9 @@ def analyze_mts(file, end, start, glitch_check, temp_title, disp_title, shape, u
 
     # EXPORTING DATA
     # export_all(mts_data, start, shape, area, unit_out, orig_length, disp_units, "MTS_ONLY.xlsx")
+    # Create output folder if it doesn't exist
+    output_dir = os.path.join(os.getcwd(), 'output')
+    os.makedirs(output_dir, exist_ok=True)  # Ensure the output directory exists
     mts_data.to_csv("output/processed_MTS.csv")
 
     # EXPORTING FOR ASMADA
@@ -132,7 +136,7 @@ def analyze_mts(file, end, start, glitch_check, temp_title, disp_title, shape, u
     if choice:
         asm_cols.append("Filtered Strain")
     asmada_df = mts_data[asm_cols]
-    asmada_df = final_df[asm_cols].replace("", pd.NA).dropna().reset_index(drop=True) #remove empty space from moving average filter
+    asmada_df = mts_data[asm_cols].replace("", pd.NA).dropna().reset_index(drop=True) #remove empty space from moving average filter
     asmada_df.to_csv("output/clean_data_TSE.csv", index=False)
 
     plots = [final_plot, figure3d]

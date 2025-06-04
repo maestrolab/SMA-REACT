@@ -20,7 +20,9 @@ from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as Navigatio
 import sys
 import os
 # Add src/ to the Python path
-sys.path.insert(0, os.path.abspath(".."))
+script_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.abspath(os.path.join(script_dir, ".."))
+sys.path.insert(0, parent_dir)
 from src.preprocessor.data_reader import reader
 from src.preprocessor.analyze_mts_only import analyze_mts
 from src.preprocessor.analyze_fluke_and_mts import analyze_fmts
@@ -497,37 +499,45 @@ class Ui_MainWindow(object):
         self.circle_img = QtWidgets.QLabel(self.centralwidget)
         self.circle_img.setGeometry(QtCore.QRect(int(screen_w * 0.2500), int(screen_h * 0.3312), int(screen_w * 0.09), int(screen_w * 0.09)))
         self.circle_img.setObjectName("circle_img")
-        self.circle_img.setPixmap(QtGui.QPixmap("src/preprocessor/media/circle.png"))
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        parent_dir = os.path.abspath(os.path.join(script_dir, ".."))
+        circle_path = os.path.join(parent_dir, "src", "preprocessor", "media", "circle.png")
+        self.circle_img.setPixmap(QtGui.QPixmap(circle_path))
         self.circle_img.setScaledContents(True)
         self.circle_img.hide()
         self.rectangle_img = QtWidgets.QLabel(self.centralwidget)
         self.rectangle_img.setGeometry(QtCore.QRect(int(screen_w * 0.2500), int(screen_h * 0.3312), int(screen_w * 0.09), int(screen_w * 0.06)))
         self.rectangle_img.setObjectName("rectangle_img")
-        self.rectangle_img.setPixmap(QtGui.QPixmap("src/preprocessor/media/rectangle.png"))
+        rectangle_path = os.path.join(parent_dir, "src", "preprocessor", "media", "rectangle.png")
+        self.rectangle_img.setPixmap(QtGui.QPixmap(rectangle_path))
         self.rectangle_img.setScaledContents(True)
         self.rectangle_img.hide()
         self.square_img = QtWidgets.QLabel(self.centralwidget)
         self.square_img.setGeometry(QtCore.QRect(int(screen_w * 0.2500), int(screen_h * 0.3312), int(screen_w * 0.09), int(screen_w * 0.09)))
         self.square_img.setObjectName("square_img")
-        self.square_img.setPixmap(QtGui.QPixmap("src/preprocessor/media/square.png"))
+        square_path = os.path.join(parent_dir, "src", "preprocessor", "media", "square.png")
+        self.square_img.setPixmap(QtGui.QPixmap(square_path))
         self.square_img.setScaledContents(True)
         self.square_img.hide()
         self.circle_in_square_img = QtWidgets.QLabel(self.centralwidget)
         self.circle_in_square_img.setGeometry(QtCore.QRect(int(screen_w * 0.2500), int(screen_h * 0.3312), int(screen_w * 0.09), int(screen_w * 0.09)))
         self.circle_in_square_img.setObjectName("circle_in_square_img")
-        self.circle_in_square_img.setPixmap(QtGui.QPixmap("src/preprocessor/media/cintraquad.png"))
+        circle_square_path = os.path.join(parent_dir, "src", "preprocessor", "media", "cintraquad.png")
+        self.circle_in_square_img.setPixmap(QtGui.QPixmap(circle_square_path))
         self.circle_in_square_img.setScaledContents(True)
         self.circle_in_square_img.hide()
         self.custom_img = QtWidgets.QLabel(self.centralwidget)
         self.custom_img.setGeometry(QtCore.QRect(int(screen_w * 0.2500), int(screen_h * 0.3312), int(screen_w * 0.09), int(screen_w * 0.09)))
         self.custom_img.setObjectName("custom_img")
-        self.custom_img.setPixmap(QtGui.QPixmap("src/preprocessor/media/custom.png"))
+        custom_path = os.path.join(parent_dir, "src", "preprocessor", "media", "custom.png")
+        self.custom_img.setPixmap(QtGui.QPixmap(custom_path))
         self.custom_img.setScaledContents(True)
         self.custom_img.hide()
         self.logo = QtWidgets.QLabel(self.centralwidget)
         self.logo.setGeometry(QtCore.QRect(int(screen_w * .96000), int(screen_h * 0.0000), int(screen_w * 0.0400), int(screen_w * 0.04)))
         self.logo.setObjectName("logo")
-        self.logo.setPixmap(QtGui.QPixmap("src/preprocessor/media/maestro_logo.png"))
+        logo_path = os.path.join(parent_dir, "src", "preprocessor", "media", "maestro_logo.png")
+        self.logo.setPixmap(QtGui.QPixmap(logo_path))
         self.logo.setScaledContents(True)
         self.default_end_time_label = QtWidgets.QLabel(self.centralwidget)
         self.default_end_time_label.setGeometry(QtCore.QRect(int(screen_w * 0.6150), int(screen_h * 0.0813), int(screen_w * 0.0688), int(screen_h * 0.0250)))
@@ -1762,8 +1772,7 @@ class AnotherWindow(QWidget):
         layout.addWidget(self.toolbar)
         self.setLayout(layout)
 
-
-if __name__ == "__main__":
+def main_cli():
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
@@ -1771,3 +1780,6 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
+if __name__ == "__main__":
+    main_cli()

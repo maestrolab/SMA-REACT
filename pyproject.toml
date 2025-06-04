@@ -18,9 +18,12 @@ dependencies = [
 where = ["."]
 include = ["SMA_REACT_GUI", "src", "src.*"]
 
+[tool.setuptools.package-data]
+"src.preprocessor.media" = ["*.png"]
+
 [project.scripts]
-sma-react-preprocessor = "SMA_REACT_GUI.preprocessor_GUI:main"
-sma-react-calibration = "SMA_REACT_GUI.calibration_GUI:main"
+sma-react-preprocessor = "SMA_REACT_GUI.preprocessor_GUI:main_cli"
+sma-react-calibration = "SMA_REACT_GUI.calibration_GUI:main_cli"
 
 [build-system]
 requires = ["setuptools>=42", "wheel"]
