@@ -19,6 +19,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import sys
 import os
+from pathlib import Path
 # Add src/ to the Python path
 script_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.abspath(os.path.join(script_dir, ".."))
@@ -495,12 +496,16 @@ class Ui_MainWindow(object):
         self.satisfaction_label.setFont(font)
         self.satisfaction_label.setObjectName("satisfaction_label")
         self.satisfaction_label.setText("*If you are not satisfied with the plotted data, adjust inputs for the filter and rerun.*")
+        # get the right location for the images
+        if hasattr(sys, "_MEIPASS"):
+            parent_dir = sys._MEIPASS
+        else:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            parent_dir = os.path.abspath(os.path.join(script_dir, ".."))
         # cross section images
         self.circle_img = QtWidgets.QLabel(self.centralwidget)
         self.circle_img.setGeometry(QtCore.QRect(int(screen_w * 0.2500), int(screen_h * 0.3312), int(screen_w * 0.09), int(screen_w * 0.09)))
         self.circle_img.setObjectName("circle_img")
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        parent_dir = os.path.abspath(os.path.join(script_dir, ".."))
         circle_path = os.path.join(parent_dir, "src", "preprocessor", "media", "circle.png")
         self.circle_img.setPixmap(QtGui.QPixmap(circle_path))
         self.circle_img.setScaledContents(True)

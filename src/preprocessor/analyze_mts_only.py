@@ -2,6 +2,7 @@
 from collections import Counter
 import numpy as np
 import os
+import sys
 
 from src.preprocessor.functions import *
 from src.preprocessor.data_reader import reader
@@ -11,6 +12,7 @@ from src.preprocessor.plot_temp_vs_strain import plot_temp_vs_strain
 from src.preprocessor.plot_3d import plotSST
 from src.preprocessor.low_pass_filter import lowpassFilter
 from src.preprocessor.high_pass_filter import highpassFilter
+from pathlib import Path
 
 
 
@@ -125,9 +127,10 @@ def analyze_mts(file, end, start, glitch_check, temp_title, disp_title, shape, u
     # EXPORTING DATA
     # export_all(mts_data, start, shape, area, unit_out, orig_length, disp_units, "MTS_ONLY.xlsx")
     # Create output folder if it doesn't exist
-    output_dir = os.path.join(os.getcwd(), 'output')
-    os.makedirs(output_dir, exist_ok=True)  # Ensure the output directory exists
-    mts_data.to_csv("output/processed_MTS.csv")
+    output_dir = Path.home() / 'Desktop' / 'SMA_REACT_output'
+    output_dir.mkdir(parents=True, exist_ok=True)  # Ensure the output directory exists
+    file_path = output_dir / "processed_MTS.csv"
+    mts_data.to_csv(file_path)
 
     # EXPORTING FOR ASMADA
     asm_cols = [temp_title, stress_col_name, "Strain"]
@@ -137,7 +140,8 @@ def analyze_mts(file, end, start, glitch_check, temp_title, disp_title, shape, u
         asm_cols.append("Filtered Strain")
     asmada_df = mts_data[asm_cols]
     asmada_df = mts_data[asm_cols].replace("", pd.NA).dropna().reset_index(drop=True) #remove empty space from moving average filter
-    asmada_df.to_csv("output/clean_data_TSE.csv", index=False)
+    file_path = output_dir / "clean_data_TSE.csv"
+    asmada_df.to_csv(file_path, index=False)
 
     plots = [final_plot, figure3d]
     if len(movavg_conditions) != 0 and "none" not in movavg_conditions:

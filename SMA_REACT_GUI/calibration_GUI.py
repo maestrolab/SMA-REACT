@@ -13,10 +13,17 @@ import os
 from datetime import date
 from PyQt5 import QtGui, QtWidgets
 import sys
+from pathlib import Path
 
 # Add src/ to the Python path
-script_dir = os.path.dirname(os.path.abspath(__file__))
-parent_dir = os.path.abspath(os.path.join(script_dir, ".."))
+if getattr(sys, 'frozen', False):
+    # PyInstaller executable
+    script_dir = os.path.dirname(sys.executable)
+else:
+    # Normal Python script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    
+parent_dir = os.path.join(script_dir, "..")
 sys.path.insert(0, parent_dir)
 #print("\n".join(sys.path))
 from src.data_input.create_data_input import (
@@ -31,7 +38,16 @@ from src.calibration.create_calibration_parameters import (
 from src.calibration_progress.create_calibration_progress_widget import (
     CalibrationProgressWidget
     )
-
+    
+#def log_error(msg):
+#    try:
+#        # Use the user's home directory for safety
+#        log_path = os.path.expanduser("~/pyapp_error_log.txt")
+#        with open(log_path, "a") as f:
+#            f.write(msg + "\n")
+#    except Exception as log_fail:
+#        # Last resort if even logging fails
+#        pass
 
 class App(QtWidgets.QMainWindow):
     '''
@@ -67,20 +83,19 @@ class App(QtWidgets.QMainWindow):
 
 
         #Set window icon to be the A&M Logo (of course)
-        icon = QtGui.QIcon()
-        icon.addPixmap(
-            QtGui.QPixmap("TAM-LogoBox.ico"),
-            QtGui.QIcon.Normal,
-            QtGui.QIcon.Off
-            )
+#        icon = QtGui.QIcon()
+#        icon.addPixmap(
+#            QtGui.QPixmap("TAM-LogoBox.ico"),
+#            QtGui.QIcon.Normal,
+#            QtGui.QIcon.Off
+#            )
 
-        self.setWindowIcon(icon)
+#        self.setWindowIcon(icon)
         self.setWindowTitle(self.title)
 
 
         self.tabs = QtWidgets.QTabWidget()
         self.tabs.resize(width,height)
-
 
         self.calibration_parameters_widget = CalibrationParametersWidget()
 
@@ -176,9 +191,13 @@ class App(QtWidgets.QMainWindow):
         self.calibration_plotting_widget.export_button.setEnabled(True)
         
         # Remove DEAP files
-        for file in ["popLog.bak","popLog.dat","popLog.dir","popLog.db"]:
-            if os.path.isfile(file):
-                os.remove(file)
+        log_dir = Path.home() / 'Desktop' / 'SMA_REACT_output'
+        log_dir.mkdir(parents=True, exist_ok=True)
+        for suffix in [".bak", ".dat", ".dir", ".db"]:
+            file = log_dir / f"popLog{suffix}"
+            if file.is_file():
+                file.unlink()
+
 
     def export_solution(self):
         '''
@@ -240,11 +259,9 @@ class App(QtWidgets.QMainWindow):
                 str(date.today()),
             }
 
-        file_name = os.path.join(
-            os.getcwd(),
-            'output',
-            str(date.today())+'_calibration.json'
-            )
+        output_dir = Path.home() / 'Desktop' / 'SMA_REACT_output'
+        output_dir.mkdir(parents=True, exist_ok=True)
+        file_name = output_dir / (str(date.today()) + '_calibration.json')
 
 
         with open(file_name, 'w', encoding='utf-8') as file:
@@ -260,9 +277,16 @@ def main_cli():
 
     cgitb.enable(format="text") #for more detailed traceback reports
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
+    #MainWindow = QtWidgets.QMainWindow()
     ex = App()
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
     main_cli()
+#    import sys
+#
+#    cgitb.enable(format="text") #for more detailed traceback reports
+#    #app = QtWidgets.QApplication(sys.argv)
+#    #MainWindow = QtWidgets.QMainWindow()
+#    ex = App()
+#    sys.exit(app.exec_())
